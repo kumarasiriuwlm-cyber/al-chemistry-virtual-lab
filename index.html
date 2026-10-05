@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A/L රසායන විද්‍යාව | Virtual Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.hero{min-height:308px;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(239,247,255,.97) 0%,rgba(235,246,255,.91) 49%,rgba(14,47,78,.1) 100%),url("assets/homepage-reference.png") right 16% center/cover no-repeat;padding:48px 50px}
+.hero-content{max-width:690px;position:relative;z-index:2}.hero h1{font-size:40px;line-height:1.36;margin:0 0 22px;font-weight:800}.hero-features{display:flex;gap:29px;flex-wrap:wrap;font-size:14px;font-weight:600;margin-bottom:24px}
+.content{padding:18px 26px 45px}.content h2{font-size:21px;margin:0 0 13px}.dashboard{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:20px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:15px}.qcard{min-height:175px;padding:21px;position:relative;transition:.2s;text-decoration:none}.qcard:hover{transform:translateY(-3px)}.qcard .bigico{font-size:35px}.qcard h3{font-size:17px;margin:12px 0 8px}.qcard p{font-size:12px;line-height:1.65;margin:0}.qcard .arrow{position:absolute;right:16px;bottom:15px;width:26px;height:26px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center}
+.purple{background:#f5ebff;color:#962bd2}.blue{background:#eaf5ff;color:#0873e7}.green{background:#eaf9ef;color:#0a9b56}.orange{background:#fff1e6;color:#ef780b}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:15px}.panel{padding:14px}.panel-title{font-weight:800;font-size:18px;margin-bottom:12px}.continue{display:grid;grid-template-columns:112px 1fr;gap:15px;align-items:center}.flame{height:135px;border-radius:10px;background:linear-gradient(#071a27,#0a354d);position:relative;overflow:hidden}.flame:after{content:"🔥";position:absolute;inset:0;display:grid;place-items:center;font-size:64px}.tag{display:inline-block;background:#a8d0ff;color:#0757ac;border-radius:5px;padding:2px 7px;font-weight:800;font-size:12px}
+.stats{display:grid;grid-template-columns:130px 1fr;align-items:center;gap:10px}.donut{width:110px;height:110px;border-radius:50%;background:conic-gradient(#0877a9 0 28%,#e5edf3 28%);display:grid;place-items:center;margin:auto}.donut:after{content:"28%";width:78px;height:78px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:800;font-size:24px}.statrow{display:flex;justify-content:space-between;padding:6px 0;font-size:13px}
+.units-head{display:flex;justify-content:space-between;align-items:center;margin-top:17px}.units{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}.unit{padding:12px;min-height:116px;text-decoration:none;color:var(--ink);transition:.2s}.unit:hover{transform:translateY(-3px);box-shadow:0 7px 18px rgba(26,54,83,.12)}.unit .num{display:inline-block;padding:1px 8px;border-radius:5px;background:#f35b5b;color:#fff;font-weight:800}.unit h4{font-size:13px;margin:10px 0 7px}.unit small{font-size:10px;color:#64788d}.mini-progress{height:7px;border-radius:5px;background:#e8edf2;margin-top:9px;overflow:hidden}.mini-progress i{display:block;height:100%;background:#f6a21a}
+.rightcol{display:flex;flex-direction:column;gap:15px}.sidepanel{padding:14px}.sidepanel h3{font-size:17px;margin:0 0 8px}.linkrow{display:flex;gap:12px;align-items:center;padding:10px 4px;border-top:1px solid #e5edf3;font-size:12px;font-weight:600}.tip{display:flex;gap:10px;align-items:flex-start;font-size:12px;padding:7px 0}.check{width:19px;height:19px;flex:0 0 19px;border-radius:50%;background:#12a45d;color:white;display:grid;place-items:center;font-size:11px}.quote{background:#fff4e5;text-align:center;font-weight:700;line-height:1.8}
+@media(max-width:1200px){.quick{grid-template-columns:repeat(2,1fr)}.units{grid-template-columns:repeat(3,1fr)}.dashboard{grid-template-columns:1fr}.rightcol{display:grid;grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html"><div class="brand-mark">⚗</div><div><strong>A/L රසායන විද්‍යාව</strong><small>VIRTUAL LAB</small></div></a>
+<div class="search">⌕ <input placeholder="ප්‍රායෝගිකයක් සොයන්න..."></div><div class="bell">🔔</div><div class="avatar">●</div><div class="user">මගේ ගිණුම</div>
+</header>
+<aside class="sidebar"><nav class="nav">
+<a class="active" href="index.html"><span class="ico">⌂</span> මුල් පිටුව</a>
+<a href="unit1.html"><span class="ico">▣</span> ඉගෙනීම <span style="margin-left:auto">›</span></a>
+<a href="p01.html"><span class="ico">⚗</span> අතථ්‍ය පරීක්ෂණාගාරය</a>
+<a href="#"><span class="ico">♙</span> උපකරණ හා රසායනික ද්‍රව්‍ය</a>
+<a href="#"><span class="ico">▤</span> විභාග පුහුණුව</a>
+<a href="#"><span class="ico">▥</span> මගේ ප්‍රගතිය</a>
+<a href="#"><span class="ico">⚙</span> සැකසුම්</a>
+</nav></aside>
+<main>
+<section class="hero"><div class="hero-content">
+<h1>උසස් පෙළ රසායන විද්‍යාව<br>අත්හදා බලමින් ඉගෙන ගනිමු</h1>
+<div class="hero-features"><span>⚗ සියලු ප්‍රායෝගික පරීක්ෂණ</span><span>▣ සරල පැහැදිලි කිරීම්</span><span>▥ විභාගයට සූදානම්</span></div>
+<a class="primary" href="p01.html">⚗ පරීක්ෂණ අරඹන්න →</a>
+</div></section>
+<section class="content"><div class="dashboard"><div>
+<h2>අද ඔබට මොනවාද කරන්න ඕනේ?</h2>
+<div class="quick">
+<a class="qcard purple card" href="p01.html"><div class="bigico">⚗</div><h3>ප්‍රායෝගික පරීක්ෂණ</h3><p>සියලු 45 ප්‍රායෝගික පරීක්ෂණ අත්හදා බලන්න</p><span class="arrow">→</span></a>
+<a class="qcard blue card" href="unit1.html"><div class="bigico">▣</div><h3>පාඩම් ඒකක</h3><p>01 – 14 සියලු පාඩම් ඒකක ඉගෙන ගන්න</p><span class="arrow">→</span></a>
+<a class="qcard green card" href="#"><div class="bigico">▤</div><h3>විභාග පුහුණුව</h3><p>MCQ, ව්‍යුහගත, රචනා හා ප්‍රායෝගික ප්‍රශ්න</p><span class="arrow">→</span></a>
+<a class="qcard orange card" href="unit1.html#activities"><div class="bigico">◎</div><h3>ඉක්මන් පුහුණුව</h3><p>තෝරාගත් සංකල්ප සහ අන්තර්ක්‍රියාකාරී ක්‍රියාකාරකම්</p><span class="arrow">→</span></a>
+</div>
+<div class="twocol">
+<div class="panel card"><div class="panel-title">ඔබ නතර කළ තැනින්</div><div class="continue"><div class="flame"></div><div><span class="tag">P10</span><h3>දැල්ල පරීක්ෂාව</h3><small class="muted">6 වන ඒකකය · අකාබනික රසායනය</small><div style="display:flex;align-items:center;gap:10px;margin-top:13px"><div class="progress" style="flex:1"><i style="width:70%"></i></div><b>70%</b></div><a class="primary" style="padding:9px 18px;margin-top:12px" href="#">දිගටම කරගෙන යන්න →</a></div></div></div>
+<div class="panel card"><div class="panel-title">ඔබේ ප්‍රගතිය</div><div class="stats"><div class="donut"></div><div><div class="statrow"><span>⚗ සම්පූර්ණ කළ ප්‍රායෝගික</span><b>8 / 45</b></div><div class="statrow"><span>▣ සම්පූර්ණ කළ ඒකක</span><b>2 / 14</b></div><div class="statrow"><span>▤ කළ ප්‍රශ්න</span><b>120</b></div><div class="statrow"><span>🏆 සාමාන්‍ය ලකුණු</span><b>78%</b></div></div></div></div>
+</div>
+<div class="units-head"><h2>පාඩම් ඒකක (01 – 14)</h2><span class="muted" style="font-size:12px">ඒකකයක් තෝරන්න</span></div>
+<div class="units">
+<a class="unit card" href="unit1.html"><span class="num">01</span><h4>පරමාණුක ව්‍යුහය</h4><small>ඉගෙනුම් ඵල 1.1 – 1.4</small><div class="mini-progress"><i style="width:60%"></i></div></a>
+<div class="unit card"><span class="num" style="background:#1478e8">02</span><h4>ව්‍යුහය සහ බන්ධන</h4><small>ඉදිරියේදී</small><div class="mini-progress"></div></div>
+<div class="unit card"><span class="num" style="background:#0fb776">03</span><h4>රසායනික ගණනය</h4><small>ඉදිරියේදී</small><div class="mini-progress"></div></div>
+<div class="unit card"><span class="num" style="background:#ee8a24">04</span><h4>පදාර්ථයේ වායු අවස්ථාව</h4><small>ඉදිරියේදී</small><div class="mini-progress"></div></div>
+<div class="unit card"><span class="num" style="background:#a248d7">05</span><h4>ශක්ති විද්‍යාව</h4><small>ඉදිරියේදී</small><div class="mini-progress"></div></div>
+</div>
+</div>
+<aside class="rightcol">
+<div class="sidepanel card"><h3>ඉක්මන් සබැඳි</h3><div class="linkrow">⚗ <span>අතථ්‍ය පරීක්ෂණාගාරය</span></div><div class="linkrow">♙ <span>පරීක්ෂණාගාර උපකරණ</span></div><div class="linkrow">🧪 <span>රසායනික ද්‍රව්‍ය</span></div><div class="linkrow">🛡 <span>පරීක්ෂණ ආරක්ෂාව</span></div><div class="linkrow">▤ <span>පසුගිය විභාග ප්‍රශ්න</span></div></div>
+<div class="sidepanel card"><h3>💡 ඉගෙනුම් උපදෙස්</h3><div class="tip"><span class="check">✓</span><span>මූලික මූලධර්මය ඉගෙන ගන්න</span></div><div class="tip"><span class="check">✓</span><span>අතථ්‍ය පරීක්ෂණයෙන් අත්හදා බලන්න</span></div><div class="tip"><span class="check">✓</span><span>නිරීක්ෂණ සහ නිගමන සටහන් කරන්න</span></div><div class="tip"><span class="check">✓</span><span>අදාළ ප්‍රශ්න පුහුණු වන්න</span></div></div>
+<div class="sidepanel quote card">⚗<br>“අත්හදා බැලීම<br>දැනුම ගැඹුරු කරයි.”</div>
+</aside></div></section>
+<div class="footer">Sri Lanka G.C.E. A/L Chemistry • Virtual Laboratory prototype v0.2</div>
+</main></body></html>

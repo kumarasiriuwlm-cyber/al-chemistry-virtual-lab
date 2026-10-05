@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P01 කැතෝඩ කිරණ | Virtual Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
+<style>
+.labtop{height:66px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:15px;position:sticky;top:72px;z-index:10}.back{text-decoration:none;color:var(--ink);font-weight:800}.labtop h1{font-size:17px;margin:0}.labtop .spacer{flex:1}.stepcount{font-size:12px;color:#687d93;font-weight:700}
+.labwrap{padding:18px 20px 32px;display:grid;grid-template-columns:minmax(620px,1fr) 355px;gap:16px}.stage{min-height:655px;background:linear-gradient(180deg,#071b2a,#0a2638 58%,#092131);border-radius:16px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(5,24,39,.18)}
+.stage-title{position:absolute;left:20px;top:18px;color:#c8deec;font-size:12px;z-index:4}.labbench{position:absolute;left:0;right:0;bottom:0;height:128px;background:linear-gradient(#7c6042,#4f3b29);border-top:7px solid #a47d52}
+.apparatus{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:min(76%,700px);height:270px}.tubeShell{position:absolute;left:7%;right:7%;top:67px;height:116px;border:6px solid rgba(183,225,246,.68);border-radius:58px;background:linear-gradient(180deg,rgba(95,163,196,.10),rgba(146,223,255,.04));box-shadow:inset 0 0 40px rgba(88,188,236,.18),0 0 25px rgba(27,113,158,.20)}
+.electrode{position:absolute;top:25px;width:13px;height:62px;border-radius:3px;background:linear-gradient(90deg,#aab7bf,#e8eff2,#8999a4)}.cathode{left:52px}.anode{right:52px}.label{position:absolute;top:130px;color:#acc5d6;font-size:12px;font-weight:700}.lab-c{left:38px}.lab-a{right:38px}
+.beamline{position:absolute;left:70px;right:70px;top:53px;height:5px;border-radius:5px;background:linear-gradient(90deg,#42ffcc,#79d8ff);box-shadow:0 0 13px #39ffd0,0 0 28px rgba(73,221,255,.75);opacity:0;transition:.35s}.beamline.on{opacity:1}.beamline.up{transform:translateY(-13px) rotate(-4deg);transform-origin:left center}.beamline.down{transform:translateY(13px) rotate(4deg);transform-origin:left center}
+.fieldplates{position:absolute;left:43%;top:10px;width:15%;height:96px;opacity:.25;transition:.3s}.fieldplates.active{opacity:1}.plate{position:absolute;left:0;right:0;height:10px;border-radius:4px;background:#dce6eb}.plate.top{top:0}.plate.bottom{bottom:0}.sign{position:absolute;right:-26px;color:#d8e8ef;font-size:18px;font-weight:800}.sign.t{top:-7px}.sign.b{bottom:-7px}
+.controls{position:absolute;left:20px;right:20px;bottom:22px;z-index:5;display:flex;align-items:center;gap:10px}.ctrl{border:1px solid rgba(190,222,238,.28);background:rgba(7,35,52,.78);color:#dbeef8;border-radius:10px;padding:10px 13px;font-size:12px;font-weight:700;cursor:pointer}.ctrl.active{background:#0e78de;border-color:#4ba7ff;color:white}.power{margin-left:auto;background:#0d995f}.power.off{background:#6b7580}
+.panel{min-height:655px;padding:20px;display:flex;flex-direction:column}.stepbadge{display:inline-flex;align-self:flex-start;border-radius:999px;background:#eaf3ff;color:#0c68d0;padding:6px 10px;font-size:11px;font-weight:800}.panel h2{font-size:21px;margin:13px 0 8px}.panel p{font-size:13px;line-height:1.78;color:#586f86}.instruction{background:#f4f8fc;border:1px solid #e1eaf2;border-radius:10px;padding:13px;margin:9px 0}.instruction b{font-size:12px}.obs{margin-top:14px}.obs h3{font-size:15px;margin:0 0 10px}.option{display:flex;gap:10px;align-items:flex-start;border:1px solid #e0e9f1;border-radius:10px;padding:10px;margin:8px 0;font-size:12px;cursor:pointer}.option:hover{background:#f5f9fe}.option.correct{border-color:#62c99b;background:#ecfaf3}.option.wrong{border-color:#ef959d;background:#fff1f2}.feedback{padding:11px;border-radius:9px;font-size:12px;margin-top:9px;background:#edf8f2;color:#12734a;display:none}.feedback.show{display:block}.panel-actions{display:flex;gap:9px;margin-top:auto;padding-top:18px}.panel-actions .primary{flex:1}.note{font-size:11px;color:#71859a;margin-top:12px}.phase{display:none}.phase.active{display:block}
+@media(max-width:1200px){.labwrap{grid-template-columns:1fr}.stage,.panel{min-height:600px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="index.html"><div class="brand-mark">⚗</div><div><strong>A/L රසායන විද්‍යාව</strong><small>VIRTUAL LAB</small></div></a><div class="search">⌕ <input placeholder="ප්‍රායෝගිකයක් සොයන්න..."></div><div class="bell">🔔</div><div class="avatar">●</div><div class="user">මගේ ගිණුම</div></header>
+<aside class="sidebar"><nav class="nav"><a href="index.html"><span class="ico">⌂</span> මුල් පිටුව</a><a href="unit1.html"><span class="ico">▣</span> ඉගෙනීම</a><a class="active" href="p01.html"><span class="ico">⚗</span> අතථ්‍ය පරීක්ෂණාගාරය</a><a href="#"><span class="ico">♙</span> උපකරණ හා රසායනික ද්‍රව්‍ය</a><a href="#"><span class="ico">▤</span> විභාග පුහුණුව</a><a href="#"><span class="ico">▥</span> මගේ ප්‍රගතිය</a></nav></aside>
+<main>
+<div class="labtop"><a class="back" href="unit1.html">←</a><div><div class="eyebrow">P01 • 01 පරමාණුක ව්‍යුහය</div><h1>කැතෝඩ කිරණවල ගුණ පරීක්ෂා කිරීම</h1></div><div class="spacer"></div><span class="stepcount" id="stepCount">පියවර 1 / 3</span></div>
+<div class="labwrap">
+<section class="stage">
+<div class="stage-title">අතථ්‍ය විසර්ජන නළය • පාලක භාවිතා කර නිරීක්ෂණය කරන්න</div>
+<div class="apparatus">
+<div class="tubeShell">
+<div class="electrode cathode"></div><div class="electrode anode"></div>
+<div class="label lab-c">කැතෝඩය (−)</div><div class="label lab-a">ඇනෝඩය (+)</div>
+<div class="beamline" id="beam"></div>
+<div class="fieldplates" id="plates"><div class="plate top"></div><div class="plate bottom"></div><span class="sign t" id="topSign">+</span><span class="sign b" id="bottomSign">−</span></div>
+</div>
+</div>
+<div class="labbench"></div>
+<div class="controls">
+<button class="ctrl" id="fieldOff">ක්ෂේත්‍රය ඉවත් කරන්න</button>
+<button class="ctrl" id="fieldUp">ඉහළ තහඩුව +</button>
+<button class="ctrl" id="fieldDown">පහළ තහඩුව +</button>
+<button class="ctrl power off" id="power">විදුලිය සපයන්න</button>
+</div>
+</section>
+
+<aside class="panel card">
+<div class="phase active" data-phase="1">
+<span class="stepbadge">පියවර 01</span><h2>කිරණ පථය නිරීක්ෂණය කරන්න</h2>
+<p>මුලින් විසර්ජන නළයට විදුලිය සපයා, කැතෝඩය සිට ඇනෝඩය දෙසට පෙනෙන කිරණ පථය නිරීක්ෂණය කරන්න.</p>
+<div class="instruction"><b>කළ යුතු දේ</b><br><span class="muted">දකුණු පහළ “විදුලිය සපයන්න” බොත්තම ඔබන්න.</span></div>
+<div class="obs"><h3>👁 ඔබ නිරීක්ෂණය කළේ කුමක්ද?</h3>
+<div class="option" data-answer="straight">කැතෝඩය සිට ඇනෝඩය දෙසට සෘජු කිරණ පථයක් පෙනේ.</div>
+<div class="option" data-answer="none">කිසිදු පථයක් නොපෙනේ.</div>
+<div class="feedback" id="fb1">✓ හොඳයි. ක්ෂේත්‍රයක් නොමැති විට කිරණ සෘජු මාර්ගයක ගමන් කරන බව නිරීක්ෂණය කළ හැක.</div></div>
+</div>
+
+<div class="phase" data-phase="2">
+<span class="stepbadge">පියවර 02</span><h2>විද්‍යුත් ක්ෂේත්‍රයක බලපෑම</h2>
+<p>දැන් තහඩු දෙක අතර විද්‍යුත් ක්ෂේත්‍රයක් යොදා කිරණ පථයේ වෙනස නිරීක්ෂණය කරන්න.</p>
+<div class="instruction"><b>කළ යුතු දේ</b><br><span class="muted">“ඉහළ තහඩුව +” තෝරන්න. පසුව ධ්‍රැවීයතාව මාරු කර නැවත බලන්න.</span></div>
+<div class="obs"><h3>🤔 මෙයින් කුමක් පෙන්වයිද?</h3>
+<div class="option" data-answer="negative">කිරණ ඍණ ආරෝපිත අංශුවලින් සෑදී ඇති බවට සාක්ෂියක් ලැබේ.</div>
+<div class="option" data-answer="neutral">කිරණ විද්‍යුත් වශයෙන් උදාසීන බව පෙන්වයි.</div>
+<div class="feedback" id="fb2">✓ නිවැරදියි. ධන තහඩුව දෙසට වික්ෂේප වීම, කැතෝඩ කිරණ ඍණ ආරෝපිත අංශු සමඟ සම්බන්ධ බව පෙන්වයි.</div></div>
+</div>
+
+<div class="phase" data-phase="3">
+<span class="stepbadge">පියවර 03</span><h2>නිරීක්ෂණයෙන් නිගමනයට</h2>
+<p>ඔබ කළ නිරීක්ෂණ දෙක එකට සම්බන්ධ කර පරීක්ෂණයේ ප්‍රධාන අදහස සටහන් කරමු.</p>
+<div class="instruction"><b>සාරාංශය</b><br><span class="muted">කිරණ සෘජු මාර්ගයක ගමන් කරයි. විද්‍යුත් ක්ෂේත්‍රයකදී එහි පථය වෙනස් වේ.</span></div>
+<div class="obs"><h3>💡 නිගමනය</h3>
+<div class="option correct">කැතෝඩ කිරණ ඍණ ආරෝපිත අංශු සමඟ සම්බන්ධ වන අතර විද්‍යුත් ක්ෂේත්‍රයකින් ඒවායේ පථය වෙනස් කළ හැක.</div></div>
+<div class="note">මෙය Unit 01 හි “පරමාණුක ව්‍යුහය පිළිබඳ ආකෘති විමර්ශනය කිරීම” කොටසට අදාළ මූලික virtual demonstration එකකි.</div>
+</div>
+
+<div class="panel-actions"><button class="ghost" id="prev">← පෙර</button><button class="primary" id="next">ඊළඟ →</button></div>
+</aside>
+</div>
+</main>
+<script>
+const beam=document.getElementById('beam'), power=document.getElementById('power'), plates=document.getElementById('plates');
+const fieldOff=document.getElementById('fieldOff'),fieldUp=document.getElementById('fieldUp'),fieldDown=document.getElementById('fieldDown');
+const topSign=document.getElementById('topSign'),bottomSign=document.getElementById('bottomSign');
+let powered=false, phase=1;
+function refreshBeam(){beam.className='beamline'+(powered?' on':'');}
+power.onclick=()=>{powered=!powered;power.classList.toggle('off',!powered);power.textContent=powered?'විදුලිය නවත්වන්න':'විදුලිය සපයන්න';refreshBeam();}
+function clearField(){beam.classList.remove('up','down');plates.classList.remove('active');[fieldOff,fieldUp,fieldDown].forEach(x=>x.classList.remove('active'))}
+fieldOff.onclick=()=>{clearField();fieldOff.classList.add('active')}
+fieldUp.onclick=()=>{clearField();plates.classList.add('active');fieldUp.classList.add('active');topSign.textContent='+';bottomSign.textContent='−';if(powered)beam.classList.add('up')}
+fieldDown.onclick=()=>{clearField();plates.classList.add('active');fieldDown.classList.add('active');topSign.textContent='−';bottomSign.textContent='+';if(powered)beam.classList.add('down')}
+document.querySelectorAll('.option[data-answer]').forEach(o=>o.onclick=()=>{
+  const group=o.parentElement; group.querySelectorAll('.option').forEach(x=>x.classList.remove('correct','wrong'));
+  const good=['straight','negative'].includes(o.dataset.answer);o.classList.add(good?'correct':'wrong');
+  const fb=group.querySelector('.feedback'); if(good&&fb)fb.classList.add('show');
+});
+function showPhase(){
+ document.querySelectorAll('.phase').forEach(x=>x.classList.toggle('active',Number(x.dataset.phase)===phase));
+ document.getElementById('stepCount').textContent=`පියවර ${phase} / 3`;
+ document.getElementById('prev').disabled=phase===1;
+ document.getElementById('next').textContent=phase===3?'Unit 01 වෙත →':'ඊළඟ →';
+}
+document.getElementById('next').onclick=()=>{if(phase<3){phase++;showPhase()}else location.href='unit1.html'}
+document.getElementById('prev').onclick=()=>{if(phase>1){phase--;showPhase()}}
+showPhase();
+</script>
+</body></html>
