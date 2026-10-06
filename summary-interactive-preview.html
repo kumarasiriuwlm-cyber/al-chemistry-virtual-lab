@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b6f75">
+<title>A/L Chemistry Virtual Lab — Preview V4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700;800&family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box} :root{--ink:#17343d;--muted:#667b81;--bg:#f4f8f7;--card:#fff;--line:#d9e6e3;--teal:#0b6f75;--teal2:#0d8581;--soft:#e9f5f2;--blue:#eef4ff;--amber:#fff5de;--danger:#a84848;--shadow:0 10px 28px rgba(16,50,54,.07)}
+html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Sinhala","Noto Sans Tamil","Noto Sans",Arial,sans-serif;line-height:1.72;padding-bottom:0} button,input,textarea{font:inherit} a{color:inherit}
+.top{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)} .topin{max-width:1200px;margin:auto;min-height:74px;padding:9px 20px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:850;white-space:nowrap}.brandmark{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:var(--soft);font-size:25px}.brandsub{display:block;font-size:10px;letter-spacing:.08em;color:var(--teal)}
+.nav{margin-left:auto;display:flex;gap:5px}.nav a{padding:10px 13px;border-radius:11px;text-decoration:none;font-size:14px;font-weight:800;color:#4f666d}.nav a.active,.nav a:hover{background:var(--soft);color:var(--teal)}
+.langs{display:flex;gap:3px;padding:4px;background:#eef3f2;border-radius:12px}.langs button{border:0;background:transparent;border-radius:9px;padding:7px 8px;font-size:11px;font-weight:800;color:#5d7277;cursor:pointer}.langs button.active{background:#fff;color:var(--teal);box-shadow:0 1px 5px rgba(0,0,0,.08)}
+.page{max-width:1200px;margin:auto;padding:30px 20px 72px}.hero{background:linear-gradient(135deg,#e8f6f3,#fff 62%,#edf4ff);border:1px solid var(--line);border-radius:24px;padding:38px;margin-bottom:18px}.kicker{font-size:12px;font-weight:850;letter-spacing:.09em;color:var(--teal)}.hero h1{font-size:36px;line-height:1.4;margin:6px 0 9px}.hero p{max-width:820px;color:var(--muted);font-size:17px;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{border:0;border-radius:13px;min-height:50px;padding:10px 18px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:800;cursor:pointer}.primary{background:var(--teal);color:#fff}.secondary{background:var(--soft);color:var(--teal)}.outline{background:#fff;border:1px solid var(--line)}.disabled{opacity:.55;pointer-events:none}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:22px}.choice{min-height:190px;text-decoration:none;display:flex;flex-direction:column;cursor:pointer;transition:.15s}.choice:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.icon{font-size:32px}.choice h2{font-size:21px;margin:9px 0 4px}.choice p{color:var(--muted);font-size:15px;margin:0}.go{margin-top:auto;padding-top:15px;color:var(--teal);font-weight:800}
+.sectionTitle{font-size:24px;margin:22px 0 12px}.unitgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.unitcard{display:flex;align-items:center;gap:13px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:16px;text-decoration:none}.unum{width:50px;height:50px;flex:0 0 50px;border-radius:13px;display:grid;place-items:center;background:var(--soft);color:var(--teal);font-weight:900}.unitcard strong{display:block}.meta{font-size:13px;color:var(--muted)}
+.hubactions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.hub{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;cursor:pointer}.hub strong{display:block;font-size:18px;margin-top:7px}.hub span{display:block;color:var(--muted);font-size:14px;margin-top:4px}.hub:hover{box-shadow:var(--shadow)}
+.noteSection{background:#fff;border:1px solid var(--line);border-radius:17px;margin:11px 0;overflow:hidden}.noteSection summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:850;display:flex;align-items:center;gap:12px}.noteSection summary::-webkit-details-marker{display:none}.noteSection summary:after{content:"+";margin-left:auto;color:var(--teal);font-size:24px}.noteSection[open] summary:after{content:"−"}.noteBody{border-top:1px solid var(--line);padding:20px}.noteBody p,.noteBody li{font-size:16px}.noteBody ul{margin-top:8px}.formula{font-family:Arial,sans-serif;background:#eef4f5;border-radius:11px;padding:11px 14px;font-weight:700;overflow:auto}
+.video{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0e2530}.video iframe{display:block;width:100%;aspect-ratio:16/9;border:0}.videoCaption{background:#fff;padding:10px 13px;font-size:13px;color:var(--muted)}
+.labtools{position:sticky;top:74px;z-index:40;background:var(--bg);padding:8px 0 13px}.filters{display:flex;gap:7px;overflow:auto;padding-bottom:8px;scrollbar-width:thin}.chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-weight:800;font-size:13px;color:#526b70;cursor:pointer}.chip.active{background:var(--teal);color:#fff;border-color:var(--teal)}.search{width:100%;min-height:48px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:10px 14px}.labgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.labcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;min-height:165px;display:flex;flex-direction:column}.labtop{display:flex;justify-content:space-between;gap:8px}.pbadge{font-weight:900;color:var(--teal)}.ubadge{font-size:11px;background:var(--soft);color:var(--teal);padding:4px 8px;border-radius:999px;font-weight:800}.labcard h3{font-size:16px;line-height:1.5;margin:12px 0}.labfoot{margin-top:auto}.labcard[hidden]{display:none}
+.examTypes{display:flex;gap:8px;overflow:auto;margin-bottom:14px}.examTypes button{white-space:nowrap}.examPanel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.progressbar{height:9px;background:#e6eeee;border-radius:99px;overflow:hidden;margin:12px 0 18px}.progressbar i{display:block;height:100%;background:var(--teal);width:0}.mcqOption{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 13px;margin:8px 0;cursor:pointer}.mcqOption:hover{background:#f7fbfa}.mcqOption.correct{border-color:#3d916d;background:#edf8f2}.mcqOption.wrong{border-color:#bb6666;background:#fff1f1}.feedback{padding:13px 14px;border-radius:12px;background:var(--soft);margin-top:12px}.questionNav{display:flex;justify-content:space-between;gap:10px;margin-top:15px}.answerbox{width:100%;min-height:150px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.markpoints{background:#f7fbfa;border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:12px}.markpoints li{margin:7px 0}.selfcheck label{display:block;padding:6px 0}
+.pstepnav{display:flex;gap:7px;overflow:auto;padding:7px 0 14px;position:sticky;top:74px;z-index:35;background:var(--bg)}.pstepnav button{white-space:nowrap}.psection{display:none}.psection.active{display:block}.pcard{background:#fff;border:1px solid var(--line);border-radius:17px;padding:21px;margin:10px 0}.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sim{height:430px;background:#102c3d;border-radius:15px;overflow:hidden}.sim canvas{width:100%;height:100%;display:block}.simcontrols{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.observation{background:#eef8f4;border-left:4px solid var(--teal);padding:13px;border-radius:10px;margin-top:12px}
+.toast{position:fixed;z-index:120;left:50%;bottom:28px;transform:translateX(-50%);background:#18343d;color:#fff;padding:10px 14px;border-radius:12px;display:none}.toast.show{display:block}
+.mobile{display:none}.footer{text-align:center;color:#75888c;font-size:12px;padding:22px}
+@media(max-width:900px){.grid3,.hubactions,.labgrid{grid-template-columns:repeat(2,1fr)}.labtools,.pstepnav{top:66px}.hero h1{font-size:31px}}
+@media(max-width:760px){html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 11px}.brandtext{display:none}.brandmark{width:41px;height:41px}.nav{display:none}.langs{margin-left:auto}.langs button{font-size:10px;padding:6px}.page{padding:18px 12px 78px}.hero{padding:24px 19px;border-radius:19px}.hero h1{font-size:27px}.hero p{font-size:16px}.grid3,.hubactions,.labgrid,.unitgrid,.pgrid{grid-template-columns:1fr}.choice{min-height:145px}.mobile{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;z-index:90;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}.mobile a{text-align:center;text-decoration:none;padding:7px 2px 6px;font-size:11px;font-weight:800}.mobile b{display:block;font-size:18px}.mobile a.active{color:var(--teal);background:#f0f8f6}.sim{height:330px}}
+
+/* 2026-10-06: paragraph notes, science visuals and true 3D lab */
+.notePara{margin:0 0 13px;font-size:16px;line-height:1.82;color:#28464e}
+.notePara:last-of-type{margin-bottom:16px}
+.noteVisual{margin:16px 0 18px}
+.scientistGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.scientistCard{overflow:hidden;border:1px solid var(--line);border-radius:15px;background:#f8fbfa}
+.scientistCard img{display:block;width:100%;height:190px;object-fit:cover;object-position:center 18%;background:#e8efed}
+.scientistCard .scText{padding:11px 12px}
+.scientistCard strong{display:block;font-size:14px}
+.scientistCard span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.visualCredit{font-size:10px;color:#829297;margin-top:7px}
+.conceptVisual{border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#f7fbfa,#eef5ff);padding:16px;overflow:hidden}
+.emSpectrum{display:grid;grid-template-columns:repeat(7,1fr);border-radius:10px;overflow:hidden;margin:8px 0}
+.emSpectrum i{height:48px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:10px;font-weight:800;color:#17343d;background:rgba(255,255,255,.44);border-right:1px solid rgba(23,52,61,.12)}
+.emSpectrum i:nth-child(2n){background:rgba(11,111,117,.08)}
+.energyLevels{position:relative;height:175px;border-radius:12px;background:#102c3d;padding:18px 20px}
+.energyLevels .level{height:1px;background:#a9d8cf;margin:27px 0;position:relative}
+.energyLevels .level span{position:absolute;right:0;top:-19px;color:#dbeae8;font-size:11px}
+.energyArrow{position:absolute;left:30%;bottom:28px;height:94px;width:2px;background:#75f0bc}
+.energyArrow:after{content:"";position:absolute;left:-5px;top:-1px;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:9px solid #75f0bc}
+.orbitalVisual{display:flex;align-items:center;justify-content:center;gap:40px;min-height:150px}
+.orbitalS{width:95px;height:95px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(95,221,255,.68),rgba(11,111,117,.12));border:1px solid rgba(11,111,117,.35)}
+.orbitalP{position:relative;width:170px;height:95px}
+.orbitalP:before,.orbitalP:after{content:"";position:absolute;top:10px;width:82px;height:74px;border-radius:55% 45% 55% 45%;background:radial-gradient(circle at 55% 40%,rgba(125,244,201,.68),rgba(11,111,117,.14));border:1px solid rgba(11,111,117,.3)}
+.orbitalP:before{left:5px;transform:rotate(-25deg)}.orbitalP:after{right:5px;transform:rotate(155deg)}
+.threeDBadge{display:inline-flex;align-items:center;gap:5px;background:#102c3d;color:#8dffd0;border-radius:999px;padding:4px 9px;font-size:10px;font-weight:900;letter-spacing:.06em}
+.sim3d{position:relative;height:470px;background:#102c3d;border-radius:15px;overflow:hidden;touch-action:none}
+.sim3d canvas{width:100%;height:100%;display:block}
+.simHint{position:absolute;z-index:2;left:12px;top:12px;padding:7px 10px;border-radius:9px;background:rgba(6,24,33,.72);color:#d9efea;font-size:11px;pointer-events:none;backdrop-filter:blur(5px)}
+.labcard .threeDBadge{margin-left:6px}
+@media(max-width:760px){.scientistGrid{grid-template-columns:repeat(3,1fr);gap:7px}.scientistCard img{height:125px}.scientistCard .scText{padding:8px}.scientistCard span{font-size:10px}.sim3d{height:360px}.emSpectrum{grid-template-columns:repeat(4,1fr)}.emSpectrum i{height:42px}.orbitalVisual{gap:18px}.orbitalS{width:74px;height:74px}.orbitalP{width:135px;height:82px}}
+
+
+/* 2026-10-06 practical interaction fixes */
+.labModeHelp{display:flex;align-items:flex-start;gap:11px;padding:13px 14px;margin:10px 0 14px;border:1px solid #cfe4df;border-radius:14px;background:linear-gradient(135deg,#f0faf7,#f7fbff)}
+.labModeHelp b{display:grid;place-items:center;flex:0 0 31px;width:31px;height:31px;border-radius:10px;background:var(--teal);color:#fff}
+.labModeHelp span{font-size:14px;color:#49646b;line-height:1.65}
+.modeChip{position:relative;padding-left:14px;padding-right:14px}
+.modeChip .modeIcon{font-size:17px;margin-right:5px}
+.sim3d{background:radial-gradient(circle at 55% 38%,#173f50 0,#102c3d 52%,#091b27 100%);box-shadow:inset 0 0 0 1px rgba(176,231,222,.15),0 14px 34px rgba(8,30,38,.16)}
+.sim3d:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.035),transparent 30%,rgba(0,0,0,.08))}
+.simStatus{position:absolute;z-index:4;right:12px;top:12px;display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:rgba(6,24,33,.78);color:#dcebe8;font-size:11px;font-weight:850;letter-spacing:.04em;backdrop-filter:blur(6px)}
+.statusDot{width:9px;height:9px;border-radius:50%;background:#82979b;box-shadow:0 0 0 3px rgba(130,151,155,.13)}
+.simStatus.on .statusDot{background:#7affbd;box-shadow:0 0 10px #63ffc0,0 0 0 3px rgba(99,255,192,.14)}
+.simStatus.on{color:#a8ffd1}
+.simLegend{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.simLegend span{font-size:11px;font-weight:750;color:#5d7379;background:#f4f8f7;border:1px solid var(--line);border-radius:999px;padding:5px 9px}
+.simcontrols{padding:12px 0 2px}
+.simcontrols .btn[disabled]{opacity:.48;cursor:not-allowed}
+.viewTools{margin-left:auto;display:flex;gap:7px}
+.observation{position:relative;padding-left:43px}
+.observation:before{content:"👁";position:absolute;left:13px;top:11px;font-size:18px}
+@media(max-width:760px){.labModeHelp{padding:11px}.simHint{max-width:70%;line-height:1.45}.simStatus{top:auto;bottom:10px}.simcontrols{display:grid;grid-template-columns:1fr 1fr}.simcontrols .btn{width:100%;padding:9px 10px;font-size:13px}.viewTools{margin-left:0;display:contents}.simLegend{margin-top:8px}.modeChip{padding:8px 11px}}
+
+
+/* Preview V4: stable fullscreen controls, no hover labels */
+.previewTag{display:inline-flex;margin-left:8px;padding:4px 8px;border-radius:999px;background:#fff3cf;color:#805d00;border:1px solid #eedc9a;font-size:10px;font-weight:900;vertical-align:middle}
+.sim3d:fullscreen{width:100vw;height:100vh;border-radius:0;background:radial-gradient(circle at 55% 38%,#173f50 0,#102c3d 52%,#07151f 100%)}
+.sim3d:-webkit-full-screen{width:100vw;height:100vh;border-radius:0}
+.fsDock{display:none;position:absolute;z-index:20;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(94%,980px);padding:10px;border-radius:18px;background:rgba(8,27,36,.92);border:1px solid rgba(185,238,226,.22);box-shadow:0 14px 40px rgba(0,0,0,.34);backdrop-filter:blur(14px);gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
+.sim3d:fullscreen .fsDock,.sim3d:-webkit-full-screen .fsDock{display:flex}
+.fsDock button{border:1px solid rgba(217,245,239,.22);background:#173c49;color:#e7f6f2;border-radius:12px;min-height:44px;padding:8px 13px;font:inherit;font-size:13px;font-weight:850;cursor:pointer}
+.fsDock button.primaryFS{background:#0d8c7e;color:#fff;border-color:#1bb29f}
+.fsDock button.exitFS{margin-left:auto;background:#40292e;color:#ffe4e6;border-color:#704149}
+.fsDock .modeName{color:#a9c7c2;font-size:12px;font-weight:850;padding:0 4px}
+.sim3d:fullscreen .simHint{top:18px;left:18px}
+.sim3d:fullscreen .simStatus{top:18px;right:18px;bottom:auto}
+@media(max-width:760px){.fsDock{width:96%;bottom:max(9px,env(safe-area-inset-bottom));padding:8px;gap:6px;border-radius:15px}.fsDock button{min-height:42px;padding:7px 10px;font-size:11px}.fsDock .modeName{display:none}.fsDock button.exitFS{margin-left:0}.sim3d:fullscreen .simStatus{top:12px;right:12px;bottom:auto}}
+
+
+/* 2026-10-06 exam-focused Unit 01 summary */
+.examFocus{margin-top:15px;border:1px solid #f0d89b;background:#fff9e9;border-radius:13px;padding:13px 15px}
+.examFocus strong{display:block;color:#8a6111;font-size:13px;margin-bottom:6px}
+.examFocus ul{margin:0;padding-left:21px}.examFocus li{font-size:14px;margin:5px 0;color:#5b5140}
+.nuclideVisual{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.nuclideCard{border:1px solid var(--line);border-radius:13px;background:#f8fbfa;padding:14px;text-align:center}
+.nuclideCard b{display:block;font:800 28px Arial,sans-serif;color:var(--teal)}
+.nuclideCard span{display:block;font-size:11px;color:var(--muted);margin-top:5px}
+.rutherfordMini{margin-top:12px;border:1px solid var(--line);border-radius:15px;background:#0f2d3a;padding:14px;overflow:hidden}
+.rutherfordStage{height:145px;position:relative}.goldFoil{position:absolute;left:57%;top:20px;width:8px;height:104px;background:linear-gradient(#f5d35a,#c7981e);box-shadow:0 0 12px rgba(250,209,64,.4)}
+.alphaSource{position:absolute;left:5%;top:57px;width:54px;height:32px;border-radius:8px;background:#52666d;color:#fff;font-size:10px;display:grid;place-items:center}
+.alphaLine{position:absolute;left:59px;top:71px;width:49%;height:2px;background:#ffbd66;transform-origin:left center}.alphaLine.d1{transform:rotate(-14deg);width:61%}.alphaLine.d2{transform:rotate(13deg);width:60%}.alphaLine.d3{transform:rotate(48deg);width:42%}
+.nucleusDot{position:absolute;left:58%;top:67px;width:10px;height:10px;border-radius:50%;background:#ff7a6f;box-shadow:0 0 12px #ff7a6f}
+.hSpectrum{margin-top:12px;background:#071118;border-radius:12px;padding:16px 14px 12px}.hSpectrum .lines{height:58px;position:relative;border-bottom:1px solid #50636a}
+.hSpectrum i{position:absolute;bottom:0;width:3px;height:48px;box-shadow:0 0 9px currentColor;background:currentColor}.hSpectrum i:nth-child(1){left:12%;color:#8a55ff}.hSpectrum i:nth-child(2){left:23%;color:#665cff}.hSpectrum i:nth-child(3){left:46%;color:#38d9df}.hSpectrum i:nth-child(4){left:86%;color:#ff5353}
+.hSpectrum .wlabels{display:flex;justify-content:space-between;color:#9bb0b7;font-size:10px;margin-top:5px}
+.configVisual{display:flex;gap:11px;flex-wrap:wrap;align-items:flex-end}.orbBox{display:flex;gap:4px}.orbBox i{width:28px;height:34px;border:2px solid #6f858a;border-radius:4px;position:relative;background:#fff}
+.orbBox i:before,.orbBox i:after{position:absolute;left:8px;font-style:normal;color:var(--teal);font-weight:900;font-size:19px}.orbBox i:before{content:"↑";top:-3px}.orbBox i:after{content:"↓";left:13px;top:4px}
+.blockVisual{display:grid;grid-template-columns:1fr 3fr 5fr;gap:5px}.blockVisual div{border-radius:10px;padding:19px 8px;text-align:center;font-weight:900;font-size:13px}
+.blockS{background:#e8f4f2;color:#0b6f75}.blockD{background:#fff0db;color:#8e5d0c}.blockP{background:#eef4ff;color:#315d9e}
+.trendVisual{display:grid;grid-template-columns:1fr 1fr;gap:9px}.trendBox{border:1px solid var(--line);border-radius:12px;background:#f8fbfa;padding:13px;font-size:12px}.trendBox strong{display:block;color:var(--teal);margin-bottom:5px}
+@media(max-width:760px){.nuclideVisual{grid-template-columns:1fr 1fr}.rutherfordStage{height:125px}.trendVisual{grid-template-columns:1fr}}
+
+
+/* 2026-10-06 Sinhala terminology, figures and reliable video links */
+.lessonFigure{margin:14px 0 4px;border:1px solid var(--line);border-radius:15px;background:#fff;padding:12px;text-align:center;overflow:hidden}
+.lessonFigure img{display:block;width:100%;max-height:330px;object-fit:contain;margin:auto;border-radius:9px}
+.lessonFigure figcaption{margin-top:9px;color:var(--muted);font-size:12px;line-height:1.6}
+.orbitalFigure img{max-height:420px}
+.videoCaption{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.videoCaption strong{color:var(--ink)}
+.videoCaption span{color:var(--muted);font-size:12px}
+.videoOpen{margin-left:auto;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff;color:var(--teal);font-size:12px;font-weight:850}
+.videoOpen:hover{background:#eef8f5}
+@media(max-width:760px){.lessonFigure img{max-height:280px}.orbitalFigure img{max-height:360px}.videoOpen{width:100%;justify-content:center;margin-left:0}}
+
+
+/* Selective memory visuals for Unit 01 short notes */
+.memoryVisual{margin:14px 0 18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.memoryVisualHead{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid var(--line);background:#f8fbfa;font-size:12px;font-weight:900;color:var(--teal)}
+.memoryVisualGrid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(260px,.95fr)}
+.memoryVisualText{padding:16px}
+.memoryVisualText strong{display:block;margin-bottom:8px;font-size:14px}
+.memoryVisualText p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+.memoryVisualFigure{padding:14px;border-left:1px solid var(--line);background:#fbfdfc}
+.memoryVisualFigure img{display:block;width:100%;max-height:290px;object-fit:contain;border-radius:9px}
+.memoryVisualFigure figcaption{font-size:11px;color:var(--muted);line-height:1.55;margin-top:7px;text-align:center}
+.memorySketch{padding:16px;border-left:1px solid var(--line);background:#fbfdfc}
+@media(max-width:760px){.memoryVisualGrid{grid-template-columns:1fr}.memoryVisualFigure,.memorySketch{border-left:0;border-top:1px solid var(--line)}}
+
+
+/* Compact scientist memory cards for Unit 01 */
+.scientistMemory{margin:14px 0 16px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.scientistMemory .scientistGrid{padding:12px}
+.scientistMemory .scientistCard img{height:150px;object-position:center 18%}
+.scientistMemory .scText{padding:9px 10px}
+.scientistMemory .scText strong{font-size:13px}
+.scientistMemory .scText span{font-size:11px;line-height:1.45}
+@media(max-width:760px){.scientistMemory .scientistGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.scientistMemory .scientistCard img{height:104px}.scientistMemory .scText{padding:7px}.scientistMemory .scText strong{font-size:11px}.scientistMemory .scText span{font-size:9px}}
+@media(max-width:430px){.scientistMemory .scientistGrid{grid-template-columns:1fr}.scientistMemory .scientistCard{display:grid;grid-template-columns:86px 1fr}.scientistMemory .scientistCard img{height:86px;border-radius:10px 0 0 10px}.scientistMemory .scText{display:flex;flex-direction:column;justify-content:center}}
+
+
+/* 2026-10-06 interactive Unit 01 study surface */
+.unitStudySurface{position:relative}
+.noteStudyBar{position:sticky;top:68px;z-index:12;margin:0 0 14px;padding:10px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 6px 18px rgba(17,49,58,.06)}
+.studyBarTop{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.noteModes,.noteActions{display:flex;gap:7px;flex-wrap:wrap}
+.noteModeBtn,.noteActionBtn,.noteJumpBtn,.memoryReveal,.masterBtn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;min-height:40px;padding:8px 11px;font:800 12px inherit;cursor:pointer}
+.noteModeBtn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.noteActionBtn:hover,.noteJumpBtn:hover,.memoryReveal:hover,.masterBtn:hover{background:#f1f8f6}
+.noteProgressWrap{display:flex;align-items:center;gap:9px;min-width:170px}
+.noteProgressTrack{height:7px;background:#e7efed;border-radius:999px;overflow:hidden;flex:1}
+.noteProgressTrack i{display:block;height:100%;background:var(--teal);border-radius:999px;transition:width .2s ease}
+.noteProgressText{font-size:11px;color:var(--muted);font-weight:800;white-space:nowrap}
+.noteJumpRow{display:flex;gap:7px;overflow-x:auto;padding:9px 1px 1px;scrollbar-width:thin}
+.noteJumpBtn{flex:0 0 auto;min-height:36px;padding:7px 10px}
+.noteJumpBtn.done{border-color:#91c9bc;background:#eef9f5}
+.noteSection{scroll-margin-top:160px}
+.noteSection[open]{border-color:#bcd9d2}
+.noteBodyTop{display:flex;justify-content:flex-end;margin-bottom:8px}
+.masterBtn.done{background:#e8f7f1;border-color:#8ac8b6;color:#176b5d}
+.theoryText{display:block}
+.unitNotes[data-mode="quick"] .theoryText .notePara:nth-child(n+3){display:none}
+.unitNotes[data-mode="exam"] .theoryText{display:none}
+.unitNotes[data-mode="exam"] .video{display:none}
+.unitNotes[data-mode="exam"] .memoryVisualText p{display:none}
+.unitNotes[data-mode="quick"] .video{display:none}
+.studyModeHint{margin:7px 1px 0;color:var(--muted);font-size:11px}
+.memoryCheck{margin-top:14px;border:1px dashed #a7c9bf;border-radius:14px;padding:13px;background:#f7fbfa}
+.memoryCheckTop{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.memoryCheck strong{font-size:13px;line-height:1.55}
+.memoryAnswer{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;line-height:1.7;color:#35555a}
+.memoryCheck.revealed .memoryAnswer{display:block}
+.sciencePeople{margin:13px 0;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}
+.sciencePeopleHead{padding:9px 12px;background:#f7faf9;border-bottom:1px solid var(--line);font-size:12px;font-weight:900;color:var(--teal)}
+.sciencePeopleGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px}
+.sciencePerson{display:grid;grid-template-columns:64px minmax(0,1fr);min-width:0;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff}
+.sciencePerson img{width:64px;height:76px;object-fit:cover;background:#e8efed}
+.sciencePersonTxt{padding:8px;min-width:0}
+.sciencePersonTxt strong{display:block;font-size:11px;line-height:1.35}
+.sciencePersonTxt span{display:block;margin-top:4px;font-size:9px;line-height:1.45;color:var(--muted)}
+.nuclideMemory{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:13px}
+.nuclideMemory div{border:1px solid var(--line);background:#fff;border-radius:12px;padding:14px 9px;text-align:center}
+.nuclideMemory b{display:block;font:800 25px Arial,sans-serif;color:var(--teal)}
+.nuclideMemory span{display:block;margin-top:5px;font-size:10px;color:var(--muted)}
+.periodicBlocksPic{display:grid;grid-template-columns:1.1fr 3.2fr 4.8fr;gap:6px;padding:14px}
+.periodicBlocksPic div{min-height:76px;border-radius:12px;display:grid;place-items:center;text-align:center;padding:7px;font-size:12px;font-weight:900}
+.periodicBlocksPic .s{background:#e8f4f2;color:#0b6f75}.periodicBlocksPic .d{background:#fff0db;color:#8e5d0c}.periodicBlocksPic .p{background:#eef4ff;color:#315d9e}
+.zoomable{cursor:zoom-in}
+.noteImageModal{position:fixed;inset:0;z-index:1000;background:rgba(5,22,28,.88);display:none;align-items:center;justify-content:center;padding:22px}
+.noteImageModal.show{display:flex}
+.noteImageModalInner{position:relative;max-width:min(1040px,96vw);max-height:90vh;background:#fff;border-radius:16px;padding:12px}
+.noteImageModal img{display:block;max-width:100%;max-height:82vh;object-fit:contain}
+.noteImageClose{position:absolute;right:8px;top:8px;border:0;border-radius:999px;width:38px;height:38px;background:#102f38;color:#fff;font-size:20px;cursor:pointer}
+.noteSectionFlash{animation:noteFlash 1.1s ease}
+@keyframes noteFlash{0%{box-shadow:0 0 0 0 rgba(15,118,110,.25)}100%{box-shadow:0 0 0 16px rgba(15,118,110,0)}}
+@media(max-width:760px){
+ .noteStudyBar{top:58px;border-radius:13px;padding:8px}
+ .studyBarTop{align-items:stretch}.noteModes{width:100%;display:grid;grid-template-columns:repeat(3,1fr)}
+ .noteModeBtn{padding:7px 5px;font-size:10px}
+ .noteActions{width:100%}.noteActionBtn{flex:1}
+ .noteProgressWrap{width:100%}
+ .sciencePeopleGrid{grid-template-columns:1fr}
+ .sciencePerson{grid-template-columns:76px 1fr}.sciencePerson img{width:76px;height:86px}
+ .nuclideMemory{grid-template-columns:1fr 1fr}
+ .memoryCheckTop{display:block}.memoryReveal{margin-top:9px;width:100%}
+}
+
+
+/* Interactive visual summary preview */
+.summarySimple{max-width:1080px;margin:0 auto}
+.summaryGuide{margin:14px 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#f3fbf9,#f5f9ff)}
+.summaryGuide strong{display:block;font-size:14px;margin-bottom:4px}.summaryGuide p{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+.simpleJump{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:thin}
+.simpleJump button{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:13px;padding:9px 12px;min-height:42px;font:800 11px inherit;color:var(--ink);cursor:pointer}
+.simpleJump button:hover{background:#eff8f6}.simpleJump button.done{background:#e9f8f3;border-color:#8bc7b7}
+.simpleSection{margin:12px 0;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden;box-shadow:0 7px 24px rgba(31,69,78,.05);scroll-margin-top:92px}
+.simpleSection>summary{list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:center;gap:11px;font-weight:900}
+.simpleSection>summary::-webkit-details-marker{display:none}
+.simpleSection>summary:after{content:"＋";margin-left:auto;color:var(--teal);font-size:20px}.simpleSection[open]>summary:after{content:"−"}
+.simpleSectionNo{width:39px;height:39px;border-radius:12px;background:#e8f7f4;color:var(--teal);display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+.simpleBody{padding:0 15px 16px}
+.simpleHint{display:flex;align-items:center;gap:8px;margin:4px 0 12px;padding:9px 11px;border-radius:12px;background:#f5faf9;color:#456168;font-size:11px}
+.conceptGallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}
+.conceptTile{appearance:none;border:1px solid var(--line);background:#fff;border-radius:16px;padding:12px 9px;min-height:126px;text-align:center;cursor:pointer;transition:.18s ease;color:var(--ink)}
+.conceptTile:hover,.conceptTile.active{border-color:#64b7aa;background:#eef9f6;transform:translateY(-1px)}
+.conceptTile.active{box-shadow:0 0 0 2px rgba(44,157,141,.08)}
+.conceptArt{height:55px;display:grid;place-items:center;margin-bottom:7px;border-radius:13px;background:linear-gradient(145deg,#eef9f7,#eef4fb);font-size:31px;line-height:1}
+.conceptTile strong{display:block;font-size:11px;line-height:1.45}.conceptTile span{display:block;margin-top:5px;color:var(--muted);font-size:9px}
+.conceptReader{border:1px solid #b8d9d2;border-radius:17px;background:#f9fcfb;margin:10px 0 13px;overflow:hidden}
+.conceptReadPane{display:none;padding:15px 16px}.conceptReadPane.active{display:block}
+.conceptReadHead{display:flex;gap:10px;align-items:center;margin-bottom:8px}.conceptReadHead i{font-style:normal;font-size:25px}.conceptReadHead strong{font-size:14px}
+.conceptReadPane p{margin:0;color:#294a51;font-size:13px;line-height:1.82}
+.formulaMini{margin:12px 0;border-radius:14px;padding:12px 14px;background:#102f38;color:#eaf9f6;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;overflow-x:auto}
+.examMini{margin:12px 0;border:1px solid #f0ccd6;border-radius:15px;padding:12px 14px;background:#fff7f9}
+.examMini summary{cursor:pointer;color:#a4254d;font-weight:900;font-size:12px}.examMini ul{margin:9px 0 0;padding-left:20px}.examMini li{font-size:11px;line-height:1.6;margin:4px 0}
+.scrollQuiz{margin:14px 0 5px;border:1px solid #d8cf9c;border-radius:16px;padding:13px;background:#fffdf3}
+.scrollQuizHead{display:flex;gap:8px;align-items:center;margin-bottom:8px}.scrollQuizHead b{font-size:12px}.scrollQuizQ{font-size:12px;line-height:1.65;margin-bottom:9px}
+.scrollQuizOpts{display:grid;gap:7px}.scrollQuizOpt{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 10px;text-align:left;font:700 11px inherit;cursor:pointer;color:var(--ink)}
+.scrollQuizOpt.correct{border-color:#58ad8d;background:#e9f8f0;color:#176849}.scrollQuizOpt.wrong{border-color:#da7a86;background:#fff0f2;color:#9e3041}.scrollQuizOpt:disabled{cursor:default}
+.scrollQuizFeedback{display:none;margin-top:9px;padding-top:8px;border-top:1px solid #e9e0b4;font-size:11px;line-height:1.55;color:#4f5854}.scrollQuizFeedback.show{display:block}
+.sectionFinish{display:flex;justify-content:flex-end;margin-top:10px}.sectionFinish button{border:1px solid #9acbbd;background:#eff9f5;color:#176c5d;border-radius:11px;padding:9px 11px;font:800 10px inherit;cursor:pointer}.sectionFinish button.done{background:#dff4ec}
+.simpleSection .scientistMemory,.simpleSection .sciencePeople,.simpleSection .memoryVisual{margin-top:4px}
+.simpleSection .noteVisual{margin-top:4px}
+@media(max-width:820px){.conceptGallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.conceptGallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.conceptTile{min-height:116px;padding:10px 7px}.conceptArt{height:50px;font-size:28px}.simpleBody{padding:0 11px 14px}.conceptReadPane p{font-size:12px}.summaryGuide{padding:12px}.simpleSection>summary{padding:13px 12px}}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" class="toast"></div>
+<script>
+(function(){
+"use strict";
+var videos={rutherford:"https://www.youtube-nocookie.com/embed/CpF5evgsKYg",spectrum:"https://www.youtube-nocookie.com/embed/Kv-hRvEOjuA",config:"https://www.youtube-nocookie.com/embed/LyFzELsUgBU",atomic_si:"https://www.youtube-nocookie.com/embed/j7Yu-fGBSA4",spectrum_si:"https://www.youtube-nocookie.com/embed/AR_9FzW_pTU",config_si:"https://www.youtube-nocookie.com/embed/4mTKSyhD58I"};
+var videoWatch={atomic_si:"https://www.youtube.com/watch?v=j7Yu-fGBSA4",spectrum_si:"https://www.youtube.com/watch?v=AR_9FzW_pTU",config_si:"https://www.youtube.com/watch?v=4mTKSyhD58I"};
+var videoTitles={atomic_si:"පරමාණුක ව්‍යුහය — DP Education",spectrum_si:"හයිඩ්‍රජන් වර්ණාවලිය — සිංහල A/L පාඩම",config_si:"ඉලෙක්ට්‍රෝන වින්‍යාස — Chemostore"};
+var ui={
+si:{brand:"A/L රසායන විද්‍යාව",nav:["මුල් පිටුව","පාඩම්","Virtual Lab","විභාග පුහුණුව"],homeK:"ශ්‍රී ලංකා G.C.E. A/L රසායන විද්‍යාව",homeH:"ඉගෙන ගන්න • අත්හදා බලන්න • විභාගයට පුහුණු වන්න",homeP:"කෙටි සටහන්, Virtual Lab සහ විභාග ප්‍රශ්න එකම සරල පද්ධතියක.",continue:"Unit 01 ඉගෙන ගන්න",lessonCard:"පාඩම්",lessonDesc:"Unit එක තෝරා සම්පූර්ණ කෙටි සටහන, video සහ අදාළ ක්‍රියාකාරකම් සමඟ ඉගෙන ගන්න.",labCard:"Virtual Lab",labDesc:"Unit අනුව practical තෝරා පියවරෙන් පියවර අත්හදා බලන්න.",examCard:"විභාග පුහුණුව",examDesc:"MCQ, ව්‍යුහගත රචනා සහ රචනා ප්‍රශ්න වෙන වෙනම පුහුණු වන්න.",open:"විවෘත කරන්න",lessons:"පාඩම්",chooseUnit:"Unit එක තෝරන්න",unitIntro:"Unit 01 සඳහා සම්පූර්ණ කෙටි සටහන, අදාළ practical සහ විභාග පුහුණුව.",shortNote:"කෙටි සටහන",shortNoteDesc:"විභාගයට අවශ්‍ය ප්‍රධාන සංකල්ප, සූත්‍ර, රූප සහ ප්‍රශ්න-අවධානය සමඟ සරලව නැවත බලන්න.",practicals:"අදාළ Practical",practicalsDesc:"මෙම Unit එකට අදාළ practical Virtual Lab තුළ විවෘත කරන්න.",examPractice:"විභාග පුහුණුව",examPracticeDesc:"MCQ, ව්‍යුහගත රචනා සහ රචනා.",unitTitle:"Unit 01 — පරමාණුක ව්‍යුහය",unitSub:"NIE විෂය නිර්දේශයට ගැළපෙන, පසුගිය A/L ප්‍රශ්න රටා සැලකිල්ලට ගත් සරල විභාග-කේන්ද්‍රීය සාරාංශයකි.",videoNote:"අමතර වීඩියෝ පාඩම • සිංහල මාධ්‍යය",backUnit:"← Unit 01 වෙත",all:"සියල්ල",search:"P අංකය හෝ practical මාතෘකාව සොයන්න",soon:"සූදානම් කරමින් පවතී",examTitle:"Unit 01 — විභාග පුහුණුව",examSub:"ප්‍රශ්න වර්ගය තෝරා එකින් එක පුහුණු වන්න. වැරදි පිළිතුරකදී අදාළ සංකල්පයට ආපසු යා හැක.",mcq:"MCQ",structured:"ව්‍යුහගත රචනා",essay:"රචනා",check:"පිළිතුර පරීක්ෂා කරන්න",next:"ඊළඟ",previous:"පෙර",review:"අදාළ පාඩම බලන්න",score:"ලකුණු",yourAnswer:"ඔබේ පිළිතුර",showMarking:"ලකුණු ලබාදීමේ කරුණු පෙන්වන්න",hideMarking:"ලකුණු ලබාදීමේ කරුණු සඟවන්න",selfMark:"මට ලැබෙන ලකුණු සලකුණු කරන්න",plan:"පිළිතුර සැලසුම් කරන්න",showModel:"ආදර්ශ පිළිතුර පෙන්වන්න",p01Title:"P01 • කැතෝඩ කිරණවල ගුණ",p01Sub:"P01 practical එක පමණක් මෙහි ඇත. පියවරෙන් පියවර ඉදිරියට යන්න.",psteps:["හැඳින්වීම","උපකරණ","ක්‍රමය","අත්හදා බැලීම","නිරීක්ෂණ","නිගමනය","ප්‍රශ්න"],powerOn:"විදුලිය සක්‍රිය කරන්න",powerOff:"විදුලිය අක්‍රිය කරන්න",insertCross:"කුරුසය ඇතුළත් කරන්න",removeCross:"කුරුසය ඉවත් කරන්න",obsOff:"විදුලිය අක්‍රියයි.",obsGlow:"තිරය ප්‍රතිදීප්ත වේ.",obsShadow:"තිරයේ කුරුස හැඩැති සෙවණැල්ලක් පෙනේ.",obsWheel:"පැඩල් රෝදය චලනය වේ.",obsStraight:"ක්ෂේත්‍රය 0: කදම්බය සෘජුයි.",obsDeflect:"කදම්බය අපගමනය වේ.",saveNote:"මගේ නිරීක්ෂණ සටහන්"},
+ta:{brand:"A/L இரசாயனவியல்",nav:["முகப்பு","பாடங்கள்","Virtual Lab","பரீட்சைப் பயிற்சி"],homeK:"இலங்கை G.C.E. A/L இரசாயனவியல்",homeH:"கற்றுக்கொள்ளுங்கள் • பரிசோதியுங்கள் • பரீட்சைக்கு பயிற்சி செய்யுங்கள்",homeP:"சுருக்கக் குறிப்புகள், Virtual Lab மற்றும் பரீட்சை வினாக்கள் ஒரே எளிய அமைப்பில்.",continue:"Unit 01 கற்றுக்கொள்ளவும்",lessonCard:"பாடங்கள்",lessonDesc:"Unit ஐத் தேர்ந்தெடுத்து முழு சுருக்கக் குறிப்பு, video மற்றும் தொடர்புடைய செயல்பாடுகளுடன் கற்றுக்கொள்ளுங்கள்.",labCard:"Virtual Lab",labDesc:"Unit அடிப்படையில் practical ஐத் தேர்ந்து படிப்படியாகச் செய்யுங்கள்.",examCard:"பரீட்சைப் பயிற்சி",examDesc:"MCQ, structured essay மற்றும் essay வினாக்களை தனித்தனியாகப் பயிற்சி செய்யுங்கள்.",open:"திறக்கவும்",lessons:"பாடங்கள்",chooseUnit:"Unit ஐத் தேர்ந்தெடுக்கவும்",unitIntro:"Unit 01 க்கான முழு சுருக்கக் குறிப்பு, தொடர்புடைய practical மற்றும் பரீட்சைப் பயிற்சி.",shortNote:"சுருக்கக் குறிப்பு",shortNoteDesc:"Unit இன் முக்கிய கருத்துகளை எளிதாக மீளாய்வு செய்யுங்கள்.",practicals:"தொடர்புடைய Practical",practicalsDesc:"இந்த Unit இன் practical ஐ Virtual Lab இல் திறக்கவும்.",examPractice:"பரீட்சைப் பயிற்சி",examPracticeDesc:"MCQ, structured essay மற்றும் essay.",unitTitle:"Unit 01 — அணு அமைப்பு",unitSub:"Unit 01 க்கான சுருக்கமான revision hub. தேவையான பகுதியை மட்டும் திறக்கவும்.",videoNote:"கூடுதல் video பாடம் • video மொழி English",backUnit:"← Unit 01 க்கு",all:"அனைத்தும்",search:"P எண் அல்லது practical தலைப்பைத் தேடவும்",soon:"தயாரிக்கப்படுகிறது",examTitle:"Unit 01 — பரீட்சைப் பயிற்சி",examSub:"வினா வகையைத் தேர்ந்து ஒவ்வொன்றாகப் பயிற்சி செய்யுங்கள். தவறான பதிலின் போது தொடர்புடைய பாடத்திற்குத் திரும்பலாம்.",mcq:"MCQ",structured:"Structured Essay",essay:"Essay",check:"பதிலைச் சரிபார்க்கவும்",next:"அடுத்து",previous:"முந்தையது",review:"தொடர்புடைய பாடம்",score:"மதிப்பெண்",yourAnswer:"உங்கள் பதில்",showMarking:"Marking points காட்டு",hideMarking:"Marking points மறை",selfMark:"பெற்ற புள்ளிகளை குறிக்கவும்",plan:"பதிலைத் திட்டமிடவும்",showModel:"Model answer காட்டு",p01Title:"P01 • Cathode Rays இன் பண்புகள்",p01Sub:"இந்தப் பக்கம் P01 practical க்கு மட்டும். ஒவ்வொரு படியாக முன்னேறுங்கள்.",psteps:["அறிமுகம்","உபகரணங்கள்","செய்முறை","பரிசோதனை","அவதானிப்புகள்","முடிவு","வினாக்கள்"],powerOn:"மின்சாரத்தை இயக்கவும்",powerOff:"மின்சாரத்தை அணைக்கவும்",insertCross:"குறுக்கை உள்ளிடவும்",removeCross:"குறுக்கை அகற்றவும்",obsOff:"மின்சாரம் அணைக்கப்பட்டுள்ளது.",obsGlow:"Fluorescent screen ஒளிர்கிறது.",obsShadow:"திரையில் குறுக்கு வடிவ நிழல் தெரிகிறது.",obsWheel:"Paddle wheel நகர்கிறது.",obsStraight:"Field = 0: கற்றை நேராக செல்கிறது.",obsDeflect:"கற்றை விலகுகிறது.",saveNote:"எனது அவதானிப்பு குறிப்புகள்"},
+en:{brand:"A/L Chemistry",nav:["Home","Lessons","Virtual Lab","Exam Practice"],homeK:"Sri Lanka G.C.E. A/L Chemistry",homeH:"Learn • Experiment • Prepare for the exam",homeP:"Short notes, Virtual Lab practicals and exam questions in one simple system.",continue:"Learn Unit 01",lessonCard:"Lessons",lessonDesc:"Choose a Unit and learn from a complete short note with videos and linked activities.",labCard:"Virtual Lab",labDesc:"Choose practicals by Unit and work through them step by step.",examCard:"Exam Practice",examDesc:"Practise MCQ, structured essay and essay questions in separate guided systems.",open:"Open",lessons:"Lessons",chooseUnit:"Choose a Unit",unitIntro:"Complete short note, related practicals and exam practice for Unit 01.",shortNote:"Short Note",shortNoteDesc:"Revise the important concepts of the whole Unit in a concise format.",practicals:"Related Practicals",practicalsDesc:"Open the practicals linked to this Unit in the Virtual Lab.",examPractice:"Exam Practice",examPracticeDesc:"MCQ, structured essay and essay practice.",unitTitle:"Unit 01 — Atomic Structure",unitSub:"A concise revision hub for Unit 01. Open only the section you need.",videoNote:"Supplementary video • video language: English",backUnit:"← Back to Unit 01",all:"All",search:"Search by P number or practical title",soon:"In preparation",examTitle:"Unit 01 — Exam Practice",examSub:"Choose a question type and work through it one item at a time. Review the related lesson when needed.",mcq:"MCQ",structured:"Structured Essay",essay:"Essay",check:"Check answer",next:"Next",previous:"Previous",review:"Review related lesson",score:"Score",yourAnswer:"Your answer",showMarking:"Show marking points",hideMarking:"Hide marking points",selfMark:"Tick the marks you earned",plan:"Plan your answer",showModel:"Show model answer",p01Title:"P01 • Properties of Cathode Rays",p01Sub:"This page contains only Practical P01. Work through it step by step.",psteps:["Introduction","Apparatus","Procedure","Experiment","Observations","Conclusion","Questions"],powerOn:"Switch power on",powerOff:"Switch power off",insertCross:"Insert cross",removeCross:"Remove cross",obsOff:"Power is off.",obsGlow:"The fluorescent screen glows.",obsShadow:"A cross-shaped shadow appears on the screen.",obsWheel:"The paddle wheel moves.",obsStraight:"Field = 0: the beam is straight.",obsDeflect:"The beam is deflected.",saveNote:"My observation notes"}};
+
+var notes={
+en:[
+{t:"Atomic models and subatomic particles",b:["Cathode-ray experiments established the existence of negatively charged electrons.","Positive-ray observations showed that positive ions can be produced in discharge tubes.","Rutherford scattering led to the nuclear model: most of the atom is empty space and positive charge is concentrated in a very small nucleus.","Protons and neutrons occupy the nucleus; electrons occupy regions outside the nucleus."],f:"electron: e⁻   proton: p⁺   neutron: n⁰",v:"rutherford"},
+{t:"Atomic number, mass number and isotopes",b:["Atomic number Z = number of protons.","Mass number A = protons + neutrons, therefore N = A − Z.","Isotopes have the same Z but different neutron numbers.","Relative atomic mass is a weighted mean of isotopic masses and their natural abundances."],f:"⁽ᴬ⁾₍Z₎X   •   N = A − Z   •   Aᵣ = Σ(isotopic mass × fractional abundance)"},
+{t:"Electromagnetic radiation",b:["Electromagnetic radiation can be described by wavelength λ and frequency ν.","All electromagnetic radiation travels at c in vacuum.","Photon energy increases with frequency and decreases with wavelength."],f:"c = νλ   •   E = hν = hc/λ"},
+{t:"Atomic spectra and energy levels",b:["Electrons in atoms occupy quantized energy levels.","Absorption occurs when an electron gains exactly the energy required for a higher level.","Emission occurs when an electron falls to a lower level and releases a photon.","The hydrogen line spectrum provides evidence for quantized energy levels."],f:"ΔE = hν",v:"spectrum"},
+{t:"Orbitals and quantum numbers",b:["An orbital is a region described by a wavefunction where an electron has a high probability of being found.","s orbitals are spherical; p orbitals have two lobes.","Each orbital holds a maximum of two electrons with opposite spins.","Subshell capacities: s = 2, p = 6, d = 10, f = 14."],f:"n, l, mₗ, mₛ"},
+{t:"Electron configuration",b:["Electrons fill lower-energy orbitals first (Aufbau principle).","No two electrons in an atom have the same set of four quantum numbers (Pauli principle).","Degenerate orbitals are singly occupied before pairing (Hund rule).","Configurations such as Cr and Cu show familiar stability-related exceptions to the simplest filling order."],f:"1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p",v:"config"},
+{t:"Periodic trends",b:["Across a period, effective nuclear attraction generally increases.","Atomic radius generally decreases across a period and increases down a group.","First ionization energy generally increases across a period, with known exceptions.","Electronegativity generally increases across a period and decreases down a group."],f:"trend reasoning = nuclear charge + shielding + distance + electron configuration"}
+],
+si:[
+{t:"පරමාණුක වාදය, කැතෝඩ කිරණ, ධන කිරණ සහ න්‍යෂ්ටිය",b:[
+"පදාර්ථයේ අති සුළු මූලික ඒකක පිළිබඳ අදහස ඩිමොක්‍රිටස් වැනි පුරාණ දාර්ශනිකයන්ගෙන් ආරම්භ වූ අතර 1808 දී ජෝන් ඩෝල්ටන් (Dalton) එය විද්‍යාත්මක පරමාණුක වාදයක් ලෙස සංවිධානය කළේය. ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන අදහස් වූයේ මූලද්‍රව්‍ය පරමාණු වලින් සමන්විත වීම, එකම මූලද්‍රව්‍යයේ පරමාණු අතර සමානත්වය, රසායනික ප්‍රතික්‍රියාවලදී පරමාණු නිර්මාණය/විනාශ නොවීම සහ සංයෝග සරල පූර්ණ සංඛ්‍යා අනුපාතවලින් සෑදීමයි.",
+"අඩු පීඩන වායුවක් සහිත විද්‍යුත් විසර්ජන නළයකට ඉහළ විභව අන්තරයක් යෙදූ විට කැතෝඩයෙන් ඇනෝඩය දෙසට ගමන් කරන ඍණ ආරෝපිත කදම්බය කැතෝඩ කිරණ ලෙස හැඳින්වේ. ඒවා සෘජු රේඛාවක ගමන් කරයි, ශක්තිය හා ගතිමානය රැගෙන යයි, ප්‍රතිදීප්ත තිරයක් දීප්තිමත් කරයි සහ විද්‍යුත්/චුම්බක ක්ෂේත්‍රවලදී අපගමනය වේ.",
+"කැතෝඩ කිරණවල ස්වභාවය නළයේ වායුව හෝ කැතෝඩය සෑදූ ද්‍රව්‍යය වෙනස් කළත් වෙනස් නොවන බව ජේ. ජේ. තොම්සන් (J. J. Thomson) පෙන්වා දුන්නේය. ඔහු e/m ≈ 1.76 × 10⁸ C g⁻¹ ලෙස ආරෝපණය/ස්කන්ධ අනුපාතය නිරණය කළ අතර පරමාණුවේ ඍණ ආරෝපිත අංශුව ඉලෙක්ට්‍රෝනය බව තහවුරු කළේය.",
+"තොම්සන් (Thomson) විසින් ධන ආරෝපිත ගෝලයක් තුළ ඉලෙක්ට්‍රෝන පැතිරී ඇති ‘plum-pudding’ ආකෘතිය යෝජනා කළේය. පසුව මිලිකන් (Millikan)ගේ oil-drop පරීක්ෂණයෙන් ඉලෙක්ට්‍රෝනයේ ආරෝපණය 1.602 × 10⁻¹⁹ C ලෙස ලැබුණු අතර තොම්සන් (Thomson)ගේ e/m අගය සමඟ එය භාවිත කර ඉලෙක්ට්‍රෝන ස්කන්ධය ≈ 9.10 × 10⁻²⁸ g ලෙස ගණනය කළ හැකි විය.",
+"ගෝල්ඩ්ස්ටයින් (Goldstein)ගේ සිදුරු සහිත කැතෝඩ නළ පරීක්ෂණවලින් ධන කිරණ (canal rays) හඳුනා ගන්නා ලදී. ඒවා ධන ආරෝපිත අයනවලින් සමන්විත වන අතර ස්වභාවය නළයේ වායුව මත රඳා පවතී. හයිඩ්‍රජන් වායුවෙන් ලැබෙන සැහැල්ලුම ධන අංශුව ප්‍රෝටෝනයයි; එහි ආරෝපණය +1.602 × 10⁻¹⁹ C සහ සාපේක්ෂ ස්කන්ධය ආසන්න වශයෙන් 1 වේ.",
+"විකිරණශීලී ද්‍රව්‍යවලින් α, β සහ γ විකිරණ නිකුත් වේ. α අංශු ධන ආරෝපිත, β අංශු ඉලෙක්ට්‍රෝන ස්වභාවයෙන් ඍණ ආරෝපිත වන අතර γ විකිරණයට ආරෝපණයක් නැත. එබැවින් විද්‍යුත් ක්ෂේත්‍රයකදී α හා β විරුද්ධ දිශාවලට අපගමනය වන අතර γ අපගමනය නොවේ.",
+"රදර්ෆර්ඩ්ගේ රන් පත්‍ර පරීක්ෂණයේදී බොහෝ α අංශු සෘජුව ගමන් කළද සුළු ප්‍රමාණයක් විශාල කෝණවලින් අපගමනය විය. එයින් පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් බවත් ධන ආරෝපණය සහ වැඩි ස්කන්ධය ඉතා කුඩා, ඝන න්‍යෂ්ටියක සංකේන්ද්‍රණය වී ඇති බවත් නිගමනය කෙරිණි. බෝර් (Bohr) විසින් ඉලෙක්ට්‍රෝන නිශ්චිත ශක්ති මට්ටම්වල පවතින බව යෝජනා කර රදර්ෆර්ඩ් (Rutherford) ආකෘතිය සංවර්ධනය කළේය."
+],f:"e/m ≈ 1.76 × 10⁸ C g⁻¹   •   |e| = 1.602 × 10⁻¹⁹ C   •   mₑ ≈ 9.10 × 10⁻²⁸ g",v:"atomic_si",exam:["ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන උපකල්පන සහ ඒවායේ සීමා","කැතෝඩ/ධන කිරණවල ගුණ නිරීක්ෂණවලින් හඳුනා ගැනීම","තොම්සන් (Thomson) හා මිලිකන් (Millikan) දත්තවලින් ඉලෙක්ට්‍රෝන ගුණ සම්බන්ධ කිරීම","α, β, γ විකිරණ විද්‍යුත් ක්ෂේත්‍රයකදී හැසිරීම","රදර්ෆර්ඩ් පරීක්ෂණයේ නිරීක්ෂණ සහ නිගමන සම්බන්ධ කිරීම"]},
+{t:"පරමාණුක ක්‍රමාංකය, නියුක්ලයිඩ, සමස්ථානික, අයන සහ සාපේක්ෂ පරමාණුක ස්කන්ධය",b:[
+"පරමාණුක ක්‍රමාංකය Z යනු න්‍යෂ්ටියේ ප්‍රෝටෝන ගණනයි. ස්කන්ධ ක්‍රමාංකය A = ප්‍රෝටෝන + නියුට්‍රෝන. එබැවින් නියුට්‍රෝන ගණන N = A − Z වේ. විද්‍යුත්-නිර්පේක්ෂ පරමාණුවක ඉලෙක්ට්‍රෝන ගණන ද Z ට සමාන වේ.",
+"මෝස්ලි (Moseley)ගේ කාර්යය පරමාණුක ක්‍රමාංකය මූලද්‍රව්‍යයක අනන්‍ය ලක්ෂණයක් බව තහවුරු කිරීමට වැදගත් විය. න්‍යෂ්ටියේ ඇති ප්‍රෝටෝන සහ නියුට්‍රෝන එකට නියුක්ලියෝන ලෙස හැඳින්වෙන අතර නියුක්ලයිඩයක් ᴬZX ලෙස නිරූපණය කරයි.",
+"එකම Z අගය ඇති නමුත් නියුට්‍රෝන ගණන වෙනස් පරමාණු සමස්ථානික වේ. උදාහරණ ලෙස ¹²C, ¹³C හා ¹⁴C දැක්විය හැක. සමහර සමස්ථානික ස්ථායී වන අතර සමහර ඒවා විකිරණශීලී වේ.",
+"පරමාණුක ස්කන්ධ ඒකකය u (හෝ Da) යනු ¹²C පරමාණුවක ස්කන්ධයේ හරියටම 1/12 කි. 1 u = 1.66054 × 10⁻²⁴ g. එබැවින් ඉතා සුළු පරමාණුක ස්කන්ධ සංඛ්‍යාත්මකව ප්‍රකාශ කිරීම පහසු වේ.",
+"මූලද්‍රව්‍යයක මධ්‍ය පරමාණුක ස්කන්ධය ගණනය කරන්නේ එක් එක් සමස්ථානිකයේ ස්කන්ධය හා ස්වභාවික භාගික බහුලතාව ගුණකර එකතු කිරීමෙනි. සාපේක්ෂ පරමාණුක ස්කන්ධය Aᵣ යනු ඒ මධ්‍ය පරමාණුක ස්කන්ධය ¹²C හි ස්කන්ධයේ 1/12 සමඟ සසඳන ඒකක රහිත අනුපාතයකි.",
+"පරමාණුක ස්කන්ධය g mol⁻¹ ඒකකයෙන් පරමාණු මවුලයක ස්කන්ධයක් ලෙස ද ප්‍රකාශ කළ හැක. සංඛ්‍යාත්මකව මධ්‍ය පරමාණුක ස්කන්ධය (u) හා මවුලික ස්කන්ධය (g mol⁻¹) එකම අගයට ආසන්න වේ.",
+"ධන අයනයක් (cation) සෑදෙන්නේ ඉලෙක්ට්‍රෝන අහිමි වීමෙන්ය; ඍණ අයනයක් (anion) සෑදෙන්නේ ඉලෙක්ට්‍රෝන ලබා ගැනීමෙන්ය. Na⁺, Cl⁻ වැනි ඒකපරමාණුක අයන මෙන්ම NH₄⁺, SO₄²⁻ වැනි බහුපරමාණුක අයන ද පවතී."
+],f:"N = A − Z   •   1 u = 1.66054 × 10⁻²⁴ g   •   Aᵣ = Σ(සමස්ථානික ස්කන්ධය × භාගික බහුලතාව)",exam:["ප්‍රෝටෝන, නියුට්‍රෝන සහ ඉලෙක්ට්‍රෝන ගණන සොයන ප්‍රශ්න","නියුක්ලයිඩ හා සමස්ථානික හඳුනා ගැනීම","අයනයක ඉලෙක්ට්‍රෝන ගණන","සමස්ථානික බහුලතාවලින් Aᵣ හෝ නොදන්නා බහුලතාව ගණනය කිරීම","u, සාපේක්ෂ පරමාණුක ස්කන්ධය සහ මවුලික ස්කන්ධය අතර වෙනස"]},
+{t:"විද්‍යුත් චුම්බක විකිරණ සහ ද්‍රව්‍යයේ තරංග-අංශු ස්වභාවය",b:[
+"විද්‍යුත් චුම්බක විකිරණ යනු එකිනෙකට ලම්බව දෝලනය වන විද්‍යුත් හා චුම්බක ක්ෂේත්‍ර දෙකක් සහිත තරංගයකි. එම ක්ෂේත්‍ර දෙකම තරංගය ප්‍රචාරණය වන දිශාවට ද ලම්බ වේ.",
+"විද්‍යුත් චුම්බක විකිරණ තරංග ආයාමය (λ), සංඛ්‍යාතය (ν) සහ ෆෝටෝන ශක්තිය (E) මඟින් විස්තර කරයි. රික්තයකදී සියලු විද්‍යුත් චුම්බක විකිරණ c = 2.998 × 10⁸ m s⁻¹ වේගයෙන් ගමන් කරයි.",
+"c = νλ අනුව තරංග ආයාමය වැඩි වන විට සංඛ්‍යාතය අඩු වේ. විද්‍යුත් චුම්බක වර්ණාවලියේ radio → microwave → IR → visible → UV → X-ray → γ යන අනුපිළිවෙළට තරංග ආයාමය අඩුවන අතර සංඛ්‍යාතය හා ශක්තිය වැඩි වේ.",
+"ප්ලාන්ක් (Planck) අනුව ශක්තිය අඛණ්ඩව නොව නිශ්චිත කුඩා ප්‍රමාණ (quanta) ලෙස විමෝචනය හෝ අවශෝෂණය වේ. එක් quantum එකක ශක්තිය E = hν වන අතර h = 6.626 × 10⁻³⁴ J s වේ.",
+"අයින්ස්ටයින් (Einstein) මෙම අදහස තවදුරටත් සංවර්ධනය කර විද්‍යුත් චුම්බක විකිරණ කුඩා ශක්ති පොදි වන ෆෝටෝන ලෙස ද හැසිරෙන බව පෙන්වා දුන්නේය. එබැවින් විකිරණයට තරංග සහ අංශු යන ද්විත්ව ස්වභාවය ඇත.",
+"ඩි බ්‍රොයි (de Broglie) අනුව චලනය වන ද්‍රව්‍ය අංශුවකට ද තරංග ස්වභාවයක් ඇත. එහි තරංග ආයාමය λ = h/p = h/mv වේ. විශාල වස්තු සඳහා මෙම තරංග ආයාමය නිරීක්ෂණය කළ නොහැකි තරම් කුඩා වන නමුත් ඉලෙක්ට්‍රෝන වැනි සුළු ස්කන්ධ අංශු සඳහා එය වැදගත් වේ.",
+"සූත්‍ර භාවිතයේදී SI ඒකක පවත්වා ගැනීම වැදගත්ය: λ → m, ν → s⁻¹ (Hz), E → J, c → m s⁻¹. nm දී ඇති තරංග ආයාමය m බවට පරිවර්තනය කිරීම විභාග ගණනයවලදී නිතර අවශ්‍ය වේ."
+],f:"c = νλ   •   E = hν = hc/λ   •   λ = h/p = h/mv",exam:["λ, ν සහ E අතර පරිවර්තන","nm → m ඒකක පරිවර්තනය","විද්‍යුත් චුම්බක වර්ණාවලියේ අනුපිළිවෙළ","ප්ලාන්ක් (Planck)/අයින්ස්ටයින් (Einstein) අදහස් සහ ෆෝටෝන ශක්තිය","ඩි බ්‍රොයි (de Broglie) තරංග ආයාම ගණනය"]},
+{t:"ශක්ති ප්‍රමාණීකරණය, අනුක්‍රමික අයනීකරණ ශක්ති සහ හයිඩ්‍රජන් වර්ණාවලිය",b:[
+"අයනීකරණ ශක්තිය යනු භූමි තත්ත්වයේ ඇති ඒකක වායුමය පරමාණුවකින් හෝ අයනයකින් ඉලෙක්ට්‍රෝනයක් ඉවත් කිරීමට අවශ්‍ය අවම ශක්තියයි. අනුක්‍රමිකව ඉලෙක්ට්‍රෝන ඉවත් කළ විට I₁ < I₂ < I₃ … ලෙස ශක්තිය වැඩි වේ.",
+"අනුක්‍රමික අයනීකරණ ශක්ති අතර ඉතා විශාල පැනීමක් පෙනීම, ඊළඟ ඉලෙක්ට්‍රෝනය අභ්‍යන්තර කවචයකින් ඉවත් කළ යුතු බව පෙන්වයි. එබැවින් එවැනි දත්තවලින් සංයුජතා ඉලෙක්ට්‍රෝන ගණන හා ආවර්තිතා කාණ්ඩය තක්සේරු කළ හැක.",
+"බෝර් (Bohr) ආකෘතිය අනුව ඉලෙක්ට්‍රෝන පවතින්නේ අඛණ්ඩ ශක්ති පරාසයක නොව නිශ්චිත ප්‍රමාණීකෘත ශක්ති මට්ටම්වලය. ඉලෙක්ට්‍රෝනය ඉහළ ශක්ති මට්ටමකට යාමට නිශ්චිත ශක්තියක් අවශෝෂණය කරන අතර පහළ මට්ටමකට පැමිණීමේදී එම ශක්ති වෙනසට සමාන ෆෝටෝනයක් නිකුත් වේ.",
+"හයිඩ්‍රජන් රේඛා වර්ණාවලියේ දෘශ්‍ය බාල්මර් රේඛා ආසන්න වශයෙන් 410, 434, 486 සහ 656 nm වේ. මේවා අඛණ්ඩ වර්ණාවලියක් නොව නිශ්චිත තරංග ආයාම කිහිපයක් පමණක් දක්වන බැවින් ඉලෙක්ට්‍රෝන ශක්ති මට්ටම් ප්‍රමාණීකෘත බවට සාක්ෂියකි.",
+"ලයිමන් ශ්‍රේණිය n = 1 වෙත (UV), බාල්මර් ශ්‍රේණිය n = 2 වෙත (දෘශ්‍ය කලාපයේ කොටසක්), පාෂන් ශ්‍රේණිය n = 3 වෙත (IR), බ්‍රැකට් n = 4 වෙත සහ ෆුන්ඩ් n = 5 වෙත සිදුවන සංක්‍රමණ නිරූපණය කරයි.",
+"විමෝචනයේදී ΔE = E_f − E_i ඍණ වන නිසා නිකුත් වන ෆෝටෝන ශක්තිය E_photon = −ΔE = hν = hc/λ වේ. අවශෝෂණයේදී ඉලෙක්ට්‍රෝනය පහළ සිට ඉහළ මට්ටමකට යන බැවින් පරමාණුව ශක්තිය ලබා ගනී."
+],f:"Eෆෝටෝන = hν = hc/λ = −ΔE   •   ලයිමන් nᶠ=1   •   බාල්මර් nᶠ=2   •   පාෂන් nᶠ=3",v:"spectrum_si",exam:["අනුක්‍රමික අයනීකරණ ශක්ති දත්තවලින් කාණ්ඩය/සංයුජතා ඉලෙක්ට්‍රෝන තීරණය කිරීම","විමෝචන හා අවශෝෂණ ශක්ති-මට්ටම් සංක්‍රමණ","ලයිමන්/බාල්මර්/පාෂන්/බ්‍රැකට්/ෆුන්ඩ් ශ්‍රේණි","410–656 nm බාල්මර් රේඛා","λ/ν/E හා ΔE ගණනය"]},
+{t:"කාක්ෂික, කාක්ෂික හැඩ සහ ක්වොන්ටම් අංක",b:[
+"කාක්ෂිකයක් යනු ඉලෙක්ට්‍රෝනයක් හමුවීමේ ඉහළ සම්භාවිතාවක් ඇති අවකාශීය ප්‍රදේශයකි. s කාක්ෂික ගෝලාකාර වන අතර p කාක්ෂික දෙපැති හැඩයක් දක්වයි. p උපකවචයේ pₓ, pᵧ සහ p_z ලෙස එකිනෙකට ලම්බ කාක්ෂික තුනක් ඇත.",
+"d කාක්ෂික පහක් ඇති අතර ඒවාට විවිධ අවකාශීය හැඩ හා දිශානති ඇත. f කාක්ෂිකවල හැඩ තවත් සංකීර්ණ වේ. විභාගයේදී ප්‍රධාන අවධානය s හා p හැඩ, කාක්ෂික ගණන සහ ක්වොන්ටම් අංක සම්බන්ධතා මත යොමු වේ.",
+"ප්‍රධාන ක්වොන්ටම් අංකය n = 1,2,3… මඟින් ප්‍රධාන ශක්ති මට්ටම/කවචය දක්වයි. දී ඇති n සඳහා l අගයන් 0 සිට n−1 දක්වා ලැබෙන අතර l = 0,1,2,3 සඳහා s,p,d,f උපකවච ලැබේ.",
+"චුම්බක ක්වොන්ටම් අංකය mₗ සඳහා −l සිට +l දක්වා අගයන් ලැබෙන බැවින් උපකවචයක කාක්ෂික ගණන 2l+1 වේ. ස්පින් ක්වොන්ටම් අංකය mₛ = +1/2 හෝ −1/2 වේ.",
+"n වන කවචයක උපකවච ගණන n, මුළු කාක්ෂික ගණන n² සහ උපරිම ඉලෙක්ට්‍රෝන ගණන 2n² වේ. s,p,d,f උපකවචවල කාක්ෂික ගණන පිළිවෙලින් 1,3,5,7 සහ උපරිම ඉලෙක්ට්‍රෝන ගණන 2,6,10,14 වේ.",
+"එක් කාක්ෂිකයක උපරිම ඉලෙක්ට්‍රෝන දෙකක් පමණක් සිටිය හැකි අතර ඒවායේ ස්පින් ප්‍රතිවිරුද්ධ විය යුතුය."
+],f:"l = 0…n−1   •   mₗ = −l…+l   •   mₛ = ±½   •   කාක්ෂික ගණන = n²   •   උපරිම e⁻ = 2n²",exam:["දී ඇති n සඳහා l සහ mₗ අනුමත අගයන්","දී ඇති ක්වොන්ටම්-අංක කට්ටලයක් වලංගුද නැද්ද තීරණය කිරීම","s/p/d/f උපකවචවල කාක්ෂික හා ඉලෙක්ට්‍රෝන ධාරිතාව","pₓ, pᵧ, p_z දිශානති","n² හා 2n² සම්බන්ධතා"]},
+{t:"ඉලෙක්ට්‍රෝන වින්‍යාසය",b:[
+"බහු-ඉලෙක්ට්‍රෝන පරමාණුවල එකම n අගයට අයත් කාක්ෂිකවල ශක්ති සමාන නොවේ. සාමාන්‍යයෙන් එකම කවචයක  s < p < d < f ලෙස ශක්තිය වැඩි වේ. කාක්ෂික පිරීම 1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p … අනුපිළිවෙළට සිදු වේ.",
+"Aufbau මූලධර්මය අනුව ඉලෙක්ට්‍රෝන අඩු ශක්ති කාක්ෂිකවලින් පටන් ගෙන පුරවයි. පාවුලි (Pauli) බහිෂ්කරණ මූලධර්මය අනුව එකම පරමාණුවේ ඉලෙක්ට්‍රෝන දෙකකට ක්වොන්ටම් අංක හතරම එකම විය නොහැකි අතර එක් කාක්ෂිකයක ඉලෙක්ට්‍රෝන දෙකක් තිබේ නම් ස්පින් ප්‍රතිවිරුද්ධ වේ.",
+"හුන්ඩ් (Hund) නියමය අනුව එකම ශක්තිය ඇති degenerate කාක්ෂික පළමුව එක බැගින් සමාන ස්පින් දිශාවකින් පුරවා පසුව යුගලනය සිදු කරයි. එබැවින් orbital-box සටහන් ලියන විට p, d වැනි සමශක්ති කාක්ෂිකවල තනි ඉලෙක්ට්‍රෝන පළමුව තබයි.",
+"ඉලෙක්ට්‍රෝන වින්‍යාසය 1s²2s²2p⁶… ලෙස සම්පූර්ණයෙන් හෝ [Ne]3s¹ වැනි නිෂ්ක්‍රිය-වායු සංක්ෂිප්ත ආකාරයෙන් ලියයි. නිෂ්ක්‍රිය වායු සංකේතයට ඇතුළත් අභ්‍යන්තර ඉලෙක්ට්‍රෝන ‘core’ ඉලෙක්ට්‍රෝන වන අතර පිටත බන්ධනවලට සම්බන්ධ ඉලෙක්ට්‍රෝන සංයුජතා ඉලෙක්ට්‍රෝන වේ.",
+"K හා Ca වලදී 3d ට පෙර 4s පිරේ. නමුත් අයන සෑදීමේදී ඉහළම n අගය ඇති පිටත ඉලෙක්ට්‍රෝන පළමුව ඉවත් වේ; එබැවින් transition-metal cation සෑදීමේදී 4s ඉලෙක්ට්‍රෝන 3d ට පෙර ඉවත් කරයි.",
+"අර්ධ-පිරුණු හා සම්පූර්ණ-පිරුණු උපකවචවල අමතර ස්ථායීතාව නිසා Cr = [Ar]3d⁵4s¹ සහ Cu = [Ar]3d¹⁰4s¹ යන වින්‍යාස සාමාන්‍ය Aufbau අනුමානයෙන් වෙනස් වේ."
+],f:"1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p   •   Cr: [Ar]3d⁵4s¹   •   Cu: [Ar]3d¹⁰4s¹",v:"config_si",exam:["පරමාණු/අයන ඉලෙක්ට්‍රෝන වින්‍යාසය","කාක්ෂික කොටු සටහන්","Aufbau, පාවුලි (Pauli) හා හුන්ඩ් (Hund) නියම භාවිතය","නිෂ්ක්‍රිය-වායු සංක්ෂිප්ත වින්‍යාස","cation සෑදීමේදී ඉලෙක්ට්‍රෝන ඉවත් කරන අනුපිළිවෙළ","Cr හා Cu අපවාද"]},
+{t:"ආවර්තිතා වගුව සහ s, p, d, f බ්ලොක්",b:[
+"මූලද්‍රව්‍ය වර්ගීකරණය සඳහා මෙන්ඩලීව් (Mendeleev) හා ලෝතර් මයර් (Lothar Meyer) විසින් 1869 දී සමාන ආවර්තිතා රටා යෝජනා කළ අතර නූතන ආවර්තිතා වගුව පරමාණුක ක්‍රමාංකය වැඩිවන අනුපිළිවෙළට සකසා ඇත.",
+"IUPAC අනුව ආවර්තිතා වගුවේ කාණ්ඩ 1 සිට 18 දක්වා අංකනය කරයි. කාණ්ඩ 1 ක්ෂාර ලෝහ, 2 ක්ෂාරීය පෘථිවි ලෝහ, 16 කැල්කොජන්, 17 හැලජන් සහ 18 නිෂ්ක්‍රිය/උච්ච වායු ලෙස හැඳින්වේ.",
+"ආවර්ත අංකය සාමාන්‍යයෙන් භූමි තත්ත්ව වින්‍යාසයේ පිරී ඇති ඉහළම ප්‍රධාන ක්වොන්ටම් අංකයෙන් ලැබේ. එකම කාණ්ඩයේ මූලද්‍රව්‍යවල පිටත ඉලෙක්ට්‍රෝන වින්‍යාස අතර සමාන රටාවක් ඇති බැවින් ඒවායේ රසායනික ගුණවලද සමානතා පවතී.",
+"වෙනස්කාරී ඉලෙක්ට්‍රෝනය ඇතුළත් වන උපකවචය අනුව මූලද්‍රව්‍ය s, p, d හෝ f බ්ලොක්වලට වර්ග කරයි. s බ්ලොක් කාණ්ඩ 1–2, p බ්ලොක් කාණ්ඩ 13–18, d බ්ලොක් මධ්‍යස්ථ කාණ්ඩ සහ f බ්ලොක් ලැන්තනයිඩ/ඇක්ටිනයිඩ ප්‍රදේශයට අයත් වේ.",
+"s,p,d,f උපකවචවල උපරිම ඉලෙක්ට්‍රෝන ධාරිතා 2,6,10,14 බැවින් ආවර්තිතා වගුවේ බ්ලොක් පළලද ඒ අගයන් නිරූපණය කරයි. n වන කවචයක උපරිම ඉලෙක්ට්‍රෝන ගණන 2n² වන නිසා ආවර්තවල දිග සමඟද මෙම සම්බන්ධතාව පෙනේ.",
+"s බ්ලොක් සඳහා පිටත වින්‍යාසය ns¹ හෝ ns² වන අතර p බ්ලොක් සඳහා සාමාන්‍ය පිටත වින්‍යාසය ns²np¹–⁶ වේ. නිෂ්ක්‍රිය වායුවල සම්පූර්ණ පිටත කවච වින්‍යාසය නිසා ඒවායේ රසායනික ප්‍රතික්‍රියාශීලීතාව අඩුය."
+],f:"කාණ්ඩ 1–18   •   s: 2e⁻   p: 6e⁻   d: 10e⁻   f: 14e⁻   •   කවච ධාරිතාව = 2n²",exam:["ඉලෙක්ට්‍රෝන වින්‍යාසයෙන් මූලද්‍රව්‍යයේ ආවර්තය/කාණ්ඩය/බ්ලොක් තීරණය කිරීම","කාණ්ඩ 1,2,16,17,18 නාම","s/p/d/f බ්ලොක් හඳුනා ගැනීම","2n² හා ආවර්ත දිග අතර සම්බන්ධතාව","පිටත ඉලෙක්ට්‍රෝන වින්‍යාසයෙන් කාණ්ඩ සම්බන්ධ කිරීම"]},
+{t:"s සහ p බ්ලොක්වල ආවර්තිතා ප්‍රවණතා",b:[
+"බහු-ඉලෙක්ට්‍රෝන පරමාණුවක පිටත ඉලෙක්ට්‍රෝන න්‍යෂ්ටියේ සම්පූර්ණ ආරෝපණය නොව අභ්‍යන්තර ඉලෙක්ට්‍රෝනවල ආවරණ බලපෑමෙන් අඩු වූ ඵලදායී න්‍යෂ්ටික ආරෝපණයකට (Z_eff) යටත් වේ. එකම ආවර්තයක් හරහා ප්‍රෝටෝන ගණන වැඩි වන අතර ආවරණ බලපෑම සමානව වැඩි නොවන නිසා Z_eff සාමාන්‍යයෙන් වැඩි වේ.",
+"පරමාණුක අරය සඳහා එක් තනි, තියුණු සීමාවක් නැත. වෑන් ඩර් වාල්ස් අරය යනු අබන්ධිත සමාන පරමාණු දෙකක න්‍යෂ්ටි අතර දුරෙන් අඩක්; සහසංයුජ අරය යනු සහසංයුජ බන්ධනයක න්‍යෂ්ටි අතර දුරෙන් අඩක්; ලෝහීය අරය යනු ලෝහ ජාලයක යාබද පරමාණු න්‍යෂ්ටි අතර දුරෙන් අඩක් ලෙස අර්ථ දක්වයි.",
+"ආවර්තයක් හරහා Z_eff වැඩි වන නිසා පරමාණුක අරය සාමාන්‍යයෙන් අඩු වේ. කාණ්ඩයක් පහළට නව ඉලෙක්ට්‍රෝන කවච එකතු වන නිසා පරමාණුක අරය වැඩි වේ.",
+"ධන අයනය එහි මව් පරමාණුවට වඩා කුඩාය; ඍණ අයනය මව් පරමාණුවට වඩා විශාලය. සම-ඉලෙක්ට්‍රෝනික අංශු O²⁻, F⁻, Ne, Na⁺, Mg²⁺ වැනි ශ්‍රේණියකදී ඉලෙක්ට්‍රෝන ගණන එකම බැවින් න්‍යෂ්ටික ආරෝපණය වැඩි වන විට අරය අඩු වේ.",
+"පළමු අයනීකරණ ශක්තිය යනු භූමි තත්ත්වයේ ඒකක වායුමය පරමාණුවකින් වඩාත් ලිහිල්ව බැඳුණු ඉලෙක්ට්‍රෝනය ඉවත් කිරීමට අවශ්‍ය අවම ශක්තියයි. එය සාමාන්‍යයෙන් ආවර්තයක් හරහා වැඩි වන අතර කාණ්ඩයක් පහළට අඩු වේ. පිරුණු හෝ අර්ධ-පිරුණු උපකවචවල අමතර ස්ථායීතාව නිසා Be→B සහ N→O වැනි අපවාද පවතී.",
+"ඉලෙක්ට්‍රෝන ලබා ගැනීමේ ශක්ති වෙනස ΔE_EG යනු වායුමය පරමාණුවකට ඉලෙක්ට්‍රෝනයක් එක් කළ විට සිදුවන ශක්ති වෙනසයි. බොහෝ පරමාණු සඳහා එය ඍණ අගයක් වන අතර ශක්තිය නිදහස් වේ; උදාහරණ ලෙස Cl(g)+e⁻→Cl⁻(g), ΔE_EG ≈ −349 kJ mol⁻¹. Be හා N වැනි ස්ථායී උපකවච වින්‍යාස සඳහා එය ධන විය හැක.",
+"ඉලෙක්ට්‍රෝන බන්ධුතාව (electron affinity, EA) සහ ΔE_EG ලකුණෙන් විරුද්ධ නමුත් විශාලත්වයෙන් සම්බන්ධ වේ: ΔE_EG = −EA. ආවර්තයක් හරහා electron affinity සාමාන්‍යයෙන් වඩාත් ධන වන අතර කාණ්ඩයක් පහළට එහි ප්‍රවණතාව අඩු වේ.",
+"විද්‍යුත් ඍණතාව යනු අණුවක බන්ධනයකට සහභාගී වන ඉලෙක්ට්‍රෝන තමන් වෙත ආකර්ෂණය කර ගැනීමේ පරමාණුවක හැකියාවයි. පෝලින් (Pauling) පරිමාණයේදී එය ආවර්තයක් හරහා සාමාන්‍යයෙන් වැඩි වන අතර කාණ්ඩයක් පහළට අඩු වේ. බන්ධනයක පරමාණු දෙක අතර විද්‍යුත් ඍණතා වෙනස වැඩි වන විට බන්ධනයේ අයනික ස්වභාවය වැඩි වේ."
+],f:"Z_eff < Z   •   cation radius < atom < anion radius   •   ΔE_EG = −EA",exam:["වෑන් ඩර් වාල්ස්/සහසංයුජ/ලෝහීය අරයන් අර්ථ දැක්වීම","ඵලදායී න්‍යෂ්ටික ආරෝපණය හා ආවරණ බලපෑමෙන් ප්‍රවණතා පැහැදිලි කිරීම","පරමාණුක/අයනික අරයන් අනුපිළිවෙළට තැබීම","සම-ඉලෙක්ට්‍රෝනික අංශු අනුපිළිවෙළට තැබීම","අයනීකරණ ශක්ති ප්‍රවණතාව හා Be/B, N/O වැනි අපවාද","ඉලෙක්ට්‍රෝන ලබා ගැනීමේ ශක්ති වෙනස හා electron affinity සම්බන්ධතාව","විද්‍යුත් ඍණතා ප්‍රවණතාව සහ බන්ධන ස්වභාවය"]}
+],
+ta:[
+{t:"அணு மாதிரிகள் மற்றும் துணைஅணுத் துகள்கள்",b:["Cathode-ray பரிசோதனைகள் எதிர்மின்னூட்டம் கொண்ட electron இருப்பை உறுதிப்படுத்தின.","Positive-ray அவதானிப்புகள் discharge tube இல் positive ions உருவாகலாம் என்பதை காட்டின.","Rutherford scattering மூலம் அணுவின் பெரும்பகுதி வெற்றிடம் என்றும் positive charge மிகச் சிறிய nucleus இல் திரண்டுள்ளது என்றும் அறியப்பட்டது.","Proton மற்றும் neutron nucleus இல்; electron nucleus க்கு வெளியே உள்ள பகுதிகளில் காணப்படுகின்றன."],f:"electron: e⁻   proton: p⁺   neutron: n⁰",v:"rutherford"},
+{t:"அணு எண், நிறை எண் மற்றும் isotopes",b:["அணு எண் Z = proton எண்ணிக்கை.","நிறை எண் A = proton + neutron; ஆகவே N = A − Z.","Isotope களில் Z ஒரேதாகவும் neutron எண்ணிக்கை வேறுபட்டதாகவும் இருக்கும்.","Relative atomic mass என்பது isotopic mass மற்றும் natural abundance அடிப்படையிலான weighted mean."],f:"⁽ᴬ⁾₍Z₎X   •   N = A − Z   •   Aᵣ = Σ(isotopic mass × fractional abundance)"},
+{t:"மின்காந்தக் கதிர்வீச்சு",b:["மின்காந்தக் கதிர்வீச்சை wavelength λ மற்றும் frequency ν மூலம் விவரிக்கலாம்.","Vacuum இல் அனைத்தும் c வேகத்தில் பயணிக்கின்றன.","Photon energy frequency உடன் அதிகரித்து wavelength உடன் குறைகிறது."],f:"c = νλ   •   E = hν = hc/λ"},
+{t:"அணு நிறமாலை மற்றும் ஆற்றல் மட்டங்கள்",b:["Electron கள் quantized energy levels இல் உள்ளன.","மேலான level க்கு செல்ல துல்லியமான energy உறிஞ்சப்படுகிறது.","கீழ் level க்கு வரும் போது photon வெளியிடப்படுகிறது.","Hydrogen line spectrum quantized energy levels க்கு ஆதாரம்."],f:"ΔE = hν",v:"spectrum"},
+{t:"Orbital மற்றும் quantum numbers",b:["Orbital என்பது electron இருப்பதற்கான அதிக probability உள்ள பகுதியை குறிக்கிறது.","s orbital கோள வடிவம்; p orbital இரு-lobe வடிவம்.","ஒரு orbital இல் அதிகபட்சம் இரண்டு electron கள் எதிர் spin உடன் இருக்கலாம்.","Subshell capacities: s = 2, p = 6, d = 10, f = 14."],f:"n, l, mₗ, mₛ"},
+{t:"Electron configuration",b:["Electron கள் குறைந்த energy orbital களை முதலில் நிரப்புகின்றன (Aufbau principle).","ஒரே அணுவில் இரண்டு electron களுக்கு ஒரே நான்கு quantum numbers இருக்க முடியாது (Pauli principle).","Degenerate orbital கள் pairing க்கு முன் singly occupied ஆகும் (Hund rule).","Cr மற்றும் Cu இல் எளிய filling order க்கு exceptions உள்ளன."],f:"1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p",v:"config"},
+{t:"தனிம வரிசைப் போக்குகள்",b:["ஒரு period முழுவதும் effective nuclear attraction பொதுவாக அதிகரிக்கிறது.","Atomic radius period முழுவதும் பொதுவாக குறைந்து group கீழே அதிகரிக்கிறது.","First ionization energy period முழுவதும் பொதுவாக அதிகரிக்கிறது; சில exceptions உள்ளன.","Electronegativity period முழுவதும் பொதுவாக அதிகரித்து group கீழே குறைகிறது."],f:"trend reasoning = nuclear charge + shielding + distance + electron configuration"}
+]};
+
+var practicalEN=["Properties of Cathode Rays","Molecular and Ionic Shapes","Glassware and Four-beam Balance","Preparation of Standard Solutions","Molar Volume of a Gas","Relative Atomic Mass of Mg","Enthalpy of Neutralization","Hess Law","s-Block Metals with Air, Water and Acids","Flame Tests","Anion Identification","Nitrogen in Air","Halide Identification","Standardization of Thiosulfate","Ammonia and Ammonium Identification","Solubility of s-Block Salts","Thermal Stability of Nitrates and Carbonates","Colours of Complex Ions","Fe²⁺ with Acidified KMnO₄","KMnO₄ with Acidified K₂C₂O₄","Cu(II), Ni(II) and Co(II) Complexes","Oxidation States of Mn","Transition-metal Ions with NaOH and NH₃","Alkenes and Alkynes","Alcohols","Phenol","Aldehydes and Ketones","Carboxylic Acids","Aniline","Rate: Mg and Acids","Rate: Na₂S₂O₃ and HNO₃","Reaction Order: Fe³⁺ / I⁻","Fe³⁺ / SCN⁻ Equilibrium","NO₂ ⇌ N₂O₄ and Temperature","pH of Salt Solutions","Na₂CO₃ / HCl Titration","Ksp of Ca(OH)₂","Distribution Coefficient","Electrochemical Series","Ag / AgCl Electrode","Soap Preparation","Essential Oil by Steam Distillation","Biodiesel","Acetic Acid in Vinegar","Dissolved Oxygen — Winkler Method"];
+var practicalSI=["කැතෝඩ කිරණවල ගුණ","අණුක හා අයනික හැඩ","වීදුරු උපකරණ සහ Four-beam Balance","Standard Solution සකස් කිරීම","වායුවක මෝලීය පරිමාව","Mg හි සාපේක්ෂ පරමාණුක ස්කන්ධය","උදාසීනීකරණ එන්තැල්පිය","Hess නියමය","s-Block ලෝහ: වාතය, ජලය සහ අම්ල","Flame Test","Anion හඳුනාගැනීම","වාතයේ Nitrogen","Halide හඳුනාගැනීම","Thiosulfate Standardization","Ammonia සහ Ammonium හඳුනාගැනීම","s-Block ලවණවල ද්‍රාව්‍යතාව","Nitrate සහ Carbonate වල තාප ස්ථායීතාව","Complex ion වල වර්ණ","Fe²⁺ සහ Acidified KMnO₄","KMnO₄ සහ Acidified K₂C₂O₄","Cu(II), Ni(II), Co(II) Complexes","Mn ඔක්සිකරණ තත්ත්ව","Transition-metal ions සමඟ NaOH සහ NH₃","Alkene සහ Alkyne","Alcohol","Phenol","Aldehyde සහ Ketone","Carboxylic Acid","Aniline","ප්‍රතික්‍රියා වේගය: Mg සහ අම්ල","ප්‍රතික්‍රියා වේගය: Na₂S₂O₃ සහ HNO₃","Reaction Order: Fe³⁺ / I⁻","Fe³⁺ / SCN⁻ සමතුලිතතාව","NO₂ ⇌ N₂O₄ සහ උෂ්ණත්වය","ලවණ ද්‍රාවණවල pH","Na₂CO₃ / HCl Titration","Ca(OH)₂ හි Ksp","Distribution Coefficient","Electrochemical Series","Ag / AgCl Electrode","Soap සකස් කිරීම","Steam Distillation මඟින් Essential Oil","Biodiesel","Vinegar හි Acetic Acid ප්‍රතිශතය","Dissolved Oxygen — Winkler Method"];
+var practicalTA=["Cathode Rays இன் பண்புகள்","மூலக்கூறு மற்றும் அயனி வடிவங்கள்","Glassware மற்றும் Four-beam Balance","Standard Solution தயாரித்தல்","வாயுவின் molar volume","Mg இன் relative atomic mass","Neutralization enthalpy","Hess Law","s-Block metals: காற்று, நீர் மற்றும் acids","Flame Test","Anion அடையாளம்","காற்றில் Nitrogen","Halide அடையாளம்","Thiosulfate Standardization","Ammonia மற்றும் Ammonium அடையாளம்","s-Block salts இன் solubility","Nitrate மற்றும் Carbonate thermal stability","Complex ions இன் நிறங்கள்","Fe²⁺ with Acidified KMnO₄","KMnO₄ with Acidified K₂C₂O₄","Cu(II), Ni(II), Co(II) Complexes","Mn oxidation states","Transition-metal ions with NaOH and NH₃","Alkenes and Alkynes","Alcohols","Phenol","Aldehydes and Ketones","Carboxylic Acids","Aniline","Reaction rate: Mg and acids","Reaction rate: Na₂S₂O₃ and HNO₃","Reaction Order: Fe³⁺ / I⁻","Fe³⁺ / SCN⁻ equilibrium","NO₂ ⇌ N₂O₄ மற்றும் temperature","Salt solutions இன் pH","Na₂CO₃ / HCl Titration","Ca(OH)₂ இன் Ksp","Distribution Coefficient","Electrochemical Series","Ag / AgCl Electrode","Soap தயாரித்தல்","Steam Distillation மூலம் Essential Oil","Biodiesel","Vinegar இல் Acetic Acid","Dissolved Oxygen — Winkler Method"];
+var units=[1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,8,8,8,9,9,10,10,10,10,11,11,12,12,12,13,14];
+
+var mcq={
+en:[
+["Which observation most directly supports straight-line travel of cathode rays?",["Deflection in a magnetic field","A sharp cross-shaped shadow","Heating of the tube","Gas pressure change","Colour of the electrode"],1,"A sharp shadow forms because the beam is blocked along a straight path."],
+["For an atom with A = 23 and Z = 11, the number of neutrons is",["11","12","23","34","10"],1,"N = A − Z = 23 − 11 = 12."],
+["Which relation is correct for electromagnetic radiation?",["c = λ/ν","c = νλ","E = h/ν","E = λ/h","ν = hc"],1,"The wave relation is c = νλ."],
+["An electron emits a photon when it",["moves to a higher energy level","moves to a lower energy level","enters the nucleus","loses its charge","changes into a proton"],1,"Emission occurs when an electron falls to a lower energy level."],
+["The maximum number of electrons in one orbital is",["1","2","4","6","8"],1,"Pauli principle allows at most two electrons with opposite spins in one orbital."]
+],
+si:[
+["කැතෝඩ කිරණ සෘජු රේඛීයව ගමන් කරන බව වඩාත් සෘජුව පෙන්වන නිරීක්ෂණය කුමක්ද?",["චුම්බක ක්ෂේත්‍රයක අපගමනය","පැහැදිලි කුරුස සෙවණැල්ල","නළය උණු වීම","වායු පීඩනය වෙනස් වීම","Electrode වර්ණය"],1,"පැහැදිලි සෙවණැල්ලක් ඇතිවන්නේ සෘජු මාර්ගයක යන කදම්බය කුරුසයෙන් අවහිර වන නිසාය."],
+["A = 23 සහ Z = 11 නම් neutron ගණන",["11","12","23","34","10"],1,"N = A − Z = 23 − 11 = 12."],
+["විද්‍යුත් චුම්බක විකිරණ සඳහා නිවැරදි සම්බන්ධතාවය",["c = λ/ν","c = νλ","E = h/ν","E = λ/h","ν = hc"],1,"Wave relation එක c = νλ වේ."],
+["Electron එකක් photon නිකුත් කරන්නේ",["ඉහළ energy level එකකට යන විට","පහළ energy level එකකට එන විට","nucleus එකට යන විට","charge නැති වන විට","proton බවට පත්වන විට"],1,"Emission සිදුවන්නේ electron එක පහළ energy level එකකට එන විටය."],
+["එක් orbital එකක උපරිම electron ගණන",["1","2","4","6","8"],1,"Pauli principle අනුව එක් orbital එකක උපරිම electron දෙකක් පවතී."]
+],
+ta:[
+["Cathode Rays நேர்கோட்டில் செல்கின்றன என்பதை நேரடியாக காட்டும் அவதானிப்பு எது?",["Magnetic field இல் விலகல்","தெளிவான cross நிழல்","Tube சூடாகுதல்","Gas pressure மாற்றம்","Electrode நிறம்"],1,"தெளிவான நிழல் நேர்கோட்டுப் பாதையில் செல்லும் கற்றை cross மூலம் தடுக்கப்படுவதால் உருவாகிறது."],
+["A = 23 மற்றும் Z = 11 என்றால் neutron எண்ணிக்கை",["11","12","23","34","10"],1,"N = A − Z = 23 − 11 = 12."],
+["மின்காந்தக் கதிர்வீச்சுக்கான சரியான தொடர்பு",["c = λ/ν","c = νλ","E = h/ν","E = λ/h","ν = hc"],1,"Wave relation: c = νλ."],
+["Electron ஒரு photon ஐ வெளியிடுவது எப்போது?",["மேல் energy level செல்லும் போது","கீழ் energy level வரும் போது","nucleus செல்லும் போது","charge இழக்கும் போது","proton ஆகும் போது"],1,"Emission என்பது electron கீழ் energy level க்கு வரும் போது நடக்கும்."],
+["ஒரு orbital இல் அதிகபட்ச electron எண்ணிக்கை",["1","2","4","6","8"],1,"Pauli principle படி ஒரு orbital இல் அதிகபட்சம் இரண்டு electron கள்."]
+]};
+
+var structured={
+en:[
+{q:"An element has atomic number 17 and mass number 37. (a) State the numbers of protons, neutrons and electrons in the neutral atom. (b) Write the electron configuration. (c) Explain why its first ionization energy is higher than that of the element immediately to its left in the same period.",m:["p = 17, n = 20, e = 17","1s² 2s² 2p⁶ 3s² 3p⁵","Higher effective nuclear attraction across the period","Similar principal shell / shielding is not enough to offset the increased nuclear charge"]},
+{q:"A hydrogen atom emits radiation when an electron falls from a higher energy level to a lower one. Explain why the emission spectrum contains discrete lines rather than a continuous band.",m:["Electronic energy levels are quantized","Only specific energy differences ΔE are possible","Each transition emits a photon with E = hν","Therefore only specific frequencies / wavelengths are emitted"]}
+],
+si:[
+{q:"පරමාණුක ක්‍රමාංකය 17 සහ ස්කන්ධ ක්‍රමාංකය 37 වන මූලද්‍රව්‍යයක් සඳහා (a) proton, neutron සහ neutral atom එකේ electron ගණන සඳහන් කරන්න. (b) electron configuration ලියන්න. (c) එම period එකේ එයට වමෙන් ඇති මූලද්‍රව්‍යයට වඩා first ionization energy වැඩි වීමට හේතුව පැහැදිලි කරන්න.",m:["p = 17, n = 20, e = 17","1s² 2s² 2p⁶ 3s² 3p⁵","Period එක හරහා effective nuclear attraction වැඩි වේ","Principal shell සමාන බැවින් shielding වැඩි වීම nuclear charge වැඩි වීම පූර්ණයෙන් වළක්වන්නේ නැත"]},
+{q:"Hydrogen atom එකක electron එක ඉහළ energy level එකකින් පහළ level එකකට එන විට radiation නිකුත් වේ. Emission spectrum එක continuous band එකක් නොව discrete lines දක්වන්නේ ඇයි?",m:["Electronic energy levels quantized වේ","නිශ්චිත ΔE අගයන් පමණක් ඇත","එක් transition එකකදී E = hν සහිත photon එකක් නිකුත් වේ","එබැවින් නිශ්චිත frequency / wavelength පමණක් නිකුත් වේ"]}
+],
+ta:[
+{q:"Atomic number 17 மற்றும் mass number 37 கொண்ட ஒரு தனிமத்திற்கு (a) proton, neutron, electron எண்ணிக்கைகளை கூறுக. (b) electron configuration எழுதுக. (c) அதே period இல் இடப்புறத் தனிமத்தை விட first ionization energy அதிகமாக இருப்பதன் காரணத்தை விளக்குக.",m:["p = 17, n = 20, e = 17","1s² 2s² 2p⁶ 3s² 3p⁵","Period முழுவதும் effective nuclear attraction அதிகரிக்கிறது","Principal shell ஒரேதாக இருப்பதால் shielding அதிகரிப்பு nuclear charge உயர்வை முழுமையாக சமநிலைப்படுத்தாது"]},
+{q:"Hydrogen atom இல் electron மேல் energy level இலிருந்து கீழ் level க்கு வரும் போது radiation வெளியிடப்படுகிறது. Emission spectrum continuous band அல்லாமல் discrete lines கொண்டதன் காரணத்தை விளக்குக.",m:["Electronic energy levels quantized","குறிப்பிட்ட ΔE மதிப்புகள் மட்டுமே சாத்தியம்","ஒவ்வொரு transition இலும் E = hν கொண்ட photon வெளியிடப்படுகிறது","அதனால் குறிப்பிட்ட frequency / wavelength மட்டுமே வெளியிடப்படும்"]}
+]};
+
+var essay={
+en:{q:"Discuss the experimental evidence that led from early atomic models to the modern nuclear picture of the atom, and relate this evidence to the existence and arrangement of subatomic particles.",plan:["Cathode rays and the electron","Positive rays / positive ions","Rutherford scattering observations","Nuclear model conclusions","Protons, neutrons and electrons","Link evidence to atomic number, mass number and isotopes"],model:"A strong answer should trace the evidence rather than simply list models. Explain what was observed, what inference followed from each observation, and how the combined evidence leads to a small positive nucleus containing most of the mass with electrons outside it. Then connect proton number to Z, proton + neutron number to A, and isotope differences to neutron number."},
+si:{q:"මුල් පරමාණුක ආකෘතිවලින් නවීන nuclear picture එක දක්වා ගෙන ගිය experimental evidence සාකච්ඡා කර එය උපපරමාණුක අංශු වල පැවැත්ම හා සැකැස්ම සමඟ සම්බන්ධ කරන්න.",plan:["Cathode rays සහ electron","Positive rays / positive ions","Rutherford scattering නිරීක්ෂණ","Nuclear model නිගමන","Proton, neutron සහ electron","Z, A සහ isotope සමඟ සම්බන්ධ කිරීම"],model:"හොඳ පිළිතුරක් model ලැයිස්තුවක් පමණක් නොව evidence → observation → inference ලෙස ගොඩනඟයි. කුඩා ධන nucleus එකක mass හි වැඩි කොටස සංකේන්ද්‍රණය වී electron පිටත පවතින බවට evidence සම්බන්ධ කරන්න. පසුව proton number → Z, proton + neutron → A සහ isotope වෙනස්කම් → neutron number ලෙස සම්බන්ධ කරන්න."},
+ta:{q:"ஆரம்ப atomic models இலிருந்து நவீன nuclear picture வரை வழிநடத்திய experimental evidence ஐ விவாதித்து, அதை subatomic particles இன் இருப்பும் அமைப்பும் உடன் தொடர்புபடுத்துக.",plan:["Cathode rays மற்றும் electron","Positive rays / positive ions","Rutherford scattering observations","Nuclear model conclusions","Proton, neutron மற்றும் electron","Z, A மற்றும் isotope தொடர்பு"],model:"வலுவான பதில் model பட்டியலாக மட்டும் இல்லாமல் evidence → observation → inference என்ற ஓட்டத்தில் இருக்க வேண்டும். மிகச் சிறிய positive nucleus இல் mass பெரும்பகுதி திரண்டுள்ளது; electron கள் வெளியே உள்ளன என்ற முடிவை evidence உடன் இணைக்கவும். பின்னர் proton number → Z, proton + neutron → A, isotope வேறுபாடு → neutron number என தொடர்புபடுத்தவும்."}};
+
+var state={lang:localStorage.getItem("chem-lang")||"si",labUnit:"all",labSearch:"",examType:"mcq",mcqIndex:0,mcqAnswered:false,mcqSelected:null,mcqScore:0,pstep:0,pmode:0,power:false,cross:false,field:0,wheelAngle:0,last:0,noteMode:localStorage.getItem("chem-note-mode")||"full"};
+function U(){return ui[state.lang]||ui.si}
+function route(){return (location.hash.replace("#","")||"home").split("?")[0]}
+function top(active){var u=U();var links=["home","lessons","lab","exam"];return '<header class="top"><div class="topin"><a class="brand" href="#home"><span class="brandmark">⚗</span><span class="brandtext">'+u.brand+'<small class="brandsub">VIRTUAL LAB</small></span></a><nav class="nav">'+links.map(function(x,i){return '<a href="#'+x+'" class="'+(active===x?'active':'')+'">'+u.nav[i]+'</a>'}).join("")+'</nav><div class="langs"><button data-lang="si" class="'+(state.lang==="si"?"active":"")+'">සිංහල</button><button data-lang="ta" class="'+(state.lang==="ta"?"active":"")+'">தமிழ்</button><button data-lang="en" class="'+(state.lang==="en"?"active":"")+'">English</button></div></div></header>'}
+function mobile(active){var u=U(),links=["home","lessons","lab","exam"],ico=["⌂","▤","⚗","✓"];return '<nav class="mobile">'+links.map(function(x,i){return '<a href="#'+x+'" class="'+(active===x?'active':'')+'"><b>'+ico[i]+'</b>'+u.nav[i]+'</a>'}).join("")+'</nav>'}
+function shell(active,body){return top(active)+body+mobile(active)+'<footer class="footer">A/L Chemistry Virtual Lab</footer>'}
+function renderHome(){var u=U();return shell("home",'<main class="page"><section class="hero"><div class="kicker">'+u.homeK+'</div><h1>'+u.homeH+'</h1><p>'+u.homeP+'</p><div class="actions"><a class="btn primary" href="#unit1">▶ '+u.continue+'</a></div></section><section class="grid3"><a class="card choice" href="#lessons"><div class="icon">📘</div><h2>'+u.lessonCard+'</h2><p>'+u.lessonDesc+'</p><div class="go">'+u.open+' →</div></a><a class="card choice" href="#lab"><div class="icon">⚗️</div><h2>'+u.labCard+'</h2><p>'+u.labDesc+'</p><div class="go">'+u.open+' →</div></a><a class="card choice" href="#exam"><div class="icon">📝</div><h2>'+u.examCard+'</h2><p>'+u.examDesc+'</p><div class="go">'+u.open+' →</div></a></section></main>')}
+function renderLessons(){var u=U();var unitsHtml="";for(var i=1;i<=14;i++){unitsHtml+='<'+(i===1?'a':'div')+' '+(i===1?'href="#unit1"':'')+' class="unitcard '+(i===1?'':'disabled')+'"><span class="unum">'+String(i).padStart(2,"0")+'</span><div><strong>Unit '+String(i).padStart(2,"0")+(i===1?' — '+(state.lang==="si"?"පරමාණුක ව්‍යුහය":state.lang==="ta"?"அணு அமைப்பு":"Atomic Structure"):'')+'</strong><span class="meta">'+(i===1?u.unitIntro:u.soon)+'</span></div></'+(i===1?'a':'div')+'>'}return shell("lessons",'<main class="page"><section class="hero"><div class="kicker">'+u.lessons+'</div><h1>'+u.chooseUnit+'</h1><p>'+u.lessonDesc+'</p></section><div class="unitgrid">'+unitsHtml+'</div></main>')}
+function videoBlock(id){var u=U(),watch=videoWatch[id]||"",title=videoTitles[id]||"YouTube video";return '<div class="video"><iframe loading="lazy" src="'+videos[id]+'" title="'+title+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><div class="videoCaption"><strong>'+title+'</strong><span>'+u.videoNote+'</span>'+(watch?'<a class="videoOpen" href="'+watch+'" target="_blank" rel="noopener">▶ YouTube හි විවෘත කරන්න</a>':'')+'</div></div>'}
+function noteVisual(i){
+var scientistRole=state.lang==="si"
+?["ඉලෙක්ට්‍රෝනය • කැතෝඩ කිරණ","රන් පත්‍ර පරීක්ෂණය • න්‍යෂ්ටික ආකෘතිය","ප්‍රමාණීකෘත ශක්ති මට්ටම්"]
+:state.lang==="ta"
+?["எலக்ட்ரான் • Cathode rays","Gold foil experiment • Nuclear model","Quantized energy levels"]
+:["Electron • cathode rays","Gold-foil experiment • nuclear model","Quantized energy levels"];
+var scientistStrip='<div class="scientistMemory"><div class="memoryVisualHead">👨‍🔬 '+(state.lang==="si"?"Unit 01 • ප්‍රධාන විද්‍යාඥයින්":state.lang==="ta"?"Unit 01 • முக்கிய விஞ்ஞானிகள்":"Unit 01 • Key scientists")+'</div><div class="scientistGrid">'+
+'<div class="scientistCard"><img class="zoomable" loading="eager" decoding="async" referrerpolicy="no-referrer" alt="J. J. Thomson" src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_portrait_of_J._J._Thomson_%281856_%E2%80%93_1940%29_%28Transparent_BG%29.png"><div class="scText"><strong>ජේ. ජේ. තොම්සන් (J. J. Thomson)</strong><span>'+scientistRole[0]+'</span></div></div>'+
+'<div class="scientistCard"><img class="zoomable" loading="eager" decoding="async" referrerpolicy="no-referrer" alt="Ernest Rutherford" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Portrait_of_Ernest_Rutherford_%281871-1937%29%2C_Physicist_and_Chemist_%282551070939%29.jpg"><div class="scText"><strong>අර්නස්ට් රදර්ෆර්ඩ් (Ernest Rutherford)</strong><span>'+scientistRole[1]+'</span></div></div>'+
+'<div class="scientistCard"><img class="zoomable" loading="eager" decoding="async" referrerpolicy="no-referrer" alt="Niels Bohr" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Niels_Bohr.jpg"><div class="scText"><strong>නීල්ස් බෝර් (Niels Bohr)</strong><span>'+scientistRole[2]+'</span></div></div>'+
+'</div></div>';
+
+if(state.lang!=="si"){
+ if(i===0)return scientistStrip;
+ if(i===2)return '<div class="noteVisual conceptVisual"><strong>Electromagnetic spectrum</strong><div class="emSpectrum"><i>Radio</i><i>Microwave</i><i>IR</i><i>Visible</i><i>UV</i><i>X-ray</i><i>γ-ray</i></div></div>';
+ if(i===3)return '<div class="noteVisual conceptVisual"><strong>Hydrogen emission spectrum</strong><div class="hSpectrum"><div class="lines"><i></i><i></i><i></i><i></i></div><div class="wlabels"><span>410 nm</span><span>434 nm</span><span>486 nm</span><span>656 nm</span></div></div></div>';
+ return "";
+}
+if(i===0)return scientistStrip+'<div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • රදර්ෆර්ඩ් රන් පත්‍ර පරීක්ෂණය</div><div class="memoryVisualGrid"><div class="memoryVisualText"><strong>නිරීක්ෂණය → නිගමනය</strong><p>බොහෝ α අංශු සෘජුව ගමන් කරයි → පරමාණුවේ වැඩි කොටස හිස් අවකාශයකි. ඉතා සුළු ප්‍රමාණයක් විශාල කෝණවලින් අපගමනය වේ → ධන ආරෝපණය සහ වැඩි ස්කන්ධය කුඩා න්‍යෂ්ටියක සංකේන්ද්‍රණය වී ඇත.</p></div><figure class="memoryVisualFigure"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Geiger-Marsden_experiment.svg" alt="රදර්ෆර්ඩ් රන් පත්‍ර පරීක්ෂණය"><figcaption>α අංශු විසිරීමෙන් න්‍යෂ්ටික ආකෘතියට ලැබුණු සාක්ෂිය. • රූපය තට්ටු කර විශාල කරන්න.</figcaption></figure></div></div>';
+if(i===1)return '<div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • නියුක්ලයිඩ සහ අයන</div><div class="nuclideMemory"><div><b>²³₁₁Na</b><span>11 p • 12 n • 11 e</span></div><div><b>³⁵₁₇Cl</b><span>17 p • 18 n • 17 e</span></div><div><b>³⁷₁₇Cl⁻</b><span>17 p • 20 n • 18 e</span></div></div></div>';
+if(i===2)return '<div class="sciencePeople"><div class="sciencePeopleHead">👨‍🔬 මෙම සංකල්පයට සම්බන්ධ විද්‍යාඥයින්</div><div class="sciencePeopleGrid">'+
+'<div class="sciencePerson"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/6/60/MaxPlanck.jpg" alt="Max Planck"><div class="sciencePersonTxt"><strong>මැක්ස් ප්ලාන්ක් (Max Planck)</strong><span>ශක්ති ප්‍රමාණීකරණය • E = hν</span></div></div>'+
+'<div class="sciencePerson"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg" alt="Albert Einstein"><div class="sciencePersonTxt"><strong>ඇල්බට් අයින්ස්ටයින් (Albert Einstein)</strong><span>ෆෝටෝන සංකල්පය • තරංග–අංශු ද්විත්වත්වය</span></div></div>'+
+'<div class="sciencePerson"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Broglie_Portrait.jpg" alt="Louis de Broglie"><div class="sciencePersonTxt"><strong>ලුවී ඩි බ්‍රොයි (Louis de Broglie)</strong><span>ද්‍රව්‍ය තරංග • λ = h/p</span></div></div>'+
+'</div></div><div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • විද්‍යුත් චුම්බක වර්ණාවලිය</div><div class="memoryVisualGrid"><div class="memoryVisualText"><strong>එක් දිශාවක් මතක තබාගන්න</strong><p>Radio → γ යන දිශාවට තරංග ආයාමය අඩුවේ. ඒ සමඟ සංඛ්‍යාතය සහ ෆෝටෝන ශක්තිය වැඩි වේ.</p></div><div class="memorySketch"><div class="emSpectrum"><i>Radio</i><i>Microwave</i><i>IR</i><i>Visible</i><i>UV</i><i>X-ray</i><i>γ-ray</i></div><div class="meta">λ අඩු වේ → &nbsp; ν සහ ෆෝටෝන ශක්තිය වැඩි වේ →</div></div></div></div>';
+if(i===3)return '<div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • හයිඩ්‍රජන් වර්ණාවලි ශ්‍රේණි</div><div class="memoryVisualGrid"><div class="memoryVisualText"><strong>අවසාන මට්ටම මතක තබාගන්න</strong><p>ලයිමන් → n=1, බාල්මර් → n=2, පාෂන් → n=3. ඉලෙක්ට්‍රෝනය පහළ මට්ටමකට වැටෙන විට ශක්ති වෙනසට සමාන ෆෝටෝනයක් නිකුත් වේ.</p></div><figure class="memoryVisualFigure"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Hydrogen_transitions.svg" alt="හයිඩ්‍රජන් ශක්ති මට්ටම් අතර සංක්‍රමණ"><figcaption>ශක්ති මට්ටම් අතර සංක්‍රමණ සහ වර්ණාවලි ශ්‍රේණි. • රූපය තට්ටු කර විශාල කරන්න.</figcaption></figure></div></div>';
+if(i===4)return '<div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • කාක්ෂික හැඩ</div><div class="memoryVisualGrid"><div class="memoryVisualText"><strong>හැඩය සහ දිශානතිය</strong><p>s කාක්ෂික ගෝලාකාරය. p කාක්ෂික දෙපැති හැඩයක් ඇති අතර pₓ, pᵧ, p_z ලෙස එකිනෙකට ලම්බ දිශානති තුනක් ඇත.</p></div><figure class="memoryVisualFigure"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Atomic_orbitals_n123_m-eigenstates.png" alt="පරමාණුක කාක්ෂික හැඩ"><figcaption>s, p සහ d කාක්ෂිකවල අවකාශීය හැඩ. • රූපය තට්ටු කර විශාල කරන්න.</figcaption></figure></div></div>';
+if(i===5)return '<div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • ඉලෙක්ට්‍රෝන පිරවීම</div><div class="memoryVisualGrid"><div class="memoryVisualText"><strong>Hund + Pauli එකම රූපයෙන්</strong><p>සමශක්ති p කාක්ෂික පළමුව එක බැගින් සමාන ස්පින් දිශාවකින් පිරේ. එක් කාක්ෂිකයක උපරිම ඉලෙක්ට්‍රෝන දෙකක් පමණක් සිටිය හැකි අතර ඒවායේ ස්පින් ප්‍රතිවිරුද්ධ වේ.</p></div><div class="memorySketch"><div class="configVisual"><div><div class="meta">1s</div><div class="orbBox"><i></i></div></div><div><div class="meta">2s</div><div class="orbBox"><i></i></div></div><div><div class="meta">2p</div><div class="orbBox"><i></i><i></i><i></i></div></div></div></div></div></div>';
+if(i===6)return '<div class="sciencePeople"><div class="sciencePeopleHead">👨‍🔬 ආවර්තිතා වගුවේ ඉතිහාසය</div><div class="sciencePeopleGrid" style="grid-template-columns:minmax(0,1fr)"><div class="sciencePerson"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/a/af/Dmitri_Mendeleev.jpg" alt="Dmitri Mendeleev"><div class="sciencePersonTxt"><strong>දිමිත්‍රි මෙන්ඩලීව් (Dmitri Mendeleev)</strong><span>ආවර්තිතා නියමය සහ ආවර්තිතා වගුව සංවර්ධනය කිරීමේ ප්‍රධාන කාර්යය</span></div></div></div></div><div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • s, p, d බ්ලොක්</div><div class="periodicBlocksPic"><div class="s">s බ්ලොක්<br>2e⁻</div><div class="d">d බ්ලොක්<br>10e⁻</div><div class="p">p බ්ලොක්<br>6e⁻</div></div></div>';
+if(i===7)return '<div class="sciencePeople"><div class="sciencePeopleHead">👨‍🔬 විද්‍යුත් ඍණතාව</div><div class="sciencePeopleGrid" style="grid-template-columns:minmax(0,1fr)"><div class="sciencePerson"><img class="zoomable" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/d/db/Linus_Pauling.jpg" alt="Linus Pauling"><div class="sciencePersonTxt"><strong>ලයිනස් පෝලින් (Linus Pauling)</strong><span>Pauling විද්‍යුත් ඍණතා පරිමාණය</span></div></div></div></div><div class="memoryVisual"><div class="memoryVisualHead">🧠 මතක රූපය • ආවර්තිතා ප්‍රවණතා</div><div class="memoryVisualGrid"><div class="memoryVisualText"><strong>දිශාව මතක තබාගන්න</strong><p>ආවර්තයක් හරහා පරමාණුක අරය අඩු වන අතර අයනීකරණ ශක්තිය හා විද්‍යුත් ඍණතාව වැඩි වේ. කාණ්ඩයක් පහළට යන විට සාමාන්‍යයෙන් එයට ප්‍රතිවිරුද්ධ රටාවක් පෙනේ.</p></div><div class="memorySketch"><div class="trendVisual"><div class="trendBox"><strong>පරමාණුක අරය</strong>→ අඩු &nbsp; • &nbsp; ↓ වැඩි</div><div class="trendBox"><strong>අයනීකරණ ශක්තිය</strong>→ වැඩි &nbsp; • &nbsp; ↓ අඩු</div><div class="trendBox"><strong>විද්‍යුත් ඍණතාව</strong>→ වැඩි &nbsp; • &nbsp; ↓ අඩු</div><div class="trendBox"><strong>සම-ඉලෙක්ට්‍රෝනික අංශු</strong>Z වැඩි → අරය අඩු</div></div></div></div></div>';
+return "";
+}
+
+function memoryCheck(i){
+if(state.lang!=="si")return "";
+var qa=[
+["රදර්ෆර්ඩ් පරීක්ෂණයේ බොහෝ α අංශු සෘජුව ගමන් කළේ ඇයි?","පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් වන නිසාය."],
+["²³₁₁Na හි නියුට්‍රෝන ගණන කීයද?","N = A − Z = 23 − 11 = 12."],
+["තරංග ආයාමය අඩුවන විට සංඛ්‍යාතයට සහ ෆෝටෝන ශක්තියට කුමක් වේද?","සංඛ්‍යාතය වැඩි වේ; E = hν නිසා ෆෝටෝන ශක්තිය ද වැඩි වේ."],
+["බාල්මර් ශ්‍රේණියේ සංක්‍රමණ අවසන් වන්නේ කුමන n අගයටද?","n = 2 වෙතය."],
+["n = 3 කවචයේ උපරිම කාක්ෂික සහ ඉලෙක්ට්‍රෝන ගණන කීයද?","කාක්ෂික = n² = 9; උපරිම ඉලෙක්ට්‍රෝන = 2n² = 18."],
+["Cr සහ Cu සාමාන්‍ය Aufbau අනුමානයෙන් වෙනස් වීමට ප්‍රධාන හේතුව කුමක්ද?","අර්ධ-පිරුණු සහ සම්පූර්ණ-පිරුණු d උපකවචවල අමතර ස්ථායීතාවය."],
+["මූලද්‍රව්‍යයක බ්ලොක් එක තීරණය කරන්නේ කුමන ඉලෙක්ට්‍රෝනය මගින්ද?","වෙනස්කාරී (differentiating) ඉලෙක්ට්‍රෝනය ඇතුළත් වන උපකවචය මගින්ය."],
+["සම-ඉලෙක්ට්‍රෝනික අංශු අතර න්‍යෂ්ටික ආරෝපණය වැඩි වන විට අරයට කුමක් වේද?","න්‍යෂ්ටික ආකර්ෂණය වැඩි වන නිසා අරය අඩු වේ."]
+];
+return '<div class="memoryCheck" data-memory="'+i+'"><div class="memoryCheckTop"><strong>⚡ මතක පරීක්ෂාව: '+qa[i][0]+'</strong><button class="memoryReveal" type="button" data-reveal="'+i+'">පිළිතුර බලන්න</button></div><div class="memoryAnswer">'+qa[i][1]+'</div></div>';
+}
+
+function getUnit1Mastered(){
+try{var a=JSON.parse(localStorage.getItem("chem-unit1-mastered")||"[]");return Array.isArray(a)?a:[]}catch(e){return []}
+}
+
+
+var conceptMetaSI=[
+[["🧠","ඩෝල්ටන් පරමාණුක වාදය"],["⚡","කැතෝඩ කිරණ"],["➗","තොම්සන්ගේ e/m"],["🧪","තොම්සන් ආකෘතිය හා මිලිකන්"],["➕","ධන කිරණ හා ප්‍රෝටෝනය"],["☢️","α, β, γ විකිරණ"],["🎯","රදර්ෆර්ඩ් හා බෝර්"]],
+[["🔢","Z, A සහ N"],["🧬","Moseley හා නියුක්ලයිඩ"],["🔁","සමස්ථානික"],["⚖️","පරමාණුක ස්කන්ධ ඒකකය"],["📊","මධ්‍ය පරමාණුක ස්කන්ධය"],["🧮","මවුලික ස්කන්ධය"],["➕","ධන හා ඍණ අයන"]],
+[["〰️","විද්‍යුත් චුම්බක තරංග"],["🔗","c = νλ"],["🌈","වර්ණාවලියේ අනුපිළිවෙළ"],["💡","ප්ලාන්ක් හා quantum"],["✨","අයින්ස්ටයින් හා ෆෝටෝන"],["🌊","ඩි බ්‍රොයි ද්‍රව්‍ය තරංග"],["📐","SI ඒකක"]],
+[["⚡","අයනීකරණ ශක්තිය"],["📈","අනුක්‍රමික IE"],["🪜","බෝර් ශක්ති මට්ටම්"],["🌈","බාල්මර් රේඛා"],["🎨","වර්ණාවලි ශ්‍රේණි"],["⬇️","විමෝචනය හා අවශෝෂණය"]],
+[["⚪","කාක්ෂික හා හැඩ"],["🌀","d හා f කාක්ෂික"],["1️⃣","n සහ l"],["↕️","mₗ සහ mₛ"],["🧮","n² හා 2n²"],["⇅","කාක්ෂිකයක e⁻ දෙක"]],
+[["📶","කාක්ෂික පිරීමේ අනුපිළිවෙළ"],["📜","Aufbau හා Pauli"],["↟","Hund නියමය"],["✍️","වින්‍යාස ලිවීම"],["➖","අයන සෑදීම හා 4s"],["⭐","Cr හා Cu අපවාද"]],
+[["🗓️","Mendeleev හා Meyer"],["🔢","කාණ්ඩ 1–18"],["📍","ආවර්තය හා කාණ්ඩය"],["🧱","s, p, d, f බ්ලොක්"],["📏","බ්ලොක් පළල"],["🧲","s/p පිටත වින්‍යාස"]],
+[["🛡️","ආවරණය හා Z_eff"],["📏","අරය වර්ග"],["↔️","පරමාණුක අරය ප්‍රවණතාව"],["⚖️","අයනික / සම-ඉලෙක්ට්‍රෝනික අරය"],["⚡","පළමු අයනීකරණ ශක්තිය"],["➕","ඉලෙක්ට්‍රෝන ලබා ගැනීම"],["🔄","EA හා ΔE_EG"],["🧲","විද්‍යුත් ඍණතාව"]]
+];
+var scrollQuizData=[
+{q:"රදර්ෆර්ඩ් පරීක්ෂණයේ බොහෝ α අංශු සෘජුව ගමන් කළේ ඇයි?",o:["පරමාණුවේ වැඩි කොටස හිස් නිසා","α අංශු ඍණ නිසා","රන් පත්‍රයට ආරෝපණයක් නැති නිසා"],a:0,e:"බොහෝ α අංශු සෘජුව ගමන් කිරීම පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් බව පෙන්වයි."},
+{q:"²³₁₁Na හි නියුට්‍රෝන ගණන කීයද?",o:["11","12","23"],a:1,e:"N = A − Z = 23 − 11 = 12."},
+{q:"තරංග ආයාමය අඩුවන විට සංඛ්‍යාතයට කුමක් වේද?",o:["අඩු වේ","වෙනස් නොවේ","වැඩි වේ"],a:2,e:"c = νλ නිසා λ අඩුවන විට ν වැඩි වේ."},
+{q:"බාල්මර් ශ්‍රේණියේ සංක්‍රමණ අවසන් වන්නේ කොතැනද?",o:["n = 1","n = 2","n = 3"],a:1,e:"බාල්මර් ශ්‍රේණියේ අවසාන ශක්ති මට්ටම n = 2 වේ."},
+{q:"n = 3 කවචයේ මුළු කාක්ෂික ගණන කීයද?",o:["3","6","9"],a:2,e:"කාක්ෂික ගණන = n² = 3² = 9."},
+{q:"Hund නියමය අනුව සමශක්ති කාක්ෂික පිරෙන්නේ කෙසේද?",o:["පළමුව එක බැගින්","පළමුව යුගල වශයෙන්","අහඹුව"],a:0,e:"සමශක්ති කාක්ෂික පළමුව එක බැගින් සමාන spin දිශාවකින් පිරේ."},
+{q:"p උපකවචයක උපරිම ඉලෙක්ට්‍රෝන ගණන කීයද?",o:["2","6","10"],a:1,e:"p උපකවචයට කාක්ෂික 3ක් ඇති බැවින් උපරිම ඉලෙක්ට්‍රෝන 6කි."},
+{q:"සම-ඉලෙක්ට්‍රෝනික අංශු අතර Z වැඩි වන විට අරයට කුමක් වේද?",o:["වැඩි වේ","අඩු වේ","වෙනස් නොවේ"],a:1,e:"එකම ඉලෙක්ට්‍රෝන ගණනකදී න්‍යෂ්ටික ආකර්ෂණය වැඩි වන නිසා අරය අඩු වේ."}
+];
+function conceptTitle(i,j){
+ if(state.lang==="si"&&conceptMetaSI[i]&&conceptMetaSI[i][j])return conceptMetaSI[i][j];
+ return ["🔬","Concept "+(j+1)];
+}
+function visualConceptGallery(n,i){
+ return '<div class="simpleHint">👆 රූපයක් / සංකල්ප කාඩ්පතක් තට්ටු කරන්න. එහි සාරාංශය පහළින් දිස්වේ.</div>'+
+ '<div class="conceptGallery">'+n.b.map(function(x,j){var m=conceptTitle(i,j);return '<button type="button" class="conceptTile '+(j===0?'active':'')+'" data-concept="'+i+'-'+j+'"><div class="conceptArt">'+m[0]+'</div><strong>'+m[1]+'</strong><span>විස්තරය බලන්න</span></button>'}).join("")+'</div>'+
+ '<div class="conceptReader">'+n.b.map(function(x,j){var m=conceptTitle(i,j);return '<div class="conceptReadPane '+(j===0?'active':'')+'" data-pane="'+i+'-'+j+'"><div class="conceptReadHead"><i>'+m[0]+'</i><strong>'+m[1]+'</strong></div><p>'+x+'</p></div>'}).join("")+'</div>';
+}
+function scrollQuiz(i){
+ var q=scrollQuizData[i];if(state.lang!=="si"||!q)return "";
+ return '<div class="scrollQuiz" data-scrollquiz="'+i+'"><div class="scrollQuizHead"><span>✍️</span><b>කුඩා ප්‍රශ්නය</b></div><div class="scrollQuizQ">'+q.q+'</div><div class="scrollQuizOpts">'+q.o.map(function(x,j){return '<button type="button" class="scrollQuizOpt" data-qopt="'+i+'-'+j+'">'+String.fromCharCode(65+j)+'. '+x+'</button>'}).join("")+'</div><div class="scrollQuizFeedback"></div></div>';
+}
+function renderUnit1(){var u=U(),list=notes[state.lang]||notes.en,done=getUnit1Mastered();
+var jumpNames=state.lang==="si"?["පරමාණුක වාදය","සමස්ථානික","විකිරණ","වර්ණාවලිය","කාක්ෂික","වින්‍යාසය","ආවර්තිතා වගුව","ප්‍රවණතා"]:["Atomic theory","Isotopes","Radiation","Spectrum","Orbitals","Configuration","Periodic table","Trends"];
+var jumps=jumpNames.map(function(x,i){return '<button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-simplejump="'+i+'">'+String(i+1).padStart(2,"0")+' '+x+'</button>'}).join("");
+var detail=list.map(function(n,i){return '<details class="simpleSection" id="note'+i+'" '+(i===0?'open':'')+'><summary><span class="simpleSectionNo">'+String(i+1).padStart(2,"0")+'</span><span>'+n.t+'</span></summary><div class="simpleBody">'+noteVisual(i)+visualConceptGallery(n,i)+'<div class="formulaMini">'+n.f+'</div>'+(n.exam?'<details class="examMini"><summary>🎯 විභාගයට මතක තබාගන්න</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+scrollQuiz(i)+(n.v?videoBlock(n.v):'')+'<div class="sectionFinish"><button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-master="'+i+'">'+(done.indexOf(i)>=0?'✓ මෙම කොටස සම්පූර්ණයි':'○ මෙම කොටස ඉගෙන ගත්තා')+'</button></div></div></details>'}).join("");
+var modal='<div class="noteImageModal" id="noteImageModal" aria-hidden="true"><div class="noteImageModalInner"><button type="button" class="noteImageClose" id="noteImageClose" aria-label="Close">×</button><img id="noteImageLarge" alt=""></div></div>';
+return shell("lessons",'<main class="page summarySimple"><section class="hero"><div class="kicker">UNIT 01</div><h1>'+u.unitTitle+'</h1><p>'+u.unitSub+'</p></section><div class="summaryGuide"><strong>රූපයෙන් ඉගෙන ගන්න • කුඩා ප්‍රශ්න සමඟ මතක තබාගන්න</strong><p>දිගු පෙළක් එකවර කියවීමට අවශ්‍ය නැහැ. සංකල්ප රූපයක් තට්ටු කර එහි සාරාංශය කියවන්න. එක් එක් කොටස අවසානයේ කුඩා ප්‍රශ්නයට පිළිතුරු දෙන්න.</p></div><div class="simpleJump">'+jumps+'</div>'+detail+'<div class="card" style="margin-top:18px"><strong>මූලාශ්‍ර පදනම</strong><p class="meta">NIE 12 ශ්‍රේණිය රසායන විද්‍යා සම්පත් පොත — Unit 01 (පිටු 1–42) • G.C.E. A/L past-paper/marking-scheme review • Sinhala supplementary lessons</p></div>'+modal+'</main>')}
+function practicalTitle(i){return state.lang==="si"?practicalSI[i]:state.lang==="ta"?practicalTA[i]:practicalEN[i]}
+function renderLab(){var u=U();var hash=location.hash;var m=hash.match(/unit=(\d+)/);if(m)state.labUnit=+m[1];var cards="";for(var i=0;i<45;i++){var p=i+1,un=units[i],title=practicalTitle(i),show=(state.labUnit==="all"||state.labUnit===un)&&(!state.labSearch||("p"+String(p).padStart(2,"0")+" "+title.toLowerCase()).indexOf(state.labSearch.toLowerCase())>=0);cards+='<article class="labcard" data-unit="'+un+'" '+(show?'':'hidden')+'><div class="labtop"><span class="pbadge">P'+String(p).padStart(2,"0")+'</span><span class="ubadge">Unit '+String(un).padStart(2,"0")+'</span></div><h3>'+title+'</h3><div class="labfoot">'+(p===1?'<a class="btn primary" href="#p01">'+u.open+'</a><span class="threeDBadge">◈ 3D</span>':'<span class="meta">'+u.soon+'</span>')+'</div></article>'}var chips='<button class="chip '+(state.labUnit==="all"?'active':'')+'" data-filter="all">'+u.all+'</button>';for(var j=1;j<=14;j++)chips+='<button class="chip '+(state.labUnit===j?'active':'')+'" data-filter="'+j+'">Unit '+String(j).padStart(2,"0")+'</button>';return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB</div><h1>'+u.labCard+'</h1><p>'+u.labDesc+'</p></section><section class="labtools"><div class="filters">'+chips+'</div><input class="search" id="labSearch" value="'+escapeHtml(state.labSearch)+'" placeholder="'+u.search+'"></section><div class="labgrid">'+cards+'</div></main>')}
+function renderExam(){var u=U();var typeBtns=['mcq','structured','essay'].map(function(t){return '<button class="btn '+(state.examType===t?'primary':'outline')+'" data-exam="'+t+'">'+u[t]+'</button>'}).join("");var panel=state.examType==="mcq"?renderMCQ():state.examType==="structured"?renderStructured():renderEssay();return shell("exam",'<main class="page"><section class="hero"><div class="kicker">UNIT 01</div><h1>'+u.examTitle+'</h1><p>'+u.examSub+'</p></section><div class="examTypes">'+typeBtns+'</div>'+panel+'</main>')}
+function renderMCQ(){var u=U(),q=mcq[state.lang][state.mcqIndex],pct=(state.mcqIndex+1)/mcq[state.lang].length*100;var opts=q[1].map(function(x,i){var cls="mcqOption";if(state.mcqAnswered){if(i===q[2])cls+=" correct";else if(i===state.mcqSelected)cls+=" wrong"}return '<button class="'+cls+'" data-opt="'+i+'" '+(state.mcqAnswered?'disabled':'')+'><strong>'+String.fromCharCode(65+i)+'.</strong> '+x+'</button>'}).join("");var fb=state.mcqAnswered?'<div class="feedback">'+(state.mcqSelected===q[2]?'✓ ':'✕ ')+q[3]+'<div class="actions"><a class="btn secondary" href="#unit1">'+u.review+'</a></div></div>':'';return '<section class="examPanel"><div class="meta">'+(state.mcqIndex+1)+' / '+mcq[state.lang].length+'</div><div class="progressbar"><i style="width:'+pct+'%"></i></div><h2>'+q[0]+'</h2>'+opts+fb+'<div class="questionNav"><button class="btn outline" data-mcqnav="-1" '+(state.mcqIndex===0?'disabled':'')+'>'+u.previous+'</button><span class="meta">'+u.score+': '+state.mcqScore+'</span><button class="btn primary" data-mcqnav="1">'+u.next+'</button></div></section>'}
+function renderStructured(){var u=U(),qs=structured[state.lang];return '<section class="examPanel"><h2>'+u.structured+'</h2>'+qs.map(function(q,i){return '<div class="card" style="margin:12px 0"><strong>'+(i+1)+'. '+q.q+'</strong><textarea class="answerbox" placeholder="'+u.yourAnswer+'"></textarea><details class="markpoints"><summary><strong>'+u.showMarking+'</strong></summary><ul>'+q.m.map(function(x){return '<li>□ '+x+'</li>'}).join("")+'</ul><div class="selfcheck">'+q.m.map(function(x,j){return '<label><input type="checkbox"> '+(j+1)+' mark</label>'}).join("")+'</div></details><div class="actions"><a class="btn secondary" href="#unit1">'+u.review+'</a></div></div>'}).join("")+'</section>'}
+function renderEssay(){var u=U(),e=essay[state.lang];return '<section class="examPanel"><h2>'+u.essay+'</h2><div class="card"><strong>'+e.q+'</strong><h3>'+u.plan+'</h3><textarea class="answerbox"></textarea><details class="markpoints"><summary><strong>'+u.showModel+'</strong></summary><h3>'+u.plan+'</h3><ul>'+e.plan.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul><p>'+e.model+'</p></details><div class="actions"><a class="btn secondary" href="#unit1">'+u.review+'</a></div></div></section>'}
+function pIntro(){var u=U();var en=state.lang==="en";var ta=state.lang==="ta";return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[0]+'</h2><p>'+(en?'Study the properties of the electron beam produced in a low-pressure discharge tube when a high potential difference is applied.':ta?'குறைந்த அழுத்த discharge tube இல் உயர் potential difference வழங்கும்போது உருவாகும் electron கற்றையின் பண்புகளை ஆராயுங்கள்.':'අඩු පීඩන discharge tube එකක ඉහළ potential difference එකක් යෙදූ විට ඇතිවන electron කදම්බයේ ගුණ අධ්‍යයනය කරන්න.')+'</p><div class="pgrid"><div class="card"><strong>'+(en?'Objective':ta?'நோக்கம்':'අරමුණ')+'</strong><p>'+(en?'Observe straight-line travel, energy transfer and deflection in electric and magnetic fields.':ta?'நேர்கோட்டு இயக்கம், energy transfer மற்றும் electric / magnetic field விலகலை அவதானிக்கவும்.':'සෘජු ගමන, ශක්ති හුවමාරුව සහ electric / magnetic field තුළ අපගමනය නිරීක්ෂණය කරන්න.')+'</p></div><div class="card"><strong>Key equations</strong><div class="formula">F = qE &nbsp;&nbsp; F = q(v × B)</div></div></div></div></section>'}
+function pApp(){var u=U();var arr=state.lang==="en"?["Low-pressure discharge / Crookes tube","Cathode and anode","Fluorescent screen","Metal cross / paddle wheel","Electric- and magnetic-field accessories","High-voltage supply"]:state.lang==="ta"?["Low-pressure discharge / Crookes tube","Cathode மற்றும் anode","Fluorescent screen","Metal cross / paddle wheel","Electric / magnetic field accessories","High-voltage supply"]:["Low-pressure discharge / Crookes tube","Cathode සහ anode","Fluorescent screen","Metal cross / paddle wheel","Electric / magnetic field accessories","High-voltage supply"];return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[1]+'</h2><ul>'+arr.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul></div><div class="pcard"><strong>'+(state.lang==="en"?"Safety":state.lang==="ta"?"பாதுகாப்பு":"ආරක්ෂාව")+'</strong><p>'+(state.lang==="en"?"Use real high-voltage apparatus only under teacher supervision. Switch off before changing the setup.":state.lang==="ta"?"High-voltage apparatus ஐ ஆசிரியர் மேற்பார்வையில் மட்டும் பயன்படுத்தவும். அமைப்பை மாற்றுவதற்கு முன் power off செய்யவும்.":"සැබෑ high-voltage apparatus ගුරුවරයෙකුගේ අධීක්ෂණයෙන් පමණක් භාවිත කරන්න. සැකසුම වෙනස් කිරීමට පෙර power off කරන්න.")+'</p></div></section>'}
+function pProcedure(){var u=U();var arr=state.lang==="en"?["Check the apparatus with the power off.","Switch on and observe fluorescence.","Insert the metal cross and observe the shadow.","Observe paddle-wheel motion.","Apply an electric field and compare deflection.","Reverse the magnetic field and compare deflection.","Record observations and conclusions."]:state.lang==="ta"?["Power off நிலையில் apparatus ஐ சரிபார்க்கவும்.","Power on செய்து fluorescence ஐ அவதானிக்கவும்.","Metal cross வைத்து shadow ஐ அவதானிக்கவும்.","Paddle wheel இயக்கத்தைப் பாருங்கள்.","Electric field வழங்கி deflection ஐ ஒப்பிடவும்.","Magnetic field திசையை மாற்றி deflection ஐ ஒப்பிடவும்.","Observations மற்றும் conclusions பதிவு செய்யவும்."]:["Power off කර apparatus පරීක්ෂා කරන්න.","Power on කර fluorescence නිරීක්ෂණය කරන්න.","Metal cross එක යොදා shadow එක නිරීක්ෂණය කරන්න.","Paddle wheel චලනය බලන්න.","Electric field යොදා deflection සසඳන්න.","Magnetic field දිශාව මාරු කර deflection සසඳන්න.","Observations සහ conclusions සටහන් කරන්න."];return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[2]+'</h2><ol>'+arr.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ol></div></section>'}
+function pExperiment(){var u=U();var modes=state.lang==="en"?["Shadow","Paddle wheel","Electric field","Magnetic field"]:state.lang==="ta"?["நிழல்","Paddle wheel","Electric field","Magnetic field"]:["සෙවණැල්ල","Paddle wheel","Electric field","Magnetic field"];var icons=["✚","⚙","↕","🧲"];var obs=!state.power?u.obsOff:state.pmode===0?(state.cross?u.obsShadow:u.obsGlow):state.pmode===1?u.obsWheel:state.field===0?u.obsStraight:u.obsDeflect;var hint=state.lang==="si"?"එක් ඇඟිල්ලෙන් ඇද 3D model එක කරකවන්න • ඇඟිලි දෙකෙන් zoom කරන්න":state.lang==="ta"?"ஒரு விரலால் drag செய்து 3D model ஐ சுழற்றவும் • இரண்டு விரலால் zoom செய்யவும்":"Drag to rotate • pinch or scroll to zoom";var crossCtl=state.pmode===0?'<button class="btn secondary" id="crossBtn" '+(state.power?'disabled':'')+'>'+ (state.cross?u.removeCross:u.insertCross)+'</button>':'';var fieldCtl=(state.pmode===2||state.pmode===3)?'<button class="btn outline" data-field="-1">← −</button><button class="btn outline" data-field="0">Field 0</button><button class="btn outline" data-field="1">+ →</button>':'';var fsCross=state.pmode===0?'<button id="fsCrossBtn" '+(state.power?'disabled':'')+'>'+(state.cross?u.removeCross:u.insertCross)+'</button>':'';var fsField=(state.pmode===2||state.pmode===3)?'<button data-fsfield="-1">← −</button><button data-fsfield="0">Field 0</button><button data-fsfield="1">+ →</button>':'';var viewText=state.lang==="si"?"දර්ශනය Reset":state.lang==="ta"?"View Reset":"Reset view";return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[3]+' <span class="threeDBadge">◈ INTERACTIVE 3D</span><span class="previewTag">PREVIEW V4</span></h2><div class="filters">'+modes.map(function(x,i){return '<button class="chip modeChip '+(state.pmode===i?'active':'')+'" data-pmode="'+i+'"><span class="modeIcon">'+icons[i]+'</span>'+['I','II','III','IV'][i]+' · '+x+'</button>'}).join("")+'</div><div class="sim3d" id="scene3d"><div class="simHint">'+hint+'</div><div class="simStatus '+(state.power?'on':'off')+'" id="simPowerStatus"><span class="statusDot"></span><span id="simPowerText">'+(state.power?'POWER ON':'POWER OFF')+'</span></div><div class="fsDock"><span class="modeName">'+icons[state.pmode]+' '+modes[state.pmode]+'</span><button class="primaryFS" id="fsPowerBtn">'+(state.power?u.powerOff:u.powerOn)+'</button>'+fsCross+fsField+'<button id="fsResetBtn">'+viewText+'</button><button class="exitFS" id="fsExitBtn">✕ Exit Full Screen</button></div></div><div class="simLegend"><span>Cathode (−)</span><span>Anode (+)</span><span>Electron beam</span><span>Fluorescent screen</span></div><div class="simcontrols"><button class="btn primary" id="powerBtn">'+(state.power?u.powerOff:u.powerOn)+'</button>'+crossCtl+fieldCtl+'<span class="viewTools"><button class="btn outline" id="reset3D">'+viewText+'</button><button class="btn outline" id="full3D">Full screen</button></span></div><div class="observation" id="liveObservation">'+obs+'</div></div></section>'}
+function pObservations(){var u=U();var arr=state.lang==="en"?["A metal cross produces a sharp shadow on the fluorescent screen.","Paddle-wheel motion shows transfer of energy from the beam.","The electron beam deflects toward the positive plate in an electric field.","Reversing the magnetic field reverses the deflection direction."]:state.lang==="ta"?["Metal cross fluorescent screen இல் தெளிவான shadow உருவாக்குகிறது.","Paddle wheel இயக்கம் beam இலிருந்து energy transfer காட்டுகிறது.","Electric field இல் electron beam positive plate நோக்கி விலகுகிறது.","Magnetic field திசையை மாற்றினால் deflection திசையும் மாறுகிறது."]:["Metal cross එක fluorescent screen එකේ පැහැදිලි shadow එකක් ඇති කරයි.","Paddle wheel චලනය beam එකෙන් ශක්තිය හුවමාරු වන බව පෙන්වයි.","Electric field එකක electron beam එක positive plate දෙසට අපගමනය වේ.","Magnetic field දිශාව මාරු කළ විට deflection දිශාවද මාරු වේ."];return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[4]+'</h2><ul>'+arr.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul><label><strong>'+u.saveNote+'</strong></label><textarea class="answerbox" id="pnotes">'+escapeHtml(localStorage.getItem("p01-note")||"")+'</textarea></div></section>'}
+function pConclusion(){var u=U();var arr=state.lang==="en"?["Cathode rays travel in straight lines.","Cathode rays transfer energy.","Cathode rays consist of negatively charged particles.","Cathode rays are deflected by electric and magnetic fields."]:state.lang==="ta"?["Cathode Rays நேர்கோட்டில் செல்கின்றன.","Cathode Rays energy ஐ எடுத்துச் செல்கின்றன.","Cathode Rays negative charge கொண்ட துகள்களால் ஆனவை.","Cathode Rays electric மற்றும் magnetic fields மூலம் விலக்கப்படுகின்றன."]:["කැතෝඩ කිරණ සෘජු රේඛීයව ගමන් කරයි.","කැතෝඩ කිරණ ශක්තිය රැගෙන යයි.","කැතෝඩ කිරණ ඍණ ආරෝපිත අංශු වලින් සමන්විත වේ.","Electric සහ magnetic fields මඟින් කැතෝඩ කිරණ අපගමනය කළ හැක."];return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[5]+'</h2><ul>'+arr.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul></div></section>'}
+function pQuestions(){var u=U(),q=mcq[state.lang].slice(0,3);return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[6]+'</h2>'+q.map(function(x,qi){return '<div class="card" style="margin:10px 0"><strong>'+x[0]+'</strong>'+x[1].map(function(a,ai){return '<label style="display:block;padding:6px"><input type="radio" name="pq'+qi+'" value="'+ai+'"> '+String.fromCharCode(65+ai)+'. '+a+'</label>'}).join("")+'</div>'}).join("")+'<button class="btn primary" id="pcheck">'+u.check+'</button><div class="observation" id="presult" style="display:none"></div></div></section>'}
+function renderP01(){var u=U();var content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep]();var steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function render(){var r=route(),html=r==="home"?renderHome():r==="lessons"?renderLessons():r==="unit1"?renderUnit1():r==="lab"?renderLab():r==="exam"?renderExam():r==="p01"?renderP01():renderHome();document.getElementById("app").innerHTML=html;bind();if(r==="unit1"){var nm=location.hash.match(/note=(\\d+)/);if(nm){var el=document.getElementById("note"+nm[1]);if(el){el.open=true;requestAnimationFrame(function(){el.scrollIntoView({behavior:"smooth",block:"start"})})}}}if(r==="p01"&&state.pstep===3)requestAnimationFrame(initThreeLab)}
+function bind(){
+document.querySelectorAll("[data-concept]").forEach(function(b){b.onclick=function(){var key=b.dataset.concept,sec=b.closest(".simpleSection");if(!sec)return;sec.querySelectorAll(".conceptTile").forEach(function(x){x.classList.toggle("active",x===b)});sec.querySelectorAll(".conceptReadPane").forEach(function(x){x.classList.toggle("active",x.dataset.pane===key)});var r=sec.querySelector(".conceptReader");if(r)r.scrollIntoView({behavior:"smooth",block:"nearest"})}});
+document.querySelectorAll("[data-simplejump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("note"+b.dataset.simplejump);if(el){el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"})}}});
+document.querySelectorAll("[data-qopt]").forEach(function(b){b.onclick=function(){var p=b.dataset.qopt.split("-"),qi=+p[0],oi=+p[1],q=scrollQuizData[qi],box=b.closest(".scrollQuiz");if(!q||!box)return;box.querySelectorAll(".scrollQuizOpt").forEach(function(x){x.disabled=true;var xp=x.dataset.qopt.split("-");if(+xp[1]===q.a)x.classList.add("correct")});if(oi!==q.a)b.classList.add("wrong");var fb=box.querySelector(".scrollQuizFeedback");if(fb){fb.textContent=(oi===q.a?"✓ හරි! ":"✕ නැවත මතක තබාගන්න. ")+q.e;fb.classList.add("show")}}});
+
+document.querySelectorAll("[data-notemode]").forEach(function(b){b.onclick=function(){state.noteMode=b.dataset.notemode;localStorage.setItem("chem-note-mode",state.noteMode);render()}});
+var oa=document.getElementById("openAllNotes");if(oa)oa.onclick=function(){document.querySelectorAll(".noteSection").forEach(function(d){d.open=true})};
+var ca=document.getElementById("closeAllNotes");if(ca)ca.onclick=function(){document.querySelectorAll(".noteSection").forEach(function(d){d.open=false})};
+document.querySelectorAll("[data-notejump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("note"+b.dataset.notejump);if(el){el.open=true;el.classList.remove("noteSectionFlash");void el.offsetWidth;el.classList.add("noteSectionFlash");el.scrollIntoView({behavior:"smooth",block:"start"})}}});
+document.querySelectorAll("[data-reveal]").forEach(function(b){b.onclick=function(){var box=b.closest(".memoryCheck");if(box){box.classList.toggle("revealed");b.textContent=box.classList.contains("revealed")?"පිළිතුර සඟවන්න":"පිළිතුර බලන්න"}}});
+document.querySelectorAll("[data-master]").forEach(function(b){b.onclick=function(){var i=+b.dataset.master,a=getUnit1Mastered(),p=a.indexOf(i);if(p>=0)a.splice(p,1);else a.push(i);a.sort(function(x,y){return x-y});localStorage.setItem("chem-unit1-mastered",JSON.stringify(a));render()}});
+var modal=document.getElementById("noteImageModal"),large=document.getElementById("noteImageLarge"),close=document.getElementById("noteImageClose");
+document.querySelectorAll(".zoomable").forEach(function(img){img.onclick=function(){if(!modal||!large)return;large.src=img.src;large.alt=img.alt||"";modal.classList.add("show");modal.setAttribute("aria-hidden","false")}});
+if(close)close.onclick=function(){modal.classList.remove("show");modal.setAttribute("aria-hidden","true");large.src=""};
+if(modal)modal.onclick=function(e){if(e.target===modal){modal.classList.remove("show");modal.setAttribute("aria-hidden","true");large.src=""}};
+document.querySelectorAll("[data-lang]").forEach(function(b){b.onclick=function(){state.lang=b.dataset.lang;localStorage.setItem("chem-lang",state.lang);document.documentElement.lang=state.lang;render()}});document.querySelectorAll("[data-filter]").forEach(function(b){b.onclick=function(){state.labUnit=b.dataset.filter==="all"?"all":+b.dataset.filter;location.hash="#lab";render()}});var s=document.getElementById("labSearch");if(s)s.oninput=function(){state.labSearch=s.value;render()};document.querySelectorAll("[data-exam]").forEach(function(b){b.onclick=function(){state.examType=b.dataset.exam;render()}});document.querySelectorAll("[data-opt]").forEach(function(b){b.onclick=function(){if(state.mcqAnswered)return;state.mcqSelected=+b.dataset.opt;state.mcqAnswered=true;if(state.mcqSelected===mcq[state.lang][state.mcqIndex][2])state.mcqScore++;render()}});document.querySelectorAll("[data-mcqnav]").forEach(function(b){b.onclick=function(){var d=+b.dataset.mcqnav;if(d>0&&state.mcqIndex===mcq[state.lang].length-1){state.mcqIndex=0;state.mcqScore=0}else state.mcqIndex=Math.max(0,Math.min(mcq[state.lang].length-1,state.mcqIndex+d));state.mcqAnswered=false;state.mcqSelected=null;render()}});document.querySelectorAll("[data-pstep]").forEach(function(b){b.onclick=function(){state.pstep=+b.dataset.pstep;render()}});document.querySelectorAll("[data-pnav]").forEach(function(b){b.onclick=function(){state.pstep=Math.max(0,Math.min(6,state.pstep+(+b.dataset.pnav)));render()}});document.querySelectorAll("[data-pmode]").forEach(function(b){b.onclick=function(){state.pmode=+b.dataset.pmode;state.power=false;state.cross=state.pmode===0;state.field=0;render()}});var pb=document.getElementById("powerBtn");if(pb)pb.onclick=function(){state.power=!state.power;render()};var cb=document.getElementById("crossBtn");if(cb)cb.onclick=function(){if(!state.power)state.cross=!state.cross;else toast(state.lang==="en"?"Switch the power off first.":state.lang==="ta"?"முதலில் power off செய்யவும்.":"පළමුව power off කරන්න.");render()};document.querySelectorAll("[data-field]").forEach(function(b){b.onclick=function(){state.field=+b.dataset.field;render()}});var rv=document.getElementById("reset3D");if(rv)rv.onclick=function(){if(window.chem3DResetView)window.chem3DResetView()};var fs=document.getElementById("full3D");if(fs)fs.onclick=function(){var h=document.getElementById("scene3d");if(h&&h.requestFullscreen)h.requestFullscreen()};var fsp=document.getElementById("fsPowerBtn");if(fsp)fsp.onclick=function(e){e.stopPropagation();state.power=!state.power;rebuildThreeScene()};var fsc=document.getElementById("fsCrossBtn");if(fsc)fsc.onclick=function(e){e.stopPropagation();if(!state.power){state.cross=!state.cross;rebuildThreeScene()}};document.querySelectorAll("[data-fsfield]").forEach(function(b){b.onclick=function(e){e.stopPropagation();state.field=+b.dataset.fsfield;rebuildThreeScene()}});var fsr=document.getElementById("fsResetBtn");if(fsr)fsr.onclick=function(e){e.stopPropagation();if(window.chem3DResetView)window.chem3DResetView()};var fse=document.getElementById("fsExitBtn");if(fse)fse.onclick=function(e){e.stopPropagation();if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen()};var pn=document.getElementById("pnotes");if(pn)pn.oninput=function(){localStorage.setItem("p01-note",pn.value)};var pc=document.getElementById("pcheck");if(pc)pc.onclick=function(){var q=mcq[state.lang].slice(0,3),score=0;q.forEach(function(x,i){var a=document.querySelector('input[name="pq'+i+'"]:checked');if(a&&+a.value===x[2])score++});var res=document.getElementById("presult");res.style.display="block";res.textContent=U().score+": "+score+" / 3"}}
+function labObservationText(){var u=U();return !state.power?u.obsOff:state.pmode===0?(state.cross?u.obsShadow:u.obsGlow):state.pmode===1?u.obsWheel:state.field===0?u.obsStraight:u.obsDeflect}
+function syncLabChrome(){var st=document.getElementById("simPowerStatus"),tx=document.getElementById("simPowerText"),fsp=document.getElementById("fsPowerBtn"),pb=document.getElementById("powerBtn"),obs=document.getElementById("liveObservation"),fsc=document.getElementById("fsCrossBtn");if(st)st.className="simStatus "+(state.power?"on":"off");if(tx)tx.textContent=state.power?"POWER ON":"POWER OFF";if(fsp)fsp.textContent=state.power?U().powerOff:U().powerOn;if(pb)pb.textContent=state.power?U().powerOff:U().powerOn;if(obs)obs.textContent=labObservationText();if(fsc){fsc.textContent=state.cross?U().removeCross:U().insertCross;fsc.disabled=state.power}}
+function rebuildThreeScene(){var host=document.getElementById("scene3d");if(!host)return;host.querySelectorAll("canvas").forEach(function(x){x.remove()});syncLabChrome();requestAnimationFrame(initThreeLab)}
+function toast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},1800)}
+function initThreeLab(){
+var host=document.getElementById("scene3d");if(!host)return;
+if(typeof THREE==="undefined"){host.innerHTML+='<div style="color:#dceceb;padding:80px 20px;text-align:center">3D engine could not load. Refresh the page and reopen the practical.</div>';return;}
+var scene=new THREE.Scene();scene.background=new THREE.Color(0x102c3d);
+var camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.set(0,3.55,8.7);camera.lookAt(0,0,0);
+var renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;host.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xcff8ff,0x0a1720,1.8));var dl=new THREE.DirectionalLight(0xffffff,2.6);dl.position.set(4,6,6);dl.castShadow=true;scene.add(dl);var gl=new THREE.PointLight(0x78ffd0,state.power?18:4,18);gl.position.set(2,1,2);scene.add(gl);
+var rig=new THREE.Group();scene.add(rig);
+var glass=new THREE.MeshPhysicalMaterial({color:0x9ce8f4,transparent:true,opacity:.16,roughness:.06,metalness:0,side:THREE.DoubleSide,depthWrite:false,transmission:.18});
+var tube=new THREE.Mesh(new THREE.CylinderGeometry(1.05,1.05,6.4,64,1,true),glass);tube.rotation.z=Math.PI/2;rig.add(tube);
+var ringMat=new THREE.MeshStandardMaterial({color:0xa3b6bb,metalness:.86,roughness:.22});
+[-3.2,3.2].forEach(function(x){var r=new THREE.Mesh(new THREE.TorusGeometry(1.05,.055,12,64),ringMat);r.rotation.y=Math.PI/2;r.position.x=x;rig.add(r)});
+var metal=new THREE.MeshStandardMaterial({color:0xc5b27a,metalness:.78,roughness:.28});
+var cath=new THREE.Mesh(new THREE.CylinderGeometry(.56,.56,.13,40),metal);cath.rotation.z=Math.PI/2;cath.position.x=-2.62;cath.castShadow=true;rig.add(cath);
+var anode=new THREE.Mesh(new THREE.TorusGeometry(.32,.10,14,48),metal);anode.rotation.y=Math.PI/2;anode.position.x=-1.72;anode.castShadow=true;rig.add(anode);
+
+// Fluorescent screen + explicit cross-shadow layer.
+var screenMat=new THREE.MeshStandardMaterial({color:0x8fd7b9,emissive:state.power?0x2cbf7a:0x071a13,emissiveIntensity:state.power?2.65:.20,side:THREE.DoubleSide});
+var screen=new THREE.Mesh(new THREE.PlaneGeometry(1.72,1.72),screenMat);screen.rotation.y=-Math.PI/2;screen.position.x=2.72;screen.renderOrder=1;rig.add(screen);
+var screenGlow=new THREE.PointLight(0x68ffc1,state.power?12:0,4);screenGlow.position.set(2.35,0,0);rig.add(screenGlow);
+if(state.power&&state.pmode===0&&state.cross){
+  var shMat=new THREE.MeshBasicMaterial({color:0x071310,transparent:true,opacity:.92,side:THREE.DoubleSide,depthTest:false});
+  var shV=new THREE.Mesh(new THREE.PlaneGeometry(.18,1.10),shMat);shV.rotation.y=-Math.PI/2;shV.position.set(2.69,0,0);shV.renderOrder=20;rig.add(shV);
+  var shH=new THREE.Mesh(new THREE.PlaneGeometry(.78,.18),shMat);shH.rotation.y=-Math.PI/2;shH.position.set(2.69,0,0);shH.renderOrder=20;rig.add(shH);
+}
+
+var yEnd=((state.pmode===2||state.pmode===3)&&state.field)?state.field*.72:0;
+var beamEnd=(state.pmode===0&&state.cross)?0.57:2.68;
+var pts=(state.pmode===0&&state.cross)?[new THREE.Vector3(-1.65,0,0),new THREE.Vector3(-.6,0,0),new THREE.Vector3(.55,0,0)]:[new THREE.Vector3(-1.65,0,0),new THREE.Vector3(-.5,0,0),new THREE.Vector3(1.15,yEnd*.35,0),new THREE.Vector3(beamEnd,yEnd,0)];
+var curve=new THREE.CatmullRomCurve3(pts);
+var beamMat=new THREE.MeshStandardMaterial({color:0x91ffd5,emissive:0x32f5a2,emissiveIntensity:4});
+if(state.power){var beam=new THREE.Mesh(new THREE.TubeGeometry(curve,72,.029,10,false),beamMat);rig.add(beam);}
+var particles=[];if(state.power){for(var i=0;i<34;i++){var p=new THREE.Mesh(new THREE.SphereGeometry(.048,10,10),beamMat);rig.add(p);particles.push(p)}}
+
+// Metal cross in the tube.
+var cross=new THREE.Group();var cm=new THREE.MeshStandardMaterial({color:0xe0c77f,metalness:.55,roughness:.28});
+var cv=new THREE.Mesh(new THREE.BoxGeometry(.10,1.22,.16),cm),ch=new THREE.Mesh(new THREE.BoxGeometry(.10,.17,.96),cm);cross.add(cv);cross.add(ch);cross.position.x=.72;cross.visible=state.pmode===0&&state.cross;cross.children.forEach(function(o){o.castShadow=true});rig.add(cross);
+
+// Highly visible paddle wheel: rim, paddles, hub, and a bright marker.
+var wheel=new THREE.Group();var wheelMat=new THREE.MeshStandardMaterial({color:0xffbd62,metalness:.55,roughness:.28,emissive:0x3d2100,emissiveIntensity:.6});
+var rim=new THREE.Mesh(new THREE.TorusGeometry(.55,.045,12,64),wheelMat);rim.rotation.y=Math.PI/2;wheel.add(rim);
+var hub=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.28,24),wheelMat);hub.rotation.z=Math.PI/2;wheel.add(hub);
+for(var j=0;j<8;j++){var ang=j*Math.PI/4;var spoke=new THREE.Mesh(new THREE.BoxGeometry(.07,.48,.07),wheelMat);spoke.position.set(0,Math.cos(ang)*.26,Math.sin(ang)*.26);spoke.rotation.x=ang;wheel.add(spoke);var paddle=new THREE.Mesh(new THREE.BoxGeometry(.13,.20,.28),wheelMat);paddle.position.set(0,Math.cos(ang)*.55,Math.sin(ang)*.55);paddle.rotation.x=ang;wheel.add(paddle)}
+var markerMat=new THREE.MeshStandardMaterial({color:0xfff4a8,emissive:0xff8a00,emissiveIntensity:3});
+var marker=new THREE.Mesh(new THREE.SphereGeometry(.10,18,18),markerMat);marker.position.set(0,.55,0);wheel.add(marker);
+wheel.position.x=.72;wheel.visible=state.pmode===1;rig.add(wheel);
+
+var plateMat=new THREE.MeshStandardMaterial({color:0x78a9c8,metalness:.55,roughness:.28});var topP=new THREE.Mesh(new THREE.BoxGeometry(1.75,.10,1.18),plateMat),botP=topP.clone();topP.position.set(.82,.76,0);botP.position.set(.82,-.76,0);topP.visible=botP.visible=state.pmode===2;rig.add(topP);rig.add(botP);
+var magN=new THREE.Mesh(new THREE.BoxGeometry(1.25,.55,.5),new THREE.MeshStandardMaterial({color:0xd75f59,metalness:.35,roughness:.38}));var magS=new THREE.Mesh(new THREE.BoxGeometry(1.25,.55,.5),new THREE.MeshStandardMaterial({color:0x557fd0,metalness:.35,roughness:.38}));magN.position.set(.8,0,.98);magS.position.set(.8,0,-.98);magN.visible=magS.visible=state.pmode===3;rig.add(magN);rig.add(magS);
+var grid=new THREE.GridHelper(9,18,0x55747b,0x294852);grid.position.y=-1.35;rig.add(grid);
+rig.rotation.x=-.08;rig.rotation.y=-.30;
+window.chem3DResetView=function(){rig.rotation.set(-.08,-.30,0);camera.position.set(0,3.55,8.7);camera.lookAt(0,0,0)};
+
+// One-finger rotation + two-finger pinch zoom.
+var pointers=new Map(),lastPinch=0;
+function pdist(){var ar=Array.from(pointers.values());if(ar.length<2)return 0;var dx=ar[0].x-ar[1].x,dy=ar[0].y-ar[1].y;return Math.sqrt(dx*dx+dy*dy)}
+renderer.domElement.addEventListener("pointerdown",function(e){renderer.domElement.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2)lastPinch=pdist()});
+renderer.domElement.addEventListener("pointermove",function(e){var old=pointers.get(e.pointerId);if(!old)return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===1){rig.rotation.y+=(e.clientX-old.x)*.008;rig.rotation.x=Math.max(-.7,Math.min(.55,rig.rotation.x+(e.clientY-old.y)*.006))}else if(pointers.size===2){var d=pdist();if(lastPinch){camera.position.z=Math.max(5.7,Math.min(12,camera.position.z-(d-lastPinch)*.018))}lastPinch=d}});
+function clearPointer(e){pointers.delete(e.pointerId);if(pointers.size<2)lastPinch=0}
+renderer.domElement.addEventListener("pointerup",clearPointer);renderer.domElement.addEventListener("pointercancel",clearPointer);
+renderer.domElement.addEventListener("wheel",function(e){e.preventDefault();camera.position.z=Math.max(5.7,Math.min(12,camera.position.z+e.deltaY*.006))},{passive:false});
+function resize(){var w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}resize();var ro=new ResizeObserver(resize);ro.observe(host);
+var clock=new THREE.Clock();
+function animate(){if(!renderer.domElement.isConnected){ro.disconnect();renderer.dispose();return}var t=clock.getElapsedTime();if(state.power){particles.forEach(function(p,i){var q=curve.getPointAt((t*.23+i/particles.length)%1);p.position.copy(q)});if(wheel.visible){wheel.rotation.x=-t*4.2;marker.scale.setScalar(1+.12*Math.sin(t*8))}screenMat.emissiveIntensity=2.45+.28*Math.sin(t*3)}renderer.render(scene,camera);requestAnimationFrame(animate)}animate();
+}
+window.addEventListener("hashchange",function(){render();window.scrollTo(0,0)});document.documentElement.lang=state.lang;render();
+})();
+</script>
+</body></html>
