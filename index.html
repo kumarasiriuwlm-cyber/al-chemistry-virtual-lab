@@ -309,12 +309,13 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
  .journeyCurveBase{stroke:#dbe8e5;stroke-width:3}
  .journeyCurveGhost{stroke:#8bcabd;stroke-width:2;stroke-dasharray:1.2 7;opacity:.28;animation:journeyDashFlow 2.2s linear infinite}
  .journeyCurveProgress{stroke:var(--journey-gradient,url(#journeyGradient));stroke-width:5.5;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--journey-progress));transition:stroke-dashoffset .42s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 4px rgba(29,161,141,.32))}
- .journeyRunner{fill:#fff;stroke:#159b89;stroke-width:1.7;filter:drop-shadow(0 0 4px rgba(21,155,137,.65));opacity:0;transition:opacity .2s ease}
- .journeyRunnerPulse{fill:#34bda8;opacity:0;pointer-events:none}
+ .journeyRunnerHtml{display:block;position:absolute;left:50%;top:0;width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%);background:#fff;border:4px solid #159b89;box-shadow:0 0 0 7px rgba(21,155,137,.10),0 0 24px rgba(21,155,137,.38);opacity:0;z-index:5;pointer-events:none;transition:left .18s linear,top .18s linear,opacity .18s ease}
+ .journeyRunnerHtml:after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(52,189,168,.34);animation:runnerPulse 1.45s ease-out infinite}
+ @keyframes runnerPulse{0%{transform:scale(.55);opacity:.72}100%{transform:scale(1.75);opacity:0}}
  @keyframes journeyDashFlow{to{stroke-dashoffset:-16}}
- .journeyStep{display:grid;grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr);align-items:center;min-height:330px;margin:0 0 24px;z-index:1}
+ .journeyStep{display:grid;grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr);align-items:start;min-height:calc(380px + var(--point-extra,0px));margin:0 0 38px;z-index:1}
  .journeyStep:before{display:none}
- .journeySide{min-width:0;max-width:540px;width:100%;transition:filter .35s ease}
+ .journeySide{min-width:0;max-width:560px;width:100%;transition:filter .35s ease;position:sticky;top:17vh;align-self:start}
  .journeyStep.side-left .journeySide{grid-column:1;justify-self:end;text-align:right;padding-right:12px}
  .journeyStep.side-right .journeySide{grid-column:3;justify-self:start;text-align:left;padding-left:12px}
  .journeyStep.side-left .journeyTitle{transform-origin:right center;transform:translateX(42px) translateY(14px) scale(.94)}
@@ -328,16 +329,25 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
  .journeyReveal{width:100%}
  .journeyCard{box-shadow:0 14px 40px rgba(25,61,70,.08);transition:box-shadow .38s ease,transform .38s ease,border-color .38s ease}
  .journeyStep.activeStep .journeyCard{border-color:#acd8cf;box-shadow:0 20px 55px rgba(20,111,105,.13);transform:translateY(-3px)}
+ .journeyStep.pointsComplete .journeyCard{border-color:#b8ddd5}
  .journeyCard.hasMedia{display:block}
  .journeyMedia{min-height:180px}
  .journeyMedia img{max-height:300px}
  .journeyMedia.portrait img{height:260px}
  .journeyCopy{padding:18px 20px 20px;text-align:left}
  .journeyCopy p{font-size:14px;line-height:1.95}
- .journeyCenterDot{display:block;position:absolute;left:calc(50% + var(--node-offset,0px));top:50%;width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%) scale(.86);background:#fff;border:4px solid #d3e3df;box-shadow:0 0 0 5px rgba(255,255,255,.92);z-index:3;transition:left .45s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s ease}
+ .journeyPoints{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+ .journeyPoint{position:relative;padding:11px 12px 11px 34px;border-radius:12px;background:#f7fbfa;border:1px solid #e0ece9;color:#294d54;font-size:14px;line-height:1.72;opacity:.12;transform:translateY(18px) scale(.985);filter:blur(1.2px);transition:opacity .38s ease,transform .48s cubic-bezier(.2,.8,.2,1),filter .36s ease,background .3s ease,border-color .3s ease}
+ .journeyPoint:before{content:"";position:absolute;left:13px;top:18px;width:8px;height:8px;border-radius:50%;background:#bdd8d2;box-shadow:0 0 0 4px rgba(29,161,141,.04);transition:.3s ease}
+ .journeyPoint.shown{opacity:1;transform:none;filter:none;background:#fff;border-color:#cfe4df}
+ .journeyPoint.shown:before{background:#1da18d;box-shadow:0 0 0 4px rgba(29,161,141,.09)}
+ .journeyPoint.currentPoint{border-color:#8fcfc2;box-shadow:0 9px 24px rgba(29,161,141,.08)}
+ .journeyPoint.currentPoint:before{box-shadow:0 0 0 7px rgba(29,161,141,.11)}
+ .journeyProgressHint{margin-top:10px;font-size:10px;color:#668087;text-align:right;opacity:.8}
+ .journeyCenterDot{display:block;position:absolute;left:calc(50% + var(--node-offset,0px));top:var(--node-top,50%);width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%) scale(.86);background:#fff;border:4px solid #d3e3df;box-shadow:0 0 0 5px rgba(255,255,255,.92);z-index:3;transition:left .45s ease,top .35s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s ease}
  .journeyStep.seen .journeyCenterDot{background:#1da18d;border-color:#9ed9cc;box-shadow:0 0 0 7px rgba(29,161,141,.12);transform:translate(-50%,-50%) scale(1)}
  .journeyStep.activeStep .journeyCenterDot{background:#fff;border-color:#159b89;box-shadow:0 0 0 7px rgba(29,161,141,.15),0 0 24px rgba(29,161,141,.42);transform:translate(-50%,-50%) scale(1.2);animation:nodeBreath 1.6s ease-in-out infinite}
- .journeyConnector{display:block;position:absolute;top:50%;height:2px;width:78px;background:linear-gradient(90deg,transparent,#8ccabd);opacity:0;transform-origin:center;transition:opacity .35s ease .08s,transform .48s cubic-bezier(.2,.8,.2,1) .08s}
+ .journeyConnector{display:block;position:absolute;top:var(--node-top,50%);height:2px;width:82px;background:linear-gradient(90deg,transparent,#8ccabd);opacity:0;transform-origin:center;transition:opacity .35s ease .08s,transform .48s cubic-bezier(.2,.8,.2,1) .08s}
  .journeyStep.side-left .journeyConnector{right:calc(50% + 42px);transform:scaleX(0)}
  .journeyStep.side-right .journeyConnector{left:calc(50% + 42px);transform:scaleX(0)}
  .journeyStep.side-left.detailVisible .journeyConnector{opacity:1;transform:scaleX(1)}
@@ -348,8 +358,8 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
  .scrollQuiz{margin-top:20px}
 }
 
-@media(max-width:620px){.summaryGuide{padding:12px}.journeyTrack{padding-left:31px}.journeyRail{left:7px}.journeyStep:before{left:-29px}.journeyChapterHead{padding:11px 12px}.journeyChapterTitle{font-size:13px}.journeyMedia{min-height:72px}.journeyMedia.portrait img{height:165px}.journeyCopy p{font-size:12px}.journeyTitle h3{font-size:23px;margin-bottom:10px}}
-@media(prefers-reduced-motion:reduce){.journeyTitle,.journeyReveal{opacity:1;transform:none;transition:none}.journeyFill,.journeyCurveProgress{transition:none}.journeyCurveGhost,.journeyStep.activeStep .journeyCenterDot{animation:none}.journeyRunnerPulse{display:none}}
+@media(max-width:620px){.summaryGuide{padding:12px}.journeyTrack{padding-left:31px}.journeyRail{left:7px}.journeyStep:before{left:-29px}.journeyChapterHead{padding:11px 12px}.journeyChapterTitle{font-size:13px}.journeyMedia{min-height:72px}.journeyMedia.portrait img{height:165px}.journeyCopy p{font-size:12px}.journeyTitle h3{font-size:23px;margin-bottom:10px}.journeyPoint{font-size:12px;line-height:1.65;padding:9px 10px 9px 30px}.journeyPoint:before{left:11px;top:15px}.journeyRunnerHtml{display:none}}
+@media(prefers-reduced-motion:reduce){.journeyTitle,.journeyReveal,.journeyPoint{opacity:1;transform:none;filter:none;transition:none}.journeyFill,.journeyCurveProgress{transition:none}.journeyCurveGhost,.journeyStep.activeStep .journeyCenterDot,.journeyRunnerHtml:after{animation:none}.journeyRunnerHtml{display:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 </head>
@@ -591,6 +601,20 @@ function conceptTitle(i,j){
  if(state.lang==="si"&&conceptMetaSI[i]&&conceptMetaSI[i][j])return conceptMetaSI[i][j];
  return ["🔬","Concept "+(j+1)];
 }
+function descriptionPoints(text){
+ var raw=String(text||"").trim();if(!raw)return [];
+ var parts=[];
+ try{
+  if(window.Intl&&Intl.Segmenter){
+   var seg=new Intl.Segmenter(state.lang==="si"?"si":state.lang==="ta"?"ta":"en",{granularity:"sentence"});
+   parts=Array.from(seg.segment(raw)).map(function(x){return x.segment.trim()}).filter(Boolean);
+  }
+ }catch(e){}
+ if(!parts.length)parts=[raw];
+ var out=[];
+ parts.forEach(function(s){s.split(/;\s+/).forEach(function(p){p=p.trim();if(p)out.push(p)})});
+ return out.length?out:[raw];
+}
 function journeyMedia(i,j){
  var m=conceptTitle(i,j),alt=m[1];
  if(state.lang!=="si")return "";
@@ -627,15 +651,16 @@ function journeyCurvePath(count){
 }
 function journeyCurveSvg(count,key){
  var d=journeyCurvePath(count),gid="journeyGradient"+key;
- return '<svg class="journeyCurve" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" style="--journey-gradient:url(#'+gid+')"><defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#13a58f"></stop><stop offset="48%" stop-color="#36b6a7"></stop><stop offset="100%" stop-color="#438ecb"></stop></linearGradient></defs><path class="journeyCurveBase" d="'+d+'" pathLength="100"></path><path class="journeyCurveGhost" d="'+d+'" pathLength="100"></path><path class="journeyCurveProgress" d="'+d+'" pathLength="100"></path><circle class="journeyRunnerPulse" cx="50" cy="0" r="3"><animate attributeName="r" values="3;7;3" dur="1.5s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".38;.04;.38" dur="1.5s" repeatCount="indefinite"></animate></circle><circle class="journeyRunner" cx="50" cy="0" r="2.6"></circle></svg>';
+ return '<svg class="journeyCurve" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" style="--journey-gradient:url(#'+gid+')"><defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#13a58f"></stop><stop offset="48%" stop-color="#36b6a7"></stop><stop offset="100%" stop-color="#438ecb"></stop></linearGradient></defs><path class="journeyCurveBase" d="'+d+'" pathLength="100"></path><path class="journeyCurveGhost" d="'+d+'" pathLength="100"></path><path class="journeyCurveProgress" d="'+d+'" pathLength="100"></path></svg>';
 }
 function journeySteps(n,i){
  var count=n.b.length;
- return '<div class="journeyTrack" data-journey-track="'+i+'"><div class="journeyRail"><span class="journeyFill"></span></div>'+journeyCurveSvg(count,i)+
+ return '<div class="journeyTrack" data-journey-track="'+i+'"><div class="journeyRail"><span class="journeyFill"></span></div>'+journeyCurveSvg(count,i)+'<span class="journeyRunnerHtml"></span>'+
  n.b.map(function(x,j){
   var m=conceptTitle(i,j),media=journeyMedia(i,j),cardClass=media?"journeyCard hasMedia":"journeyCard",side=j%2===0?"side-left":"side-right";
-  var pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3);
-  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="'+cardClass+'">'+media+'<div class="journeyCopy"><p>'+x+'</p></div></div></div></div></article>';
+  var pts=descriptionPoints(x),pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3),extra=Math.max(0,pts.length-1)*150;
+  var bullets='<ul class="journeyPoints">'+pts.map(function(p,k){return '<li class="journeyPoint" data-point-index="'+k+'">'+p+'</li>'}).join("")+'</ul><div class="journeyProgressHint"><span data-point-progress>0</span> / '+pts.length+' කරුණු</div>';
+  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" data-point-count="'+pts.length+'" style="--node-offset:'+offset+'px;--point-extra:'+extra+'px;--node-top:19%"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="'+cardClass+'">'+media+'<div class="journeyCopy">'+bullets+'</div></div></div></div></article>';
  }).join("")+
  '</div>';
 }
@@ -656,49 +681,64 @@ function setupJourneyScroll(){
  if(window._chemJourneyScrollHandler){window.removeEventListener("scroll",window._chemJourneyScrollHandler);window.removeEventListener("resize",window._chemJourneyScrollHandler)}
  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  var tracks=Array.from(document.querySelectorAll(".journeyTrack"));
- if(reduced){tracks.forEach(function(t){t.style.setProperty("--journey-progress",100);var curve=t.querySelector(".journeyCurveProgress");if(curve)curve.style.strokeDashoffset="0";t.querySelectorAll(".journeyStep").forEach(function(s){s.classList.add("titleVisible","detailVisible","seen")})});return}
+ if(reduced){tracks.forEach(function(t){t.style.setProperty("--journey-progress",100);var curve=t.querySelector(".journeyCurveProgress");if(curve)curve.style.strokeDashoffset="0";t.querySelectorAll(".journeyStep").forEach(function(s){s.classList.add("titleVisible","detailVisible","seen","pointsComplete");s.querySelectorAll(".journeyPoint").forEach(function(p){p.classList.add("shown")})})});return}
  var ticking=false;
+ function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
  function update(){
   ticking=false;
   var vh=window.innerHeight||document.documentElement.clientHeight||700;
   tracks.forEach(function(track){
-   var steps=Array.from(track.querySelectorAll(".journeyStep"));
-   if(!steps.length)return;
-   var active=-1;
+   var steps=Array.from(track.querySelectorAll(".journeyStep"));if(!steps.length)return;
+   var active=-1,anchor=vh*.52;
    steps.forEach(function(step,idx){
-    var r=step.getBoundingClientRect();
-    var titleOn=r.top<vh*.84&&r.bottom>vh*.10;
-    var detailOn=r.top<vh*.62&&r.bottom>vh*.08;
+    var r=step.getBoundingClientRect(),count=+(step.dataset.pointCount||1);
+    var local=clamp((anchor-r.top)/Math.max(1,r.height),0,1);
+    var titleOn=local>.03&&r.bottom>vh*.08;
+    var detailOn=local>.13&&r.bottom>vh*.08;
     step.classList.toggle("titleVisible",titleOn);
     step.classList.toggle("detailVisible",detailOn);
-    var center=r.top+r.height*.38;
-    if(center<=vh*.56)active=idx;
+    if(local>0&&local<1)active=idx;
+    else if(r.bottom<=anchor)active=Math.max(active,idx);
+
+    var pointPhase=clamp((local-.20)/.62,0,1);
+    var revealCount=pointPhase<=0?0:Math.min(count,Math.floor(pointPhase*count+.999));
+    var points=step.querySelectorAll(".journeyPoint");
+    points.forEach(function(p,k){
+     p.classList.toggle("shown",k<revealCount);
+     p.classList.toggle("currentPoint",k===revealCount-1&&revealCount<count);
+    });
+    var prog=step.querySelector("[data-point-progress]");if(prog)prog.textContent=String(revealCount);
+    step.classList.toggle("pointsComplete",revealCount>=count);
+
+    var nodeTop=clamp(18+local*64,18,82);
+    step.style.setProperty("--node-top",nodeTop.toFixed(1)+"%");
    });
+
    var tr=track.getBoundingClientRect();
-   if(tr.top>vh*.58)active=-1;
-   if(tr.bottom<vh*.35)active=steps.length-1;
+   if(tr.top>anchor)active=-1;if(tr.bottom<anchor)active=steps.length-1;
    steps.forEach(function(step,idx){step.classList.toggle("seen",idx<=active);step.classList.toggle("activeStep",idx===active)});
-   var raw=tr.height>0?((vh*.56-tr.top)/tr.height)*100:0;
-   var pct=Math.max(0,Math.min(100,raw));
+
+   var raw=tr.height>0?((anchor-tr.top)/tr.height)*100:0,pct=clamp(raw,0,100);
    track.style.setProperty("--journey-progress",pct.toFixed(2));
    var curve=track.querySelector(".journeyCurveProgress");
    if(curve){
     curve.style.strokeDashoffset=String(100-pct);
-    var runner=track.querySelector(".journeyRunner"),pulse=track.querySelector(".journeyRunnerPulse");
+    var runner=track.querySelector(".journeyRunnerHtml");
     try{
      var len=curve.getTotalLength(),pt=curve.getPointAtLength(len*(pct/100));
-     if(runner){runner.setAttribute("cx",pt.x.toFixed(3));runner.setAttribute("cy",pt.y.toFixed(3));runner.style.opacity=pct>0&&pct<100?"1":"0"}
-     if(pulse){pulse.setAttribute("cx",pt.x.toFixed(3));pulse.setAttribute("cy",pt.y.toFixed(3));pulse.style.opacity=pct>0&&pct<100?"1":"0"}
+     if(runner){
+      var xoff=(pt.x-50)*1.3;
+      runner.style.left="calc(50% + "+xoff.toFixed(2)+"px)";
+      runner.style.top=pt.y.toFixed(2)+"%";
+      runner.style.opacity=pct>.7&&pct<99.3?"1":"0";
+     }
     }catch(e){}
    }
    var chapter=track.closest(".journeyChapter");if(chapter)chapter.classList.toggle("inViewChapter",tr.top<vh*.72&&tr.bottom>vh*.18);
   });
  }
  function onMove(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
- window.addEventListener("scroll",onMove,{passive:true});
- window.addEventListener("resize",onMove);
- window._chemJourneyScrollHandler=onMove;
- requestAnimationFrame(update);
+ window.addEventListener("scroll",onMove,{passive:true});window.addEventListener("resize",onMove);window._chemJourneyScrollHandler=onMove;requestAnimationFrame(update);
 }
 function renderUnit1(){var u=U(),list=notes[state.lang]||notes.en,done=getUnit1Mastered();
 var jumpNames=state.lang==="si"?["පරමාණුක වාදය","සමස්ථානික","විකිරණ","වර්ණාවලිය","කාක්ෂික","වින්‍යාසය","ආවර්තිතා වගුව","ප්‍රවණතා"]:["Atomic theory","Isotopes","Radiation","Spectrum","Orbitals","Configuration","Periodic table","Trends"];
