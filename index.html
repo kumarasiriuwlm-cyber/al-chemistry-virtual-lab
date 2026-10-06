@@ -28,7 +28,13 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
 .toast{position:fixed;z-index:120;left:50%;bottom:28px;transform:translateX(-50%);background:#18343d;color:#fff;padding:10px 14px;border-radius:12px;display:none}.toast.show{display:block}
 .mobile{display:none}.footer{text-align:center;color:#75888c;font-size:12px;padding:22px}
 @media(max-width:900px){.grid3,.hubactions,.labgrid{grid-template-columns:repeat(2,1fr)}.labtools,.pstepnav{top:66px}.hero h1{font-size:31px}}
-@media(max-width:760px){html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 11px}.brandtext{display:none}.brandmark{width:41px;height:41px}.nav{display:none}.langs{margin-left:auto}.langs button{font-size:10px;padding:6px}.page{padding:18px 12px 78px}.hero{padding:24px 19px;border-radius:19px}.hero h1{font-size:27px}.hero p{font-size:16px}.grid3,.hubactions,.labgrid,.unitgrid,.pgrid{grid-template-columns:1fr}.choice{min-height:145px}.mobile{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;z-index:90;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}.mobile a{text-align:center;text-decoration:none;padding:7px 2px 6px;font-size:11px;font-weight:800}.mobile b{display:block;font-size:18px}.mobile a.active{color:var(--teal);background:#f0f8f6}.sim{height:330px}}
+@media(max-width:760px){
+.journeyChapter{margin:22px -8px 44px;padding:14px 8px 22px;border-radius:22px}
+.journeyChapter:before{filter:blur(10px);opacity:.20}
+.journeyChapterHead{padding:15px 13px;margin:0 0 18px;border-radius:17px}
+.journeyChapterNo{width:46px;height:46px;border-radius:14px;font-size:15px}
+.journeyChapterTitle{font-size:15px}
+html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 11px}.brandtext{display:none}.brandmark{width:41px;height:41px}.nav{display:none}.langs{margin-left:auto}.langs button{font-size:10px;padding:6px}.page{padding:18px 12px 78px}.hero{padding:24px 19px;border-radius:19px}.hero h1{font-size:27px}.hero p{font-size:16px}.grid3,.hubactions,.labgrid,.unitgrid,.pgrid{grid-template-columns:1fr}.choice{min-height:145px}.mobile{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;z-index:90;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}.mobile a{text-align:center;text-decoration:none;padding:7px 2px 6px;font-size:11px;font-weight:800}.mobile b{display:block;font-size:18px}.mobile a.active{color:var(--teal);background:#f0f8f6}.sim{height:330px}}
 
 /* 2026-10-06: paragraph notes, science visuals and true 3D lab */
 .notePara{margin:0 0 13px;font-size:16px;line-height:1.82;color:#28464e}
@@ -236,7 +242,20 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
 .simpleJump{display:flex;gap:8px;overflow-x:auto;padding:2px 0 15px;scrollbar-width:thin}
 .simpleJump button{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;min-height:40px;font:800 11px inherit;color:var(--ink);cursor:pointer}
 .simpleJump button:hover{background:#eff8f6}.simpleJump button.done{background:#e9f8f3;border-color:#8bc7b7}
-.journeyChapter{margin:18px 0 30px;scroll-margin-top:86px}
+.journeyChapter{position:relative;margin:28px -14px 54px;padding:20px 14px 26px;scroll-margin-top:86px;border-radius:28px;overflow:hidden;isolation:isolate;border:1px solid rgba(25,77,86,.10);box-shadow:0 18px 52px rgba(22,62,72,.08)}
+.journeyChapter:before{content:"";position:absolute;inset:-28px;z-index:-3;background-image:var(--chapter-bg);background-size:cover;background-position:center;filter:blur(12px) saturate(.78);transform:scale(1.08);opacity:.24}
+.journeyChapter:after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(248,252,251,.90) 0%,rgba(247,251,250,.96) 15%,rgba(255,255,255,.985) 44%,rgba(249,252,251,.97) 100%);backdrop-filter:blur(1px)}
+.journeyChapter.inViewChapter{border-color:rgba(29,161,141,.28);box-shadow:0 22px 58px rgba(22,77,81,.12)}
+.journeyChapterHead{position:relative;overflow:hidden;display:flex;gap:14px;align-items:center;margin:-4px 0 22px;padding:18px 18px;border-radius:20px;background:linear-gradient(120deg,rgba(10,48,59,.96),rgba(18,111,112,.91));color:#fff;box-shadow:0 10px 30px rgba(9,55,64,.18)}
+.journeyChapterHead:after{content:"";position:absolute;inset:0;background-image:var(--chapter-bg);background-size:cover;background-position:center;opacity:.13;filter:blur(3px);transform:scale(1.05);mix-blend-mode:screen;pointer-events:none}
+.journeyChapterHead>div{position:relative;z-index:1}
+.journeyChapterNo{width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;font-weight:900;font-size:17px;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.journeyChapterTitle{font-size:clamp(16px,2.4vw,21px);font-weight:900;line-height:1.5;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.journeyChapterSub{font-size:11px;opacity:.84;margin-top:4px}
+.journeyChapterDivider{display:flex;align-items:center;gap:10px;margin:2px 4px 18px;color:#52747a;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.journeyChapterDivider:before,.journeyChapterDivider:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#b8d5d0)}
+.journeyChapterDivider:after{background:linear-gradient(90deg,#b8d5d0,transparent)}
+
 .journeyChapterHead{display:flex;gap:12px;align-items:center;margin-bottom:12px;padding:13px 14px;border-radius:17px;background:linear-gradient(135deg,#113a45,#176f73);color:#fff}
 .journeyChapterNo{width:43px;height:43px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-weight:900;flex:0 0 auto}
 .journeyChapterTitle{font-size:15px;font-weight:900;line-height:1.45}
@@ -381,13 +400,13 @@ en:[
 si:[
 {t:"පරමාණුක වාදය, කැතෝඩ කිරණ, ධන කිරණ සහ න්‍යෂ්ටිය",b:[
 "පදාර්ථයේ අති සුළු මූලික ඒකක පිළිබඳ අදහස ඩිමොක්‍රිටස් වැනි පුරාණ දාර්ශනිකයන්ගෙන් ආරම්භ වූ අතර 1808 දී ජෝන් ඩෝල්ටන් (Dalton) එය විද්‍යාත්මක පරමාණුක වාදයක් ලෙස සංවිධානය කළේය. ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන අදහස් වූයේ මූලද්‍රව්‍ය පරමාණු වලින් සමන්විත වීම, එකම මූලද්‍රව්‍යයේ පරමාණු අතර සමානත්වය, රසායනික ප්‍රතික්‍රියාවලදී පරමාණු නිර්මාණය/විනාශ නොවීම සහ සංයෝග සරල පූර්ණ සංඛ්‍යා අනුපාතවලින් සෑදීමයි.",
-"අඩු පීඩන වායුවක් සහිත විද්‍යුත් විසර්ජන නළයකට ඉහළ විභව අන්තරයක් යෙදූ විට කැතෝඩයෙන් ඇනෝඩය දෙසට ගමන් කරන ඍණ ආරෝපිත කදම්බය කැතෝඩ කිරණ ලෙස හැඳින්වේ. ඒවා සෘජු රේඛාවක ගමන් කරයි, ශක්තිය හා ගතිමානය රැගෙන යයි, ප්‍රතිදීප්ත තිරයක් දීප්තිමත් කරයි සහ විද්‍යුත්/චුම්බක ක්ෂේත්‍රවලදී අපගමනය වේ.",
-"කැතෝඩ කිරණවල ස්වභාවය නළයේ වායුව හෝ කැතෝඩය සෑදූ ද්‍රව්‍යය වෙනස් කළත් වෙනස් නොවන බව ජේ. ජේ. තොම්සන් (J. J. Thomson) පෙන්වා දුන්නේය. ඔහු e/m ≈ 1.76 × 10⁸ C g⁻¹ ලෙස ආරෝපණය/ස්කන්ධ අනුපාතය නිරණය කළ අතර පරමාණුවේ ඍණ ආරෝපිත අංශුව ඉලෙක්ට්‍රෝනය බව තහවුරු කළේය.",
+"අඩු පීඩන වායුවක් සහිත විද්‍යුත් විසර්ජන නළයකට ඉහළ විභව අන්තරයක් යෙදූ විට කැතෝඩයෙන් ඇනෝඩය දෙසට ගමන් කරන ඍණ ආරෝපිත කදම්බය කැතෝඩ කිරණ ලෙස හැඳින්වේ. ඒවා සෘජු රේඛාවක ගමන් කරයි, ස්කන්ධය හා චාලක ශක්තිය ඇති අංශු කදම්බයක් ලෙස හැසිරෙයි, ප්‍රතිදීප්තතාව ඇති කළ හැකි අතර විද්‍යුත් හා චුම්බක ක්ෂේත්‍රවලදී අපගමනය වේ.",
+"කැතෝඩ කිරණවල ස්වභාවය නළයේ වායුව හෝ කැතෝඩය සෑදූ ද්‍රව්‍යය වෙනස් කළත් වෙනස් නොවන බව ජේ. ජේ. තොම්සන් (J. J. Thomson) පෙන්වා දුන්නේය. ඔහු e/m ≈ 1.76 × 10⁸ C g⁻¹ ලෙස ආරෝපණය/ස්කන්ධ අනුපාතය නිරණය කළ අතර කැතෝඩ කිරණ ඍණ ආරෝපිත අංශු කදම්බයක් ලෙස විස්තර කළේය.",
 "තොම්සන් (Thomson) විසින් ධන ආරෝපිත ගෝලයක් තුළ ඉලෙක්ට්‍රෝන පැතිරී ඇති ‘plum-pudding’ ආකෘතිය යෝජනා කළේය. පසුව මිලිකන් (Millikan)ගේ oil-drop පරීක්ෂණයෙන් ඉලෙක්ට්‍රෝනයේ ආරෝපණයේ විශාලත්වය |e| = 1.602 × 10⁻¹⁹ C ලෙස ලැබුණු අතර තොම්සන් (Thomson)ගේ e/m අගය සමඟ එය භාවිත කර ඉලෙක්ට්‍රෝන ස්කන්ධය ≈ 9.10 × 10⁻²⁸ g ලෙස ගණනය කළ හැකි විය.",
 "ගෝල්ඩ්ස්ටයින් (Goldstein)ගේ සිදුරු සහිත කැතෝඩ නළ පරීක්ෂණවලින් ධන කිරණ (canal rays) හඳුනා ගන්නා ලදී. ඒවා ධන ආරෝපිත අයනවලින් සමන්විත වන අතර ස්වභාවය නළයේ වායුව මත රඳා පවතී. හයිඩ්‍රජන් වායුවෙන් ලැබෙන සැහැල්ලුම ධන අංශුව ප්‍රෝටෝනයයි; එහි ආරෝපණය +1.602 × 10⁻¹⁹ C සහ සාපේක්ෂ ස්කන්ධය ආසන්න වශයෙන් 1 වේ.",
 "විකිරණශීලී ද්‍රව්‍යවලින් α, β සහ γ විකිරණ නිකුත් වේ. α අංශු ධන ආරෝපිත, β අංශු ඉලෙක්ට්‍රෝන ස්වභාවයෙන් ඍණ ආරෝපිත වන අතර γ විකිරණයට ආරෝපණයක් නැත. එබැවින් විද්‍යුත් ක්ෂේත්‍රයකදී α හා β විරුද්ධ දිශාවලට අපගමනය වන අතර γ අපගමනය නොවේ.",
-"රදර්ෆර්ඩ්ගේ රන් පත්‍ර පරීක්ෂණයේදී බොහෝ α අංශු සෘජුව ගමන් කළ අතර, සුළු ප්‍රමාණයක් විශාල කෝණවලින් අපගමනය වී ඉතා සුළු සංඛ්‍යාවක් ආපසු වික්ෂේප විය. එයින් පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් බවත් ධන ආරෝපණය සහ වැඩි ස්කන්ධය ඉතා කුඩා, ඝන න්‍යෂ්ටියක සංකේන්ද්‍රණය වී ඇති බවත් නිගමනය කෙරිණි. බෝර් (Bohr) විසින් ඉලෙක්ට්‍රෝන නිශ්චිත ශක්ති මට්ටම්වල පවතින බව යෝජනා කර රදර්ෆර්ඩ් (Rutherford) ආකෘතිය සංවර්ධනය කළේය."
-],f:"e/m ≈ 1.76 × 10⁸ C g⁻¹   •   |e| = 1.602 × 10⁻¹⁹ C   •   mₑ ≈ 9.10 × 10⁻²⁸ g",v:"atomic_si",exam:["ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන උපකල්පන","කැතෝඩ/ධන කිරණවල ගුණ නිරීක්ෂණවලින් හඳුනා ගැනීම","තොම්සන් (Thomson) හා මිලිකන් (Millikan) දත්තවලින් ඉලෙක්ට්‍රෝන ගුණ සම්බන්ධ කිරීම","α, β, γ විකිරණ විද්‍යුත් ක්ෂේත්‍රයකදී හැසිරීම","රදර්ෆර්ඩ් පරීක්ෂණයේ නිරීක්ෂණ සහ නිගමන සම්බන්ධ කිරීම"]},
+"රදර්ෆර්ඩ්ගේ රන් පත්‍ර පරීක්ෂණයේදී බොහෝ α අංශු සෘජුව ගමන් කළ අතර, සුළු ප්‍රමාණයක් විශාල කෝණවලින් අපගමනය වී ඉතා සුළු සංඛ්‍යාවක් ආපසු වික්ෂේප විය. එයින් පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් බවත් ධන ආරෝපණය සහ වැඩි ස්කන්ධය ඉතා කුඩා, ඝන න්‍යෂ්ටියක සංකේන්ද්‍රණය වී ඇති බවත් නිගමනය කෙරිණි. බෝර් (Bohr) විසින් න්‍යෂ්ටිය වටා ඉලෙක්ට්‍රෝන නිශ්චිත කක්ෂවල පවතින බව යෝජනා කර රදර්ෆර්ඩ් (Rutherford) ආකෘතිය සංවර්ධනය කළේය."
+],f:"e/m ≈ 1.76 × 10⁸ C g⁻¹   •   |e| = 1.602 × 10⁻¹⁹ C   •   mₑ ≈ 9.10 × 10⁻²⁸ g",v:"atomic_si",exam:["ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන උපකල්පන","කැතෝඩ කිරණ හා ධන කිරණවල පරීක්ෂණාත්මක ගුණ සසඳා හඳුනා ගැනීම","තොම්සන් (Thomson)ගේ e/m අගය හා මිලිකන් (Millikan)ගේ |e| අගය සම්බන්ධ කිරීම","α, β, γ විකිරණ විද්‍යුත් ක්ෂේත්‍රයකදී හැසිරීම","රදර්ෆර්ඩ් පරීක්ෂණයේ නිරීක්ෂණ සහ නිගමන සම්බන්ධ කිරීම"]},
 {t:"පරමාණුක ක්‍රමාංකය, නියුක්ලයිඩ, සමස්ථානික, අයන සහ සාපේක්ෂ පරමාණුක ස්කන්ධය",b:[
 "පරමාණුක ක්‍රමාංකය Z යනු න්‍යෂ්ටියේ ප්‍රෝටෝන ගණනයි. ස්කන්ධ ක්‍රමාංකය A = ප්‍රෝටෝන + නියුට්‍රෝන. එබැවින් නියුට්‍රෝන ගණන N = A − Z වේ. විද්‍යුත්-නිර්පේක්ෂ පරමාණුවක ඉලෙක්ට්‍රෝන ගණන ද Z ට සමාන වේ.",
 "මෝස්ලි (Moseley)ගේ කාර්යය පරමාණුක ක්‍රමාංකය මූලද්‍රව්‍යයක අනන්‍ය ලක්ෂණයක් බව තහවුරු කිරීමට වැදගත් විය. න්‍යෂ්ටියේ ඇති ප්‍රෝටෝන සහ නියුට්‍රෝන එකට නියුක්ලියෝන ලෙස හැඳින්වෙන අතර නියුක්ලයිඩයක් ᴬZX ලෙස නිරූපණය කරයි.",
@@ -403,7 +422,7 @@ si:[
 "c = νλ අනුව තරංග ආයාමය වැඩි වන විට සංඛ්‍යාතය අඩු වේ. විද්‍යුත් චුම්බක වර්ණාවලියේ radio → microwave → IR → visible → UV → X-ray → γ යන අනුපිළිවෙළට තරංග ආයාමය අඩුවන අතර සංඛ්‍යාතය හා ශක්තිය වැඩි වේ.",
 "ප්ලාන්ක් (Planck) අනුව ශක්තිය අඛණ්ඩව නොව නිශ්චිත කුඩා ප්‍රමාණ (quanta) ලෙස විමෝචනය හෝ අවශෝෂණය වේ. එක් quantum එකක ශක්තිය E = hν වන අතර h = 6.626 × 10⁻³⁴ J s වේ.",
 "අයින්ස්ටයින් (Einstein) මෙම අදහස තවදුරටත් සංවර්ධනය කර විද්‍යුත් චුම්බක විකිරණ කුඩා ශක්ති පොදි වන ෆෝටෝන ලෙස ද හැසිරෙන බව පෙන්වා දුන්නේය. එබැවින් විකිරණයට තරංග සහ අංශු යන ද්විත්ව ස්වභාවය ඇත.",
-"ඩි බ්‍රොයි (de Broglie) අනුව චලනය වන ද්‍රව්‍ය අංශුවකට ද තරංග ස්වභාවයක් ඇත. එහි තරංග ආයාමය λ = h/p = h/mv වේ. විශාල වස්තු සඳහා මෙම තරංග ආයාමය නිරීක්ෂණය කළ නොහැකි තරම් කුඩා වන නමුත් ඉලෙක්ට්‍රෝන වැනි සුළු ස්කන්ධ අංශු සඳහා එය වැදගත් වේ.",
+"ඩි බ්‍රොයි (de Broglie) අනුව චලනය වන ද්‍රව්‍ය අංශුවකට ද තරංග ස්වභාවයක් ඇත. එහි තරංග ආයාමය λ = h/p = h/mv වේ. මෙම සම්බන්ධතාව සියලු ද්‍රව්‍ය සඳහා යෙදිය හැකි නමුත් සාමාන්‍ය ප්‍රමාණයේ වස්තු සඳහා තරංග ආයාමය නිරීක්ෂණය කළ නොහැකි තරම් කුඩා වේ.",
 "සූත්‍ර භාවිතයේදී SI ඒකක පවත්වා ගැනීම වැදගත්ය: λ → m, ν → s⁻¹ (Hz), E → J, c → m s⁻¹. nm දී ඇති තරංග ආයාමය m බවට පරිවර්තනය කිරීම විභාග ගණනයවලදී නිතර අවශ්‍ය වේ."
 ],f:"c = νλ   •   E = hν = hc/λ   •   λ = h/p = h/mv",exam:["λ, ν සහ E අතර පරිවර්තන","nm → m ඒකක පරිවර්තනය","විද්‍යුත් චුම්බක වර්ණාවලියේ අනුපිළිවෙළ","ප්ලාන්ක් (Planck)/අයින්ස්ටයින් (Einstein) අදහස් සහ ෆෝටෝන ශක්තිය","ඩි බ්‍රොයි (de Broglie) තරංග ආයාම ගණනය"]},
 {t:"ශක්ති ප්‍රමාණීකරණය, අනුක්‍රමික අයනීකරණ ශක්ති සහ හයිඩ්‍රජන් වර්ණාවලිය",b:[
@@ -416,7 +435,7 @@ si:[
 ],f:"E_photon = hν = hc/λ = −ΔE   •   ලයිමන් nᶠ=1   •   බාල්මර් nᶠ=2   •   පාෂන් nᶠ=3",v:"spectrum_si",exam:["අනුක්‍රමික අයනීකරණ ශක්ති දත්තවලින් කාණ්ඩය/සංයුජතා ඉලෙක්ට්‍රෝන තීරණය කිරීම","විමෝචන හා අවශෝෂණ ශක්ති-මට්ටම් සංක්‍රමණ","ලයිමන්/බාල්මර්/පාෂන්/බ්‍රැකට්/ෆුන්ඩ් ශ්‍රේණි","410–656 nm බාල්මර් රේඛා","λ/ν/E හා ΔE ගණනය"]},
 {t:"කාක්ෂික, කාක්ෂික හැඩ සහ ක්වොන්ටම් අංක",b:[
 "කාක්ෂිකයක් යනු ඉලෙක්ට්‍රෝනයක් හමුවීමේ ඉහළ සම්භාවිතාවක් ඇති අවකාශීය ප්‍රදේශයකි. s කාක්ෂික ගෝලාකාර වන අතර p කාක්ෂික දෙපැති හැඩයක් දක්වයි. p උපකවචයේ pₓ, pᵧ සහ p_z ලෙස එකිනෙකට ලම්බ කාක්ෂික තුනක් ඇත.",
-"d කාක්ෂික පහක් ඇති අතර ඒවාට විවිධ අවකාශීය හැඩ හා දිශානති ඇත. f කාක්ෂිකවල හැඩ තවත් සංකීර්ණ වේ. විභාගයේදී ප්‍රධාන අවධානය s හා p හැඩ, කාක්ෂික ගණන සහ ක්වොන්ටම් අංක සම්බන්ධතා මත යොමු වේ.",
+"d කාක්ෂික පහක් ඇති අතර ඒවාට විවිධ අවකාශීය හැඩ හා දිශානති ඇත. f කාක්ෂිකවල හැඩ තවත් සංකීර්ණ වේ. එක් d උපකවචයක කාක්ෂික පහක් ඇති අතර f කාක්ෂිකවල හැඩ d කාක්ෂිකවලටත් වඩා සංකීර්ණ වේ.",
 "ප්‍රධාන ක්වොන්ටම් අංකය n = 1,2,3… මඟින් ප්‍රධාන ශක්ති මට්ටම/කවචය දක්වයි. දී ඇති n සඳහා l අගයන් 0 සිට n−1 දක්වා ලැබෙන අතර l = 0,1,2,3 සඳහා s,p,d,f උපකවච ලැබේ.",
 "චුම්බක ක්වොන්ටම් අංකය mₗ සඳහා −l සිට +l දක්වා අගයන් ලැබෙන බැවින් උපකවචයක කාක්ෂික ගණන 2l+1 වේ. ස්පින් ක්වොන්ටම් අංකය mₛ = +1/2 හෝ −1/2 වේ.",
 "n වන කවචයක උපකවච ගණන n, මුළු කාක්ෂික ගණන n² සහ උපරිම ඉලෙක්ට්‍රෝන ගණන 2n² වේ. s,p,d,f උපකවචවල කාක්ෂික ගණන පිළිවෙලින් 1,3,5,7 සහ උපරිම ඉලෙක්ට්‍රෝන ගණන 2,6,10,14 වේ.",
@@ -434,9 +453,9 @@ si:[
 "මූලද්‍රව්‍ය වර්ගීකරණය සඳහා මෙන්ඩලීව් (Mendeleev) හා ලෝතර් මයර් (Lothar Meyer) විසින් 1869 දී සමාන ආවර්තිතා රටා යෝජනා කළ අතර නූතන ආවර්තිතා වගුව පරමාණුක ක්‍රමාංකය වැඩිවන අනුපිළිවෙළට සකසා ඇත.",
 "IUPAC අනුව ආවර්තිතා වගුවේ කාණ්ඩ 1 සිට 18 දක්වා අංකනය කරයි. කාණ්ඩ 1 ක්ෂාර ලෝහ, 2 ක්ෂාරීය පෘථිවි ලෝහ, 16 කැල්කොජන්, 17 හැලජන් සහ 18 නිෂ්ක්‍රිය/උච්ච වායු ලෙස හැඳින්වේ.",
 "ආවර්ත අංකය සාමාන්‍යයෙන් භූමි තත්ත්ව වින්‍යාසයේ පිරී ඇති ඉහළම ප්‍රධාන ක්වොන්ටම් අංකයෙන් ලැබේ. එකම කාණ්ඩයේ මූලද්‍රව්‍යවල පිටත ඉලෙක්ට්‍රෝන වින්‍යාස අතර සමාන රටාවක් ඇති බැවින් ඒවායේ රසායනික ගුණවලද සමානතා පවතී.",
-"වෙනස්කාරී ඉලෙක්ට්‍රෝනය ඇතුළත් වන උපකවචය අනුව මූලද්‍රව්‍ය s, p, d හෝ f බ්ලොක්වලට වර්ග කරයි. s බ්ලොක් කාණ්ඩ 1–2, p බ්ලොක් කාණ්ඩ 13–18, d බ්ලොක් මධ්‍යස්ථ කාණ්ඩ සහ f බ්ලොක් ලැන්තනයිඩ/ඇක්ටිනයිඩ ප්‍රදේශයට අයත් වේ.",
+"වෙනස්කාරී ඉලෙක්ට්‍රෝනය ඇතුළත් වන උපකවචය අනුව මූලද්‍රව්‍ය s, p, d හෝ f බ්ලොක්වලට වර්ග කරයි. s බ්ලොක් කාණ්ඩ 1–2, p බ්ලොක් කාණ්ඩ 13–18, d බ්ලොක් මධ්‍යස්ථ කාණ්ඩ සහ f බ්ලොක් මූලද්‍රව්‍ය අභ්‍යන්තර අන්තරික මූලද්‍රව්‍ය ලෙස හැඳින්වේ.",
 "s,p,d,f උපකවචවල උපරිම ඉලෙක්ට්‍රෝන ධාරිතා 2,6,10,14 බැවින් ආවර්තිතා වගුවේ බ්ලොක් පළලද ඒ අගයන් නිරූපණය කරයි. n වන කවචයක උපරිම ඉලෙක්ට්‍රෝන ගණන 2n² වන නිසා ආවර්තවල දිග සමඟද මෙම සම්බන්ධතාව පෙනේ.",
-"s බ්ලොක් සඳහා පිටත වින්‍යාසය ns¹ හෝ ns² වන අතර p බ්ලොක් සඳහා සාමාන්‍ය පිටත වින්‍යාසය ns²np¹–⁶ වේ. නිෂ්ක්‍රිය වායුවල සම්පූර්ණ පිටත කවච වින්‍යාසය නිසා ඒවායේ රසායනික ප්‍රතික්‍රියාශීලීතාව අඩුය."
+"s බ්ලොක් සඳහා පිටත වින්‍යාසය ns¹ හෝ ns² වන අතර p බ්ලොක් සඳහා සාමාන්‍ය පිටත වින්‍යාසය ns²np¹–⁶ වේ. එක් එක් බ්ලොක්හි තීරු ගණන එම උපකවචයට පිරවිය හැකි උපරිම ඉලෙක්ට්‍රෝන ගණනට සම්බන්ධ වේ."
 ],f:"කාණ්ඩ 1–18   •   s: 2e⁻   p: 6e⁻   d: 10e⁻   f: 14e⁻   •   කවච ධාරිතාව = 2n²",exam:["ඉලෙක්ට්‍රෝන වින්‍යාසයෙන් මූලද්‍රව්‍යයේ ආවර්තය/කාණ්ඩය/බ්ලොක් තීරණය කිරීම","කාණ්ඩ 1,2,16,17,18 නාම","s/p/d/f බ්ලොක් හඳුනා ගැනීම","2n² හා ආවර්ත දිග අතර සම්බන්ධතාව","පිටත ඉලෙක්ට්‍රෝන වින්‍යාසයෙන් කාණ්ඩ සම්බන්ධ කිරීම"]},
 {t:"s සහ p බ්ලොක්වල ආවර්තිතා ප්‍රවණතා",b:[
 "බහු-ඉලෙක්ට්‍රෝන පරමාණුවක පිටත ඉලෙක්ට්‍රෝන න්‍යෂ්ටියේ සම්පූර්ණ ආරෝපණය නොව අභ්‍යන්තර ඉලෙක්ට්‍රෝනවල ආවරණ බලපෑමෙන් අඩු වූ ඵලදායී න්‍යෂ්ටික ආරෝපණයකට (Z_eff) යටත් වේ. එකම ආවර්තයක් හරහා ප්‍රෝටෝන ගණන වැඩි වන අතර ආවරණ බලපෑම සමානව වැඩි නොවන නිසා Z_eff සාමාන්‍යයෙන් වැඩි වේ.",
@@ -717,10 +736,23 @@ function setupJourneyScroll(){
  function onMove(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
  window.addEventListener("scroll",onMove,{passive:true});window.addEventListener("resize",onMove);window._chemJourneyScrollHandler=onMove;requestAnimationFrame(update);
 }
+function chapterBackground(i){
+ var imgs=[
+  "https://upload.wikimedia.org/wikipedia/commons/1/1b/Geiger-Marsden_experiment.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/4/45/Portrait_of_Ernest_Rutherford_%281871-1937%29%2C_Physicist_and_Chemist_%282551070939%29.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/6/60/MaxPlanck.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hydrogen_transitions.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/5/5c/Atomic_orbitals_n123_m-eigenstates.png",
+  "https://upload.wikimedia.org/wikipedia/commons/6/6d/Niels_Bohr.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/a/af/Dmitri_Mendeleev.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/d/db/Linus_Pauling.jpg"
+ ];
+ return imgs[i]||imgs[0];
+}
 function renderUnit1(){var u=U(),list=notes[state.lang]||notes.en,done=getUnit1Mastered();
 var jumpNames=state.lang==="si"?["පරමාණුක වාදය","සමස්ථානික","විකිරණ","වර්ණාවලිය","කාක්ෂික","වින්‍යාසය","ආවර්තිතා වගුව","ප්‍රවණතා"]:["Atomic theory","Isotopes","Radiation","Spectrum","Orbitals","Configuration","Periodic table","Trends"];
 var jumps=jumpNames.map(function(x,i){return '<button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-simplejump="'+i+'">'+String(i+1).padStart(2,"0")+' '+x+'</button>'}).join("");
-var detail=list.map(function(n,i){return '<section class="journeyChapter" id="note'+i+'"><header class="journeyChapterHead"><div class="journeyChapterNo">'+String(i+1).padStart(2,"0")+'</div><div><div class="journeyChapterTitle">'+n.t+'</div><div class="journeyChapterSub">'+(state.lang==="si"?"පහළට scroll කරමින් සංකල්ප එකින් එක කියවන්න":"Scroll through the concepts step by step")+'</div></div></header>'+journeySteps(n,i)+formulaStrip(n.f)+(n.exam?'<details class="examMini"><summary>🎯 විභාගයට මතක තබාගන්න</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+scrollQuiz(i)+(n.v?videoBlock(n.v):'')+'<div class="sectionFinish"><button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-master="'+i+'">'+(done.indexOf(i)>=0?'✓ මෙම කොටස සම්පූර්ණයි':'○ මෙම කොටස ඉගෙන ගත්තා')+'</button></div><div class="journeyEnd">✓ '+(state.lang==="si"?"මෙම කොටස අවසන්. පහළට scroll කර ඊළඟ කොටසට යන්න.":"Section complete. Continue scrolling to the next part.")+'</div></section>'}).join("");
+var detail=list.map(function(n,i){return '<section class="journeyChapter" id="note'+i+'" style="--chapter-bg:url(&quot;'+chapterBackground(i)+'&quot;)"><header class="journeyChapterHead"><div class="journeyChapterNo">'+String(i+1).padStart(2,"0")+'</div><div><div class="journeyChapterTitle">'+n.t+'</div><div class="journeyChapterSub">'+(state.lang==="si"?"Unit 01 • කොටස "+String(i+1).padStart(2,"0")+" / 08":"Unit 01 • Section "+String(i+1).padStart(2,"0")+" / 08")+'</div></div></header><div class="journeyChapterDivider">'+(state.lang==="si"?"ප්‍රධාන සංකල්ප":"Key concepts")+'</div>'+journeySteps(n,i)+formulaStrip(n.f)+(n.exam?'<details class="examMini"><summary>🎯 විභාගයට මතක තබාගන්න</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+scrollQuiz(i)+(n.v?videoBlock(n.v):'')+'<div class="sectionFinish"><button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-master="'+i+'">'+(done.indexOf(i)>=0?'✓ මෙම කොටස සම්පූර්ණයි':'○ මෙම කොටස ඉගෙන ගත්තා')+'</button></div><div class="journeyEnd">✓ '+(state.lang==="si"?"මෙම කොටස අවසන්. පහළට scroll කර ඊළඟ කොටසට යන්න.":"Section complete. Continue scrolling to the next part.")+'</div></section>'}).join("");
 var modal='<div class="noteImageModal" id="noteImageModal" aria-hidden="true"><div class="noteImageModalInner"><button type="button" class="noteImageClose" id="noteImageClose" aria-label="Close">×</button><img id="noteImageLarge" alt=""></div></div>';
 return shell("lessons",'<main class="page summarySimple"><section class="hero"><div class="kicker">UNIT 01</div><h1>'+u.unitTitle+'</h1><p>'+u.unitSub+'</p></section><div class="summaryGuide"><strong>Scroll Journey — රූපයෙන් සංකල්පයට, සංකල්පයෙන් ප්‍රශ්නයට</strong><p>පහළට scroll කරන විට journey line එක ඉදිරියට යයි. වැදගත් තැන්වල රූප/විද්‍යාඥයින් පෙනේ; ඒ යටින්ම අදාළ කෙටි පැහැදිලි කිරීම කියවන්න. එක් එක් කොටස අවසානයේ කුඩා ප්‍රශ්නයක් ඇත.</p></div><div class="simpleJump">'+jumps+'</div>'+detail+'<div class="card" style="margin-top:18px"><strong>මූලාශ්‍ර පදනම</strong><p class="meta">NIE 12 ශ්‍රේණිය රසායන විද්‍යා සම්පත් පොත — Unit 01 (පිටු 1–42) • G.C.E. A/L past-paper/marking-scheme review • Sinhala supplementary lessons</p></div>'+modal+'</main>')}
 function practicalTitle(i){return state.lang==="si"?practicalSI[i]:state.lang==="ta"?practicalTA[i]:practicalEN[i]}
