@@ -477,6 +477,83 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
  .journeyMini3D,.journeyVisualPane img{height:245px!important}
  .journeyCard.splitConcept .journeyCopy{order:1!important;width:100%!important}
 }
+
+/* Journey v6 — alternating study cards, centered scroll path, mixed media */
+@media(min-width:761px){
+ .journeyTrack{padding:30px 0 18px!important}
+ .journeyStep{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 116px minmax(0,1fr)!important;
+  column-gap:24px!important;align-items:center!important;
+  min-height:420px!important;width:100%!important;margin:0 0 44px!important
+ }
+ .journeyStep .journeySide,.journeyStep.side-left .journeySide,.journeyStep.side-right .journeySide{
+  display:contents!important;padding:0!important;max-width:none!important;width:auto!important
+ }
+ .journeyStep .journeyReveal,.journeyStep.side-left .journeyReveal,.journeyStep.side-right .journeyReveal{
+  display:contents!important;transform:none!important
+ }
+ .journeyCard.splitConcept{display:contents!important}
+ .journeyStep.side-left .journeyTitle{grid-column:1!important;grid-row:1!important;text-align:left!important;justify-self:stretch!important;padding:0 4px 10px!important;transform:translateX(28px) translateY(10px) scale(.96)!important;transform-origin:left bottom!important}
+ .journeyStep.side-right .journeyTitle{grid-column:3!important;grid-row:1!important;text-align:left!important;justify-self:stretch!important;padding:0 4px 10px!important;transform:translateX(-28px) translateY(10px) scale(.96)!important;transform-origin:right bottom!important}
+ .journeyStep.titleVisible .journeyTitle{transform:none!important}
+ .journeyStep.side-left .journeyCopy{grid-column:1!important;grid-row:2!important}
+ .journeyStep.side-right .journeyCopy{grid-column:3!important;grid-row:2!important}
+ .journeyCard.splitConcept .journeyCopy{
+  align-self:start!important;width:100%!important;min-width:0!important;padding:20px 22px!important;
+  text-align:left!important;background:rgba(255,255,255,.96)!important;border:1px solid var(--line)!important;
+  border-radius:20px!important;box-shadow:0 14px 34px rgba(16,60,65,.07)!important;
+  opacity:0;transition:opacity .5s ease,transform .58s cubic-bezier(.18,.75,.22,1)
+ }
+ .journeyStep.side-left .journeyCopy{transform:translateX(34px) translateY(18px)}
+ .journeyStep.side-right .journeyCopy{transform:translateX(-34px) translateY(18px)}
+ .journeyStep.detailVisible .journeyCopy{opacity:1;transform:none!important}
+ .journeyStep.side-left .journeyVisualPane{grid-column:3!important;grid-row:1 / span 2!important}
+ .journeyStep.side-right .journeyVisualPane{grid-column:1!important;grid-row:1 / span 2!important}
+ .journeyCard.splitConcept .journeyVisualPane,.journeyStep:nth-child(even) .journeyVisualPane{
+  order:0!important;align-self:center!important;justify-self:stretch!important;width:100%!important;min-width:0!important;
+  height:370px!important;min-height:370px!important;border-radius:24px!important;overflow:hidden!important;
+  opacity:0;transform:translateY(34px) scale(.965);
+  transition:opacity .62s ease .08s,transform .7s cubic-bezier(.18,.78,.22,1) .08s
+ }
+ .journeyStep.side-left .journeyVisualPane{transform:translateX(-36px) translateY(26px) scale(.965)}
+ .journeyStep.side-right .journeyVisualPane{transform:translateX(36px) translateY(26px) scale(.965)}
+ .journeyStep.detailVisible .journeyVisualPane{opacity:1;transform:none!important}
+ .journeyMini3D{width:100%!important;height:370px!important}
+ .journeyVisualPane img{width:100%!important;height:370px!important;max-height:none!important;object-fit:contain!important}
+ .journeyVisualPane.mediaVisual{background:#f7fbfa!important}
+ .journeyVisualPane.staticVisual{background:linear-gradient(145deg,#f7fbfa,#e9f5f2)!important;border:1px solid rgba(31,96,96,.14)!important}
+ .journeyVisualPane.interactiveVisual{background:linear-gradient(145deg,#102d3b,#173f4d)!important;border:1px solid rgba(83,178,163,.35)!important}
+ .journeyCurve{left:50%!important;width:116px!important;transform:translateX(-50%)!important}
+}
+@media(min-width:1200px){
+ .journeyStep{grid-template-columns:minmax(0,1fr) 126px minmax(0,1fr)!important;column-gap:28px!important}
+ .journeyCard.splitConcept .journeyVisualPane{height:410px!important;min-height:410px!important}
+ .journeyMini3D,.journeyVisualPane img{height:410px!important}
+ .journeyCurve{width:126px!important}
+}
+.journeyStaticArt{width:100%;height:100%;min-height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;position:relative;overflow:hidden}
+.journeyStaticArt:before,.journeyStaticArt:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(18,134,121,.18)}
+.journeyStaticArt:before{width:250px;height:250px;right:-85px;top:-90px}.journeyStaticArt:after{width:170px;height:170px;left:-55px;bottom:-75px}
+.journeyStaticArt .staticFormula{font:800 clamp(22px,2.1vw,34px)/1.35 Georgia,"Times New Roman",serif;color:#0f6867;letter-spacing:.01em;max-width:92%;z-index:1}
+.journeyStaticArt .staticCaption{margin-top:15px;font-size:12px;font-weight:800;color:#52706f;z-index:1}
+.journeyStaticArt.sec0{background:linear-gradient(145deg,#f9fcfb,#edf7f4)}.journeyStaticArt.sec1{background:linear-gradient(145deg,#f7fbff,#ecf2fa)}.journeyStaticArt.sec2{background:linear-gradient(145deg,#faf8ff,#f0edfb)}.journeyStaticArt.sec3{background:linear-gradient(145deg,#fffaf2,#f8f1e3)}.journeyStaticArt.sec4{background:linear-gradient(145deg,#f4fbfa,#e8f7f2)}.journeyStaticArt.sec5{background:linear-gradient(145deg,#f8fafc,#edf2f7)}.journeyStaticArt.sec6{background:linear-gradient(145deg,#fffaf5,#f4eee5)}.journeyStaticArt.sec7{background:linear-gradient(145deg,#f6fbff,#e9f4f8)}
+.journeyVisualPane .journeyMedia{width:100%;height:100%;min-height:0!important;display:flex;align-items:center;justify-content:center;background:transparent!important}
+.journeyVisualPane .journeyMedia img{background:transparent!important}
+.journeyVisualPane .journeyMedia.portrait img{object-fit:contain!important;object-position:center!important;padding:18px!important}
+.journeyVisualPane .nuclideMini,.journeyVisualPane .spectrumInline,.journeyVisualPane .orbitalMini,.journeyVisualPane .blockMini,.journeyVisualPane .trendMini{width:100%;min-height:270px}
+@media(max-width:760px){
+ .journeyStep{display:block!important;min-height:0!important;margin-bottom:32px!important}
+ .journeyStep .journeySide,.journeyStep.side-left .journeySide,.journeyStep.side-right .journeySide{display:block!important;padding:0!important}
+ .journeyStep .journeyTitle{text-align:left!important;transform:none!important}
+ .journeyCard.splitConcept{display:flex!important;flex-direction:column!important;gap:12px!important}
+ .journeyVisualPane,.journeyStep:nth-child(even) .journeyVisualPane{order:0!important;width:100%!important;height:245px!important;min-height:245px!important;opacity:0;transform:translateY(24px) scale(.97);transition:opacity .52s ease,transform .58s ease}
+ .journeyStep.detailVisible .journeyVisualPane{opacity:1;transform:none}
+ .journeyCard.splitConcept .journeyCopy{order:1!important;width:100%!important;opacity:0;transform:translateY(18px);transition:opacity .48s ease .05s,transform .54s ease .05s}
+ .journeyStep.detailVisible .journeyCopy{opacity:1;transform:none}
+ .journeyMini3D,.journeyVisualPane img{height:245px!important}
+ .journeyStaticArt{min-height:225px;padding:20px}
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 </head>
@@ -770,6 +847,25 @@ function journeyCurveSvg(count,key){
  var d=journeyCurvePath(count),gid="journeyGradient"+key;
  return '<svg class="journeyCurve" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" style="--journey-gradient:url(#'+gid+')"><defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#13a58f"></stop><stop offset="48%" stop-color="#36b6a7"></stop><stop offset="100%" stop-color="#438ecb"></stop></linearGradient></defs><path class="journeyCurveBase" d="'+d+'" pathLength="100"></path><path class="journeyCurveGhost" d="'+d+'" pathLength="100"></path><path class="journeyCurveProgress" d="'+d+'" pathLength="100"></path></svg>';
 }
+
+function shouldUseJourney3D(i,j){
+ var key=i+":"+j;
+ return ["0:4","1:1","2:0","3:5","4:1","5:0","7:0"].indexOf(key)>=0;
+}
+function journeyStaticVisual(i,j,label){
+ var formulas=[
+  ["1808 • Atomic theory","e / m","|e| = 1.602 × 10⁻¹⁹ C","+ rays • proton","α   β   γ","Nuclear model"],
+  ["N = A − Z","Z • A • N","Isotopes","1 u = 1.66054 × 10⁻²⁴ g","Σ(mass × abundance)","M = g mol⁻¹","atom ⇄ ion"],
+  ["EM radiation","c = νλ","λ ↑  ν ↓","E = hν","photon • hν","λ = h / p","m • s⁻¹   Hz   m"],
+  ["IE₁","IE₁ < IE₂ < IE₃","Eₙ ∝ −1/n²","Balmer • n = 2","Lyman • Balmer • Paschen","ΔE = −hν"],
+  ["s • p • d • f","3d orbitals","n • l","mₗ • mₛ","orbitals = n²","max 2e⁻ / orbital"],
+  ["1s → 2s → 2p → 3s","Aufbau • Pauli","Hund rule","1s² 2s² 2p⁶","cation • 4s first","Cr • Cu"],
+  ["Periodic table","Groups 1–18","period • group","s • p • d • f","2 • 6 • 10 • 14","ns¹–² • np¹–⁶"],
+  ["Z_eff","covalent • ionic radius","atomic radius →","isoelectronic series","IE → generally increases","electron gain","ΔE_EG = −EA","electronegativity →"]
+ ];
+ var row=formulas[i]||[],formula=row[j]||label;
+ return '<div class="journeyStaticArt sec'+i+'"><div class="staticFormula">'+formula+'</div><div class="staticCaption">'+label+'</div></div>';
+}
 function journeySteps(n,i){
  var count=n.b.length;
  return '<div class="journeyTrack" data-journey-track="'+i+'"><div class="journeyRail"><span class="journeyFill"></span></div>'+journeyCurveSvg(count,i)+'<span class="journeyRunnerHtml"></span>'+
@@ -777,8 +873,11 @@ function journeySteps(n,i){
   var m=conceptTitle(i,j),media=journeyMedia(i,j),side=j%2===0?"side-left":"side-right";
   var pts=descriptionPoints(x),pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3);
   var bullets='<ul class="journeyPoints">'+pts.map(function(p){return '<li class="journeyPoint">'+p+'</li>'}).join("")+'</ul>';
-  var visual='<canvas class="journeyMini3D" data-viz-section="'+i+'" data-viz-concept="'+j+'" aria-label="'+m[1]+' interactive chemistry visual"></canvas><span class="journeyVisualHint">Drag to rotate • pinch/scroll to zoom</span>';
-  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="journeyCard splitConcept"><div class="journeyCopy">'+bullets+'</div><aside class="journeyVisualPane">'+visual+'</aside></div></div></div></article>';
+  var mode,visual;
+  if(media){mode="mediaVisual";visual=media}
+  else if(shouldUseJourney3D(i,j)){mode="interactiveVisual";visual='<canvas class="journeyMini3D" data-viz-section="'+i+'" data-viz-concept="'+j+'" aria-label="'+m[1]+' interactive chemistry visual"></canvas><span class="journeyVisualHint">Drag to rotate • scroll to zoom</span>'}
+  else{mode="staticVisual";visual=journeyStaticVisual(i,j,m[1])}
+  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="journeyCard splitConcept"><div class="journeyCopy">'+bullets+'</div><aside class="journeyVisualPane '+mode+'">'+visual+'</aside></div></div></div></article>';
  }).join("")+
  '</div>';
 }
@@ -810,11 +909,11 @@ function scrollQuiz(i){
 function setupJourneyVisuals(){
  document.querySelectorAll(".journeyMini3D").forEach(function(cv){
   if(cv._vizBound)return;cv._vizBound=true;
-  var sec=+cv.dataset.vizSection,con=+cv.dataset.vizConcept,ay=-.35,ax=-.14,zoom=1,drag=null,raf=0,t=0,last=0;
+  var sec=+cv.dataset.vizSection,con=+cv.dataset.vizConcept,ay=-.35,ax=-.14,zoom=1,drag=null,raf=0,t=0,last=0,visible=false;
   function proj(p,w,h,s){var x=p[0],y=p[1],z=p[2],cy=Math.cos(ay),sy=Math.sin(ay),xx=x*cy+z*sy,zz=-x*sy+z*cy,cx=Math.cos(ax),sx=Math.sin(ax),yy=y*cx-zz*sx,z2=y*sx+zz*cx,k=7/(7-z2);return [w/2+xx*s*k,h/2-yy*s*k,k]}
   function line(ctx,pts,col,w,h,s,lw){ctx.beginPath();pts.forEach(function(p,n){var q=proj(p,w,h,s);n?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])});ctx.strokeStyle=col;ctx.lineWidth=lw||1;ctx.stroke()}
   function ball(ctx,p,r,col,w,h,s){var q=proj(p,w,h,s),rr=Math.max(2,r*s*q[2]);ctx.beginPath();ctx.arc(q[0],q[1],rr,0,Math.PI*2);ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=7;ctx.fill();ctx.shadowBlur=0}
-  function loop(now){var dpr=Math.min(2,devicePixelRatio||1),r=cv.getBoundingClientRect(),w=r.width,h=r.height;if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}var ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);var g=ctx.createRadialGradient(w*.5,h*.45,10,w*.5,h*.45,w*.7);g.addColorStop(0,"#1b4a58");g.addColorStop(1,"#092330");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);var s=Math.min(w/7,h/5)*zoom;t+=(now-last||0)/1000;last=now;
+  function loop(now){if(!visible){raf=0;return}var dpr=Math.min(2,devicePixelRatio||1),r=cv.getBoundingClientRect(),w=r.width,h=r.height;if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}var ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);var g=ctx.createRadialGradient(w*.5,h*.45,10,w*.5,h*.45,w*.7);g.addColorStop(0,"#1b4a58");g.addColorStop(1,"#092330");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);var s=Math.min(w/7,h/5)*zoom;t+=(now-last||0)/1000;last=now;
    if(sec===0){ // cathode/canal/Rutherford family
     if(con<2){line(ctx,[[-2.7,0,0],[2.7,0,0]],"#71e5bd",w,h,s,2);for(var n=0;n<22;n++){var x=-2.7+5.4*((n/22+t*.25)%1);ball(ctx,[x,.12*Math.sin(n*1.7),0],.045,"#78f0c4",w,h,s)}line(ctx,[[-2.8,-.75,-.5],[-2.8,.75,-.5]],"#efb66c",w,h,s,5);line(ctx,[[2.8,-.75,-.5],[2.8,.75,-.5]],"#8ec6d1",w,h,s,5)}
     else {ball(ctx,[0,0,0],.13,"#f0a45e",w,h,s);for(var a=0;a<12;a++){var yy=(a-5.5)*.18,def=(a===2?-1:a===9?1:0);line(ctx,[[-2.8,yy,0],[-.15,yy,0],[2.8,yy+def*.9,0]],def?"#ffd06f":"#79e7bd",w,h,s,def?2:1)}}
@@ -833,14 +932,20 @@ function setupJourneyVisuals(){
    } else { // periodic trends
     for(var n=0;n<6;n++){var rr=.48-n*.055,qq=proj([-2.1+n*.82,0,0],w,h,s);ctx.beginPath();ctx.arc(qq[0],qq[1],Math.max(5,rr*s),0,Math.PI*2);ctx.fillStyle="rgba(91,214,183,.75)";ctx.fill()}line(ctx,[[-2.5,-1.25,0],[2.5,-1.25,0]],"#ffd16d",w,h,s,3)
    }
-   raf=requestAnimationFrame(loop)
+   raf=visible?requestAnimationFrame(loop):0
   }
   function pt(e){return e.touches?e.touches[0]:e}
   cv.addEventListener("pointerdown",function(e){drag=[e.clientX,e.clientY];cv.setPointerCapture&&cv.setPointerCapture(e.pointerId)});
   cv.addEventListener("pointermove",function(e){if(!drag)return;ay+=(e.clientX-drag[0])*.008;ax+=(e.clientY-drag[1])*.006;drag=[e.clientX,e.clientY]});
   cv.addEventListener("pointerup",function(){drag=null});cv.addEventListener("pointercancel",function(){drag=null});
   cv.addEventListener("wheel",function(e){e.preventDefault();zoom=Math.max(.65,Math.min(1.65,zoom-e.deltaY*.001))},{passive:false});
-  raf=requestAnimationFrame(loop)
+  if("IntersectionObserver" in window){
+   var io=new IntersectionObserver(function(entries){
+    visible=entries[0]&&entries[0].isIntersecting;
+    if(visible&&!raf){last=performance.now();raf=requestAnimationFrame(loop)}
+   },{rootMargin:"18% 0px 18% 0px",threshold:.08});
+   io.observe(cv);cv._vizObserver=io;
+  }else{visible=true;raf=requestAnimationFrame(loop)}
  })
 }
 function setupJourneyScroll(){
@@ -881,7 +986,7 @@ function setupJourneyScroll(){
      var len=curve.getTotalLength(),pt=curve.getPointAtLength(len*(pct/100));
      if(runner){
       var xoff=(pt.x-50)*1.3;
-      runner.style.left="calc(50% + "+xoff.toFixed(2)+"px)";
+      runner.style.setProperty("left","calc(50% + "+xoff.toFixed(2)+"px)","important");
       runner.style.top=pt.y.toFixed(2)+"%";
       runner.style.opacity=pct>.7&&pct<99.3?"1":"0";
      }
