@@ -431,6 +431,20 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
 .journeyVisualFallback i{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px;border-radius:50%;background:#0b7775;box-shadow:0 0 22px #55d8b9}
 @keyframes chemspin{to{transform:rotate(360deg)}}
 @media(max-width:760px){.journeyCard.splitConcept{grid-template-columns:1fr;min-height:0;padding:12px;gap:12px}.journeyVisualPane,.journeyStep:nth-child(even) .journeyVisualPane{order:-1;min-height:205px}.journeyVisualPane img,.journeyVisualPane svg{max-height:190px}.journeyVisualFallback{width:150px;height:150px}}
+
+/* Journey v4: notes LEFT, interactive visual RIGHT, central path fixed */
+.journeyStep .journeySide{width:100%!important;max-width:none!important;display:grid!important;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr)!important;align-items:center!important;gap:18px!important}
+.journeyStep .journeyTitle{grid-column:1!important;grid-row:1!important;text-align:left!important}
+.journeyStep .journeyReveal{grid-column:1 / 4!important;grid-row:2!important;width:100%!important}
+.journeyCard.splitConcept{display:grid!important;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr)!important;gap:18px!important;align-items:center!important;min-height:360px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.journeyCard.splitConcept .journeyCopy{grid-column:1!important;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 14px 34px rgba(16,60,65,.07)}
+.journeyVisualPane{grid-column:3!important;order:0!important;min-height:320px!important;background:linear-gradient(145deg,#102d3b,#173f4d)!important;border:1px solid rgba(83,178,163,.35)!important;border-radius:22px!important;padding:0!important;overflow:hidden!important;box-shadow:0 16px 38px rgba(10,43,54,.15)}
+.journeyVisualPane img{width:100%;height:320px;object-fit:contain;background:#f7fbfa;padding:12px}
+.journeyStep:nth-child(even) .journeyVisualPane{order:0!important}
+.journeyMini3D{width:100%;height:320px;display:block;touch-action:none;cursor:grab}
+.journeyMini3D:active{cursor:grabbing}.journeyVisualHint{position:absolute;right:12px;bottom:10px;background:rgba(8,31,40,.76);color:#d9f5ee;padding:5px 8px;border-radius:8px;font:700 9px system-ui;pointer-events:none}
+.journeyVisualPane{position:relative}
+@media(max-width:760px){.journeyStep .journeySide{display:block!important}.journeyStep .journeyTitle{text-align:center!important}.journeyStep .journeyReveal{width:100%!important}.journeyCard.splitConcept{display:flex!important;flex-direction:column!important;min-height:0!important;gap:12px!important}.journeyVisualPane{order:0!important;width:100%!important;min-height:230px!important}.journeyCard.splitConcept .journeyCopy{order:1!important;width:100%}.journeyMini3D,.journeyVisualPane img{height:230px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 </head>
@@ -731,7 +745,7 @@ function journeySteps(n,i){
   var m=conceptTitle(i,j),media=journeyMedia(i,j),side=j%2===0?"side-left":"side-right";
   var pts=descriptionPoints(x),pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3);
   var bullets='<ul class="journeyPoints">'+pts.map(function(p){return '<li class="journeyPoint">'+p+'</li>'}).join("")+'</ul>';
-  var visual=media||'<div class="journeyVisualFallback"><i></i></div>';
+  var visual='<canvas class="journeyMini3D" data-viz-section="'+i+'" data-viz-concept="'+j+'" aria-label="'+m[1]+' interactive chemistry visual"></canvas><span class="journeyVisualHint">Drag to rotate • pinch/scroll to zoom</span>';
   return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="journeyCard splitConcept"><div class="journeyCopy">'+bullets+'</div><aside class="journeyVisualPane">'+visual+'</aside></div></div></div></article>';
  }).join("")+
  '</div>';
@@ -759,6 +773,43 @@ function scrollQuiz(i){
  var opts=q[1].map(function(o,oi){return '<button type="button" class="gateOpt '+(sel===oi?'selected':'')+'" data-letter="'+String.fromCharCode(65+oi)+'" data-gate-pick="'+i+'-'+qi+'-'+oi+'">'+o+'</button>'}).join("");
  var dots=qs.map(function(x,j){return '<i class="'+(j===qi?'active ':'')+(s.answers[j]!==undefined?'answered':'')+'"></i>'}).join("");
  return '<div class="masteryGate" data-gate="'+i+'><div class="masteryGateHead"><b>🔐 Section Checkpoint</b><span class="gateBadge">5 RANDOM QUESTIONS</span></div><div class="gateMeta">ප්‍රශ්න 50ක Unit 01 pool එකෙන් අහඹු ප්‍රශ්න 5ක් • සමත් වීමට 4/5 අවශ්‍යයි</div><div class="gateStage"><div class="gateProgressRow"><span>ප්‍රශ්නය '+(qi+1)+' / 5</span><span>'+(Object.keys(s.answers).length)+' පිළිතුරු දී ඇත</span></div><div class="gateProgress"><i style="width:'+((qi+1)*20)+'%"></i></div><div class="gateCard"><div class="gateQuestionNo">QUESTION '+String(qi+1).padStart(2,"0")+'</div><h4>'+q[0]+'</h4>'+opts+'</div><div class="gateNav"><button type="button" class="btn outline" data-gate-prev="'+i+'" '+(qi===0?'disabled':'')+'>← පෙර</button>'+(qi<4?'<button type="button" class="btn primary" data-gate-next="'+i+'" '+(sel===undefined?'disabled':'')+'>ඊළඟ →</button>':'<button type="button" class="btn primary" data-gate-submit="'+i+'" '+(Object.keys(s.answers).length<5?'disabled':'')+'>ප්‍රතිඵල බලන්න ✓</button>')+'</div><div class="gateDots">'+dots+'</div></div><div class="gateResult" data-gate-result="'+i+'"></div></div>';
+}
+
+function setupJourneyVisuals(){
+ document.querySelectorAll(".journeyMini3D").forEach(function(cv){
+  if(cv._vizBound)return;cv._vizBound=true;
+  var sec=+cv.dataset.vizSection,con=+cv.dataset.vizConcept,ay=-.35,ax=-.14,zoom=1,drag=null,raf=0,t=0,last=0;
+  function proj(p,w,h,s){var x=p[0],y=p[1],z=p[2],cy=Math.cos(ay),sy=Math.sin(ay),xx=x*cy+z*sy,zz=-x*sy+z*cy,cx=Math.cos(ax),sx=Math.sin(ax),yy=y*cx-zz*sx,z2=y*sx+zz*cx,k=7/(7-z2);return [w/2+xx*s*k,h/2-yy*s*k,k]}
+  function line(ctx,pts,col,w,h,s,lw){ctx.beginPath();pts.forEach(function(p,n){var q=proj(p,w,h,s);n?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])});ctx.strokeStyle=col;ctx.lineWidth=lw||1;ctx.stroke()}
+  function ball(ctx,p,r,col,w,h,s){var q=proj(p,w,h,s),rr=Math.max(2,r*s*q[2]);ctx.beginPath();ctx.arc(q[0],q[1],rr,0,Math.PI*2);ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=7;ctx.fill();ctx.shadowBlur=0}
+  function loop(now){var dpr=Math.min(2,devicePixelRatio||1),r=cv.getBoundingClientRect(),w=r.width,h=r.height;if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}var ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);var g=ctx.createRadialGradient(w*.5,h*.45,10,w*.5,h*.45,w*.7);g.addColorStop(0,"#1b4a58");g.addColorStop(1,"#092330");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);var s=Math.min(w/7,h/5)*zoom;t+=(now-last||0)/1000;last=now;
+   if(sec===0){ // cathode/canal/Rutherford family
+    if(con<2){line(ctx,[[-2.7,0,0],[2.7,0,0]],"#71e5bd",w,h,s,2);for(var n=0;n<22;n++){var x=-2.7+5.4*((n/22+t*.25)%1);ball(ctx,[x,.12*Math.sin(n*1.7),0],.045,"#78f0c4",w,h,s)}line(ctx,[[-2.8,-.75,-.5],[-2.8,.75,-.5]],"#efb66c",w,h,s,5);line(ctx,[[2.8,-.75,-.5],[2.8,.75,-.5]],"#8ec6d1",w,h,s,5)}
+    else {ball(ctx,[0,0,0],.13,"#f0a45e",w,h,s);for(var a=0;a<12;a++){var yy=(a-5.5)*.18,def=(a===2?-1:a===9?1:0);line(ctx,[[-2.8,yy,0],[-.15,yy,0],[2.8,yy+def*.9,0]],def?"#ffd06f":"#79e7bd",w,h,s,def?2:1)}}
+   } else if(sec===1){ // nucleus/isotopes/ions
+    for(var k=0;k<14;k++){var ph=k*2.399,rr=.2+.07*k;ball(ctx,[rr*Math.cos(ph),rr*Math.sin(ph),.25*Math.sin(k)],.12,k%2?"#ee9a80":"#8eb5c8",w,h,s)}for(var e=0;e<6;e++){var an=e*Math.PI/3+t*.45;ball(ctx,[1.7*Math.cos(an),1.7*Math.sin(an),0],.07,"#7cf0c3",w,h,s)}
+   } else if(sec===2){ // EM wave / photon
+    var pts=[];for(var q=0;q<100;q++){var xx=-2.8+q*.056;pts.push([xx,.65*Math.sin(xx*4-t*3),0])}line(ctx,pts,"#75f0c7",w,h,s,2);for(var p=0;p<6;p++)ball(ctx,[-2.5+p,0.95,0],.055,"#ffd36e",w,h,s)
+   } else if(sec===3){ // Bohr/spectrum transitions
+    ball(ctx,[0,0,0],.14,"#f0a45e",w,h,s);for(var sh=1;sh<=3;sh++){var rad=.65+sh*.48,ring=[];for(var z=0;z<=64;z++){var an=z/64*Math.PI*2;ring.push([rad*Math.cos(an),rad*Math.sin(an),0])}line(ctx,ring,"#5ea79e",w,h,s,1)}var rad=1.13+(.48*((Math.floor(t/2)%2)));var an=t*1.4;ball(ctx,[rad*Math.cos(an),rad*Math.sin(an),0],.08,"#7cf0c3",w,h,s)
+   } else if(sec===4){ // orbital lobes
+    var typ=con%3;for(var z=0;z<70;z++){var an=z/70*Math.PI*2,rad=.4+1.5*Math.abs(Math.cos(an*(typ+1)));var p1=typ===0?[rad*Math.cos(an),rad*Math.sin(an),0]:typ===1?[rad*Math.cos(an),0,rad*Math.sin(an)]:[0,rad*Math.cos(an),rad*Math.sin(an)];ball(ctx,p1,.055,z%2?"#5fd3b5":"#e8a15f",w,h,s)}
+   } else if(sec===5){ // electron configuration boxes
+    for(var b=0;b<5;b++){var x=-2.2+b*1.05;line(ctx,[[x,-.55,0],[x+.72,-.55,0],[x+.72,.15,0],[x,.15,0],[x,-.55,0]],"#7fb9b0",w,h,s,1);var up=Math.min(1,Math.max(0,t-b*.25));if(up>0)line(ctx,[[x+.22,-.4,0],[x+.22,.02,0]],"#7cf0c3",w,h,s,3)}
+   } else if(sec===6){ // periodic blocks
+    for(var row=0;row<4;row++)for(var col=0;col<9;col++){var x=-2.8+col*.62,y=-1+row*.55,active=(col+row)%4===con%4;ctx.fillStyle=active?"#55d3b1":"#315969";var q=proj([x,y,0],w,h,s);ctx.fillRect(q[0]-9,q[1]-9,18,18)}
+   } else { // periodic trends
+    for(var n=0;n<6;n++){var rr=.48-n*.055,qq=proj([-2.1+n*.82,0,0],w,h,s);ctx.beginPath();ctx.arc(qq[0],qq[1],Math.max(5,rr*s),0,Math.PI*2);ctx.fillStyle="rgba(91,214,183,.75)";ctx.fill()}line(ctx,[[-2.5,-1.25,0],[2.5,-1.25,0]],"#ffd16d",w,h,s,3)
+   }
+   raf=requestAnimationFrame(loop)
+  }
+  function pt(e){return e.touches?e.touches[0]:e}
+  cv.addEventListener("pointerdown",function(e){drag=[e.clientX,e.clientY];cv.setPointerCapture&&cv.setPointerCapture(e.pointerId)});
+  cv.addEventListener("pointermove",function(e){if(!drag)return;ay+=(e.clientX-drag[0])*.008;ax+=(e.clientY-drag[1])*.006;drag=[e.clientX,e.clientY]});
+  cv.addEventListener("pointerup",function(){drag=null});cv.addEventListener("pointercancel",function(){drag=null});
+  cv.addEventListener("wheel",function(e){e.preventDefault();zoom=Math.max(.65,Math.min(1.65,zoom-e.deltaY*.001))},{passive:false});
+  raf=requestAnimationFrame(loop)
+ })
 }
 function setupJourneyScroll(){
  if(window._chemJourneyObserver){try{window._chemJourneyObserver.disconnect()}catch(e){}window._chemJourneyObserver=null}
@@ -847,7 +898,7 @@ function pConclusion(){var u=U();var arr=state.lang==="en"?["Cathode rays travel
 function pQuestions(){var u=U(),q=mcq[state.lang].slice(0,3);return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[6]+'</h2>'+q.map(function(x,qi){return '<div class="card" style="margin:10px 0"><strong>'+x[0]+'</strong>'+x[1].map(function(a,ai){return '<label style="display:block;padding:6px"><input type="radio" name="pq'+qi+'" value="'+ai+'"> '+String.fromCharCode(65+ai)+'. '+a+'</label>'}).join("")+'</div>'}).join("")+'<button class="btn primary" id="pcheck">'+u.check+'</button><div class="observation" id="presult" style="display:none"></div></div></section>'}
 function renderP01(){var u=U();var content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep]();var steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function render(){var r=route(),html=r==="home"?renderHome():r==="lessons"?renderLessons():r==="unit1"?renderUnit1():r==="lab"?renderLab():r==="exam"?renderExam():r==="p01"?renderP01():renderHome();document.getElementById("app").innerHTML=html;bind();if(r==="unit1"){var nm=location.hash.match(/note=(\\d+)/);if(nm){var el=document.getElementById("note"+nm[1]);if(el){el.open=true;requestAnimationFrame(function(){el.scrollIntoView({behavior:"smooth",block:"start"})})}}}if(r==="p01"&&state.pstep===3)requestAnimationFrame(initThreeLab)}
+function render(){var r=route(),html=r==="home"?renderHome():r==="lessons"?renderLessons():r==="unit1"?renderUnit1():r==="lab"?renderLab():r==="exam"?renderExam():r==="p01"?renderP01():renderHome();document.getElementById("app").innerHTML=html;bind();if(r==="unit1"){requestAnimationFrame(setupJourneyVisuals);var nm=location.hash.match(/note=(\\d+)/);if(nm){var el=document.getElementById("note"+nm[1]);if(el){el.open=true;requestAnimationFrame(function(){el.scrollIntoView({behavior:"smooth",block:"start"})})}}}if(r==="p01"&&state.pstep===3)requestAnimationFrame(initThreeLab)}
 function bind(){
 
 document.querySelectorAll("[data-simplejump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("note"+b.dataset.simplejump);if(el){el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"})}}});
