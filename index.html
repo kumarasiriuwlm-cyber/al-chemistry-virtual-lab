@@ -36,7 +36,7 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
 .noteVisual{margin:16px 0 18px}
 .scientistGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .scientistCard{overflow:hidden;border:1px solid var(--line);border-radius:15px;background:#f8fbfa}
-.scientistCard img{display:block;width:100%;height:190px;object-fit:cover;background:#e8efed}
+.scientistCard img{display:block;width:100%;height:190px;object-fit:cover;object-position:center 18%;background:#e8efed}
 .scientistCard .scText{padding:11px 12px}
 .scientistCard strong{display:block;font-size:14px}
 .scientistCard span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
@@ -202,9 +202,9 @@ function videoBlock(id){var u=U();return '<div class="video"><iframe loading="la
 function noteVisual(i){
 var role=state.lang==="si"?["electron සහ Cathode Rays","nuclear model","quantized energy levels"]:state.lang==="ta"?["electron மற்றும் Cathode Rays","nuclear model","quantized energy levels"]:["electron and cathode rays","nuclear model","quantized energy levels"];
 if(i===0)return '<div class="noteVisual"><div class="scientistGrid">'+
-'<div class="scientistCard"><img loading="lazy" alt="J. J. Thomson" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/J.J%20Thomson.jpg?width=420"><div class="scText"><strong>J. J. Thomson</strong><span>'+role[0]+'</span></div></div>'+
-'<div class="scientistCard"><img loading="lazy" alt="Ernest Rutherford" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Portrait%20of%20Ernest%20Rutherford%20(1871-1937)%2C%20Physicist%20and%20Chemist%20(2551070939).jpg?width=420"><div class="scText"><strong>Ernest Rutherford</strong><span>'+role[1]+'</span></div></div>'+
-'<div class="scientistCard"><img loading="lazy" alt="Niels Bohr" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Niels%20Bohr.jpg?width=420"><div class="scText"><strong>Niels Bohr</strong><span>'+role[2]+'</span></div></div>'+
+'<div class="scientistCard"><img loading="eager" decoding="async" referrerpolicy="no-referrer" alt="J. J. Thomson" src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_portrait_of_J._J._Thomson_%281856_%E2%80%93_1940%29_%28Transparent_BG%29.png"><div class="scText"><strong>J. J. Thomson</strong><span>'+role[0]+'</span></div></div>'+
+'<div class="scientistCard"><img loading="eager" decoding="async" referrerpolicy="no-referrer" alt="Ernest Rutherford" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Portrait_of_Ernest_Rutherford_%281871-1937%29%2C_Physicist_and_Chemist_%282551070939%29.jpg"><div class="scText"><strong>Ernest Rutherford</strong><span>'+role[1]+'</span></div></div>'+
+'<div class="scientistCard"><img loading="eager" decoding="async" referrerpolicy="no-referrer" alt="Niels Bohr" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Niels_Bohr.jpg"><div class="scText"><strong>Niels Bohr</strong><span>'+role[2]+'</span></div></div>'+
 '</div><div class="visualCredit">Portraits: Wikimedia Commons</div></div>';
 if(i===2)return '<div class="noteVisual conceptVisual"><strong>Electromagnetic spectrum</strong><div class="emSpectrum"><i>Radio</i><i>Microwave</i><i>IR</i><i>Visible</i><i>UV</i><i>X-ray</i><i>γ-ray</i></div><div class="meta">wavelength λ decreases → &nbsp; frequency ν and photon energy increase →</div></div>';
 if(i===3)return '<div class="noteVisual conceptVisual"><strong>'+(state.lang==="si"?"ශක්ති මට්ටම්":state.lang==="ta"?"ஆற்றல் மட்டங்கள்":"Energy levels")+'</strong><div class="energyLevels"><div class="level"><span>n = 4</span></div><div class="level"><span>n = 3</span></div><div class="level"><span>n = 2</span></div><div class="level"><span>n = 1</span></div><div class="energyArrow"></div></div><div class="meta">ΔE = hν</div></div>';
