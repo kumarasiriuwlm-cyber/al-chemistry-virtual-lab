@@ -419,6 +419,18 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
 .devPanel{display:none;margin:0 0 18px;padding:14px 16px;border:1px dashed #c69342;border-radius:17px;background:linear-gradient(135deg,#fff8e9,#fff);box-shadow:0 8px 22px rgba(119,82,25,.07)}
 .devPanel.show{display:block}.devPanelTop{display:flex;align-items:center;justify-content:space-between;gap:12px}.devPanel strong{font-size:14px;color:#815a20}.devFlag{font:900 9px Arial;letter-spacing:.12em;background:#8a6429;color:#fff;padding:5px 8px;border-radius:99px}.devPanel p{font-size:11px;color:#806f57;margin:5px 0 10px}.devActions{display:flex;gap:7px;flex-wrap:wrap}.devActions button{border:1px solid #dec89f;background:#fff;border-radius:10px;padding:7px 10px;font-size:11px;font-weight:850;color:#735421;cursor:pointer}
 @media(max-width:600px){.devPanelTop{align-items:flex-start}.devActions button{flex:1 1 45%}}
+
+.journeyCard.splitConcept{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);gap:24px;align-items:center;min-height:340px;padding:20px}
+.journeyCard.splitConcept .journeyCopy{min-width:0}
+.journeyVisualPane{min-height:275px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:linear-gradient(145deg,#f9fdfc,#e9f5f2);display:flex;align-items:center;justify-content:center;padding:13px}
+.journeyVisualPane img,.journeyVisualPane svg{width:100%;max-width:100%;max-height:250px;object-fit:contain;border-radius:14px}
+.journeyStep:nth-child(even) .journeyVisualPane{order:-1}
+.journeyVisualFallback{width:190px;height:190px;border:2px solid #4db7a6;border-radius:50%;position:relative;animation:chemspin 7s linear infinite}
+.journeyVisualFallback:before,.journeyVisualFallback:after{content:"";position:absolute;inset:28px -16px;border:1px solid #75cbbb;border-radius:50%;transform:rotate(60deg)}
+.journeyVisualFallback:after{transform:rotate(-60deg)}
+.journeyVisualFallback i{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px;border-radius:50%;background:#0b7775;box-shadow:0 0 22px #55d8b9}
+@keyframes chemspin{to{transform:rotate(360deg)}}
+@media(max-width:760px){.journeyCard.splitConcept{grid-template-columns:1fr;min-height:0;padding:12px;gap:12px}.journeyVisualPane,.journeyStep:nth-child(even) .journeyVisualPane{order:-1;min-height:205px}.journeyVisualPane img,.journeyVisualPane svg{max-height:190px}.journeyVisualFallback{width:150px;height:150px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 </head>
@@ -716,10 +728,11 @@ function journeySteps(n,i){
  var count=n.b.length;
  return '<div class="journeyTrack" data-journey-track="'+i+'"><div class="journeyRail"><span class="journeyFill"></span></div>'+journeyCurveSvg(count,i)+'<span class="journeyRunnerHtml"></span>'+
  n.b.map(function(x,j){
-  var m=conceptTitle(i,j),media=journeyMedia(i,j),cardClass=media?"journeyCard hasMedia":"journeyCard",side=j%2===0?"side-left":"side-right";
+  var m=conceptTitle(i,j),media=journeyMedia(i,j),side=j%2===0?"side-left":"side-right";
   var pts=descriptionPoints(x),pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3);
   var bullets='<ul class="journeyPoints">'+pts.map(function(p){return '<li class="journeyPoint">'+p+'</li>'}).join("")+'</ul>';
-  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="'+cardClass+'">'+media+'<div class="journeyCopy">'+bullets+'</div></div></div></div></article>';
+  var visual=media||'<div class="journeyVisualFallback"><i></i></div>';
+  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="journeyCard splitConcept"><div class="journeyCopy">'+bullets+'</div><aside class="journeyVisualPane">'+visual+'</aside></div></div></div></article>';
  }).join("")+
  '</div>';
 }
