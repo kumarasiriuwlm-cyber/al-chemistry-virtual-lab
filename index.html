@@ -313,9 +313,9 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
  .journeyRunnerHtml:after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(52,189,168,.34);animation:runnerPulse 1.45s ease-out infinite}
  @keyframes runnerPulse{0%{transform:scale(.55);opacity:.72}100%{transform:scale(1.75);opacity:0}}
  @keyframes journeyDashFlow{to{stroke-dashoffset:-16}}
- .journeyStep{display:grid;grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr);align-items:start;min-height:calc(380px + var(--point-extra,0px));margin:0 0 38px;z-index:1}
+ .journeyStep{display:grid;grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr);align-items:center;min-height:330px;margin:0 0 24px;z-index:1}
  .journeyStep:before{display:none}
- .journeySide{min-width:0;max-width:560px;width:100%;transition:filter .35s ease;position:sticky;top:17vh;align-self:start}
+ .journeySide{min-width:0;max-width:560px;width:100%;transition:filter .35s ease}
  .journeyStep.side-left .journeySide{grid-column:1;justify-self:end;text-align:right;padding-right:12px}
  .journeyStep.side-right .journeySide{grid-column:3;justify-self:start;text-align:left;padding-left:12px}
  .journeyStep.side-left .journeyTitle{transform-origin:right center;transform:translateX(42px) translateY(14px) scale(.94)}
@@ -329,37 +329,28 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
  .journeyReveal{width:100%}
  .journeyCard{box-shadow:0 14px 40px rgba(25,61,70,.08);transition:box-shadow .38s ease,transform .38s ease,border-color .38s ease}
  .journeyStep.activeStep .journeyCard{border-color:#acd8cf;box-shadow:0 20px 55px rgba(20,111,105,.13);transform:translateY(-3px)}
- .journeyStep.pointsComplete .journeyCard{border-color:#b8ddd5}
+
  .journeyCard.hasMedia{display:block}
  .journeyMedia{min-height:180px}
  .journeyMedia img{max-height:300px}
  .journeyMedia.portrait img{height:260px}
  .journeyCopy{padding:18px 20px 20px;text-align:left}
  .journeyCopy p{font-size:14px;line-height:1.95}
- .journeyPoints{list-style:none;margin:0;padding:0;display:grid;gap:11px}
- .journeyPoint{position:relative;padding:11px 12px 11px 34px;border-radius:12px;background:#f7fbfa;border:1px solid #e0ece9;color:#294d54;font-size:14px;line-height:1.72;opacity:.12;transform:translateY(18px) scale(.985);filter:blur(1.2px);transition:opacity .38s ease,transform .48s cubic-bezier(.2,.8,.2,1),filter .36s ease,background .3s ease,border-color .3s ease}
- .journeyPoint:before{content:"";position:absolute;left:13px;top:18px;width:8px;height:8px;border-radius:50%;background:#bdd8d2;box-shadow:0 0 0 4px rgba(29,161,141,.04);transition:.3s ease}
- .journeyPoint.shown{opacity:1;transform:none;filter:none;background:#fff;border-color:#cfe4df}
- .journeyPoint.shown:before{background:#1da18d;box-shadow:0 0 0 4px rgba(29,161,141,.09)}
- .journeyPoint.currentPoint{border-color:#8fcfc2;box-shadow:0 9px 24px rgba(29,161,141,.08)}
- .journeyPoint.currentPoint:before{box-shadow:0 0 0 7px rgba(29,161,141,.11)}
- .journeyProgressHint{margin-top:10px;font-size:10px;color:#668087;text-align:right;opacity:.8}
- .journeyCenterDot{display:block;position:absolute;left:calc(50% + var(--node-offset,0px));top:var(--node-top,50%);width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%) scale(.86);background:#fff;border:4px solid #d3e3df;box-shadow:0 0 0 5px rgba(255,255,255,.92);z-index:3;transition:left .45s ease,top .35s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s ease}
- .journeyStep.seen .journeyCenterDot{background:#1da18d;border-color:#9ed9cc;box-shadow:0 0 0 7px rgba(29,161,141,.12);transform:translate(-50%,-50%) scale(1)}
- .journeyStep.activeStep .journeyCenterDot{background:#fff;border-color:#159b89;box-shadow:0 0 0 7px rgba(29,161,141,.15),0 0 24px rgba(29,161,141,.42);transform:translate(-50%,-50%) scale(1.2);animation:nodeBreath 1.6s ease-in-out infinite}
- .journeyConnector{display:block;position:absolute;top:var(--node-top,50%);height:2px;width:82px;background:linear-gradient(90deg,transparent,#8ccabd);opacity:0;transform-origin:center;transition:opacity .35s ease .08s,transform .48s cubic-bezier(.2,.8,.2,1) .08s}
- .journeyStep.side-left .journeyConnector{right:calc(50% + 42px);transform:scaleX(0)}
- .journeyStep.side-right .journeyConnector{left:calc(50% + 42px);transform:scaleX(0)}
- .journeyStep.side-left.detailVisible .journeyConnector{opacity:1;transform:scaleX(1)}
- .journeyStep.side-right.detailVisible .journeyConnector{opacity:1;transform:scaleX(-1)}
- @keyframes nodeBreath{0%,100%{box-shadow:0 0 0 7px rgba(29,161,141,.13),0 0 16px rgba(29,161,141,.28)}50%{box-shadow:0 0 0 12px rgba(29,161,141,.04),0 0 30px rgba(29,161,141,.5)}}
- .journeyChapter>.formulaStrip,.journeyChapter>.examMini,.journeyChapter>.scrollQuiz,.journeyChapter>.video,.journeyChapter>.sectionFinish,.journeyChapter>.journeyEnd{max-width:760px;margin-left:auto;margin-right:auto}
+ .journeyPoints{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ .journeyPoint{position:relative;padding:10px 12px 10px 33px;border-radius:12px;background:#f8fbfa;border:1px solid #e1ece9;color:#294d54;font-size:14px;line-height:1.72;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .48s cubic-bezier(.2,.8,.2,1),background .3s ease,border-color .3s ease}
+ .journeyPoint:before{content:"";position:absolute;left:13px;top:17px;width:8px;height:8px;border-radius:50%;background:#1da18d;box-shadow:0 0 0 4px rgba(29,161,141,.08)}
+ .journeyStep.detailVisible .journeyPoint{opacity:1;transform:none;background:#fff;border-color:#cfe4df}
+ .journeyStep.detailVisible .journeyPoint:nth-child(2){transition-delay:.04s}
+ .journeyStep.detailVisible .journeyPoint:nth-child(3){transition-delay:.08s}
+ .journeyStep.detailVisible .journeyPoint:nth-child(4){transition-delay:.12s}
+ .journeyStep.detailVisible .journeyPoint:nth-child(5){transition-delay:.16s}
+ .journeyProgressHint{display:none}
  .formulaStrip{justify-content:center}
  .scrollQuiz{margin-top:20px}
 }
 
 @media(max-width:620px){.summaryGuide{padding:12px}.journeyTrack{padding-left:31px}.journeyRail{left:7px}.journeyStep:before{left:-29px}.journeyChapterHead{padding:11px 12px}.journeyChapterTitle{font-size:13px}.journeyMedia{min-height:72px}.journeyMedia.portrait img{height:165px}.journeyCopy p{font-size:12px}.journeyTitle h3{font-size:23px;margin-bottom:10px}.journeyPoint{font-size:12px;line-height:1.65;padding:9px 10px 9px 30px}.journeyPoint:before{left:11px;top:15px}.journeyRunnerHtml{display:none}}
-@media(prefers-reduced-motion:reduce){.journeyTitle,.journeyReveal,.journeyPoint{opacity:1;transform:none;filter:none;transition:none}.journeyFill,.journeyCurveProgress{transition:none}.journeyCurveGhost,.journeyStep.activeStep .journeyCenterDot,.journeyRunnerHtml:after{animation:none}.journeyRunnerHtml{display:none}}
+@media(prefers-reduced-motion:reduce){.journeyTitle,.journeyReveal,.journeyPoint{opacity:1;transform:none;transition:none}.journeyFill,.journeyCurveProgress{transition:none}.journeyCurveGhost,.journeyStep.activeStep .journeyCenterDot,.journeyRunnerHtml:after{animation:none}.journeyRunnerHtml{display:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 </head>
@@ -392,11 +383,11 @@ si:[
 "පදාර්ථයේ අති සුළු මූලික ඒකක පිළිබඳ අදහස ඩිමොක්‍රිටස් වැනි පුරාණ දාර්ශනිකයන්ගෙන් ආරම්භ වූ අතර 1808 දී ජෝන් ඩෝල්ටන් (Dalton) එය විද්‍යාත්මක පරමාණුක වාදයක් ලෙස සංවිධානය කළේය. ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන අදහස් වූයේ මූලද්‍රව්‍ය පරමාණු වලින් සමන්විත වීම, එකම මූලද්‍රව්‍යයේ පරමාණු අතර සමානත්වය, රසායනික ප්‍රතික්‍රියාවලදී පරමාණු නිර්මාණය/විනාශ නොවීම සහ සංයෝග සරල පූර්ණ සංඛ්‍යා අනුපාතවලින් සෑදීමයි.",
 "අඩු පීඩන වායුවක් සහිත විද්‍යුත් විසර්ජන නළයකට ඉහළ විභව අන්තරයක් යෙදූ විට කැතෝඩයෙන් ඇනෝඩය දෙසට ගමන් කරන ඍණ ආරෝපිත කදම්බය කැතෝඩ කිරණ ලෙස හැඳින්වේ. ඒවා සෘජු රේඛාවක ගමන් කරයි, ශක්තිය හා ගතිමානය රැගෙන යයි, ප්‍රතිදීප්ත තිරයක් දීප්තිමත් කරයි සහ විද්‍යුත්/චුම්බක ක්ෂේත්‍රවලදී අපගමනය වේ.",
 "කැතෝඩ කිරණවල ස්වභාවය නළයේ වායුව හෝ කැතෝඩය සෑදූ ද්‍රව්‍යය වෙනස් කළත් වෙනස් නොවන බව ජේ. ජේ. තොම්සන් (J. J. Thomson) පෙන්වා දුන්නේය. ඔහු e/m ≈ 1.76 × 10⁸ C g⁻¹ ලෙස ආරෝපණය/ස්කන්ධ අනුපාතය නිරණය කළ අතර පරමාණුවේ ඍණ ආරෝපිත අංශුව ඉලෙක්ට්‍රෝනය බව තහවුරු කළේය.",
-"තොම්සන් (Thomson) විසින් ධන ආරෝපිත ගෝලයක් තුළ ඉලෙක්ට්‍රෝන පැතිරී ඇති ‘plum-pudding’ ආකෘතිය යෝජනා කළේය. පසුව මිලිකන් (Millikan)ගේ oil-drop පරීක්ෂණයෙන් ඉලෙක්ට්‍රෝනයේ ආරෝපණය 1.602 × 10⁻¹⁹ C ලෙස ලැබුණු අතර තොම්සන් (Thomson)ගේ e/m අගය සමඟ එය භාවිත කර ඉලෙක්ට්‍රෝන ස්කන්ධය ≈ 9.10 × 10⁻²⁸ g ලෙස ගණනය කළ හැකි විය.",
+"තොම්සන් (Thomson) විසින් ධන ආරෝපිත ගෝලයක් තුළ ඉලෙක්ට්‍රෝන පැතිරී ඇති ‘plum-pudding’ ආකෘතිය යෝජනා කළේය. පසුව මිලිකන් (Millikan)ගේ oil-drop පරීක්ෂණයෙන් ඉලෙක්ට්‍රෝනයේ ආරෝපණයේ විශාලත්වය |e| = 1.602 × 10⁻¹⁹ C ලෙස ලැබුණු අතර තොම්සන් (Thomson)ගේ e/m අගය සමඟ එය භාවිත කර ඉලෙක්ට්‍රෝන ස්කන්ධය ≈ 9.10 × 10⁻²⁸ g ලෙස ගණනය කළ හැකි විය.",
 "ගෝල්ඩ්ස්ටයින් (Goldstein)ගේ සිදුරු සහිත කැතෝඩ නළ පරීක්ෂණවලින් ධන කිරණ (canal rays) හඳුනා ගන්නා ලදී. ඒවා ධන ආරෝපිත අයනවලින් සමන්විත වන අතර ස්වභාවය නළයේ වායුව මත රඳා පවතී. හයිඩ්‍රජන් වායුවෙන් ලැබෙන සැහැල්ලුම ධන අංශුව ප්‍රෝටෝනයයි; එහි ආරෝපණය +1.602 × 10⁻¹⁹ C සහ සාපේක්ෂ ස්කන්ධය ආසන්න වශයෙන් 1 වේ.",
 "විකිරණශීලී ද්‍රව්‍යවලින් α, β සහ γ විකිරණ නිකුත් වේ. α අංශු ධන ආරෝපිත, β අංශු ඉලෙක්ට්‍රෝන ස්වභාවයෙන් ඍණ ආරෝපිත වන අතර γ විකිරණයට ආරෝපණයක් නැත. එබැවින් විද්‍යුත් ක්ෂේත්‍රයකදී α හා β විරුද්ධ දිශාවලට අපගමනය වන අතර γ අපගමනය නොවේ.",
-"රදර්ෆර්ඩ්ගේ රන් පත්‍ර පරීක්ෂණයේදී බොහෝ α අංශු සෘජුව ගමන් කළද සුළු ප්‍රමාණයක් විශාල කෝණවලින් අපගමනය විය. එයින් පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් බවත් ධන ආරෝපණය සහ වැඩි ස්කන්ධය ඉතා කුඩා, ඝන න්‍යෂ්ටියක සංකේන්ද්‍රණය වී ඇති බවත් නිගමනය කෙරිණි. බෝර් (Bohr) විසින් ඉලෙක්ට්‍රෝන නිශ්චිත ශක්ති මට්ටම්වල පවතින බව යෝජනා කර රදර්ෆර්ඩ් (Rutherford) ආකෘතිය සංවර්ධනය කළේය."
-],f:"e/m ≈ 1.76 × 10⁸ C g⁻¹   •   |e| = 1.602 × 10⁻¹⁹ C   •   mₑ ≈ 9.10 × 10⁻²⁸ g",v:"atomic_si",exam:["ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන උපකල්පන සහ ඒවායේ සීමා","කැතෝඩ/ධන කිරණවල ගුණ නිරීක්ෂණවලින් හඳුනා ගැනීම","තොම්සන් (Thomson) හා මිලිකන් (Millikan) දත්තවලින් ඉලෙක්ට්‍රෝන ගුණ සම්බන්ධ කිරීම","α, β, γ විකිරණ විද්‍යුත් ක්ෂේත්‍රයකදී හැසිරීම","රදර්ෆර්ඩ් පරීක්ෂණයේ නිරීක්ෂණ සහ නිගමන සම්බන්ධ කිරීම"]},
+"රදර්ෆර්ඩ්ගේ රන් පත්‍ර පරීක්ෂණයේදී බොහෝ α අංශු සෘජුව ගමන් කළ අතර, සුළු ප්‍රමාණයක් විශාල කෝණවලින් අපගමනය වී ඉතා සුළු සංඛ්‍යාවක් ආපසු වික්ෂේප විය. එයින් පරමාණුවේ වැඩි කොටස හිස් අවකාශයක් බවත් ධන ආරෝපණය සහ වැඩි ස්කන්ධය ඉතා කුඩා, ඝන න්‍යෂ්ටියක සංකේන්ද්‍රණය වී ඇති බවත් නිගමනය කෙරිණි. බෝර් (Bohr) විසින් ඉලෙක්ට්‍රෝන නිශ්චිත ශක්ති මට්ටම්වල පවතින බව යෝජනා කර රදර්ෆර්ඩ් (Rutherford) ආකෘතිය සංවර්ධනය කළේය."
+],f:"e/m ≈ 1.76 × 10⁸ C g⁻¹   •   |e| = 1.602 × 10⁻¹⁹ C   •   mₑ ≈ 9.10 × 10⁻²⁸ g",v:"atomic_si",exam:["ඩෝල්ටන් (Dalton)ගේ ප්‍රධාන උපකල්පන","කැතෝඩ/ධන කිරණවල ගුණ නිරීක්ෂණවලින් හඳුනා ගැනීම","තොම්සන් (Thomson) හා මිලිකන් (Millikan) දත්තවලින් ඉලෙක්ට්‍රෝන ගුණ සම්බන්ධ කිරීම","α, β, γ විකිරණ විද්‍යුත් ක්ෂේත්‍රයකදී හැසිරීම","රදර්ෆර්ඩ් පරීක්ෂණයේ නිරීක්ෂණ සහ නිගමන සම්බන්ධ කිරීම"]},
 {t:"පරමාණුක ක්‍රමාංකය, නියුක්ලයිඩ, සමස්ථානික, අයන සහ සාපේක්ෂ පරමාණුක ස්කන්ධය",b:[
 "පරමාණුක ක්‍රමාංකය Z යනු න්‍යෂ්ටියේ ප්‍රෝටෝන ගණනයි. ස්කන්ධ ක්‍රමාංකය A = ප්‍රෝටෝන + නියුට්‍රෝන. එබැවින් නියුට්‍රෝන ගණන N = A − Z වේ. විද්‍යුත්-නිර්පේක්ෂ පරමාණුවක ඉලෙක්ට්‍රෝන ගණන ද Z ට සමාන වේ.",
 "මෝස්ලි (Moseley)ගේ කාර්යය පරමාණුක ක්‍රමාංකය මූලද්‍රව්‍යයක අනන්‍ය ලක්ෂණයක් බව තහවුරු කිරීමට වැදගත් විය. න්‍යෂ්ටියේ ඇති ප්‍රෝටෝන සහ නියුට්‍රෝන එකට නියුක්ලියෝන ලෙස හැඳින්වෙන අතර නියුක්ලයිඩයක් ᴬZX ලෙස නිරූපණය කරයි.",
@@ -405,7 +396,7 @@ si:[
 "මූලද්‍රව්‍යයක මධ්‍ය පරමාණුක ස්කන්ධය ගණනය කරන්නේ එක් එක් සමස්ථානිකයේ ස්කන්ධය හා ස්වභාවික භාගික බහුලතාව ගුණකර එකතු කිරීමෙනි. සාපේක්ෂ පරමාණුක ස්කන්ධය Aᵣ යනු ඒ මධ්‍ය පරමාණුක ස්කන්ධය ¹²C හි ස්කන්ධයේ 1/12 සමඟ සසඳන ඒකක රහිත අනුපාතයකි.",
 "පරමාණුක ස්කන්ධය g mol⁻¹ ඒකකයෙන් පරමාණු මවුලයක ස්කන්ධයක් ලෙස ද ප්‍රකාශ කළ හැක. සංඛ්‍යාත්මකව මධ්‍ය පරමාණුක ස්කන්ධය (u) හා මවුලික ස්කන්ධය (g mol⁻¹) එකම අගයට ආසන්න වේ.",
 "ධන අයනයක් (cation) සෑදෙන්නේ ඉලෙක්ට්‍රෝන අහිමි වීමෙන්ය; ඍණ අයනයක් (anion) සෑදෙන්නේ ඉලෙක්ට්‍රෝන ලබා ගැනීමෙන්ය. Na⁺, Cl⁻ වැනි ඒකපරමාණුක අයන මෙන්ම NH₄⁺, SO₄²⁻ වැනි බහුපරමාණුක අයන ද පවතී."
-],f:"N = A − Z   •   1 u = 1.66054 × 10⁻²⁴ g   •   Aᵣ = Σ(සමස්ථානික ස්කන්ධය × භාගික බහුලතාව)",exam:["ප්‍රෝටෝන, නියුට්‍රෝන සහ ඉලෙක්ට්‍රෝන ගණන සොයන ප්‍රශ්න","නියුක්ලයිඩ හා සමස්ථානික හඳුනා ගැනීම","අයනයක ඉලෙක්ට්‍රෝන ගණන","සමස්ථානික බහුලතාවලින් Aᵣ හෝ නොදන්නා බහුලතාව ගණනය කිරීම","u, සාපේක්ෂ පරමාණුක ස්කන්ධය සහ මවුලික ස්කන්ධය අතර වෙනස"]},
+],f:"N = A − Z   •   1 u = 1.66054 × 10⁻²⁴ g   •   මධ්‍ය පරමාණුක ස්කන්ධය = Σ(සමස්ථානික ස්කන්ධය × භාගික බහුලතාව)",exam:["ප්‍රෝටෝන, නියුට්‍රෝන සහ ඉලෙක්ට්‍රෝන ගණන සොයන ප්‍රශ්න","නියුක්ලයිඩ හා සමස්ථානික හඳුනා ගැනීම","අයනයක ඉලෙක්ට්‍රෝන ගණන","සමස්ථානික බහුලතාවලින් මධ්‍ය පරමාණුක ස්කන්ධය/Aᵣ හෝ නොදන්නා බහුලතාව ගණනය කිරීම","u, සාපේක්ෂ පරමාණුක ස්කන්ධය සහ මවුලික ස්කන්ධය අතර වෙනස"]},
 {t:"විද්‍යුත් චුම්බක විකිරණ සහ ද්‍රව්‍යයේ තරංග-අංශු ස්වභාවය",b:[
 "විද්‍යුත් චුම්බක විකිරණ යනු එකිනෙකට ලම්බව දෝලනය වන විද්‍යුත් හා චුම්බක ක්ෂේත්‍ර දෙකක් සහිත තරංගයකි. එම ක්ෂේත්‍ර දෙකම තරංගය ප්‍රචාරණය වන දිශාවට ද ලම්බ වේ.",
 "විද්‍යුත් චුම්බක විකිරණ තරංග ආයාමය (λ), සංඛ්‍යාතය (ν) සහ ෆෝටෝන ශක්තිය (E) මඟින් විස්තර කරයි. රික්තයකදී සියලු විද්‍යුත් චුම්බක විකිරණ c = 2.998 × 10⁸ m s⁻¹ වේගයෙන් ගමන් කරයි.",
@@ -422,7 +413,7 @@ si:[
 "හයිඩ්‍රජන් රේඛා වර්ණාවලියේ දෘශ්‍ය බාල්මර් රේඛා ආසන්න වශයෙන් 410, 434, 486 සහ 656 nm වේ. මේවා අඛණ්ඩ වර්ණාවලියක් නොව නිශ්චිත තරංග ආයාම කිහිපයක් පමණක් දක්වන බැවින් ඉලෙක්ට්‍රෝන ශක්ති මට්ටම් ප්‍රමාණීකෘත බවට සාක්ෂියකි.",
 "ලයිමන් ශ්‍රේණිය n = 1 වෙත (UV), බාල්මර් ශ්‍රේණිය n = 2 වෙත (දෘශ්‍ය කලාපයේ කොටසක්), පාෂන් ශ්‍රේණිය n = 3 වෙත (IR), බ්‍රැකට් n = 4 වෙත සහ ෆුන්ඩ් n = 5 වෙත සිදුවන සංක්‍රමණ නිරූපණය කරයි.",
 "විමෝචනයේදී ΔE = E_f − E_i ඍණ වන නිසා නිකුත් වන ෆෝටෝන ශක්තිය E_photon = −ΔE = hν = hc/λ වේ. අවශෝෂණයේදී ඉලෙක්ට්‍රෝනය පහළ සිට ඉහළ මට්ටමකට යන බැවින් පරමාණුව ශක්තිය ලබා ගනී."
-],f:"Eෆෝටෝන = hν = hc/λ = −ΔE   •   ලයිමන් nᶠ=1   •   බාල්මර් nᶠ=2   •   පාෂන් nᶠ=3",v:"spectrum_si",exam:["අනුක්‍රමික අයනීකරණ ශක්ති දත්තවලින් කාණ්ඩය/සංයුජතා ඉලෙක්ට්‍රෝන තීරණය කිරීම","විමෝචන හා අවශෝෂණ ශක්ති-මට්ටම් සංක්‍රමණ","ලයිමන්/බාල්මර්/පාෂන්/බ්‍රැකට්/ෆුන්ඩ් ශ්‍රේණි","410–656 nm බාල්මර් රේඛා","λ/ν/E හා ΔE ගණනය"]},
+],f:"E_photon = hν = hc/λ = −ΔE   •   ලයිමන් nᶠ=1   •   බාල්මර් nᶠ=2   •   පාෂන් nᶠ=3",v:"spectrum_si",exam:["අනුක්‍රමික අයනීකරණ ශක්ති දත්තවලින් කාණ්ඩය/සංයුජතා ඉලෙක්ට්‍රෝන තීරණය කිරීම","විමෝචන හා අවශෝෂණ ශක්ති-මට්ටම් සංක්‍රමණ","ලයිමන්/බාල්මර්/පාෂන්/බ්‍රැකට්/ෆුන්ඩ් ශ්‍රේණි","410–656 nm බාල්මර් රේඛා","λ/ν/E හා ΔE ගණනය"]},
 {t:"කාක්ෂික, කාක්ෂික හැඩ සහ ක්වොන්ටම් අංක",b:[
 "කාක්ෂිකයක් යනු ඉලෙක්ට්‍රෝනයක් හමුවීමේ ඉහළ සම්භාවිතාවක් ඇති අවකාශීය ප්‍රදේශයකි. s කාක්ෂික ගෝලාකාර වන අතර p කාක්ෂික දෙපැති හැඩයක් දක්වයි. p උපකවචයේ pₓ, pᵧ සහ p_z ලෙස එකිනෙකට ලම්බ කාක්ෂික තුනක් ඇත.",
 "d කාක්ෂික පහක් ඇති අතර ඒවාට විවිධ අවකාශීය හැඩ හා දිශානති ඇත. f කාක්ෂිකවල හැඩ තවත් සංකීර්ණ වේ. විභාගයේදී ප්‍රධාන අවධානය s හා p හැඩ, කාක්ෂික ගණන සහ ක්වොන්ටම් අංක සම්බන්ධතා මත යොමු වේ.",
@@ -658,9 +649,9 @@ function journeySteps(n,i){
  return '<div class="journeyTrack" data-journey-track="'+i+'"><div class="journeyRail"><span class="journeyFill"></span></div>'+journeyCurveSvg(count,i)+'<span class="journeyRunnerHtml"></span>'+
  n.b.map(function(x,j){
   var m=conceptTitle(i,j),media=journeyMedia(i,j),cardClass=media?"journeyCard hasMedia":"journeyCard",side=j%2===0?"side-left":"side-right";
-  var pts=descriptionPoints(x),pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3),extra=Math.max(0,pts.length-1)*150;
-  var bullets='<ul class="journeyPoints">'+pts.map(function(p,k){return '<li class="journeyPoint" data-point-index="'+k+'">'+p+'</li>'}).join("")+'</ul><div class="journeyProgressHint"><span data-point-progress>0</span> / '+pts.length+' කරුණු</div>';
-  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" data-point-count="'+pts.length+'" style="--node-offset:'+offset+'px;--point-extra:'+extra+'px;--node-top:19%"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="'+cardClass+'">'+media+'<div class="journeyCopy">'+bullets+'</div></div></div></div></article>';
+  var pts=descriptionPoints(x),pointX=journeyPointX(j,count),offset=Math.round((pointX-50)*1.3);
+  var bullets='<ul class="journeyPoints">'+pts.map(function(p){return '<li class="journeyPoint">'+p+'</li>'}).join("")+'</ul>';
+  return '<article class="journeyStep '+side+'" data-step-index="'+j+'" style="--node-offset:'+offset+'px"><span class="journeyCenterDot"></span><span class="journeyConnector"></span><div class="journeySide"><div class="journeyTitle"><h3>'+m[1]+'</h3></div><div class="journeyReveal"><div class="'+cardClass+'">'+media+'<div class="journeyCopy">'+bullets+'</div></div></div></div></article>';
  }).join("")+
  '</div>';
 }
@@ -681,41 +672,27 @@ function setupJourneyScroll(){
  if(window._chemJourneyScrollHandler){window.removeEventListener("scroll",window._chemJourneyScrollHandler);window.removeEventListener("resize",window._chemJourneyScrollHandler)}
  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  var tracks=Array.from(document.querySelectorAll(".journeyTrack"));
- if(reduced){tracks.forEach(function(t){t.style.setProperty("--journey-progress",100);var curve=t.querySelector(".journeyCurveProgress");if(curve)curve.style.strokeDashoffset="0";t.querySelectorAll(".journeyStep").forEach(function(s){s.classList.add("titleVisible","detailVisible","seen","pointsComplete");s.querySelectorAll(".journeyPoint").forEach(function(p){p.classList.add("shown")})})});return}
+ if(reduced){tracks.forEach(function(t){t.style.setProperty("--journey-progress",100);var curve=t.querySelector(".journeyCurveProgress");if(curve)curve.style.strokeDashoffset="0";t.querySelectorAll(".journeyStep").forEach(function(s){s.classList.add("titleVisible","detailVisible","seen")})});return}
  var ticking=false;
  function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
  function update(){
   ticking=false;
-  var vh=window.innerHeight||document.documentElement.clientHeight||700;
+  var vh=window.innerHeight||document.documentElement.clientHeight||700,anchor=vh*.56;
   tracks.forEach(function(track){
    var steps=Array.from(track.querySelectorAll(".journeyStep"));if(!steps.length)return;
-   var active=-1,anchor=vh*.52;
+   var active=-1;
    steps.forEach(function(step,idx){
-    var r=step.getBoundingClientRect(),count=+(step.dataset.pointCount||1);
-    var local=clamp((anchor-r.top)/Math.max(1,r.height),0,1);
-    var titleOn=local>.03&&r.bottom>vh*.08;
-    var detailOn=local>.13&&r.bottom>vh*.08;
+    var r=step.getBoundingClientRect();
+    var titleOn=r.top<vh*.84&&r.bottom>vh*.10;
+    var detailOn=r.top<vh*.64&&r.bottom>vh*.08;
     step.classList.toggle("titleVisible",titleOn);
     step.classList.toggle("detailVisible",detailOn);
-    if(local>0&&local<1)active=idx;
-    else if(r.bottom<=anchor)active=Math.max(active,idx);
-
-    var pointPhase=clamp((local-.20)/.62,0,1);
-    var revealCount=pointPhase<=0?0:Math.min(count,Math.floor(pointPhase*count+.999));
-    var points=step.querySelectorAll(".journeyPoint");
-    points.forEach(function(p,k){
-     p.classList.toggle("shown",k<revealCount);
-     p.classList.toggle("currentPoint",k===revealCount-1&&revealCount<count);
-    });
-    var prog=step.querySelector("[data-point-progress]");if(prog)prog.textContent=String(revealCount);
-    step.classList.toggle("pointsComplete",revealCount>=count);
-
-    var nodeTop=clamp(18+local*64,18,82);
-    step.style.setProperty("--node-top",nodeTop.toFixed(1)+"%");
+    var center=r.top+r.height*.40;
+    if(center<=anchor)active=idx;
    });
-
    var tr=track.getBoundingClientRect();
-   if(tr.top>anchor)active=-1;if(tr.bottom<anchor)active=steps.length-1;
+   if(tr.top>anchor)active=-1;
+   if(tr.bottom<vh*.34)active=steps.length-1;
    steps.forEach(function(step,idx){step.classList.toggle("seen",idx<=active);step.classList.toggle("activeStep",idx===active)});
 
    var raw=tr.height>0?((anchor-tr.top)/tr.height)*100:0,pct=clamp(raw,0,100);
