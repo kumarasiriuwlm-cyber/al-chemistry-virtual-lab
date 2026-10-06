@@ -266,15 +266,29 @@ html{font-size:18px;scroll-behavior:smooth} body{margin:0;background:var(--bg);c
 .journeyCopy h3{font-size:14px;line-height:1.45;margin:0 0 7px}
 .journeyCopy p{margin:0;color:#2e5057;font-size:12px;line-height:1.82}
 .journeyScienceNote{margin-top:9px;font-size:10px;color:var(--muted);font-weight:700}
-.formulaMini{margin:13px 0;border-radius:14px;padding:12px 14px;background:#102f38;color:#eaf9f6;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;overflow-x:auto}
+.formulaStrip{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.formulaChip{border:1px solid #cfe3df;background:linear-gradient(135deg,#f4fbf9,#f7f9ff);color:#174f58;border-radius:12px;padding:9px 11px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;font-weight:800;line-height:1.45}
 .examMini{margin:13px 0;border:1px solid #f0ccd6;border-radius:15px;padding:12px 14px;background:#fff7f9}
 .examMini summary{cursor:pointer;color:#a4254d;font-weight:900;font-size:12px}.examMini ul{margin:9px 0 0;padding-left:20px}.examMini li{font-size:11px;line-height:1.6;margin:4px 0}
-.scrollQuiz{margin:15px 0 8px;border:1px solid #d8cf9c;border-radius:17px;padding:14px;background:#fffdf3}
-.scrollQuizHead{display:flex;gap:8px;align-items:center;margin-bottom:8px}.scrollQuizHead b{font-size:12px}.scrollQuizQ{font-size:12px;line-height:1.65;margin-bottom:9px}
-.scrollQuizOpts{display:grid;gap:7px}.scrollQuizOpt{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 10px;text-align:left;font:700 11px inherit;cursor:pointer;color:var(--ink)}
+.scrollQuiz{margin:15px 0 8px}
+.quizDeck{display:grid;overflow:hidden;border-radius:18px}
+.quizSwipeCard{grid-area:1/1;border-radius:18px;padding:15px;transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .3s ease,filter .3s ease;will-change:transform,opacity}
+.quizQuestionCard{border:1px solid #d8cf9c;background:linear-gradient(135deg,#fffdf3,#fffaf0);transform:translateX(0) rotate(0);opacity:1;z-index:2}
+.quizResultCard{border:1px solid #b8d9d2;background:linear-gradient(135deg,#f2fbf8,#f5f8ff);transform:translateX(108%) rotate(2deg);opacity:0;pointer-events:none;z-index:1}
+.scrollQuiz.answered .quizQuestionCard{transform:translateX(-108%) rotate(-3deg);opacity:0;pointer-events:none}
+.scrollQuiz.answered .quizResultCard{transform:translateX(0) rotate(0);opacity:1;pointer-events:auto;z-index:3}
+.quizResultCard.good{border-color:#84cbb4;background:linear-gradient(135deg,#ebfaf4,#f7fcfa)}
+.quizResultCard.bad{border-color:#e5b0b8;background:linear-gradient(135deg,#fff3f5,#fff9f7)}
+.scrollQuizHead{display:flex;gap:8px;align-items:center;margin-bottom:8px}.scrollQuizHead b{font-size:12px}
+.scrollQuizQ{font-size:12px;line-height:1.65;margin-bottom:10px}
+.scrollQuizOpts{display:grid;gap:7px}
+.scrollQuizOpt{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 11px;text-align:left;font:700 11px inherit;cursor:pointer;color:var(--ink);transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.scrollQuizOpt:active{transform:scale(.985)}
 .scrollQuizOpt.correct{border-color:#58ad8d;background:#e9f8f0;color:#176849}.scrollQuizOpt.wrong{border-color:#da7a86;background:#fff0f2;color:#9e3041}.scrollQuizOpt:disabled{cursor:default}
-.scrollQuizFeedback{display:none;margin-top:9px;padding-top:8px;border-top:1px solid #e9e0b4;font-size:11px;line-height:1.55;color:#4f5854}.scrollQuizFeedback.show{display:block}
-.sectionFinish{display:flex;justify-content:flex-end;margin-top:10px}.sectionFinish button{border:1px solid #9acbbd;background:#eff9f5;color:#176c5d;border-radius:11px;padding:9px 11px;font:800 10px inherit;cursor:pointer}.sectionFinish button.done{background:#dff4ec}
+.quizResultIcon{font-size:28px;margin-bottom:6px}.quizResultTitle{font-size:14px;font-weight:900;margin-bottom:7px}.quizResultText{font-size:12px;line-height:1.7;color:#36565c}
+.quizCorrectAnswer{margin-top:9px;border-radius:11px;padding:9px 10px;background:rgba(255,255,255,.72);font-size:10px;font-weight:800;color:#315c61}
+.quizReset{margin-top:11px;border:1px solid #a9cec5;background:#fff;color:#176b60;border-radius:11px;padding:9px 11px;font:800 10px inherit;cursor:pointer}
+.quizSwipeHint{margin-top:8px;color:var(--muted);font-size:9px;text-align:right}.sectionFinish{display:flex;justify-content:flex-end;margin-top:10px}.sectionFinish button{border:1px solid #9acbbd;background:#eff9f5;color:#176c5d;border-radius:11px;padding:9px 11px;font:800 10px inherit;cursor:pointer}.sectionFinish button.done{background:#dff4ec}
 .journeyEnd{display:flex;align-items:center;gap:10px;margin:10px 0 0;padding:11px 13px;border-radius:14px;background:#f0f8f6;color:#34585c;font-size:11px;font-weight:700}
 @media(min-width:760px){.journeyCard{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,1.5fr)}.journeyMedia{min-height:160px}.journeyMedia.portrait img{height:220px}}
 @media(max-width:620px){.summaryGuide{padding:12px}.journeyTrack{padding-left:48px}.journeyRail{left:18px}.journeyNode{left:-42px;width:27px;height:27px;border-width:3px}.journeyChapterHead{padding:11px 12px}.journeyChapterTitle{font-size:13px}.journeyMedia{min-height:72px}.journeyMedia.portrait img{height:165px}.journeyCopy p{font-size:12px}.journeyCopy h3{font-size:13px}}
@@ -545,36 +559,57 @@ function journeySteps(n,i){
  n.b.map(function(x,j){var m=conceptTitle(i,j);return '<article class="journeyStep" data-step-index="'+j+'"><div class="journeyNode">'+(j+1)+'</div><div class="journeyCard">'+journeyMedia(i,j)+'<div class="journeyCopy"><div class="journeyEyebrow">STEP '+String(j+1).padStart(2,"0")+'</div><h3>'+m[1]+'</h3><p>'+x+'</p></div></div></article>'}).join("")+
  '</div>';
 }
+function formulaStrip(f){
+ var parts=String(f||"").split("•").map(function(x){return x.trim()}).filter(Boolean);
+ return '<div class="formulaStrip">'+parts.map(function(x){return '<span class="formulaChip">'+x+'</span>'}).join("")+'</div>';
+}
 function scrollQuiz(i){
  var q=scrollQuizData[i];if(state.lang!=="si"||!q)return "";
- return '<div class="scrollQuiz" data-scrollquiz="'+i+'"><div class="scrollQuizHead"><span>✍️</span><b>මේ කොටසෙන් කුඩා ප්‍රශ්නයක්</b></div><div class="scrollQuizQ">'+q.q+'</div><div class="scrollQuizOpts">'+q.o.map(function(x,j){return '<button type="button" class="scrollQuizOpt" data-qopt="'+i+'-'+j+'">'+String.fromCharCode(65+j)+'. '+x+'</button>'}).join("")+'</div><div class="scrollQuizFeedback"></div></div>';
+ var correct=String.fromCharCode(65+q.a)+'. '+q.o[q.a];
+ return '<div class="scrollQuiz" data-scrollquiz="'+i+'"><div class="quizDeck">'+
+ '<div class="quizSwipeCard quizQuestionCard"><div class="scrollQuizHead"><span>✍️</span><b>මේ කොටසෙන් කුඩා ප්‍රශ්නයක්</b></div><div class="scrollQuizQ">'+q.q+'</div><div class="scrollQuizOpts">'+q.o.map(function(x,j){return '<button type="button" class="scrollQuizOpt" data-qopt="'+i+'-'+j+'">'+String.fromCharCode(65+j)+'. '+x+'</button>'}).join("")+'</div><div class="quizSwipeHint">පිළිතුරක් තෝරන්න → card එක slide වේ</div></div>'+
+ '<div class="quizSwipeCard quizResultCard"><div class="quizResultIcon" data-result-icon>✓</div><div class="quizResultTitle" data-result-title>පිළිතුර</div><div class="quizResultText" data-result-text>'+q.e+'</div><div class="quizCorrectAnswer">නිවැරදි පිළිතුර: '+correct+'</div><button type="button" class="quizReset" data-qreset="'+i+'">↩ ප්‍රශ්නය නැවත බලන්න</button></div>'+
+ '</div></div>';
 }
 function setupJourneyScroll(){
- if(window._chemJourneyObserver){window._chemJourneyObserver.disconnect()}
+ if(window._chemJourneyObserver){try{window._chemJourneyObserver.disconnect()}catch(e){}window._chemJourneyObserver=null}
+ if(window._chemJourneyScrollHandler){window.removeEventListener("scroll",window._chemJourneyScrollHandler);window.removeEventListener("resize",window._chemJourneyScrollHandler)}
  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- var tracks=document.querySelectorAll(".journeyTrack");
+ var tracks=Array.from(document.querySelectorAll(".journeyTrack"));
  if(reduced){tracks.forEach(function(t){t.style.setProperty("--journey-progress",100);t.querySelectorAll(".journeyStep").forEach(function(s){s.classList.add("visible","seen")})});return}
- var observer=new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-   if(!entry.isIntersecting)return;
-   var step=entry.target,track=step.closest(".journeyTrack");if(!track)return;
-   step.classList.add("visible");
+ var ticking=false;
+ function update(){
+  ticking=false;
+  var vh=window.innerHeight||document.documentElement.clientHeight||700;
+  tracks.forEach(function(track){
    var steps=Array.from(track.querySelectorAll(".journeyStep"));
-   var idx=steps.indexOf(step),max=+(track.dataset.maxSeen||-1);
-   if(idx>max)max=idx;
-   track.dataset.maxSeen=max;
-   steps.forEach(function(s,k){if(k<=max)s.classList.add("seen")});
-   var pct=steps.length<=1?100:Math.round(max/(steps.length-1)*100);
+   if(!steps.length)return;
+   var active=-1;
+   steps.forEach(function(step,idx){
+    var r=step.getBoundingClientRect();
+    var inView=r.top<vh*.88&&r.bottom>vh*.12;
+    step.classList.toggle("visible",inView);
+    var center=r.top+r.height*.42;
+    if(center<=vh*.58)active=idx;
+   });
+   var tr=track.getBoundingClientRect();
+   if(tr.top>vh*.58)active=-1;
+   if(tr.bottom<vh*.35)active=steps.length-1;
+   steps.forEach(function(step,idx){step.classList.toggle("seen",idx<=active)});
+   var pct=active<0?0:(steps.length===1?100:Math.round(active/(steps.length-1)*100));
    track.style.setProperty("--journey-progress",pct);
-  })
- },{threshold:.28,rootMargin:"-8% 0px -22% 0px"});
- document.querySelectorAll(".journeyStep").forEach(function(s){observer.observe(s)});
- window._chemJourneyObserver=observer;
+  });
+ }
+ function onMove(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
+ window.addEventListener("scroll",onMove,{passive:true});
+ window.addEventListener("resize",onMove);
+ window._chemJourneyScrollHandler=onMove;
+ requestAnimationFrame(update);
 }
 function renderUnit1(){var u=U(),list=notes[state.lang]||notes.en,done=getUnit1Mastered();
 var jumpNames=state.lang==="si"?["පරමාණුක වාදය","සමස්ථානික","විකිරණ","වර්ණාවලිය","කාක්ෂික","වින්‍යාසය","ආවර්තිතා වගුව","ප්‍රවණතා"]:["Atomic theory","Isotopes","Radiation","Spectrum","Orbitals","Configuration","Periodic table","Trends"];
 var jumps=jumpNames.map(function(x,i){return '<button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-simplejump="'+i+'">'+String(i+1).padStart(2,"0")+' '+x+'</button>'}).join("");
-var detail=list.map(function(n,i){return '<section class="journeyChapter" id="note'+i+'"><header class="journeyChapterHead"><div class="journeyChapterNo">'+String(i+1).padStart(2,"0")+'</div><div><div class="journeyChapterTitle">'+n.t+'</div><div class="journeyChapterSub">'+(state.lang==="si"?"පහළට scroll කරමින් සංකල්ප එකින් එක කියවන්න":"Scroll through the concepts step by step")+'</div></div></header>'+journeySteps(n,i)+'<div class="formulaMini">'+n.f+'</div>'+(n.exam?'<details class="examMini"><summary>🎯 විභාගයට මතක තබාගන්න</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+scrollQuiz(i)+(n.v?videoBlock(n.v):'')+'<div class="sectionFinish"><button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-master="'+i+'">'+(done.indexOf(i)>=0?'✓ මෙම කොටස සම්පූර්ණයි':'○ මෙම කොටස ඉගෙන ගත්තා')+'</button></div><div class="journeyEnd">✓ '+(state.lang==="si"?"මෙම කොටස අවසන්. පහළට scroll කර ඊළඟ කොටසට යන්න.":"Section complete. Continue scrolling to the next part.")+'</div></section>'}).join("");
+var detail=list.map(function(n,i){return '<section class="journeyChapter" id="note'+i+'"><header class="journeyChapterHead"><div class="journeyChapterNo">'+String(i+1).padStart(2,"0")+'</div><div><div class="journeyChapterTitle">'+n.t+'</div><div class="journeyChapterSub">'+(state.lang==="si"?"පහළට scroll කරමින් සංකල්ප එකින් එක කියවන්න":"Scroll through the concepts step by step")+'</div></div></header>'+journeySteps(n,i)+formulaStrip(n.f)+(n.exam?'<details class="examMini"><summary>🎯 විභාගයට මතක තබාගන්න</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+scrollQuiz(i)+(n.v?videoBlock(n.v):'')+'<div class="sectionFinish"><button type="button" class="'+(done.indexOf(i)>=0?'done':'')+'" data-master="'+i+'">'+(done.indexOf(i)>=0?'✓ මෙම කොටස සම්පූර්ණයි':'○ මෙම කොටස ඉගෙන ගත්තා')+'</button></div><div class="journeyEnd">✓ '+(state.lang==="si"?"මෙම කොටස අවසන්. පහළට scroll කර ඊළඟ කොටසට යන්න.":"Section complete. Continue scrolling to the next part.")+'</div></section>'}).join("");
 var modal='<div class="noteImageModal" id="noteImageModal" aria-hidden="true"><div class="noteImageModalInner"><button type="button" class="noteImageClose" id="noteImageClose" aria-label="Close">×</button><img id="noteImageLarge" alt=""></div></div>';
 return shell("lessons",'<main class="page summarySimple"><section class="hero"><div class="kicker">UNIT 01</div><h1>'+u.unitTitle+'</h1><p>'+u.unitSub+'</p></section><div class="summaryGuide"><strong>🧭 Scroll Journey — රූපයෙන් සංකල්පයට, සංකල්පයෙන් ප්‍රශ්නයට</strong><p>පහළට scroll කරන විට journey line එක ඉදිරියට යයි. වැදගත් තැන්වල රූප/විද්‍යාඥයින් පෙනේ; ඒ යටින්ම අදාළ කෙටි පැහැදිලි කිරීම කියවන්න. එක් එක් කොටස අවසානයේ කුඩා ප්‍රශ්නයක් ඇත.</p></div><div class="simpleJump">'+jumps+'</div>'+detail+'<div class="card" style="margin-top:18px"><strong>මූලාශ්‍ර පදනම</strong><p class="meta">NIE 12 ශ්‍රේණිය රසායන විද්‍යා සම්පත් පොත — Unit 01 (පිටු 1–42) • G.C.E. A/L past-paper/marking-scheme review • Sinhala supplementary lessons</p></div>'+modal+'</main>')}
 function practicalTitle(i){return state.lang==="si"?practicalSI[i]:state.lang==="ta"?practicalTA[i]:practicalEN[i]}
@@ -596,7 +631,23 @@ function render(){var r=route(),html=r==="home"?renderHome():r==="lessons"?rende
 function bind(){
 
 document.querySelectorAll("[data-simplejump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("note"+b.dataset.simplejump);if(el){el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"})}}});
-document.querySelectorAll("[data-qopt]").forEach(function(b){b.onclick=function(){var p=b.dataset.qopt.split("-"),qi=+p[0],oi=+p[1],q=scrollQuizData[qi],box=b.closest(".scrollQuiz");if(!q||!box)return;box.querySelectorAll(".scrollQuizOpt").forEach(function(x){x.disabled=true;var xp=x.dataset.qopt.split("-");if(+xp[1]===q.a)x.classList.add("correct")});if(oi!==q.a)b.classList.add("wrong");var fb=box.querySelector(".scrollQuizFeedback");if(fb){fb.textContent=(oi===q.a?"✓ හරි! ":"✕ නැවත මතක තබාගන්න. ")+q.e;fb.classList.add("show")}}});setupJourneyScroll();
+document.querySelectorAll("[data-qopt]").forEach(function(b){b.onclick=function(){
+ var p=b.dataset.qopt.split("-"),qi=+p[0],oi=+p[1],q=scrollQuizData[qi],box=b.closest(".scrollQuiz");if(!q||!box)return;
+ var opts=box.querySelectorAll(".scrollQuizOpt");
+ opts.forEach(function(x){x.disabled=true;var xp=x.dataset.qopt.split("-");if(+xp[1]===q.a)x.classList.add("correct")});
+ var good=oi===q.a;if(!good)b.classList.add("wrong");
+ var result=box.querySelector(".quizResultCard"),title=box.querySelector("[data-result-title]"),icon=box.querySelector("[data-result-icon]");
+ if(result){result.classList.remove("good","bad");result.classList.add(good?"good":"bad")}
+ if(title)title.textContent=good?"✓ හරි පිළිතුර!":"✕ මේක මතක තබාගන්න";
+ if(icon)icon.textContent=good?"✓":"↺";
+ setTimeout(function(){box.classList.add("answered")},190);
+}});
+document.querySelectorAll("[data-qreset]").forEach(function(b){b.onclick=function(){
+ var box=b.closest(".scrollQuiz");if(!box)return;
+ box.classList.remove("answered");
+ var result=box.querySelector(".quizResultCard");if(result)result.classList.remove("good","bad");
+ box.querySelectorAll(".scrollQuizOpt").forEach(function(x){x.disabled=false;x.classList.remove("correct","wrong")});
+}});setupJourneyScroll();
 
 document.querySelectorAll("[data-notemode]").forEach(function(b){b.onclick=function(){state.noteMode=b.dataset.notemode;localStorage.setItem("chem-note-mode",state.noteMode);render()}});
 var oa=document.getElementById("openAllNotes");if(oa)oa.onclick=function(){document.querySelectorAll(".noteSection").forEach(function(d){d.open=true})};
