@@ -855,6 +855,36 @@ linear-gradient(180deg,#03070f,#07131f 54%,#03070f);animation:p01Nebula 9s ease-
 }
 @media(prefers-reduced-motion:reduce){.p01Tool3D,.p01ToolsCore:before,.p01ToolsCore:after{animation:none!important}.p01ToolsOrbit.ready .p01ToolsCore{opacity:1;transform:translate(-50%,-50%) scale(1)}.p01ToolsOrbit.ready .p01ToolPod{opacity:1;transform:translate(-50%,-50%) scale(1)}.p01ToolsOrbit.ready .p01ToolLinks line{opacity:.75}}
 
+/* 2026-10-07: P01 hover details, guide orbit, reversible scroll */
+.p01ToolDescription{display:none!important}
+.p01CoreDefault,.p01CoreDetail{position:absolute;inset:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .22s ease,transform .22s ease}
+.p01CoreDetail{opacity:0;transform:scale(.90);pointer-events:none}.p01ToolsCore.detail-on .p01CoreDefault,.p01GuideCore.detail-on .p01CoreDefault{opacity:0;transform:scale(.90)}.p01ToolsCore.detail-on .p01CoreDetail,.p01GuideCore.detail-on .p01CoreDetail{opacity:1;transform:scale(1)}
+.p01CoreDefault strong,.p01CoreDetail strong{display:block;color:#f2fffc;font:950 24px/1.05 Arial;letter-spacing:-.035em;text-shadow:0 0 18px rgba(98,255,224,.34)}
+.p01CoreDefault span{display:block;margin-top:8px;color:#70ffdc;font:900 8px Arial;letter-spacing:.15em;text-transform:uppercase}
+.p01CoreDetail p{margin:7px 0 0;color:#b7d6d2;font-size:10px;line-height:1.48;max-width:165px}.p01CoreDetail em{font-style:normal;color:#ff91e8;font:850 7px Arial;letter-spacing:.10em;text-transform:uppercase;margin-bottom:4px}
+.p01NeoNode.explain{overflow:visible;cursor:pointer;outline:none;transition:transform .30s cubic-bezier(.18,.86,.22,1),box-shadow .30s ease,border-color .30s ease}
+.p01NeoNode.explain:hover,.p01NeoNode.explain:focus-visible,.p01NeoNode.explain.selected{z-index:18;transform:scale(1.22);border-color:rgba(110,255,228,.52);box-shadow:0 24px 56px rgba(0,0,0,.50),0 0 40px rgba(78,255,218,.18),0 0 56px rgba(246,78,220,.10),inset 1px 1px 0 rgba(255,255,255,.08)}
+.p01NodePopup{position:absolute;left:50%;top:calc(100% + 10px);width:220px;transform:translateX(-50%) translateY(8px) scale(.96);padding:11px 12px;border:1px solid rgba(118,255,230,.16);border-radius:15px;background:rgba(4,17,28,.96);box-shadow:0 18px 42px rgba(0,0,0,.50),0 0 24px rgba(82,255,217,.08);color:#b3cfcc;font-size:9px;line-height:1.48;text-align:left;opacity:0;visibility:hidden;pointer-events:none;transition:.22s ease;backdrop-filter:blur(14px)}
+.p01NodePopup b{display:block;color:#7affe0;font-size:9px;margin-bottom:4px}.p01NeoNode.explain:hover .p01NodePopup,.p01NeoNode.explain:focus-visible .p01NodePopup,.p01NeoNode.explain.selected .p01NodePopup{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0) scale(1)}
+.p01GuideOrbit{position:relative;z-index:4;width:min(1120px,94vw);height:min(650px,70vh);min-height:500px;perspective:1100px}
+.p01GuideCore{position:absolute;left:50%;top:45%;width:220px;height:220px;transform:translate(-50%,-50%) scale(.35);border-radius:50%;display:grid;place-items:center;text-align:center;z-index:5;background:radial-gradient(circle at 32% 27%,rgba(101,255,225,.25),transparent 31%),radial-gradient(circle at 70% 74%,rgba(248,74,221,.19),transparent 38%),linear-gradient(145deg,rgba(7,35,48,.97),rgba(14,13,42,.96));border:1px solid rgba(110,255,226,.38);box-shadow:0 0 40px rgba(73,255,218,.22),0 0 92px rgba(127,89,255,.12),inset 0 0 40px rgba(81,255,219,.05);opacity:0}
+.p01GuideCore:before,.p01GuideCore:after{content:"";position:absolute;border-radius:50%;inset:-15px;border:1px solid rgba(101,255,225,.13);animation:p01CoreRing 9s linear infinite}.p01GuideCore:after{inset:-31px;border-color:rgba(242,86,225,.10);animation-direction:reverse;animation-duration:13s}
+.p01GuideLinks{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}.p01GuideLinks line{stroke-width:1.6;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 6px rgba(82,255,220,.52))}
+.p01GuidePod{position:absolute;z-index:6;width:105px;height:105px;transform:translate(-50%,-50%) scale(.25);opacity:0;border:1px solid rgba(111,255,226,.17);border-radius:50%;background:linear-gradient(145deg,rgba(9,29,44,.92),rgba(8,14,31,.92));box-shadow:0 16px 36px rgba(0,0,0,.40),0 0 24px rgba(62,255,215,.07),inset 1px 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(13px);cursor:pointer;transition:transform .30s cubic-bezier(.18,.86,.22,1),box-shadow .30s ease,border-color .30s ease;outline:none}
+.p01GuidePod:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(83,255,215,.62),rgba(110,105,255,.20),rgba(255,81,219,.48));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.43;pointer-events:none}
+.p01GuidePod:hover,.p01GuidePod:focus-visible,.p01GuidePod.selected{z-index:16;transform:translate(-50%,-50%) scale(1.30)!important;border-color:rgba(111,255,226,.52);box-shadow:0 26px 58px rgba(0,0,0,.48),0 0 38px rgba(79,255,218,.19),0 0 52px rgba(245,78,220,.11)}
+.p01GuideNo{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);color:#f3fffc;font:950 24px/1 Arial;text-shadow:0 0 16px rgba(91,255,224,.35)}.p01GuideName{position:absolute;left:8px;right:8px;bottom:15px;color:#81ffe1;font:850 7px/1.25 Arial;text-align:center;letter-spacing:.05em;text-transform:uppercase}
+.p01ReadyGate{position:relative;min-height:48vh;display:grid;place-items:center;padding:70px 18px 95px;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(77,255,218,.15),transparent 32%),radial-gradient(circle at 65% 55%,rgba(236,73,221,.10),transparent 35%),linear-gradient(180deg,#03070f,#07131f)}
+.p01ReadyGate:before{content:"";position:absolute;width:min(540px,72vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(100,255,225,.12);box-shadow:0 0 70px rgba(70,255,218,.08);animation:p01CoreRing 16s linear infinite}
+.p01ReadyInner{position:relative;z-index:2;text-align:center;max-width:720px}.p01ReadyInner small{display:block;color:#7affe0;font:900 9px Arial;letter-spacing:.16em;text-transform:uppercase;margin-bottom:13px}.p01ReadyInner h2{margin:0 0 13px;color:#f3fffc;font-size:clamp(27px,4vw,48px);line-height:1.18;text-shadow:0 0 28px rgba(83,255,220,.15)}.p01ReadyInner p{margin:0 auto 23px;max-width:540px;color:#9fb9b8;font-size:13px;line-height:1.65}
+.p01ReadyButton{border:1px solid rgba(113,255,229,.36);border-radius:999px;background:linear-gradient(100deg,rgba(18,112,104,.72),rgba(91,51,147,.72),rgba(181,48,139,.64));color:#fff;padding:15px 24px;min-height:54px;font-weight:900;cursor:pointer;box-shadow:0 15px 38px rgba(0,0,0,.34),0 0 34px rgba(75,255,219,.13),inset 1px 1px 0 rgba(255,255,255,.10);transition:transform .25s ease,box-shadow .25s ease}.p01ReadyButton:hover,.p01ReadyButton:focus-visible{transform:translateY(-3px) scale(1.025);box-shadow:0 20px 44px rgba(0,0,0,.38),0 0 45px rgba(75,255,219,.20)}
+@media(max-width:700px){
+ .p01CoreDefault,.p01CoreDetail{inset:16px}.p01CoreDefault strong,.p01CoreDetail strong{font-size:18px}.p01CoreDetail p{font-size:8px;line-height:1.35;max-width:112px}.p01NodePopup{width:175px;font-size:8px}
+ .p01GuideOrbit{width:98vw;height:59vh;min-height:400px}.p01GuideCore{width:150px;height:150px;top:43%}.p01GuideCore:before{inset:-10px}.p01GuideCore:after{inset:-22px}.p01GuidePod{width:69px;height:69px}.p01GuideNo{font-size:17px}.p01GuideName{font-size:5.2px;bottom:9px}.p01GuidePod:hover,.p01GuidePod:focus-visible,.p01GuidePod.selected{transform:translate(-50%,-50%) scale(1.22)!important}
+ .p01ReadyGate{min-height:42vh;padding:56px 14px 82px}.p01ReadyInner p{font-size:11px}.p01ReadyButton{width:min(94vw,420px);font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.p01GuideCore:before,.p01GuideCore:after,.p01ReadyGate:before{animation:none!important}}
+
 .p01PreflightFoot{max-width:1220px;margin:0 auto;padding:28px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;color:#789092;font:700 9px "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}.p01PreflightFoot strong{color:#6effdc;text-shadow:0 0 14px rgba(63,255,216,.32)}
 
 /* neon glass treatment for the Virtual Lab starting menu */
@@ -1755,85 +1785,110 @@ function pConclusion(){var u=U();var arr=state.lang==="en"?["Cathode rays travel
 function pQuestions(){var u=U(),q=mcq[state.lang].slice(0,3);return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[6]+'</h2>'+q.map(function(x,qi){return '<div class="card" style="margin:10px 0"><strong>'+x[0]+'</strong>'+x[1].map(function(a,ai){return '<label style="display:block;padding:6px"><input type="radio" name="pq'+qi+'" value="'+ai+'"> '+String.fromCharCode(65+ai)+'. '+a+'</label>'}).join("")+'</div>'}).join("")+'<button class="btn primary" id="pcheck">'+u.check+'</button><div class="observation" id="presult" style="display:none"></div></div></section>'}
 function p01PreflightCopy(){var u=U();if(state.lang==="en")return{top:"Pre-lab study",back:"Back to Unit 01",word1:"CATHODE",word2:"RAYS",sub:"Scroll study before the live experiment",steps:[{t:u.psteps[0],k:"01 / INTRODUCTION",p:"Study the electron beam formed in a low-pressure discharge tube when a high potential difference is applied. Focus on straight-line travel, energy transfer, and deflection by electric and magnetic fields.",f:"F = qE   •   F = q(v × B)"},{t:u.psteps[1],k:"02 / APPARATUS",p:"Identify the complete working setup before power is applied.",list:["Low-pressure Crookes tube","Cathode and anode","Fluorescent screen","Metal cross / paddle wheel","Electric / magnetic-field accessories","High-voltage supply"],f:"APPARATUS COUNT = 06   •   POWER = OFF"},{t:u.psteps[2],k:"03 / PROCEDURE",p:"Check the apparatus with power off. Then observe fluorescence, the cross shadow, paddle-wheel motion, electric-field deflection and magnetic-field deflection. Record each observation before drawing conclusions.",f:"SAFE ORDER = CHECK → POWER → OBSERVE → COMPARE → RECORD"}],start:"Start practical",ready:"Ready for Step 04"};if(state.lang==="ta")return{top:"Practical முன் ஆய்வு",back:"Unit 01 க்கு திரும்பு",word1:"CATHODE",word2:"RAYS",sub:"Live experiment முன் scroll study",steps:[{t:u.psteps[0],k:"01 / அறிமுகம்",p:"குறைந்த அழுத்த discharge tube இல் உயர் potential difference வழங்கும் போது உருவாகும் electron beam இன் நேர்கோட்டு இயக்கம், energy transfer மற்றும் electric / magnetic field deflection ஐ புரிந்துகொள்ளுங்கள்.",f:"F = qE   •   F = q(v × B)"},{t:u.psteps[1],k:"02 / உபகரணங்கள்",p:"Power வழங்குவதற்கு முன் முழு practical setup ஐ அடையாளம் காணுங்கள்.",list:["Low-pressure Crookes tube","Cathode மற்றும் anode","Fluorescent screen","Metal cross / paddle wheel","Electric / magnetic-field accessories","High-voltage supply"],f:"APPARATUS COUNT = 06   •   POWER = OFF"},{t:u.psteps[2],k:"03 / செயல்முறை",p:"Power off நிலையில் setup ஐ சரிபார்த்து, பின்னர் fluorescence, cross shadow, paddle-wheel motion மற்றும் electric / magnetic deflection ஐ வரிசையாக கவனித்து பதிவுசெய்யுங்கள்.",f:"SAFE ORDER = CHECK → POWER → OBSERVE → COMPARE → RECORD"}],start:"Practical தொடங்கு",ready:"Step 04 க்கு தயார்"};return{top:"ප්‍රායෝගිකයට පෙර අධ්‍යයනය",back:"Unit 01 වෙත ආපසු",word1:"CATHODE",word2:"RAYS",sub:"සජීවී පරීක්ෂණයට පෙර scroll අධ්‍යයනය",steps:[{t:u.psteps[0],k:"01 / හැඳින්වීම",p:"අඩු පීඩන discharge tube එකකට ඉහළ potential difference එකක් යෙදූ විට ඇතිවන electron කදම්බය අධ්‍යයනය කරන්න. සෘජු ගමන, ශක්ති හුවමාරුව සහ electric / magnetic fields තුළ අපගමනය පිළිබඳ අවධානය යොමු කරන්න.",f:"F = qE   •   F = q(v × B)"},{t:u.psteps[1],k:"02 / උපකරණ",p:"Power ලබාදීමට පෙර පරීක්ෂණයේ සම්පූර්ණ සැකසුම හඳුනාගන්න.",list:["අඩු පීඩන Crookes tube","කැතෝඩය හා ඇනෝඩය","ප්‍රතිදීප්ත තිරය","ලෝහ cross / paddle wheel","විද්‍යුත් හා චුම්බක ක්ෂේත්‍ර උපාංග","ඉහළ විභව විදුලි සැපයුම"],f:"උපකරණ ගණන = 06   •   POWER = OFF"},{t:u.psteps[2],k:"03 / ක්‍රියාපටිපාටිය",p:"Power off තත්ත්වයේ සැකසුම පරීක්ෂා කර පසුව fluorescence, cross shadow, paddle-wheel චලනය, electric-field deflection සහ magnetic-field deflection පිළිවෙළින් නිරීක්ෂණය කරන්න. එක් එක් නිරීක්ෂණය සටහන් කර පසුව නිගමනය ගන්න.",f:"ආරක්ෂිත අනුපිළිවෙළ = පරීක්ෂා කරන්න → POWER → නිරීක්ෂණය → සසඳන්න → සටහන් කරන්න"}],start:"ප්‍රායෝගිකය ආරම්භ කරන්න",ready:"04 වන පියවරට සූදානම්"}}
 function renderP01Preflight(){
- var u=U(),copy=p01PreflightCopy();
+ var u=U(),copy=p01PreflightCopy(),lang=state.lang;
  var steps=u.psteps.map(function(x,i){return (i<3?'<button type="button" class="p01SeqItem pre" data-preflight-jump="'+i+'">':'<button type="button" class="p01SeqItem '+(i===3?'':'locked')+'" data-pstep="'+i+'">')+'<b>'+String(i+1).padStart(2,"0")+'</b>'+x+'</button>'}).join("");
  var flask='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="glass" d="M38 10h24v8l-8 12v13l22 34c4 7-1 13-9 13H33c-8 0-13-6-9-13l22-34V30l-8-12z"/><path class="liquid" d="M32 66h36l8 12c3 5 0 8-7 8H31c-7 0-10-3-7-8z"/></svg></div>';
- var tools='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M24 76h52M32 76V56h36v20M41 56V22h18v34M37 22h26M45 33h10M28 48h15M57 48h15"/><circle class="dot" cx="35" cy="48" r="4"/><circle class="dot" cx="65" cy="48" r="4"/></svg></div>';
- var guide='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M30 18h40v64H30zM39 33h23M39 47h23M39 61h17"/><path class="line" d="m40 71 5 5 13-15"/><circle class="dot" cx="30" cy="18" r="3"/><circle class="dot" cx="70" cy="82" r="3"/></svg></div>';
- function stage(i,title,centerLabel,outer,icon,detail,badge){
-  var info='<article class="p01StageInfo"><div class="p01PanelNo"><span>'+detail.k+'</span><span>'+String(i+1).padStart(2,"0")+' / 03</span></div><h2>'+detail.t+'</h2><p>'+detail.p+'</p>'+(detail.list?'<ul>'+detail.list.map(function(v){return '<li>'+v+'</li>'}).join("")+'</ul>':'')+'<div class="p01PanelFormula">'+detail.f+'</div>'+(i===2?'<button type="button" class="p01Launch" data-start-p01>'+copy.start+' <b>→</b></button>':'')+'</article>';
-  if(i===1){
-   var lang=state.lang;
-   var toolData=lang==="si"?[
-    ["Crookes tube","අඩු පීඩන වායුවක් සහිත discharge tube එක. Cathode ray beam එක නිරීක්ෂණය කිරීමට මූලික කුටියයි."],
-    ["Cathode (−)","ඍණ විද්‍යුත් ධ්‍රැවය. ඉහළ විභව අන්තරයක් යෙදූ විට electron beam එක ආරම්භ වන්නේ මෙහි සිටයි."],
-    ["Anode (+)","ධන විද්‍යුත් ධ්‍රැවය. සිදුර හරහා cathode rays ඉදිරියට ගමන් කිරීමට beam එක සකස් කරයි."],
-    ["Fluorescent screen","Cathode rays වැදුණු විට දීප්තියක් ඇති කර beam එකේ පිහිටීම සහ සෙවණැල්ල දැකීමට උපකාරී වේ."],
-    ["Cross / Paddle wheel","Metal cross එකෙන් සෘජු ගමන හා shadow පෙන්වයි. Paddle wheel එකෙන් beam එක ශක්තිය රැගෙන යන බව පෙන්වයි."],
-    ["High-voltage supply","Cathode සහ anode අතර විශාල potential difference එක සපයයි. සැබෑ උපකරණ භාවිතයේදී අධීක්ෂණය අවශ්‍යයි."]
-   ]:lang==="ta"?[
-    ["Crookes tube","குறைந்த அழுத்த வாயு கொண்ட discharge tube. Cathode ray beam ஐ கவனிக்க முக்கிய chamber."],
-    ["Cathode (−)","எதிர்மின் electrode. உயர் potential difference வழங்கும் போது electron beam இங்கிருந்து உருவாகிறது."],
-    ["Anode (+)","நேர்மின் electrode. துளை வழியாக cathode rays முன்னோக்கி செல்ல beam ஐ அமைக்கிறது."],
-    ["Fluorescent screen","Cathode rays பட்டால் ஒளிர்ந்து beam இடம் மற்றும் shadow ஐ காண உதவுகிறது."],
-    ["Cross / Paddle wheel","Metal cross நேர்கோட்டு பயணம்/shadow காட்டும்; paddle wheel energy transfer ஐ காட்டும்."],
-    ["High-voltage supply","Cathode மற்றும் anode இடையே பெரிய potential difference வழங்குகிறது. ஆசிரியர் மேற்பார்வை அவசியம்."]
-   ]:[
-    ["Crookes tube","A low-pressure discharge tube that contains the cathode-ray experiment and makes the beam observable."],
-    ["Cathode (−)","The negative electrode from which the electron beam originates when a high potential difference is applied."],
-    ["Anode (+)","The positive electrode; its aperture helps form and direct the cathode-ray beam."],
-    ["Fluorescent screen","Glows when struck by cathode rays, making the beam position and shadows visible."],
-    ["Cross / Paddle wheel","The cross demonstrates straight-line travel; the wheel demonstrates transfer of energy by the beam."],
-    ["High-voltage supply","Provides the large potential difference between cathode and anode. Real apparatus requires supervision."]
-   ];
-   var icons=[
-    '<svg viewBox="0 0 100 100"><rect class="fill" x="10" y="34" width="80" height="32" rx="16"/><path class="stroke" d="M20 50h19M61 50h19"/><circle class="hot" cx="43" cy="50" r="5"/><circle class="metal" cx="57" cy="50" r="5"/></svg>',
-    '<svg viewBox="0 0 100 100"><path class="stroke" d="M50 18v64M27 28h46M27 72h46"/><rect class="metal" x="33" y="39" width="34" height="22" rx="5"/><path class="stroke" d="M43 50h14"/></svg>',
-    '<svg viewBox="0 0 100 100"><circle class="metal" cx="50" cy="50" r="25"/><circle class="fill" cx="50" cy="50" r="11"/><path class="stroke" d="M50 13v15M50 72v15M13 50h15M72 50h15"/></svg>',
-    '<svg viewBox="0 0 100 100"><rect class="fill" x="22" y="19" width="56" height="62" rx="7"/><path class="hot" d="M30 66c9-26 18-6 25-28 5 13 11 7 15 20"/><path class="stroke" d="M31 29h38"/></svg>',
-    '<svg viewBox="0 0 100 100"><path class="stroke" d="M50 22v56M30 39h40"/><circle class="metal" cx="50" cy="50" r="30"/><path class="stroke" d="M50 20v60M20 50h60M29 29l42 42M71 29 29 71"/></svg>',
-    '<svg viewBox="0 0 100 100"><rect class="fill" x="18" y="24" width="64" height="54" rx="9"/><circle class="hot" cx="37" cy="51" r="8"/><circle class="metal" cx="63" cy="51" r="8"/><path class="stroke" d="M34 51h6M60 51h6M63 48v6M28 68h44"/></svg>'
-   ];
-   var pos=[[50,8],[82,27],[82,65],[50,84],[18,65],[18,27]];
-   var pods=toolData.map(function(t,j){return '<button type="button" class="p01ToolPod" data-tool-pod="'+j+'" style="left:'+pos[j][0]+'%;top:'+pos[j][1]+'%" aria-label="'+escapeHtml(t[0])+'"><span class="p01ToolNo">0'+(j+1)+'</span><span class="p01Tool3D">'+icons[j]+'</span><span class="p01ToolName">'+t[0]+'</span><span class="p01ToolDescription"><b>'+t[0]+'</b>'+t[1]+'</span></button>'}).join("");
-   var links=pos.map(function(p,j){return '<line data-tool-line="'+j+'" x1="50%" y1="43%" x2="'+p[0]+'%" y2="'+p[1]+'%" style="stroke:'+(j%3===0?'#62ffd9':j%3===1?'#8f7cff':'#ff6bdc')+'"></line>'}).join("");
-   var toolOrbit='<div class="p01ToolsOrbit" data-tools-orbit><svg class="p01ToolLinks" aria-hidden="true">'+links+'</svg><div class="p01ToolsCore"><div><strong>'+centerLabel+'</strong><span>02 • APPARATUS</span></div></div>'+pods+'</div>';
-   return '<section class="p01AutoStage" id="p01Stage'+i+'" data-auto-stage="'+i+'"><div class="p01StageHead"><b>STEP 02 • '+title+'</b><span>SCROLL → AUTO PLAY • HOVER / TAP TO EXPLORE</span></div>'+toolOrbit+info+'<div class="p01StageCue"><i></i>hover or tap a tool</div></section>'
-  }
-  var nodes='<div class="p01NeoNode" data-node="a"><div class="p01NodeLabel">'+outer[0]+'<span class="p01NodeMini">A</span></div></div>'+
-  '<div class="p01NeoNode focus" data-node="b">'+icon+'<div class="p01NodeLabel">'+centerLabel+'<span class="p01NodeMini">P01</span></div><div class="p01CenterBadge">'+badge+'</div></div>'+
-  '<div class="p01NeoNode" data-node="c"><div class="p01NodeLabel">'+outer[1]+'<span class="p01NodeMini">B</span></div></div>'+
-  '<div class="p01NeoNode" data-node="d"><div class="p01NodeLabel">'+outer[2]+'<span class="p01NodeMini">C</span></div></div>';
-  return '<section class="p01AutoStage" id="p01Stage'+i+'" data-auto-stage="'+i+'"><div class="p01StageHead"><b>STEP '+String(i+1).padStart(2,"0")+' • '+title+'</b><span>'+(i===0?'AUTO PLAY':'SCROLL → AUTO PLAY')+'</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient'+i+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient'+i+')"></line><line data-line="c" style="stroke:url(#p01LineGradient'+i+')"></line><line data-line="d" style="stroke:url(#p01LineGradient'+i+')"></line></svg>'+nodes+'</div>'+info+'<div class="p01StageCue"><i></i>'+(i<2?'scroll for next stage':'ready for experiment')+'</div></section>'
+ var guideIcon='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M30 18h40v64H30zM39 33h23M39 47h23M39 61h17"/><path class="line" d="m40 71 5 5 13-15"/><circle class="dot" cx="30" cy="18" r="3"/><circle class="dot" cx="70" cy="82" r="3"/></svg></div>';
+ var conceptData=lang==="si"?[
+  ["කැතෝඩ කිරණ","අඩු පීඩන discharge tube එකක ඇතිවන, cathode එකෙන් පිටවන ඍණ ආරෝපිත electron කදම්බයයි."],
+  ["සෘජු ගමන","කැතෝඩ කිරණ සාමාන්‍ය තත්ත්වයේ සෘජු රේඛාවක ගමන් කරයි. Metal cross එකෙන් ලැබෙන පැහැදිලි shadow එක මෙය පෙන්වයි."],
+  ["ශක්ති හුවමාරුව","කැතෝඩ කිරණ චාලක ශක්තිය රැගෙන යයි. Paddle wheel එක චලනය වීමෙන් මේ ශක්ති හුවමාරුව නිරීක්ෂණය කළ හැක."],
+  ["ක්ෂේත්‍ර අපගමනය","Electron ඍණ ආරෝපිත නිසා electric සහ magnetic fields යෙදූ විට beam එක අපගමනය වේ."]
+ ]:lang==="ta"?[
+  ["Cathode Rays","குறைந்த அழுத்த discharge tube இல் cathode இலிருந்து உருவாகும் எதிர்மின் electron beam."],
+  ["நேர்கோட்டு இயக்கம்","Cathode rays நேர்கோட்டில் செல்கின்றன. Metal cross உருவாக்கும் தெளிவான shadow இதை காட்டுகிறது."],
+  ["Energy transfer","Cathode rays kinetic energy ஐ எடுத்துச் செல்கின்றன; paddle wheel இயக்கம் இதை காட்டுகிறது."],
+  ["Field deflection","Electrons எதிர்மின் charge கொண்டதால் electric மற்றும் magnetic fields இல் beam விலகுகிறது."]
+ ]:[
+  ["Cathode Rays","A negatively charged electron beam produced from the cathode in a low-pressure discharge tube."],
+  ["Straight travel","Cathode rays travel in straight lines; the sharp shadow of a metal cross demonstrates this."],
+  ["Energy transfer","Cathode rays carry kinetic energy; movement of a paddle wheel demonstrates transfer of that energy."],
+  ["Field deflection","Because electrons are negatively charged, the beam is deflected by electric and magnetic fields."]
+ ];
+ function conceptNode(key,item,icon,center){
+  return '<button type="button" class="p01NeoNode explain '+(center?'focus':'')+'" data-node="'+key+'" data-concept-node title="'+escapeHtml(item[0])+'">'+(icon||'')+'<div class="p01NodeLabel">'+item[0]+'<span class="p01NodeMini">'+(center?'P01':key.toUpperCase())+'</span></div>'+(center?'<div class="p01CenterBadge">CATHODE RAY CONCEPT</div>':'')+'<span class="p01NodePopup"><b>'+item[0]+'</b>'+item[1]+'</span></button>'
  }
- var lang=state.lang;
- var outer1=lang==="si"?["සෘජු ගමන","ශක්ති හුවමාරුව","ක්ෂේත්‍ර අපගමනය"]:lang==="ta"?["நேர்கோட்டு இயக்கம்","Energy transfer","Field deflection"]:["Straight travel","Energy transfer","Field deflection"];
- var outer2=lang==="si"?["Crookes tube","Cross / Paddle wheel","High-voltage supply"]:lang==="ta"?["Crookes tube","Cross / Paddle wheel","High-voltage supply"]:["Crookes tube","Cross / Paddle wheel","High-voltage supply"];
- var outer3=lang==="si"?["Setup පරීක්ෂා කරන්න","Power on කර නිරීක්ෂණය","සසඳා සටහන් කරන්න"]:lang==="ta"?["Setup சரிபார்க்கவும்","Power on செய்து கவனிக்கவும்","ஒப்பிட்டு பதிவு செய்"]:["Check setup","Power on & observe","Compare & record"];
- var center1=lang==="si"?"කැතෝඩ කිරණ":lang==="ta"?"Cathode Rays":"Cathode Rays";
- var center2=lang==="si"?"උපකරණ":lang==="ta"?"உபகரணங்கள்":"Tools";
- var center3=lang==="si"?"මාර්ගෝපදේශය":lang==="ta"?"வழிகாட்டி":"Guide";
- var html=stage(0,u.psteps[0],center1,outer1,flask,copy.steps[0],"CATHODE RAY CONCEPT")+
- stage(1,u.psteps[1],center2,outer2,tools,copy.steps[1],"APPARATUS MAP")+
- stage(2,u.psteps[2],center3,outer3,guide,copy.steps[2],"SAFE PRACTICAL FLOW");
- return shell("lab",'<main class="p01PreflightPage"><div class="p01PreflightTop"><a class="p01PreflightBack" href="#unit1">← '+copy.back+'</a><div class="p01PreflightTag">VIRTUAL LAB • P01 • '+copy.top+'</div></div><div class="p01SequenceRail">'+steps+'</div><div class="p01Study" id="p01Study">'+html+'</div><div class="p01PreflightFoot"><span>'+copy.ready+'</span><strong>STEP 04 • '+u.psteps[3]+'</strong></div></main>')
+ var conceptNodes=conceptNode("a",conceptData[1],"",false)+conceptNode("b",conceptData[0],flask,true)+conceptNode("c",conceptData[2],"",false)+conceptNode("d",conceptData[3],"",false);
+ var conceptInfo='<article class="p01StageInfo"><div class="p01PanelNo"><span>'+copy.steps[0].k+'</span><span>01 / 03</span></div><h2>'+copy.steps[0].t+'</h2><p>'+copy.steps[0].p+'</p><div class="p01PanelFormula">'+copy.steps[0].f+'</div></article>';
+ var stage1='<section class="p01AutoStage" id="p01Stage0" data-auto-stage="0" data-stage-type="morph"><div class="p01StageHead"><b>STEP 01 • '+u.psteps[0]+'</b><span>AUTO PLAY • HOVER / TAP FOR DETAILS</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient0)"></line><line data-line="c" style="stroke:url(#p01LineGradient0)"></line><line data-line="d" style="stroke:url(#p01LineGradient0)"></line></svg>'+conceptNodes+'</div>'+conceptInfo+'<div class="p01StageCue"><i></i>scroll for tools</div></section>';
+
+ var toolData=lang==="si"?[
+  ["Crookes tube","අඩු පීඩන වායුවක් සහිත discharge tube එක. Cathode ray beam එක නිරීක්ෂණය කිරීමට මූලික කුටියයි."],
+  ["Cathode (−)","ඍණ විද්‍යුත් ධ්‍රැවය. ඉහළ විභව අන්තරයක් යෙදූ විට electron beam එක ආරම්භ වන්නේ මෙහි සිටයි."],
+  ["Anode (+)","ධන විද්‍යුත් ධ්‍රැවය. සිදුර හරහා cathode rays ඉදිරියට ගමන් කිරීමට beam එක සකස් කරයි."],
+  ["Fluorescent screen","Cathode rays වැදුණු විට දීප්තියක් ඇති කර beam එකේ පිහිටීම සහ සෙවණැල්ල දැකීමට උපකාරී වේ."],
+  ["Cross / Paddle wheel","Metal cross එකෙන් සෘජු ගමන සහ shadow පෙන්වයි. Paddle wheel එකෙන් beam එක ශක්තිය රැගෙන යන බව පෙන්වයි."],
+  ["High-voltage supply","Cathode සහ anode අතර විශාල potential difference එක සපයයි. සැබෑ උපකරණ භාවිතයේදී ගුරු අධීක්ෂණය අවශ්‍යයි."]
+ ]:lang==="ta"?[
+  ["Crookes tube","குறைந்த அழுத்த வாயு கொண்ட discharge tube. Cathode ray beam ஐ கவனிக்க முக்கிய chamber."],
+  ["Cathode (−)","எதிர்மின் electrode. உயர் potential difference வழங்கும் போது electron beam இங்கிருந்து உருவாகிறது."],
+  ["Anode (+)","நேர்மின் electrode. துளை வழியாக cathode rays முன்னோக்கி செல்ல beam ஐ அமைக்கிறது."],
+  ["Fluorescent screen","Cathode rays பட்டால் ஒளிர்ந்து beam இடம் மற்றும் shadow ஐ காண உதவுகிறது."],
+  ["Cross / Paddle wheel","Metal cross நேர்கோட்டு பயணம்/shadow காட்டும்; paddle wheel energy transfer ஐ காட்டும்."],
+  ["High-voltage supply","Cathode மற்றும் anode இடையே பெரிய potential difference வழங்குகிறது. ஆசிரியர் மேற்பார்வை அவசியம்."]
+ ]:[
+  ["Crookes tube","A low-pressure discharge tube that contains the cathode-ray experiment and makes the beam observable."],
+  ["Cathode (−)","The negative electrode from which the electron beam originates when a high potential difference is applied."],
+  ["Anode (+)","The positive electrode; its aperture helps form and direct the cathode-ray beam."],
+  ["Fluorescent screen","Glows when struck by cathode rays, making the beam position and shadows visible."],
+  ["Cross / Paddle wheel","The cross demonstrates straight-line travel; the wheel demonstrates transfer of energy by the beam."],
+  ["High-voltage supply","Provides the large potential difference between cathode and anode. Real apparatus requires supervision."]
+ ];
+ var toolIcons=[
+  '<svg viewBox="0 0 100 100"><rect class="fill" x="10" y="34" width="80" height="32" rx="16"/><path class="stroke" d="M20 50h19M61 50h19"/><circle class="hot" cx="43" cy="50" r="5"/><circle class="metal" cx="57" cy="50" r="5"/></svg>',
+  '<svg viewBox="0 0 100 100"><path class="stroke" d="M50 18v64M27 28h46M27 72h46"/><rect class="metal" x="33" y="39" width="34" height="22" rx="5"/><path class="stroke" d="M43 50h14"/></svg>',
+  '<svg viewBox="0 0 100 100"><circle class="metal" cx="50" cy="50" r="25"/><circle class="fill" cx="50" cy="50" r="11"/><path class="stroke" d="M50 13v15M50 72v15M13 50h15M72 50h15"/></svg>',
+  '<svg viewBox="0 0 100 100"><rect class="fill" x="22" y="19" width="56" height="62" rx="7"/><path class="hot" d="M30 66c9-26 18-6 25-28 5 13 11 7 15 20"/><path class="stroke" d="M31 29h38"/></svg>',
+  '<svg viewBox="0 0 100 100"><path class="stroke" d="M50 22v56M30 39h40"/><circle class="metal" cx="50" cy="50" r="30"/><path class="stroke" d="M50 20v60M20 50h60M29 29l42 42M71 29 29 71"/></svg>',
+  '<svg viewBox="0 0 100 100"><rect class="fill" x="18" y="24" width="64" height="54" rx="9"/><circle class="hot" cx="37" cy="51" r="8"/><circle class="metal" cx="63" cy="51" r="8"/><path class="stroke" d="M34 51h6M60 51h6M63 48v6M28 68h44"/></svg>'
+ ];
+ var toolPos=[[50,8],[82,27],[82,65],[50,84],[18,65],[18,27]];
+ var toolPods=toolData.map(function(t,j){return '<button type="button" class="p01ToolPod" data-tool-pod="'+j+'" data-detail-title="'+escapeHtml(t[0])+'" data-detail-text="'+escapeHtml(t[1])+'" style="left:'+toolPos[j][0]+'%;top:'+toolPos[j][1]+'%" aria-label="'+escapeHtml(t[0])+'"><span class="p01ToolNo">0'+(j+1)+'</span><span class="p01Tool3D">'+toolIcons[j]+'</span><span class="p01ToolName">'+t[0]+'</span></button>'}).join("");
+ var toolLinks=toolPos.map(function(p,j){return '<line data-orbit-line="'+j+'" x1="50%" y1="46%" x2="'+p[0]+'%" y2="'+p[1]+'%" style="stroke:'+(j%3===0?'#62ffd9':j%3===1?'#8f7cff':'#ff6bdc')+'"></line>'}).join("");
+ var toolsDefault=lang==="si"?["උපකරණ","උපකරණයක් මත cursor එක තබන්න හෝ tap කරන්න"]:lang==="ta"?["உபகரணங்கள்","ஒரு tool மீது cursor வைக்கவும் அல்லது tap செய்யவும்"]:["TOOLS","Hover or tap a tool"];
+ var stage2='<section class="p01AutoStage" id="p01Stage1" data-auto-stage="1" data-stage-type="tools"><div class="p01StageHead"><b>STEP 02 • '+u.psteps[1]+'</b><span>SCROLL ↕ REVERSIBLE • HOVER / TAP</span></div><div class="p01ToolsOrbit" data-tools-orbit><svg class="p01ToolLinks" aria-hidden="true">'+toolLinks+'</svg><div class="p01ToolsCore" data-orbit-core><div class="p01CoreDefault"><strong>'+toolsDefault[0]+'</strong><span>'+toolsDefault[1]+'</span></div><div class="p01CoreDetail"><em>APPARATUS</em><strong data-core-title></strong><p data-core-text></p></div></div>'+toolPods+'</div><div class="p01StageCue"><i></i>scroll for guide</div></section>';
+
+ var guideData=lang==="si"?[
+  ["සැකසුම පරීක්ෂා කරන්න","Power off තත්ත්වයේ tube, electrodes, screen සහ accessories නිවැරදිව සම්බන්ධ වී තිබේද පරීක්ෂා කරන්න."],
+  ["විදුලිය සක්‍රිය කරන්න","High-voltage supply එක සක්‍රිය කර fluorescent screen එකේ දීප්තිය නිරීක්ෂණය කරන්න."],
+  ["Metal cross එක යොදන්න","Metal cross එක beam මාර්ගයට ඇතුළත් කර screen එකේ ඇතිවන පැහැදිලි shadow එක නිරීක්ෂණය කරන්න."],
+  ["Paddle wheel බලන්න","Paddle wheel එක beam එකට යොදා එහි චලනය නිරීක්ෂණය කර energy transfer එක සම්බන්ධ කරන්න."],
+  ["Electric field යොදන්න","Electric field එකක් යොදා electron beam එකේ deflection දිශාව හා ප්‍රමාණය සසඳන්න."],
+  ["Magnetic field මාරු කරන්න","Magnetic field දිශාව වෙනස් කර beam deflection දිශාවද වෙනස් වන ආකාරය නිරීක්ෂණය කරන්න."],
+  ["සටහන් කර නිගමනය කරන්න","සියලු observations සටහන් කර straight-line travel, energy transfer සහ charged-particle nature පිළිබඳ නිගමන සකස් කරන්න."]
+ ]:lang==="ta"?[
+  ["Setup சரிபார்க்கவும்","Power off நிலையில் tube, electrodes, screen மற்றும் accessories சரியாக உள்ளதா பார்க்கவும்."],
+  ["Power on செய்யவும்","High-voltage supply ஐ இயக்கி fluorescent screen ஒளிர்வதை கவனிக்கவும்."],
+  ["Metal cross பயன்படுத்தவும்","Cross ஐ beam பாதையில் வைத்து screen இல் உருவாகும் shadow ஐ கவனிக்கவும்."],
+  ["Paddle wheel பார்க்கவும்","Beam paddle wheel ஐ இயக்குவதை கவனித்து energy transfer உடன் தொடர்புபடுத்தவும்."],
+  ["Electric field வழங்கவும்","Electric field இல் beam deflection திசை மற்றும் அளவை கவனிக்கவும்."],
+  ["Magnetic field மாற்றவும்","Magnetic field திசையை மாற்றி beam deflection திசை மாறுவதை கவனிக்கவும்."],
+  ["பதிவு செய்து முடிவு செய்யவும்","Observations அனைத்தையும் பதிவு செய்து cathode rays இன் பண்புகளை முடிவாக எழுதவும்."]
+ ]:[
+  ["Check the setup","With power off, confirm the tube, electrodes, screen and accessories are correctly arranged."],
+  ["Switch power on","Apply the high voltage and observe fluorescence on the screen."],
+  ["Insert the metal cross","Place the cross in the beam and observe the sharp shadow on the fluorescent screen."],
+  ["Observe the paddle wheel","Place the wheel in the beam and relate its motion to transfer of energy."],
+  ["Apply an electric field","Observe and compare the direction and magnitude of beam deflection."],
+  ["Reverse the magnetic field","Reverse the field and observe the corresponding reversal of beam deflection."],
+  ["Record and conclude","Record all observations and conclude about straight-line travel, energy transfer and negative charge."]
+ ];
+ var guideShort=lang==="si"?["සැකසුම","Power","Cross","Wheel","E-field","B-field","සටහන්"]:lang==="ta"?["Setup","Power","Cross","Wheel","E-field","B-field","Record"]:["Setup","Power","Cross","Wheel","E-field","B-field","Record"];
+ var guidePos=[[50,7],[77,18],[88,45],[76,74],[50,86],[24,74],[12,45]];
+ var guidePods=guideData.map(function(t,j){return '<button type="button" class="p01GuidePod" data-guide-pod="'+j+'" data-detail-title="'+escapeHtml(t[0])+'" data-detail-text="'+escapeHtml(t[1])+'" style="left:'+guidePos[j][0]+'%;top:'+guidePos[j][1]+'%" aria-label="'+escapeHtml(t[0])+'"><span class="p01GuideNo">'+String(j+1).padStart(2,"0")+'</span><span class="p01GuideName">'+guideShort[j]+'</span></button>'}).join("");
+ var guideLinks=guidePos.map(function(p,j){return '<line data-orbit-line="'+j+'" x1="50%" y1="45%" x2="'+p[0]+'%" y2="'+p[1]+'%" style="stroke:'+(j%3===0?'#62ffd9':j%3===1?'#8f7cff':'#ff6bdc')+'"></line>'}).join("");
+ var guideDefault=lang==="si"?["මාර්ගෝපදේශය","Step එකක් මත cursor එක තබන්න හෝ tap කරන්න"]:lang==="ta"?["வழிகாட்டி","ஒரு step மீது cursor வைக்கவும் அல்லது tap செய்யவும்"]:["GUIDE","Hover or tap a step"];
+ var stage3='<section class="p01AutoStage" id="p01Stage2" data-auto-stage="2" data-stage-type="guide"><div class="p01StageHead"><b>STEP 03 • '+u.psteps[2]+'</b><span>SCROLL ↕ REVERSIBLE • HOVER / TAP</span></div><div class="p01GuideOrbit" data-guide-orbit><svg class="p01GuideLinks" aria-hidden="true">'+guideLinks+'</svg><div class="p01GuideCore" data-orbit-core><div class="p01CoreDefault"><strong>'+guideDefault[0]+'</strong><span>'+guideDefault[1]+'</span></div><div class="p01CoreDetail"><em>PROCEDURE</em><strong data-core-title></strong><p data-core-text></p></div></div>'+guidePods+'</div><div class="p01StageCue"><i></i>scroll to continue</div></section>';
+ var readyTitle=lang==="si"?"ඔබ දැන් ප්‍රායෝගිකයට සූදානම්":lang==="ta"?"இப்போது நீங்கள் practical க்கு தயாராக உள்ளீர்கள்":"You are now prepared for the practical";
+ var readyText=lang==="si"?"හැඳින්වීම, උපකරණ සහ ක්‍රියා පටිපාටිය සම්පූර්ණයි. දැන් සජීවී P01 පරීක්ෂණයට යන්න.":lang==="ta"?"Introduction, apparatus மற்றும் procedure முடிந்தது. இப்போது live P01 practical ஐ தொடங்குங்கள்.":"You have completed the introduction, apparatus and procedure. Continue to the live P01 experiment.";
+ var ready='<section class="p01ReadyGate"><div class="p01ReadyInner"><small>P01 • PRE-LAB COMPLETE</small><h2>'+readyTitle+'</h2><p>'+readyText+'</p><button type="button" class="p01ReadyButton" data-start-p01>'+readyTitle+' &nbsp; →</button></div></section>';
+ return shell("lab",'<main class="p01PreflightPage"><div class="p01PreflightTop"><a class="p01PreflightBack" href="#unit1">← '+copy.back+'</a><div class="p01PreflightTag">VIRTUAL LAB • P01 • '+copy.top+'</div></div><div class="p01SequenceRail">'+steps+'</div><div class="p01Study" id="p01Study">'+stage1+stage2+stage3+ready+'</div></main>')
 }
 function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
  var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
- var dead=false,observers=[],timers=[];
- document.querySelectorAll("[data-tool-pod]").forEach(function(pod){
-  pod.addEventListener("click",function(e){
-   e.stopPropagation();
-   var was=pod.classList.contains("selected");
-   document.querySelectorAll("[data-tool-pod]").forEach(function(x){x.classList.remove("selected")});
-   if(!was)pod.classList.add("selected")
-  });
-  pod.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pod.click()}})
- });
- function closeToolSelection(e){if(!e.target.closest||!e.target.closest("[data-tool-pod]"))document.querySelectorAll("[data-tool-pod].selected").forEach(function(x){x.classList.remove("selected")})}
- document.addEventListener("click",closeToolSelection);
- function clamp(v,a,b){return Math.max(a===undefined?0:a,Math.min(b===undefined?1:b,v))}
+ var dead=false,raf=0,lastY=window.scrollY||0,auto0=0,auto0Done=false,autoStart=performance.now(),docClick=null;
+ function clamp(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
  function box(cx,cy,w,h,r){return{x:cx-w/2,y:cy-h/2,w:w,h:h,r:r}}
@@ -1850,39 +1905,60 @@ function initP01Preflight(){
  function draw(el,b,op){if(!el)return;el.style.left=b.x+"px";el.style.top=b.y+"px";el.style.width=b.w+"px";el.style.height=b.h+"px";el.style.borderRadius=b.r+"px";el.style.opacity=op}
  function center(b){return{x:b.x+b.w/2,y:b.y+b.h/2}}
  function drawLine(el,p1,p2,reveal){if(!el)return;el.setAttribute("x1",p1.x);el.setAttribute("y1",p1.y);el.setAttribute("x2",p2.x);el.setAttribute("y2",p2.y);var len=Math.hypot(p2.x-p1.x,p2.y-p1.y);el.style.strokeDasharray=len;el.style.strokeDashoffset=len*(1-reveal);el.style.opacity=reveal}
- function animateStage(stage){
-  if(dead||stage.dataset.played==="1")return;stage.dataset.played="1";
-  var toolsOrbit=stage.querySelector("[data-tools-orbit]");
-  if(toolsOrbit){
-   toolsOrbit.classList.add("ready");
-   timers.push(setTimeout(function(){if(!dead&&stage.isConnected)stage.classList.add("stage-complete")},1150));
-   return
-  }
-  var scene=stage.querySelector("[data-morph-scene]"),nodes={a:scene.querySelector('[data-node="a"]'),b:scene.querySelector('[data-node="b"]'),c:scene.querySelector('[data-node="c"]'),d:scene.querySelector('[data-node="d"]')},lines={a:scene.querySelector('[data-line="a"]'),c:scene.querySelector('[data-line="c"]'),d:scene.querySelector('[data-line="d"]')},icon=nodes.b.querySelector(".p01NodeIcon"),badge=nodes.b.querySelector(".p01CenterBadge"),labels={a:nodes.a.querySelector(".p01NodeLabel"),b:nodes.b.querySelector(".p01NodeLabel"),c:nodes.c.querySelector(".p01NodeLabel"),d:nodes.d.querySelector(".p01NodeLabel")};
-  var start=performance.now(),duration=1650;
-  function frame(now){
-   if(dead||!stage.isConnected)return;
-   var p=clamp((now-start)/duration),intro=ease(clamp(p/.28)),morph=ease(clamp((p-.20)/.50)),connect=ease(clamp((p-.57)/.30)),L=layout(scene),B={a:interp(L.start.a,L.end.a,morph),b:interp(L.start.b,L.end.b,morph),c:interp(L.start.c,L.end.c,morph),d:interp(L.start.d,L.end.d,morph)};
-   draw(nodes.a,B.a,intro);draw(nodes.b,B.b,intro);draw(nodes.c,B.c,intro);draw(nodes.d,B.d,intro);
-   var cb=center(B.b);drawLine(lines.a,cb,center(B.a),connect);drawLine(lines.c,cb,center(B.c),connect);drawLine(lines.d,cb,center(B.d),connect);
-   icon.style.opacity=String(.15+.85*morph);icon.style.transform="translate(-50%,-50%) scale("+(0.78+.22*morph)+")";badge.style.opacity=String(clamp((morph-.34)/.66));
-   ["a","c","d"].forEach(function(k){labels[k].style.opacity=String(1-morph*.36);labels[k].style.transform="scale("+(1-morph*.10)+")"});labels.b.style.opacity=String(1-morph*.88);
-   if(p<1)requestAnimationFrame(frame);else stage.classList.add("stage-complete");
-  }
-  requestAnimationFrame(frame);
+ function scrollProgress(stage){
+  var r=stage.getBoundingClientRect(),vh=window.innerHeight||700;
+  return clamp((vh*.86-r.top)/(vh*.46))
  }
- function resetForResize(){stages.forEach(function(stage){if(stage.dataset.played==="1"){stage.dataset.played="";stage.classList.remove("stage-complete");var o=stage.querySelector("[data-tools-orbit]");if(o)o.classList.remove("ready");animateStage(stage)}})}
- var resizeTimer=0;function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(resetForResize,150)}window.addEventListener("resize",onResize,{passive:true});
- // Step 01 starts automatically without any scroll.
- timers.push(setTimeout(function(){animateStage(stages[0])},180));
- if("IntersectionObserver" in window){
-  stages.slice(1).forEach(function(stage){var ob=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>.42){animateStage(stage)}})},{threshold:[.42,.65]});ob.observe(stage);observers.push(ob)})
- }else{
-  function onScroll(){stages.slice(1).forEach(function(stage){var r=stage.getBoundingClientRect(),vh=window.innerHeight||700;if(r.top<vh*.62&&r.bottom>vh*.28)animateStage(stage)})}
-  window.addEventListener("scroll",onScroll,{passive:true});window._p01FallbackScroll=onScroll;onScroll()
+ function applyMorph(stage,p){
+  var scene=stage.querySelector("[data-morph-scene]");if(!scene)return;
+  var nodes={a:scene.querySelector('[data-node="a"]'),b:scene.querySelector('[data-node="b"]'),c:scene.querySelector('[data-node="c"]'),d:scene.querySelector('[data-node="d"]')},lines={a:scene.querySelector('[data-line="a"]'),c:scene.querySelector('[data-line="c"]'),d:scene.querySelector('[data-line="d"]')},icon=nodes.b&&nodes.b.querySelector(".p01NodeIcon"),badge=nodes.b&&nodes.b.querySelector(".p01CenterBadge"),labels={a:nodes.a&&nodes.a.querySelector(".p01NodeLabel"),b:nodes.b&&nodes.b.querySelector(".p01NodeLabel"),c:nodes.c&&nodes.c.querySelector(".p01NodeLabel"),d:nodes.d&&nodes.d.querySelector(".p01NodeLabel")};
+  var intro=ease(clamp(p/.28)),morph=ease(clamp((p-.20)/.50)),connect=ease(clamp((p-.57)/.30)),L=layout(scene),B={a:interp(L.start.a,L.end.a,morph),b:interp(L.start.b,L.end.b,morph),c:interp(L.start.c,L.end.c,morph),d:interp(L.start.d,L.end.d,morph)};
+  draw(nodes.a,B.a,intro);draw(nodes.b,B.b,intro);draw(nodes.c,B.c,intro);draw(nodes.d,B.d,intro);
+  var cb=center(B.b);drawLine(lines.a,cb,center(B.a),connect);drawLine(lines.c,cb,center(B.c),connect);drawLine(lines.d,cb,center(B.d),connect);
+  if(icon){icon.style.opacity=String(.15+.85*morph);icon.style.transform="translate(-50%,-50%) scale("+(0.78+.22*morph)+")"}if(badge)badge.style.opacity=String(clamp((morph-.34)/.66));
+  ["a","c","d"].forEach(function(k){if(labels[k]){labels[k].style.opacity=String(1-morph*.36);labels[k].style.transform="scale("+(1-morph*.10)+")"}});if(labels.b)labels.b.style.opacity=String(1-morph*.88);
+  var info=stage.querySelector(".p01StageInfo");if(info){var show=clamp((p-.78)/.18);info.style.opacity=String(show);info.style.transform="translateY("+(14*(1-show))+"px)"}
  }
- var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;timers.push(setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80))}
- window._p01PreflightCleanup=function(){dead=true;timers.forEach(clearTimeout);observers.forEach(function(o){o.disconnect()});window.removeEventListener("resize",onResize);document.removeEventListener("click",closeToolSelection);if(window._p01FallbackScroll){window.removeEventListener("scroll",window._p01FallbackScroll);window._p01FallbackScroll=null}}
+ function applyOrbit(stage,p,podSelector,coreSelector){
+  var core=stage.querySelector(coreSelector),pods=Array.from(stage.querySelectorAll(podSelector)),lines=Array.from(stage.querySelectorAll("[data-orbit-line]"));if(!core)return;
+  var coreP=ease(clamp(p/.42));core.style.opacity=String(coreP);core.style.transform="translate(-50%,-50%) scale("+(0.35+0.65*coreP)+")";
+  pods.forEach(function(pod,i){var q=ease(clamp((p-(.18+i*.045))/.40));pod.style.opacity=String(q);pod.style.transform="translate(-50%,-50%) scale("+(0.25+0.75*q)+")"});
+  lines.forEach(function(line,i){var q=ease(clamp((p-(.50+i*.018))/.28));line.style.opacity=String(.75*q)});
+ }
+ function setCoreDetail(pod,on){
+  var stage=pod.closest("[data-auto-stage]"),core=stage&&stage.querySelector("[data-orbit-core]");if(!core)return;
+  var title=core.querySelector("[data-core-title]"),txt=core.querySelector("[data-core-text]");
+  if(on){if(title)title.textContent=pod.dataset.detailTitle||"";if(txt)txt.textContent=pod.dataset.detailText||"";core.classList.add("detail-on")}else core.classList.remove("detail-on")
+ }
+ document.querySelectorAll("[data-tool-pod],[data-guide-pod]").forEach(function(pod){
+  pod.addEventListener("mouseenter",function(){setCoreDetail(pod,true)});
+  pod.addEventListener("mouseleave",function(){if(!pod.classList.contains("selected"))setCoreDetail(pod,false)});
+  pod.addEventListener("focus",function(){setCoreDetail(pod,true)});
+  pod.addEventListener("blur",function(){if(!pod.classList.contains("selected"))setCoreDetail(pod,false)});
+  pod.addEventListener("click",function(e){e.stopPropagation();var selector=pod.hasAttribute("data-tool-pod")?"[data-tool-pod]":"[data-guide-pod]",was=pod.classList.contains("selected");document.querySelectorAll(selector).forEach(function(x){x.classList.remove("selected")});if(!was){pod.classList.add("selected");setCoreDetail(pod,true)}else setCoreDetail(pod,false)})
+ });
+ document.querySelectorAll("[data-concept-node]").forEach(function(pod){pod.addEventListener("click",function(e){e.stopPropagation();var was=pod.classList.contains("selected");document.querySelectorAll("[data-concept-node]").forEach(function(x){x.classList.remove("selected")});if(!was)pod.classList.add("selected")})});
+ docClick=function(e){if(!e.target.closest||(!e.target.closest("[data-tool-pod]")&&!e.target.closest("[data-guide-pod]")&&!e.target.closest("[data-concept-node]"))){document.querySelectorAll("[data-tool-pod],[data-guide-pod],[data-concept-node]").forEach(function(x){x.classList.remove("selected")});document.querySelectorAll("[data-orbit-core]").forEach(function(x){x.classList.remove("detail-on")})}};
+ document.addEventListener("click",docClick);
+ function update(now){
+  if(dead)return;
+  var sy=window.scrollY||0;
+  if(!auto0Done){
+   auto0=clamp((now-autoStart)/1650);
+   if(auto0>=1){auto0=1;auto0Done=true}
+  }
+  stages.forEach(function(stage,i){
+   var p=(i===0&&sy<45)?auto0:scrollProgress(stage);
+   var type=stage.dataset.stageType;
+   if(type==="morph")applyMorph(stage,p);
+   else if(type==="tools")applyOrbit(stage,p,"[data-tool-pod]",".p01ToolsCore");
+   else if(type==="guide")applyOrbit(stage,p,"[data-guide-pod]",".p01GuideCore");
+  });
+  lastY=sy;raf=requestAnimationFrame(update)
+ }
+ raf=requestAnimationFrame(update);
+ var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80)}
+ window._p01PreflightCleanup=function(){dead=true;cancelAnimationFrame(raf);if(docClick)document.removeEventListener("click",docClick)}
 }
 function renderP01(){if(state.pstep<3)return renderP01Preflight();var u=U(),content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep](),steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
