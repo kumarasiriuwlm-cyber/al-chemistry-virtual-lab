@@ -892,6 +892,17 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
 .unitVideoInfo{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px}.unitVideoInfo>div{min-width:0}.unitVideoInfo b{display:block;color:#243c49;font-size:12px;line-height:1.35}.unit5Theme .unitVideoInfo b{color:#64352e}.unitVideoInfo small{display:block;margin-top:4px;color:#7c8c95;font-size:9px}
 .unitVideoInfo a{flex:0 0 auto;text-decoration:none;padding:8px 10px;border-radius:10px;background:#eef7fb;color:#23789d;font:900 9px Arial}.unit5Theme .unitVideoInfo a{background:#fff1eb;color:#ad4e3e}
 @media(max-width:760px){.unitMediaGrid.two,.unitVideoGrid.multi{grid-template-columns:1fr}.unitMediaGrid img{height:250px}.unitMediaGrid figure>a{min-height:210px}.unitMediaLabel.video{align-items:flex-start;flex-wrap:wrap}.unitMediaLabel.video em{margin-left:0}}
+
+/* Unit 04/05 deeper source-grounded study cards */
+.unitDeepStudy{margin:24px 0 28px;padding:18px;border:1px solid #d8e7eb;border-radius:20px;background:linear-gradient(145deg,#fff,#f7fbfc);box-shadow:0 12px 34px rgba(27,63,81,.06)}
+.unit5Theme .unitDeepStudy{border-color:#ecd8d1;background:linear-gradient(145deg,#fff,#fff8f5)}
+.unitDeepHead{display:flex;align-items:center;gap:11px;margin-bottom:14px}.unitDeepHead>span{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(145deg,#dff4fb,#edf9ff);color:#2185ae;font-size:17px}.unit5Theme .unitDeepHead>span{background:#fff0e9;color:#cc5945}
+.unitDeepHead b{display:block;color:#244b5d;font-size:14px}.unit5Theme .unitDeepHead b{color:#754139}.unitDeepHead small{display:block;margin-top:3px;color:#7c929d;font-size:9px;letter-spacing:.04em}
+.unitDeepGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.unitDeepCard{position:relative;padding:15px 14px;border:1px solid #deebef;border-radius:15px;background:#fff;min-height:150px}.unit5Theme .unitDeepCard{border-color:#eedbd4}.unitDeepCard.focus{background:linear-gradient(145deg,#f4fbfd,#fff9ec)}.unit5Theme .unitDeepCard.focus{background:linear-gradient(145deg,#fff5ef,#fff9e9)}
+.unitDeepCard>small{display:inline-block;color:#39a7ca;font:900 8px Arial;letter-spacing:.12em}.unit5Theme .unitDeepCard>small{color:#d66a4d}.unitDeepCard h4{margin:7px 0 8px;color:#22495a;font-size:13px;line-height:1.25}.unit5Theme .unitDeepCard h4{color:#713e36}.unitDeepCard p{margin:0;color:#536b77;font-size:11px;line-height:1.65}.unit5Theme .unitDeepCard p{color:#6f5a53}
+.unitMediaFigure{margin-top:26px}.unitVideoSection{margin-top:22px}
+@media(max-width:900px){.unitDeepGrid{grid-template-columns:1fr}.unitDeepCard{min-height:0}}
+@media(max-width:700px){.unitDeepStudy{padding:13px;margin:18px 0 22px}.unitDeepCard{padding:12px}.unitDeepCard p{font-size:10.5px}}
 /* 2026-10-07: P01 neon automatic stage choreography */
 .p01PreflightPage{max-width:none!important;width:100%;padding:0 0 72px!important;background:#03070f;color:#effffb;overflow:hidden}
 .p01PreflightTop{position:sticky;top:0;z-index:40;max-width:none;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(142,255,235,.10);background:rgba(3,7,15,.72);backdrop-filter:blur(18px)}
@@ -1682,6 +1693,99 @@ var unit5SectionMedia=[
   {id:"2t_czeRI7VM",title:{si:"ශක්ති විද්‍යාව — Entropy සහ Gibbs නිදහස් ශක්තිය",en:"Energetics — Entropy and Gibbs Free Energy",ta:"Energetics — Entropy மற்றும் Gibbs free energy"},channel:"Pasindu Jayanetti / Maths Guide"}
  ]}
 ];
+
+var unit4DeepStudy=[
+ [
+  ["NIE සංකල්පය","ඝනයක අංශු සාපේක්ෂව ස්ථිර ස්ථානවල කම්පනය කරයි; ද්‍රවයක අංශු සමීපව සිටියත් ස්ථාන මාරු කළ හැක; වායුවක අංශු අතර දුර විශාල බැවින් නිදහසේ චලනය කරයි. මේ වෙනස shape, volume, density සහ compressibility පැහැදිලි කරයි."],
+  ["ඇයි වායුව සම්පීඩ්‍යද?","අංශුම කුඩා වීම නිසා නොව, අංශු අතර විශාල හිස් අවකාශය අඩු කළ හැකි නිසාය. Temperature වැඩිවීම thermal motion වැඩි කර intermolecular attraction වල බලපෑමට එරෙහිව ක්‍රියා කරයි."],
+  ["විභාග වැරැද්ද","Gas-law calculations සඳහා T නිරපේක්ෂ temperature එකයි. °C අගයක් සෘජුව equation එකට නොදමා T/K = t/°C + 273.15 ලෙස පරිවර්තනය කරන්න."]
+ ],
+ [
+  ["PV=nRT ට වඩා ඉදිරියට","n=m/M යොදා PV=(m/M)RT. Density d=m/V නම් d=PM/RT. Molar concentration C=n/V නම් P=CRT. එබැවින් එකම ideal-gas equation එකෙන් amount, molar mass, concentration සහ density සොයාගත හැක."],
+  ["NIE ගණනය කිරීමේ රටාව","0.950 dm³ propane cylinder එක 25 °C සහ 750 torr යටතේ සලකන උදාහරණයේ T සහ P මුලින් consistent units වලට පරිවර්තනය කර PV=nRT මගින් n සොයා, පසුව mass=nM සහ density=m/V යොදයි."],
+  ["Units පාලනය","R=8.314 J mol⁻¹ K⁻¹ භාවිත කරන විට P=Pa සහ V=m³ තබාගැනීම ආරක්ෂිත ක්‍රමයකි. atm/dm³ පද්ධතියක් භාවිත කරනවා නම් ඒ ඒකකවලට ගැළපෙන R අගයම භාවිත කරන්න."]
+ ],
+ [
+  ["නීති එකම සිතියමක","Boyle: T,n නියත → PV=constant. Charles: P,n නියත → V/T=constant. Avogadro: P,T නියත → V/n=constant. Fixed amount එකකට combined law: P₁V₁/T₁=P₂V₂/T₂."],
+  ["Molar volume condition සමඟ","NIE පොත 0 °C සහ 1 atm යටතේ ideal-gas molar volume 22.414 dm³ mol⁻¹ ලෙස දක්වයි. Molar volume එකක් කිසිවිට condition නොමැතිව මතක තබා නොගන්න; P සහ T වෙනස් වුණොත් Vₘ ද වෙනස් වේ."],
+  ["Convention note","මෙම NIE edition එක 1 atm standard-pressure convention භාවිත කරයි. වත්මන් IUPAC standard pressure 1 bar = 10⁵ Pa සහ STP 273.15 K, 100 kPa වේ. Exam එකේ දී ප්‍රශ්නය දී ඇති P,T values හෝ නිර්වචනයට consistent වන්න."]
+ ],
+ [
+  ["Dalton නීතිය","Non-reacting gas mixture එකක Pᵀ=ΣPᵢ සහ Pᵢ=xᵢPᵀ. N₂=0.8 mol, O₂=0.2 mol සහ Pᵀ=1.00 atm නම් x(N₂)=0.8, x(O₂)=0.2; එබැවින් partial pressures 0.80 atm සහ 0.20 atm."],
+  ["ජලය මත වායු එකතු කිරීම","27 °C දී total pressure 760 torr සහ saturated water-vapour pressure 26.7 torr නම් dry O₂ pressure = 760−26.7 = 733.3 torr. PV=nRT තුළ දමන්නේ dry gas partial pressure එකයි."],
+  ["Concept check","Gas over water setup එකේ collected sample එක pure gas එකක් නොවේ; gas + water vapour mixture එකකි. ඒ නිසා Dalton law correction එක නොකර total pressure භාවිත කිරීම systematic error එකක් වේ."]
+ ],
+ [
+  ["KMT assumptions","Ideal-gas particles ඉතා කුඩාය; particles අතර හිස් අවකාශය විශාලය; intermolecular attractions/repulsions නොසලකයි; collisions අතර random straight-line motion ඇත; collisions perfectly elastic වේ."],
+  ["Pressure molecular level එකෙන්","Pressure හටගන්නේ particles container wall එකට ගැටී momentum transfer කිරීමෙන්. Volume අඩු කළ විට wall-collision frequency වැඩි වන නිසා pressure වැඩිවීම Boyle law එකට molecular explanation එකක් දෙයි."],
+  ["Temperature meaning","Average translational kinetic energy absolute T මත පමණක් රඳා පවතී. Same T හි H₂ හා N₂ average KE සමානයි; H₂ සැහැල්ලු නිසා එම KE සඳහා වැඩි speed අවශ්‍ය වේ."]
+ ],
+ [
+  ["RMS speed worked values","cᵣₘₛ=√(3RT/M), M kg mol⁻¹. 298 K හි H₂ සඳහා M=0.002 → cᵣₘₛ≈1.93×10³ m s⁻¹; N₂ සඳහා M=0.028 → ≈515 m s⁻¹."],
+  ["Kinetic energy","එක් molecule එකකට mean translational KE = 3kBT/2; mol එකකට = 3RT/2. Same temperature හි gas identity වෙනස් වුණත් mean translational KE එක වෙනස් නොවේ."],
+  ["Maxwell–Boltzmann කියවීම","Curve area එක molecules සියල්ල නිරූපණය කරයි. T වැඩි කළ විට curve එක පුළුල් වෙයි, peak පහළට යයි, වැඩි speed පැත්තට shift වෙයි. Same T හි heavier gas curve එක අඩු speed පැත්තට පවතී."]
+ ],
+ [
+  ["Compressibility factor","Z=PV/(nRT). Ideal gas එකකට Z=1. Z<1 ප්‍රදේශයක attractions ප්‍රමුඛ බවත්, ඉහළ pressure දී Z>1 වීම finite molecular volume/repulsion ප්‍රමුඛ වීමත් qualitative ලෙස අර්ථකථනය කළ හැක."],
+  ["NIE graph එකෙන් ඉගෙනගන්න","H₂/He සහ CO/CH₄ වැනි gases එකම Z–P curve එක නොපෙන්වයි. Gas identity සහ temperature දෙකම deviation එක තීරණය කරයි; 'real gas හැමවිටම Z<1' යන්න වැරදියි."],
+  ["Ideal limit","Low P දී molecules දුරින්; high T දී thermal energy වැඩිය. එම නිසා intermolecular interactions සාපේක්ෂව අඩු බලපෑමක් දක්වන low P + high T තත්ත්ව ideal approximation සඳහා හොඳම තත්ත්වයයි."]
+ ],
+ [
+  ["van der Waals corrections","(P+an²/V²)(V−nb)=nRT. a attraction correction එකට සම්බන්ධයි; b molecules අත්පත් කරගන්නා excluded volume එකට සම්බන්ධයි."],
+  ["Physical meaning","Attractions නිසා wall එකට ලැබෙන momentum transfer ideal prediction එකට වඩා අඩු විය හැක. Molecules finite size ඇති නිසා free volume එක V නොව V−nb ලෙස අඩු වේ."],
+  ["Critical temperature","Tᶜ ට ඉහළින් pressure පමණක් වැඩි කර gas එක liquid කළ නොහැක. NIE unit එක CO₂ සඳහා Tᶜ≈30.98 °C යන උදාහරණය භාවිත කරයි; liquefaction සඳහා pressure පමණක් නොව temperature ද අත්‍යවශ්‍යය."]
+ ]
+];
+
+var unit5DeepStudy=[
+ [
+  ["System map","System = අධ්‍යයනය කරන කොටස; surroundings = පිටත ඇති සියල්ල; boundary = දෙක වෙන් කරන සීමාව. Open system matter+energy exchange කරයි; closed system energy පමණක්; isolated system දෙකම exchange නොකරයි."],
+  ["Extensive vs intensive","Mass, volume, amount සහ total energy extensive. Temperature, pressure, density, refractive index සහ specific heat capacity intensive. System size දෙගුණ කළ විට intensive property එක අනිවාර්යයෙන් දෙගුණ නොවේ."],
+  ["Exam method","Classification එකේ 'sealed' වැනි වචනය පමණක් නොබලා matter boundary එක හරහා යනවාද? energy යනවාද? කියා ප්‍රශ්න දෙක වෙන වෙනම අසන්න."]
+ ],
+ [
+  ["State function","P,V,T,composition මගින් state එක විස්තර කරයි. H,S,G වැනි state functions සඳහා change එක initial/final states මත පමණක් රඳා පවතින අතර path එක මත නොවේ. Hess නීතියේ මූලික අදහස මෙයයි."],
+  ["Spontaneous ≠ fast","Thermodynamically spontaneous process එකක් ඉතා මන්දගාමී විය හැක. Thermodynamics 'සිදුවීමට ප්‍රවණතාවය' ගැන කියයි; kinetics 'කොතරම් වේගයෙන්ද' කියා වෙනම ප්‍රශ්නයක් අසයි."],
+  ["Convention note","මෙම NIE edition එක standard pressure ලෙස 1 atm (101325 Pa) භාවිත කරයි. වත්මන් IUPAC standard pressure 1 bar = 10⁵ Pa. Data table/ප්‍රශ්නය භාවිත කරන convention එකට consistent වන්න."]
+ ],
+ [
+  ["Enthalpy සහ heat","Absolute H සෘජුව නොමනින අතර ΔH=H(products)−H(reactants). Constant pressure යටතේ qₚ=ΔH. Heat යනු temperature difference නිසා boundary එක හරහා හුවමාරු වන energy එකක්; එය stored 'substance' එකක් නොවේ."],
+  ["Calorimetry example","q=mcΔT සහ C=mc. Water 100.0 g, c=4.184 J g⁻¹ °C⁻¹ නම් C=418.4 J °C⁻¹. ΔT=Tfinal−Tinitial ලෙස sign එක තබාගන්න."],
+  ["Sign discipline","System heat absorb කළොත් q>0; release කළොත් q<0. Solution/calorimeter එක ලබාගත් heat සහ reaction system එකේ heat signs බොහෝවිට ප්‍රතිවිරුද්ධය."]
+ ],
+ [
+  ["Exothermic vs endothermic","Exothermic: products lower enthalpy, ΔH<0, heat surroundings වෙත. Endothermic: products higher enthalpy, ΔH>0, heat surroundings වලින් system වෙත."],
+  ["Thermochemical equation","Balanced coefficients, physical states සහ ΔH එකම statement එකක කොටස්. Reaction reverse කළ විට ΔH sign reverse කරන්න; coefficients k න් ගුණ කළ විට ΔH ද k න් ගුණ කරන්න."],
+  ["States matter","2H₂+O₂→2H₂O(g) සහ 2H₂+O₂→2H₂O(l) සඳහා ΔH එකම නොවේ. Product phase වෙනස් වීමෙන් condensation/vaporization energy contribution වෙනස් වේ."]
+ ],
+ [
+  ["ΔH°f","Standard enthalpy of formation = elements ඔවුන්ගේ standard states වලින් compound 1 mol සෑදීමේ ΔH°. Most stable standard form එකේ element එකකට ΔH°f=0."],
+  ["Standard terms map","ΔH°c combustion; ΔH°D bond dissociation; ΔH°neu neutralization; ΔH°sol solvation; ΔH°hyd hydration; ΔH°sub sublimation; ΔH°vap vaporization; ΔH°fus fusion; ΔH°at atomization."],
+  ["Sign discipline","Ionization enthalpy energy input නිසා positive. Lattice dissociation solid ionic compound→gaseous ions නිසා positive. Lattice formation direction reverse බැවින් sign negative වේ."]
+ ],
+ [
+  ["Hess නීතිය","ΔHoverall=ΣΔHsteps. Known equations reverse, multiply, add කර target equation එක algebra වගේ සාදන්න. Equation operation එකට කරන දේම ΔH value එකට කරන්න."],
+  ["Formation-data shortcut","ΔH°rxn=Σν(products)ΔH°f(products)−Σν(reactants)ΔH°f(reactants). Stoichiometric coefficients ν අමතක නොකරන්න; standard-state elements සඳහා ΔH°f=0."],
+  ["NIE worked pattern","3C(graphite)+4H₂→C₃H₈ target එක combustion/formation data වලින් Hess cycle එකක් ලෙස සකස් කරන උදාහරණයේ ΔH°≈−103.8 kJ mol⁻¹. Number එකට වඩා equation direction handling එක ඉගෙනගන්න."]
+ ],
+ [
+  ["Born–Haber purpose","Directly මැනීමට අපහසු lattice term එක Hess cycle එකෙන් indirect ලෙස ලබාගැනීමට Born–Haber cycle භාවිත කරයි."],
+  ["LiF NIE example","Li sublimation, ½F₂ atomization, Li ionization, F electron gain සහ Li⁺(g)+F⁻(g) lattice formation steps එකතු කර LiF(s) formation සම්බන්ධ කරයි. Book calculation එකේ lattice-formation step ≈−1016.6 kJ mol⁻¹; lattice dissociation magnitude +1016.6 kJ mol⁻¹."],
+  ["Stability idea","Ionic charge product වැඩි වීම සහ ion separation අඩු වීම electrostatic attraction වැඩි කරයි. Born–Haber ප්‍රශ්නයක lattice formation ද dissociation ද කියා direction එක මුලින්ම ලියන්න."]
+ ],
+ [
+  ["Entropy trend","Entropy S energy dispersal/possible arrangements සම්බන්ධ state function එකකි. සාමාන්‍යයෙන් S(g)>S(l)>S(s), සහ temperature වැඩිවීමෙන් S වැඩි වේ."],
+  ["NIE entropy example","2H₂(g)+O₂(g)→2H₂O(g) දී gas moles 3→2 වන නිසා ΔS° negative බව කලින් predict කළ හැක. Tabulated values යොදා resource-book example එකේ ΔS°≈−88.9 J K⁻¹ mol⁻¹."],
+  ["Gibbs criterion","ΔG=ΔH−TΔS. CO+½O₂→CO₂ සඳහා 298 K NIE example එක ΔH°≈−283.0 kJ mol⁻¹, ΔS°≈−86.6 J K⁻¹ mol⁻¹, ΔG°≈−257 kJ mol⁻¹ ලබාගනී. ΔG<0 spontaneity පෙන්වයි; speed එක නොවේ."]
+ ]
+];
+
+function unit45DeepBlock(which,i){
+ if(state.lang!=="si")return "";
+ var data=which===4?unit4DeepStudy:unit5DeepStudy,rows=data[i]||[];
+ if(!rows.length)return "";
+ return '<section class="unitDeepStudy"><div class="unitDeepHead"><span>✦</span><div><b>ගැඹුරු අවබෝධය</b><small>NIE සංකල්පය • ගණනය • පොදු වැරදි</small></div></div><div class="unitDeepGrid">'+rows.map(function(r,ri){return '<article class="unitDeepCard '+(ri===2?'focus':'')+'"><small>'+String(ri+1).padStart(2,"0")+'</small><h4>'+r[0]+'</h4><p>'+r[1]+'</p></article>'}).join("")+'</div></section>'
+}
 function unit45MediaLabels(){
  return state.lang==="si"?{figure:"විද්‍යාත්මක රූපය",video:"අමතර වීඩියෝ පාඩම",medium:"සිංහල මාධ්‍යය",watch:"YouTube හි බලන්න",source:"රූප මූලාශ්‍රය"}:
  state.lang==="ta"?{figure:"அறிவியல் படம்",video:"கூடுதல் வீடியோ பாடம்",medium:"சிங்கள மொழி",watch:"YouTube இல் பார்க்கவும்",source:"பட மூலம்"}:
@@ -1759,9 +1863,9 @@ function renderUnit45(which){var is4=which===4,list=(is4?unit4Notes:unit5Notes)[
  var ui=is4?(state.lang==="si"?{title:"Unit 04 — පදාර්ථයේ වායුමය අවස්ථාව",sub:"NIE Physical Chemistry Part I හි Unit 04 අනුපිළිවෙළ අනුව පදාර්ථයේ අවස්ථා සිට ideal/real gas behaviour සහ liquefaction දක්වා සම්පූර්ණ journey එකකි.",guide:"Scroll Journey — අංශු හැසිරීම → වායු නීති → kinetic theory → real gases",source:"NIE 12 ශ්‍රේණිය රසායන විද්‍යා සම්පත් පොත — Unit 04: පදාර්ථයේ වායුමය අවස්ථාව (මුද්‍රිත පිටු 1–27; PDF පිටු 8–34)",sections:["පදාර්ථයේ අවස්ථා","Ideal gas සහ PV=nRT","Gas laws","Dalton partial pressure","Kinetic molecular theory","RMS / Maxwell–Boltzmann","Real gases සහ Z","van der Waals / critical T"]}:state.lang==="ta"?{title:"Unit 04 — பொருளின் வாயு நிலை",sub:"NIE Unit 04 வரிசையில் states, gas laws, kinetic theory, real gases மற்றும் liquefaction.",guide:"Scroll Journey — particles → gas laws → kinetic theory → real gases",source:"NIE Grade 12 Chemistry Resource Book — Unit 04 (printed pp. 1–27; PDF pp. 8–34)",sections:["States","Ideal gas","Gas laws","Dalton","KMT","RMS / MB","Real gases / Z","van der Waals"]}:{title:"Unit 04 — Gaseous State of Matter",sub:"An NIE-aligned journey from states of matter and gas laws through kinetic molecular theory, real gases and liquefaction.",guide:"Scroll Journey — particle behaviour → gas laws → kinetic theory → real gases",source:"NIE Grade 12 Chemistry Resource Book — Unit 04: Gaseous State of Matter (printed pp. 1–27; PDF pp. 8–34)",sections:["States of matter","Ideal gas","Gas laws","Dalton partial pressure","Kinetic molecular theory","RMS / Maxwell-Boltzmann","Real gases / Z","van der Waals / critical T"]})
  :(state.lang==="si"?{title:"Unit 05 — ශක්ති විද්‍යාව",sub:"NIE Physical Chemistry Part I හි Unit 05 අනුපිළිවෙළ අනුව thermodynamic systems සිට enthalpy, Hess/Born–Haber, entropy සහ Gibbs spontaneity දක්වා සම්පූර්ණ journey එකකි.",guide:"Scroll Journey — පද්ධතිය → heat/enthalpy → Hess/Born–Haber → entropy/Gibbs",source:"NIE 12 ශ්‍රේණිය රසායන විද්‍යා සම්පත් පොත — Unit 05: ශක්ති විද්‍යාව (මුද්‍රිත පිටු 28–54; PDF පිටු 35–61)",sections:["පද්ධති සහ ගුණ","අවස්ථා සහ ක්‍රියාවලි","Enthalpy / calorimetry","Exo / endo thermochemistry","Standard enthalpy types","Hess නීතිය","Lattice / Born–Haber","Entropy / Gibbs"]}:state.lang==="ta"?{title:"Unit 05 — ஆற்றல் வேதியியல்",sub:"NIE Unit 05 வரிசையில் thermodynamic systems முதல் enthalpy, Hess/Born-Haber, entropy மற்றும் Gibbs வரை.",guide:"Scroll Journey — system → enthalpy → Hess/Born-Haber → Gibbs",source:"NIE Grade 12 Chemistry Resource Book — Unit 05 (printed pp. 28–54; PDF pp. 35–61)",sections:["Systems","States/processes","Enthalpy/calorimetry","Exo/endo","Standard enthalpies","Hess","Born-Haber","Entropy/Gibbs"]}:{title:"Unit 05 — Energetics",sub:"An NIE-aligned thermodynamics journey from systems and calorimetry through standard enthalpies, Hess and Born-Haber cycles, entropy and Gibbs energy.",guide:"Scroll Journey — system → heat/enthalpy → Hess/Born-Haber → entropy/Gibbs",source:"NIE Grade 12 Chemistry Resource Book — Unit 05: Energetics (printed pp. 28–54; PDF pp. 35–61)",sections:["Systems and properties","States and processes","Enthalpy / calorimetry","Exo / endo thermochemistry","Standard enthalpy types","Hess's law","Lattice / Born-Haber","Entropy / Gibbs"]});
  var jumps=ui.sections.map(function(x,i){var locked=i>unlock;return '<button type="button" class="'+(done.indexOf(i)>=0?'done ':'')+(locked?'disabled':'')+'" '+(locked?'disabled':'data-u'+which+'-jump="'+i+'"')+'>'+String(i+1).padStart(2,"0")+' '+(locked?'🔒 ':'')+x+'</button>'}).join("");
- var detail=list.map(function(n,i){var locked=i>unlock;if(locked)return '<section class="journeyChapter chapterLocked" id="u'+which+'note'+i+'"></section>';return '<section class="journeyChapter" id="u'+which+'note'+i+'" style="--chapter-bg:'+bg(i)+'"><header class="journeyChapterHead"><div class="journeyChapterNo">'+String(i+1).padStart(2,"0")+'</div><div><div class="journeyChapterTitle">'+n.t+'</div><div class="journeyChapterSub">Unit 0'+which+' • '+(state.lang==="si"?"කොටස ":"Section ")+String(i+1).padStart(2,"0")+' / 08</div></div></header><div class="journeyChapterDivider">'+(state.lang==="si"?"ප්‍රධාන සංකල්ප":"Key concepts")+'</div>'+unit45JourneySteps(n,i,which,meta)+formulaStrip(n.f)+unit45ImageBlock(which,i)+(n.exam?'<details class="examMini"><summary>🎯 '+(state.lang==="si"?"විභාගයට මතක තබාගන්න":"Exam focus")+'</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+unit45VideoBlock(which,i)+unit45ScrollQuiz(which,i)+'<div class="journeyEnd">✓ '+(done.indexOf(i)>=0?(state.lang==="si"?"Checkpoint සමත්. ඊළඟ කොටස විවෘතයි.":"Checkpoint passed. Next section unlocked."):(state.lang==="si"?"Checkpoint එක සමත් වී ඊළඟ කොටස අගුළු හරින්න.":"Pass the checkpoint to unlock the next section."))+'</div></section>'}).join("");
+ var detail=list.map(function(n,i){var locked=i>unlock;if(locked)return '<section class="journeyChapter chapterLocked" id="u'+which+'note'+i+'"></section>';return '<section class="journeyChapter" id="u'+which+'note'+i+'" style="--chapter-bg:'+bg(i)+'"><header class="journeyChapterHead"><div class="journeyChapterNo">'+String(i+1).padStart(2,"0")+'</div><div><div class="journeyChapterTitle">'+n.t+'</div><div class="journeyChapterSub">Unit 0'+which+' • '+(state.lang==="si"?"කොටස ":"Section ")+String(i+1).padStart(2,"0")+' / 08</div></div></header><div class="journeyChapterDivider">'+(state.lang==="si"?"ප්‍රධාන සංකල්ප":"Key concepts")+'</div>'+unit45JourneySteps(n,i,which,meta)+formulaStrip(n.f)+unit45DeepBlock(which,i)+unit45ImageBlock(which,i)+(n.exam?'<details class="examMini"><summary>🎯 '+(state.lang==="si"?"විභාගයට මතක තබාගන්න":"Exam focus")+'</summary><ul>'+n.exam.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></details>':'')+unit45VideoBlock(which,i)+unit45ScrollQuiz(which,i)+'<div class="journeyEnd">✓ '+(done.indexOf(i)>=0?(state.lang==="si"?"Checkpoint සමත්. ඊළඟ කොටස විවෘතයි.":"Checkpoint passed. Next section unlocked."):(state.lang==="si"?"Checkpoint එක සමත් වී ඊළඟ කොටස අගුළු හරින්න.":"Pass the checkpoint to unlock the next section."))+'</div></section>'}).join("");
  var progress='<section class="learningProgress"><div class="learningProgressTop"><div><strong>'+(state.lang==="si"?"මගේ Unit 0"+which+" ප්‍රගතිය":"My Unit 0"+which+" progress")+'</strong><div class="meta">Section checkpoints</div></div><div class="learningPct">'+pct+'%</div></div><div class="learningBar"><i style="width:'+pct+'%"></i></div><div class="learningStats"><span>'+(state.lang==="si"?"සම්පූර්ණ කොටස්":"Completed")+' <b>'+done.length+'/8</b></span><span>'+(state.lang==="si"?"අගුළු හැර ඇති කොටස්":"Unlocked")+' <b>'+Math.min(8,done.length+1)+'/8</b></span><span>'+(state.lang==="si"?"ඉතිරි":"Remaining")+' <b>'+(8-done.length)+'</b></span></div></section>';
- return shell("lessons",'<main class="page summarySimple unit'+which+'Theme">'+devLauncher()+unit45DevPanel(which)+'<section class="hero"><div class="kicker">UNIT 0'+which+' • '+(is4?'GASEOUS STATE':'ENERGETICS')+'</div><h1>'+ui.title+'</h1><p>'+ui.sub+'</p></section>'+progress+'<div class="summaryGuide"><strong>'+ui.guide+'</strong><p>'+(state.lang==="si"?"NIE අනුපිළිවෙළ අනුව කොටස් 8ක්. සෑම කොටසකම theory, visual, formula strip, exam focus සහ 5-question checkpoint එකක් ඇත.":"Eight NIE-aligned sections with theory, visuals, formulas, exam focus and checkpoints.")+'</p></div><div class="simpleJump">'+jumps+'</div>'+detail+'<div class="card" style="margin-top:18px"><strong>'+(state.lang==="si"?"මූලාශ්‍ර පදනම":"Source basis")+'</strong><p class="meta">'+ui.source+'</p></div></main>')}
+ return shell("lessons",'<main class="page summarySimple unit'+which+'Theme">'+devLauncher()+unit45DevPanel(which)+'<section class="hero"><div class="kicker">UNIT 0'+which+' • '+(is4?'GASEOUS STATE':'ENERGETICS')+'</div><h1>'+ui.title+'</h1><p>'+ui.sub+'</p></section>'+progress+'<div class="summaryGuide"><strong>'+ui.guide+'</strong><p>'+(state.lang==="si"?"NIE අනුපිළිවෙළ අනුව කොටස් 8ක්. Theory + neon concept visual + formula + NIE worked detail/common-error notes + checkpoint ඇත; real images සහ Sinhala videos සංකල්පයට වැදගත් තැන්වල පමණක් දක්වයි.":"Eight NIE-aligned sections with theory, visuals, formulas, exam focus and checkpoints.")+'</p></div><div class="simpleJump">'+jumps+'</div>'+detail+'<div class="card" style="margin-top:18px"><strong>'+(state.lang==="si"?"මූලාශ්‍ර පදනම":"Source basis")+'</strong><p class="meta">'+ui.source+'</p></div></main>')}
 function renderUnit4(){return renderUnit45(4)}
 function renderUnit5(){return renderUnit45(5)}
 function devModeOn(){return /(?:[?&]|#.*[?&])dev=1(?:&|$)/.test(location.href)||sessionStorage.getItem("chem-dev-mode")==="1"}
