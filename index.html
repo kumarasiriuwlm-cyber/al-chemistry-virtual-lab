@@ -597,7 +597,11 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
  linear-gradient(180deg,rgba(1,5,12,.08),rgba(1,5,12,.55))}
 .labPortal:after{content:"";position:absolute;inset:-20%;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 34%,rgba(0,0,0,.28) 68%,rgba(0,0,0,.80) 100%)}
 .labPortalScene{position:absolute;inset:0;z-index:1;overflow:hidden;cursor:crosshair;touch-action:none}
-.labPortalScene canvas{display:block;width:100%!important;height:100%!important;filter:saturate(1.16) contrast(1.04)}
+.labPortalScene canvas{display:block;width:100%!important;height:100%!important;opacity:.14;filter:saturate(1.16) contrast(1.04) blur(2px);transform:scale(1.01);transition:opacity .72s ease,filter .72s ease,transform .72s ease}
+.labPortal.tubes-ready .labPortalScene canvas{opacity:1;filter:saturate(1.16) contrast(1.04);transform:scale(1)}
+.labPortal.tubes-fallback .labPortalScene canvas{opacity:.92;filter:saturate(1.08) contrast(1.03)}
+.labPortal.colorPulse .labPortalScene canvas{animation:labColorPulse .48s ease}
+@keyframes labColorPulse{0%{filter:saturate(1.16) contrast(1.04)}45%{filter:saturate(1.65) brightness(1.17) contrast(1.08)}100%{filter:saturate(1.16) contrast(1.04)}}
 .labPortalNoise{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:.10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");mix-blend-mode:screen}
 .labPortalTop{position:absolute;left:0;right:0;top:0;z-index:8;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;pointer-events:none}
 .labPortalBack,.labPortalStatus{pointer-events:auto}
@@ -1131,11 +1135,124 @@ function renderLabIntro(){
   :state.lang==="ta"
   ?{sub:"ஆய்வு செய்யுங்கள். கவனியுங்கள். Chemistry concepts ஐ interactive 3D சூழலில் புரிந்துகொள்ளுங்கள்.",start:"LAB ஐ தொடங்கு",back:"முகப்பு",hint:"Cursor ஐ நகர்த்தவும் • background ஐ click செய்து neon நிறங்களை மாற்றவும்"}
   :{sub:"Experiment, observe and understand chemistry through an interactive 3D environment.",start:"Start Lab",back:"Home",hint:"Move the cursor • click the background to randomize neon colors"};
- return '<main class="labPortal" id="labPortal"><div class="labPortalScene" id="labPortalScene" aria-hidden="true"></div><div class="labPortalNoise"></div><div class="labPortalTop"><a class="labPortalBack" href="#home">← '+copy.back+'</a><div class="labPortalStatus"><i></i> THREE.JS • INTERACTIVE 3D</div></div><section class="labPortalHero"><div class="labPortalKicker">SRI LANKA G.C.E. A/L CHEMISTRY</div><h1 class="labPortalTitle"><span>VIRTUAL LAB</span></h1><p class="labPortalSub">'+copy.sub+'</p><div class="labPortalStartWrap"><button type="button" class="labPortalStart" data-lab-start>'+copy.start+' <b>→</b></button></div></section><div class="labPortalHint"><span class="mouse"></span>'+copy.hint+'</div></main>';
+ return '<main class="labPortal" id="labPortal"><div class="labPortalScene" id="labPortalScene" aria-hidden="true"></div><div class="labPortalNoise"></div><div class="labPortalTop"><a class="labPortalBack" href="#home">← '+copy.back+'</a><div class="labPortalStatus"><i></i><span id="labPortalStatusText">LOADING 3D • INTERACTIVE</span></div></div><section class="labPortalHero"><div class="labPortalKicker">SRI LANKA G.C.E. A/L CHEMISTRY</div><h1 class="labPortalTitle"><span>VIRTUAL LAB</span></h1><p class="labPortalSub">'+copy.sub+'</p><div class="labPortalStartWrap"><button type="button" class="labPortalStart" data-lab-start>'+copy.start+' <b>→</b></button></div></section><div class="labPortalHint"><span class="mouse"></span>'+copy.hint+'</div></main>';
 }
-function initLabPortal(){
+async function initLabPortal(){
+ var host=document.getElementById("labPortalScene"),portal=document.getElementById("labPortal"),status=document.getElementById("labPortalStatusText");
+ if(!host||!portal)return;
+ if(window._labPortalCleanup){try{window._labPortalCleanup()}catch(e){}window._labPortalCleanup=null}
+ var token=(window._labPortalToken||0)+1;window._labPortalToken=token;
+ var mobile=window.matchMedia&&window.matchMedia("(max-width: 700px)").matches;
+ var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ var connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+ var constrained=!!(connection&&connection.saveData)||(mobile&&navigator.deviceMemory&&navigator.deviceMemory<=2);
+
+ // Accessibility / data-saver / very low-memory devices use the lightweight local renderer.
+ if(reduced||constrained){
+  if(status)status.textContent=reduced?"REDUCED MOTION • PERFORMANCE MODE":"PERFORMANCE MODE • LIVE";
+  portal.classList.add("tubes-fallback","tubes-ready");
+  initFallbackLabPortal();
+  return;
+ }
+
+ host.innerHTML="";
+ var canvas=document.createElement("canvas");
+ canvas.className="labTubesCanvas";
+ canvas.setAttribute("aria-hidden","true");
+ canvas.style.touchAction="none";
+ host.appendChild(canvas);
+
+ try{
+  // Exact TubesCursor engine from the supplied threejs-components reference.
+  var mod=await import("https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js");
+  if(window._labPortalToken!==token||!host.isConnected){canvas.remove();return}
+  var TubesCursor=mod.default||mod.TubesCursor||mod;
+  if(typeof TubesCursor!=="function")throw new Error("TubesCursor export unavailable");
+
+  var tubeColors=["#f967fb","#53bc28","#6958d5"];
+  var lightColors=["#83f36e","#fe8a2e","#ff008a","#60aed5"];
+  var app=TubesCursor(canvas,{
+   tubes:{
+    colors:tubeColors,
+    lights:{intensity:mobile?150:200,colors:lightColors}
+   }
+  });
+
+  if(window._labPortalToken!==token||!host.isConnected){
+   try{if(app&&typeof app.destroy==="function")app.destroy();else if(app&&typeof app.dispose==="function")app.dispose()}catch(e){}
+   canvas.remove();return;
+  }
+
+  portal.classList.add("tubes-ready");
+  if(status)status.textContent="THREE.JS COMPONENTS • LIVE";
+
+  function vividHex(){
+   var h=Math.floor(Math.random()*360),s=72+Math.random()*24,l=54+Math.random()*14;
+   var a=s*Math.min(l,100-l)/10000;
+   function f(n){var k=(n+h/30)%12,color=l/100-a*Math.max(Math.min(k-3,9-k,1),-1);return Math.round(255*color).toString(16).padStart(2,"0")}
+   return "#"+f(0)+f(8)+f(4);
+  }
+  function randomColors(count){var a=[];for(var i=0;i<count;i++)a.push(vividHex());return a}
+  function randomize(e){
+   if(e.target&&e.target.closest&&e.target.closest("button,a,.labPortalHero,.labPortalTop"))return;
+   try{
+    if(app&&app.tubes&&typeof app.tubes.setColors==="function")app.tubes.setColors(randomColors(3));
+    if(app&&app.tubes&&typeof app.tubes.setLightsColors==="function")app.tubes.setLightsColors(randomColors(4));
+    portal.classList.remove("colorPulse");void portal.offsetWidth;portal.classList.add("colorPulse")
+   }catch(err){}
+  }
+
+  var resizeTimer=0;
+  function resize(){
+   clearTimeout(resizeTimer);resizeTimer=setTimeout(function(){
+    if(!host.isConnected)return;
+    try{if(app&&typeof app.resize==="function")app.resize()}catch(e){}
+   },80)
+  }
+  var ro=typeof ResizeObserver!=="undefined"?new ResizeObserver(resize):null;
+  if(ro)ro.observe(host);else window.addEventListener("resize",resize,{passive:true});
+
+  function visibility(){
+   try{
+    if(document.hidden){
+     if(app&&typeof app.pause==="function")app.pause();
+     else if(app&&typeof app.stop==="function")app.stop()
+    }else{
+     if(app&&typeof app.resume==="function")app.resume();
+     else if(app&&typeof app.start==="function")app.start()
+    }
+   }catch(e){}
+  }
+  host.addEventListener("click",randomize);
+  document.addEventListener("visibilitychange",visibility);
+
+  window._labPortalCleanup=function(){
+   if(window._labPortalToken===token)window._labPortalToken++;
+   clearTimeout(resizeTimer);
+   host.removeEventListener("click",randomize);
+   document.removeEventListener("visibilitychange",visibility);
+   if(ro)ro.disconnect();else window.removeEventListener("resize",resize);
+   try{
+    if(app&&typeof app.stop==="function")app.stop();
+    if(app&&typeof app.destroy==="function")app.destroy();
+    else if(app&&typeof app.dispose==="function")app.dispose();
+    else if(app&&app.renderer&&typeof app.renderer.dispose==="function")app.renderer.dispose()
+   }catch(e){}
+   if(canvas&&canvas.parentNode)canvas.parentNode.removeChild(canvas)
+  };
+ }catch(error){
+  if(window._labPortalToken!==token||!host.isConnected)return;
+  canvas.remove();
+  portal.classList.add("tubes-fallback","tubes-ready");
+  if(status)status.textContent="3D FALLBACK • LIVE";
+  initFallbackLabPortal()
+ }
+}
+
+function initFallbackLabPortal(){
  var host=document.getElementById("labPortalScene"),portal=document.getElementById("labPortal");if(!host||!portal)return;
  if(window._labPortalCleanup){try{window._labPortalCleanup()}catch(e){}window._labPortalCleanup=null}
+ host.innerHTML="";portal.classList.add("tubes-fallback","tubes-ready");
  if(typeof THREE==="undefined"){host.innerHTML='<div class="labPortalFallback"></div>';return}
  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  var mobile=window.matchMedia&&window.matchMedia("(max-width: 700px)").matches;
