@@ -1809,8 +1809,7 @@ function renderP01Preflight(){
   return '<button type="button" class="p01NeoNode explain '+(center?'focus':'')+'" data-node="'+key+'" data-concept-node title="'+escapeHtml(item[0])+'">'+(icon||'')+'<div class="p01NodeLabel">'+item[0]+'<span class="p01NodeMini">'+(center?'P01':key.toUpperCase())+'</span></div>'+(center?'<div class="p01CenterBadge">CATHODE RAY CONCEPT</div>':'')+'<span class="p01NodePopup"><b>'+item[0]+'</b>'+item[1]+'</span></button>'
  }
  var conceptNodes=conceptNode("a",conceptData[1],"",false)+conceptNode("b",conceptData[0],flask,true)+conceptNode("c",conceptData[2],"",false)+conceptNode("d",conceptData[3],"",false);
- var conceptInfo='<article class="p01StageInfo"><div class="p01PanelNo"><span>'+copy.steps[0].k+'</span><span>01 / 03</span></div><h2>'+copy.steps[0].t+'</h2><p>'+copy.steps[0].p+'</p><div class="p01PanelFormula">'+copy.steps[0].f+'</div></article>';
- var stage1='<section class="p01AutoStage" id="p01Stage0" data-auto-stage="0" data-stage-type="morph"><div class="p01StageHead"><b>STEP 01 • '+u.psteps[0]+'</b><span>AUTO PLAY • HOVER / TAP FOR DETAILS</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient0)"></line><line data-line="c" style="stroke:url(#p01LineGradient0)"></line><line data-line="d" style="stroke:url(#p01LineGradient0)"></line></svg>'+conceptNodes+'</div>'+conceptInfo+'<div class="p01StageCue"><i></i>scroll for tools</div></section>';
+ var stage1='<section class="p01AutoStage" id="p01Stage0" data-auto-stage="0" data-stage-type="morph"><div class="p01StageHead"><b>STEP 01 • '+u.psteps[0]+'</b><span>AUTO PLAY • HOVER / TAP FOR DETAILS</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient0)"></line><line data-line="c" style="stroke:url(#p01LineGradient0)"></line><line data-line="d" style="stroke:url(#p01LineGradient0)"></line></svg>'+conceptNodes+'</div><div class="p01StageCue"><i></i>scroll for tools</div></section>';
 
  var toolData=lang==="si"?[
   ["Crookes tube","අඩු පීඩන වායුවක් සහිත discharge tube එක. Cathode ray beam එක නිරීක්ෂණය කිරීමට මූලික කුටියයි."],
@@ -1887,7 +1886,7 @@ function renderP01Preflight(){
 function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
  var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
- var dead=false,raf=0,lastY=window.scrollY||0,auto0=0,auto0Done=false,autoStart=performance.now(),stage0Revisit=false,docClick=null;
+ var dead=false,lastY=window.scrollY||0,direction=1,observer=null,scrollHandler=null,docClick=null,animFrames=[];
  function clamp(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
@@ -1905,10 +1904,6 @@ function initP01Preflight(){
  function draw(el,b,op){if(!el)return;el.style.left=b.x+"px";el.style.top=b.y+"px";el.style.width=b.w+"px";el.style.height=b.h+"px";el.style.borderRadius=b.r+"px";el.style.opacity=op}
  function center(b){return{x:b.x+b.w/2,y:b.y+b.h/2}}
  function drawLine(el,p1,p2,reveal){if(!el)return;el.setAttribute("x1",p1.x);el.setAttribute("y1",p1.y);el.setAttribute("x2",p2.x);el.setAttribute("y2",p2.y);var len=Math.hypot(p2.x-p1.x,p2.y-p1.y);el.style.strokeDasharray=len;el.style.strokeDashoffset=len*(1-reveal);el.style.opacity=reveal}
- function scrollProgress(stage){
-  var r=stage.getBoundingClientRect(),vh=window.innerHeight||700;
-  return clamp((vh*.86-r.top)/(vh*.46))
- }
  function applyMorph(stage,p){
   var scene=stage.querySelector("[data-morph-scene]");if(!scene)return;
   var nodes={a:scene.querySelector('[data-node="a"]'),b:scene.querySelector('[data-node="b"]'),c:scene.querySelector('[data-node="c"]'),d:scene.querySelector('[data-node="d"]')},lines={a:scene.querySelector('[data-line="a"]'),c:scene.querySelector('[data-line="c"]'),d:scene.querySelector('[data-line="d"]')},icon=nodes.b&&nodes.b.querySelector(".p01NodeIcon"),badge=nodes.b&&nodes.b.querySelector(".p01CenterBadge"),labels={a:nodes.a&&nodes.a.querySelector(".p01NodeLabel"),b:nodes.b&&nodes.b.querySelector(".p01NodeLabel"),c:nodes.c&&nodes.c.querySelector(".p01NodeLabel"),d:nodes.d&&nodes.d.querySelector(".p01NodeLabel")};
@@ -1916,14 +1911,33 @@ function initP01Preflight(){
   draw(nodes.a,B.a,intro);draw(nodes.b,B.b,intro);draw(nodes.c,B.c,intro);draw(nodes.d,B.d,intro);
   var cb=center(B.b);drawLine(lines.a,cb,center(B.a),connect);drawLine(lines.c,cb,center(B.c),connect);drawLine(lines.d,cb,center(B.d),connect);
   if(icon){icon.style.opacity=String(.15+.85*morph);icon.style.transform="translate(-50%,-50%) scale("+(0.78+.22*morph)+")"}if(badge)badge.style.opacity=String(clamp((morph-.34)/.66));
-  ["a","c","d"].forEach(function(k){if(labels[k]){labels[k].style.opacity=String(1-morph*.36);labels[k].style.transform="scale("+(1-morph*.10)+")"}});if(labels.b)labels.b.style.opacity=String(1-morph*.88);
-  var info=stage.querySelector(".p01StageInfo");if(info){var show=clamp((p-.78)/.18);info.style.opacity=String(show);info.style.transform="translateY("+(14*(1-show))+"px)"}
+  ["a","c","d"].forEach(function(k){if(labels[k]){labels[k].style.opacity=String(1-morph*.36);labels[k].style.transform="scale("+(1-morph*.10)+")"}});if(labels.b)labels.b.style.opacity=String(1-morph*.88)
  }
  function applyOrbit(stage,p,podSelector,coreSelector){
   var core=stage.querySelector(coreSelector),pods=Array.from(stage.querySelectorAll(podSelector)),lines=Array.from(stage.querySelectorAll("[data-orbit-line]"));if(!core)return;
   var coreP=ease(clamp(p/.42));core.style.opacity=String(coreP);core.style.transform="translate(-50%,-50%) scale("+(0.35+0.65*coreP)+")";
   pods.forEach(function(pod,i){var q=ease(clamp((p-(.18+i*.045))/.40));pod.style.opacity=String(q);pod.style.transform="translate(-50%,-50%) scale("+(0.25+0.75*q)+")"});
-  lines.forEach(function(line,i){var q=ease(clamp((p-(.50+i*.018))/.28));line.style.opacity=String(.75*q)});
+  lines.forEach(function(line,i){var q=ease(clamp((p-(.50+i*.018))/.28));line.style.opacity=String(.75*q)})
+ }
+ function renderProgress(stage,p){
+  stage._p01Progress=clamp(p);
+  var type=stage.dataset.stageType;
+  if(type==="morph")applyMorph(stage,stage._p01Progress);
+  else if(type==="tools")applyOrbit(stage,stage._p01Progress,"[data-tool-pod]",".p01ToolsCore");
+  else if(type==="guide")applyOrbit(stage,stage._p01Progress,"[data-guide-pod]",".p01GuideCore")
+ }
+ function playStage(stage,target,duration){
+  if(!stage||dead)return;
+  if(stage._p01Raf)cancelAnimationFrame(stage._p01Raf);
+  var from=typeof stage._p01Progress==="number"?stage._p01Progress:(target?0:1),start=performance.now(),dist=Math.abs(target-from);
+  if(dist<.015){renderProgress(stage,target);return}
+  var ms=Math.max(520,(duration||1500)*dist);
+  function frame(now){
+   if(dead||!stage.isConnected)return;
+   var t=clamp((now-start)/ms),p=mix(from,target,ease(t));renderProgress(stage,p);
+   if(t<1)stage._p01Raf=requestAnimationFrame(frame);else stage._p01Raf=0
+  }
+  stage._p01Raf=requestAnimationFrame(frame)
  }
  function setCoreDetail(pod,on){
   var stage=pod.closest("[data-auto-stage]"),core=stage&&stage.querySelector("[data-orbit-core]");if(!core)return;
@@ -1940,30 +1954,33 @@ function initP01Preflight(){
  document.querySelectorAll("[data-concept-node]").forEach(function(pod){pod.addEventListener("click",function(e){e.stopPropagation();var was=pod.classList.contains("selected");document.querySelectorAll("[data-concept-node]").forEach(function(x){x.classList.remove("selected")});if(!was)pod.classList.add("selected")})});
  docClick=function(e){if(!e.target.closest||(!e.target.closest("[data-tool-pod]")&&!e.target.closest("[data-guide-pod]")&&!e.target.closest("[data-concept-node]"))){document.querySelectorAll("[data-tool-pod],[data-guide-pod],[data-concept-node]").forEach(function(x){x.classList.remove("selected")});document.querySelectorAll("[data-orbit-core]").forEach(function(x){x.classList.remove("detail-on")})}};
  document.addEventListener("click",docClick);
- function update(now){
-  if(dead)return;
-  var sy=window.scrollY||0;
-  if(!auto0Done){
-   auto0=clamp((now-autoStart)/1650);
-   if(auto0>=1){auto0=1;auto0Done=true}
-  }
-  var firstRect=stages[0].getBoundingClientRect(),vh=window.innerHeight||700;
-  if(!stage0Revisit&&(sy>Math.max(120,vh*.48)||firstRect.bottom<vh*.52))stage0Revisit=true;
-  stages.forEach(function(stage,i){
-   var p;
-   if(i===0&&!stage0Revisit)p=auto0;
-   else if(i===0){var r0=stage.getBoundingClientRect();p=clamp((-r0.top+vh*.12)/(vh*.68))}
-   else p=scrollProgress(stage);
-   var type=stage.dataset.stageType;
-   if(type==="morph")applyMorph(stage,p);
-   else if(type==="tools")applyOrbit(stage,p,"[data-tool-pod]",".p01ToolsCore");
-   else if(type==="guide")applyOrbit(stage,p,"[data-guide-pod]",".p01GuideCore");
-  });
-  lastY=sy;raf=requestAnimationFrame(update)
+
+ stages.forEach(function(stage){stage._p01Progress=0;renderProgress(stage,0)});
+ scrollHandler=function(){var y=window.scrollY||0;if(Math.abs(y-lastY)>2)direction=y>lastY?1:-1;lastY=y};
+ window.addEventListener("scroll",scrollHandler,{passive:true});
+
+ if("IntersectionObserver" in window){
+  observer=new IntersectionObserver(function(entries){
+   entries.forEach(function(entry){
+    var stage=entry.target,ratio=entry.intersectionRatio,rect=entry.boundingClientRect;
+    if(ratio>=.52){
+     if(direction>=0)playStage(stage,1,1550);
+     else playStage(stage,0,1050)
+    }else if(direction<0&&ratio<.52&&ratio>.16&&rect.top>0){
+     playStage(stage,0,900)
+    }
+   })
+  },{threshold:[.16,.52,.72]});
+  stages.forEach(function(stage){observer.observe(stage)})
+ }else{
+  var fallback=function(){var vh=window.innerHeight||700;stages.forEach(function(stage){var r=stage.getBoundingClientRect(),ratio=Math.max(0,Math.min(r.bottom,vh)-Math.max(r.top,0))/Math.max(1,Math.min(r.height,vh));if(ratio>=.52)playStage(stage,direction>=0?1:0,direction>=0?1550:1050)})};
+  window.addEventListener("scroll",fallback,{passive:true});window._p01StageFallback=fallback
  }
- raf=requestAnimationFrame(update);
+ // Step 01 always completes automatically on first arrival.
+ setTimeout(function(){if(!dead)playStage(stages[0],1,1550)},180);
+
  var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80)}
- window._p01PreflightCleanup=function(){dead=true;cancelAnimationFrame(raf);if(docClick)document.removeEventListener("click",docClick)}
+ window._p01PreflightCleanup=function(){dead=true;stages.forEach(function(stage){if(stage._p01Raf)cancelAnimationFrame(stage._p01Raf)});if(observer)observer.disconnect();window.removeEventListener("scroll",scrollHandler);if(window._p01StageFallback){window.removeEventListener("scroll",window._p01StageFallback);window._p01StageFallback=null}if(docClick)document.removeEventListener("click",docClick)}
 }
 function renderP01(){if(state.pstep<3)return renderP01Preflight();var u=U(),content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep](),steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
