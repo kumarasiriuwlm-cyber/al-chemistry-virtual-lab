@@ -1887,7 +1887,7 @@ function renderP01Preflight(){
 function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
  var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
- var dead=false,raf=0,lastY=window.scrollY||0,auto0=0,auto0Done=false,autoStart=performance.now(),docClick=null;
+ var dead=false,raf=0,lastY=window.scrollY||0,auto0=0,auto0Done=false,autoStart=performance.now(),stage0Revisit=false,docClick=null;
  function clamp(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
@@ -1947,8 +1947,13 @@ function initP01Preflight(){
    auto0=clamp((now-autoStart)/1650);
    if(auto0>=1){auto0=1;auto0Done=true}
   }
+  var firstRect=stages[0].getBoundingClientRect(),vh=window.innerHeight||700;
+  if(!stage0Revisit&&(sy>Math.max(120,vh*.48)||firstRect.bottom<vh*.52))stage0Revisit=true;
   stages.forEach(function(stage,i){
-   var p=(i===0&&sy<45)?auto0:scrollProgress(stage);
+   var p;
+   if(i===0&&!stage0Revisit)p=auto0;
+   else if(i===0){var r0=stage.getBoundingClientRect();p=clamp((-r0.top+vh*.12)/(vh*.68))}
+   else p=scrollProgress(stage);
    var type=stage.dataset.stageType;
    if(type==="morph")applyMorph(stage,p);
    else if(type==="tools")applyOrbit(stage,p,"[data-tool-pod]",".p01ToolsCore");
