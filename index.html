@@ -1733,9 +1733,9 @@ function initP01Preflight(){
  function layouts(){
   var w=scene.clientWidth,h=scene.clientHeight,m=w<700;
   if(m){
-   var cw=Math.min(145,w*.39),ch=Math.min(125,h*.25),gap=Math.max(10,w*.045),left=w/2-cw-gap/2,right=w/2+cw+gap/2;
+   var cw=Math.min(145,w*.39),ch=Math.min(125,h*.25),gap=Math.max(10,w*.045),left=w/2-cw/2-gap/2,right=w/2+cw/2+gap/2;
    return{
-    start:{a:box(left-cw/2,h*.27,cw,ch,18),b:box(right-cw/2,h*.27,cw,ch,18),c:box(left-cw/2,h*.60,cw,ch,18),d:box(right-cw/2,h*.60,cw,ch,18)},
+    start:{a:box(left,h*.27,cw,ch,18),b:box(right,h*.27,cw,ch,18),c:box(left,h*.60,cw,ch,18),d:box(right,h*.60,cw,ch,18)},
     end:{b:box(w*.50,h*.42,Math.min(190,w*.52),Math.min(190,w*.52),999),a:box(w*.16,h*.17,62,62,18),c:box(w*.84,h*.36,62,62,18),d:box(w*.18,h*.72,62,62,18)}
    }
   }
