@@ -775,53 +775,59 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
 .u2Forces{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.u2Force{padding:12px 7px;border:1px solid rgba(219,198,250,.15);border-radius:12px;background:rgba(255,255,255,.035);color:#d7cae7;font-size:8px;font-weight:800}.u2Force b{display:block;color:#f2e9ff;font-size:9px;margin-bottom:4px}
 @media(max-width:760px){.unit2Art{min-height:245px;padding:10px}.u2ShapeSvg{height:185px}.u2Hybrid{gap:5px}.u2HybridCard{padding:10px 4px}.u2HybridCard b{font-size:18px}.u2Orbital{transform:scale(.78)}.u2Lattice{grid-template-columns:repeat(5,27px);gap:6px}.u2Ion{width:27px;height:27px;font-size:7px}.u2ElectronSea{height:155px}}
 
-/* 2026-10-07: P01 neo scroll study — normal flask, no pre-lab 3D */
-.p01PreflightPage{max-width:none!important;width:100%;padding:0 0 78px!important;background:linear-gradient(145deg,#edf2f7,#dfe6ee);color:#263038;overflow:hidden}
-.p01PreflightTop{max-width:1220px;margin:auto;padding:18px 22px 12px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(72,84,96,.12)}
-.p01PreflightBack{color:#3d4a54;text-decoration:none;font:800 10px Arial;letter-spacing:.10em;text-transform:uppercase}
-.p01PreflightTag{color:#8f6c24;font:850 9px "Courier New",monospace;letter-spacing:.15em;text-transform:uppercase}
-.p01SequenceRail{max-width:1220px;margin:auto;padding:12px 22px 18px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
-.p01SeqItem{position:relative;border:0;background:#e9eef4;min-height:62px;padding:9px 10px;text-align:left;color:#74808b;font:700 8px/1.35 "Courier New",monospace;letter-spacing:.05em;text-transform:uppercase;border-radius:15px;box-shadow:7px 7px 15px rgba(164,176,190,.52),-7px -7px 15px rgba(255,255,255,.92)}
-button.p01SeqItem{cursor:pointer}.p01SeqItem b{display:block;margin-bottom:5px;color:#38444d;font-size:10px}.p01SeqItem.pre{color:#766334}.p01SeqItem.pre b{color:#8c6a20}.p01SeqItem.locked{opacity:.50}.p01SeqItem.locked:after{content:"LOCKED";position:absolute;right:8px;top:7px;color:#8f979e;font-size:6px;letter-spacing:.10em}
-.p01Study{position:relative;height:340vh;background:linear-gradient(145deg,#edf2f7,#dfe6ee)}
-.p01StudySticky{position:sticky;top:74px;height:calc(100vh - 74px);min-height:610px;overflow:hidden;isolation:isolate;background:
-radial-gradient(circle at 18% 18%,rgba(255,255,255,.94),transparent 23%),
-radial-gradient(circle at 82% 18%,rgba(255,255,255,.62),transparent 24%),
-radial-gradient(circle at 74% 82%,rgba(250,226,144,.20),transparent 25%),
-linear-gradient(145deg,#edf2f7,#dfe6ee)}
-.p01StudySticky:before,.p01StudySticky:after{content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(8px)}
-.p01StudySticky:before{width:320px;height:320px;left:-120px;top:8%;background:rgba(255,255,255,.42)}
-.p01StudySticky:after{width:360px;height:360px;right:-150px;bottom:-70px;background:rgba(246,221,137,.17)}
-.p01StudyRule{position:absolute;left:22px;right:22px;top:17px;z-index:12;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#66737c;font:750 8px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}.p01StudyRule strong{color:#8e6b20;font-weight:900}
-.p01MorphScene{position:absolute;left:50%;top:49%;z-index:4;width:min(1120px,94vw);height:min(650px,76vh);transform:translate(-50%,-50%);overflow:visible}
-.p01ConnectorLayer{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible;pointer-events:none}.p01ConnectorLayer line{stroke:#545b60;stroke-width:2.2;stroke-linecap:round;opacity:0;filter:drop-shadow(0 2px 2px rgba(255,255,255,.65))}
-.p01NeoNode{position:absolute;z-index:3;display:flex;align-items:center;justify-content:center;text-align:center;padding:13px;border:1px solid rgba(255,255,255,.46);background:#e9eef4;color:#35414a;box-shadow:14px 14px 28px rgba(160,173,188,.50),-14px -14px 28px rgba(255,255,255,.94),inset 1px 1px 0 rgba(255,255,255,.7);will-change:left,top,width,height,border-radius,opacity;overflow:hidden}
-.p01NeoNode.focus{background:linear-gradient(145deg,#f8e39b,#ead084);border-color:rgba(255,255,255,.55);box-shadow:16px 16px 32px rgba(153,160,165,.48),-16px -16px 32px rgba(255,255,255,.92),inset 1px 1px 0 rgba(255,255,255,.65)}
-.p01NodeLabel{position:relative;z-index:3;font-weight:850;font-size:clamp(11px,1.2vw,15px);line-height:1.35;transition:opacity .2s ease,transform .2s ease}
-.p01NodeMini{display:block;margin-top:5px;color:#7e8790;font:800 8px Arial;letter-spacing:.08em;text-transform:uppercase}
-.p01NodeFlask{position:absolute;z-index:2;left:50%;top:48%;width:58%;height:58%;transform:translate(-50%,-50%) scale(.78);opacity:.18;transition:opacity .18s ease}.p01NodeFlask svg{width:100%;height:100%;display:block}.p01NodeFlask .glass{fill:rgba(255,255,255,.34);stroke:#41494e;stroke-width:3.2;stroke-linejoin:round}.p01NodeFlask .liquid{fill:rgba(244,210,104,.62);stroke:#41494e;stroke-width:2.2}
-.p01CenterBadge{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:5;opacity:0;color:#504a3b;font:900 8px Arial;letter-spacing:.10em;text-transform:uppercase;white-space:nowrap}
-.p01StageCard{position:absolute;z-index:10;left:26px;bottom:38px;width:min(420px,38vw);padding:18px 20px;border-radius:22px;background:rgba(235,240,245,.90);border:1px solid rgba(255,255,255,.62);box-shadow:12px 12px 26px rgba(160,173,188,.46),-12px -12px 26px rgba(255,255,255,.90);backdrop-filter:blur(10px);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .26s ease,transform .26s ease}
-.p01StageCard.active{opacity:1;transform:none;pointer-events:auto}.p01StageCard:nth-of-type(2){left:auto;right:26px}.p01StageCard:nth-of-type(3){left:26px}
-.p01PanelNo{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#8d6a20;font:900 8px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}.p01PanelNo span:last-child{color:#79848d;font-weight:700}
-.p01StageCard h2{margin:8px 0 7px;color:#29343c;font-size:clamp(22px,2.2vw,32px);line-height:1.05}.p01StageCard p{margin:0;color:#56636c;font-size:12px;line-height:1.62}.p01StageCard ul{margin:8px 0 0;padding-left:18px;color:#56636c;font-size:10px;line-height:1.45}.p01StageCard li{margin:3px 0}
-.p01PanelFormula{margin-top:10px;padding-top:8px;border-top:1px solid rgba(72,84,96,.12);color:#404b53;font:800 9px "Courier New",monospace}.p01Launch{margin-top:12px;border:0;border-radius:14px;background:#38434b;color:#fff;padding:12px 16px;min-height:44px;font:900 9px "Courier New",monospace;letter-spacing:.10em;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 13px rgba(159,170,183,.55),-5px -5px 12px rgba(255,255,255,.75)}.p01Launch b{color:#f4d77e;margin-left:7px}
-.p01Progress{position:absolute;left:22px;right:22px;bottom:16px;z-index:12;height:3px;background:rgba(71,82,91,.10);border-radius:99px;overflow:hidden}.p01Progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,#a9852d,#e7c760);border-radius:99px}.p01ProgressLabel{position:absolute;right:22px;bottom:24px;z-index:12;color:#7b858d;font:800 7px "Courier New",monospace;letter-spacing:.11em;text-transform:uppercase}
-.p01PreflightFoot{max-width:1220px;margin:0 auto;padding:30px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;color:#6c7881;font:700 9px "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}.p01PreflightFoot strong{color:#8d6a20}
+/* 2026-10-07: P01 neon automatic stage choreography */
+.p01PreflightPage{max-width:none!important;width:100%;padding:0 0 72px!important;background:#03070f;color:#effffb;overflow:hidden}
+.p01PreflightTop{position:sticky;top:0;z-index:40;max-width:none;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(142,255,235,.10);background:rgba(3,7,15,.72);backdrop-filter:blur(18px)}
+.p01PreflightBack{color:#bceee4;text-decoration:none;font:800 10px Arial;letter-spacing:.10em;text-transform:uppercase}
+.p01PreflightTag{color:#7dffe2;font:850 9px "Courier New",monospace;letter-spacing:.15em;text-transform:uppercase;text-shadow:0 0 15px rgba(65,255,213,.45)}
+.p01SequenceRail{position:sticky;top:49px;z-index:39;max-width:none;margin:auto;padding:10px 22px 13px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;background:linear-gradient(180deg,rgba(3,7,15,.86),rgba(3,7,15,.50),transparent)}
+.p01SeqItem{position:relative;border:1px solid rgba(151,255,232,.12);background:rgba(9,24,36,.62);min-height:58px;padding:9px 10px;text-align:left;color:#79949b;font:700 8px/1.35 "Courier New",monospace;letter-spacing:.05em;text-transform:uppercase;border-radius:15px;box-shadow:inset 1px 1px 0 rgba(255,255,255,.035),0 8px 24px rgba(0,0,0,.22);backdrop-filter:blur(12px)}
+button.p01SeqItem{cursor:pointer}.p01SeqItem b{display:block;margin-bottom:5px;color:#c7eae3;font-size:10px}.p01SeqItem.pre{border-color:rgba(84,255,217,.28);color:#8cdaca}.p01SeqItem.pre b{color:#64ffd8;text-shadow:0 0 13px rgba(54,255,211,.38)}.p01SeqItem.locked{opacity:.40}.p01SeqItem.locked:after{content:"LOCKED";position:absolute;right:8px;top:7px;color:#6e8187;font-size:6px;letter-spacing:.10em}
+.p01Study{position:relative;background:#03070f}
+.p01AutoStage{position:relative;min-height:100vh;overflow:hidden;isolation:isolate;display:grid;place-items:center;padding:86px 18px 82px;border-top:1px solid rgba(126,255,230,.07);scroll-margin-top:112px}
+.p01AutoStage:before{content:"";position:absolute;inset:-12%;z-index:0;background:
+radial-gradient(circle at 17% 20%,rgba(247,77,251,.18),transparent 25%),
+radial-gradient(circle at 78% 18%,rgba(82,188,255,.18),transparent 24%),
+radial-gradient(circle at 77% 76%,rgba(61,255,194,.16),transparent 27%),
+radial-gradient(circle at 42% 62%,rgba(116,88,213,.19),transparent 31%),
+linear-gradient(180deg,#03070f,#07131f 54%,#03070f);animation:p01Nebula 9s ease-in-out infinite alternate}
+.p01AutoStage:nth-child(2):before{filter:hue-rotate(48deg)}
+.p01AutoStage:nth-child(3):before{filter:hue-rotate(105deg)}
+.p01AutoStage:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-image:radial-gradient(rgba(190,255,244,.25) .55px,transparent .7px);background-size:6px 6px;opacity:.08;mask-image:linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent)}
+@keyframes p01Nebula{to{transform:scale(1.07) translate3d(1.5%,-1%,0);filter:saturate(1.18)}}
+.p01StageHead{position:absolute;left:22px;right:22px;top:22px;z-index:12;display:flex;justify-content:space-between;gap:12px;align-items:center;color:#93aaa9;font:750 8px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}
+.p01StageHead b{color:#68ffdb;text-shadow:0 0 18px rgba(70,255,216,.55)}
+.p01StageHead span:last-child{color:#d793ff}
+.p01MorphScene{position:relative;z-index:4;width:min(1120px,94vw);height:min(640px,68vh);min-height:470px;overflow:visible}
+.p01ConnectorLayer{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible;pointer-events:none}.p01ConnectorLayer line{stroke:url(#p01LineGradient);stroke-width:2.4;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 7px rgba(85,255,220,.75))}
+.p01NeoNode{position:absolute;z-index:3;display:flex;align-items:center;justify-content:center;text-align:center;padding:13px;border:1px solid rgba(135,255,231,.16);background:linear-gradient(145deg,rgba(11,29,43,.86),rgba(5,17,29,.82));color:#dffcf6;box-shadow:0 18px 44px rgba(0,0,0,.38),0 0 28px rgba(82,238,210,.07),inset 1px 1px 0 rgba(255,255,255,.055);will-change:left,top,width,height,border-radius,opacity,transform;overflow:hidden;backdrop-filter:blur(14px)}
+.p01NeoNode:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(89,255,218,.65),rgba(110,107,255,.20),rgba(255,70,210,.48));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.30;pointer-events:none}
+.p01NeoNode.focus{background:radial-gradient(circle at 35% 28%,rgba(58,255,213,.22),transparent 36%),radial-gradient(circle at 70% 75%,rgba(248,70,221,.17),transparent 40%),linear-gradient(145deg,rgba(8,30,45,.95),rgba(10,14,34,.93));border-color:rgba(104,255,222,.32);box-shadow:0 24px 58px rgba(0,0,0,.46),0 0 54px rgba(66,255,218,.15),0 0 75px rgba(242,70,219,.09),inset 1px 1px 0 rgba(255,255,255,.08)}
+.p01NodeLabel{position:relative;z-index:3;font-weight:900;font-size:clamp(11px,1.15vw,15px);line-height:1.34;text-shadow:0 0 15px rgba(117,255,229,.22);transition:opacity .2s ease,transform .2s ease}
+.p01NodeMini{display:block;margin-top:5px;color:#70eace;font:850 8px Arial;letter-spacing:.10em;text-transform:uppercase}
+.p01NodeIcon{position:absolute;z-index:2;left:50%;top:46%;width:58%;height:58%;transform:translate(-50%,-50%) scale(.78);opacity:.18;filter:drop-shadow(0 0 16px rgba(94,255,223,.28));transition:opacity .18s ease}.p01NodeIcon svg{width:100%;height:100%;display:block}.p01NodeIcon .glass{fill:rgba(120,247,255,.10);stroke:#73ffe1;stroke-width:2.8;stroke-linejoin:round}.p01NodeIcon .liquid{fill:rgba(231,76,255,.30);stroke:#ff7be9;stroke-width:2}.p01NodeIcon .line{fill:none;stroke:#73ffe1;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.p01NodeIcon .dot{fill:#ff6bdc;filter:drop-shadow(0 0 5px #ff6bdc)}
+.p01CenterBadge{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:5;opacity:0;color:#c8fff4;font:900 8px Arial;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 16px rgba(80,255,220,.55)}
+.p01StageInfo{position:absolute;z-index:10;left:26px;bottom:25px;width:min(430px,39vw);padding:17px 19px;border-radius:22px;background:rgba(5,20,31,.72);border:1px solid rgba(120,255,229,.13);box-shadow:0 20px 55px rgba(0,0,0,.40),0 0 28px rgba(72,255,215,.06),inset 1px 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(15px);opacity:0;transform:translateY(14px);transition:opacity .40s ease,transform .40s ease}
+.p01AutoStage.stage-complete .p01StageInfo{opacity:1;transform:none}.p01AutoStage:nth-child(even) .p01StageInfo{left:auto;right:26px}
+.p01PanelNo{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#65ffdb;font:900 8px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}.p01PanelNo span:last-child{color:#d58eff;font-weight:800}
+.p01StageInfo h2{margin:7px 0 7px;color:#f3fffc;font-size:clamp(21px,2.2vw,31px);line-height:1.06;text-shadow:0 0 22px rgba(93,255,225,.12)}.p01StageInfo p{margin:0;color:#a9c3c4;font-size:12px;line-height:1.60}.p01StageInfo ul{margin:7px 0 0;padding-left:18px;color:#a9c3c4;font-size:10px;line-height:1.42}.p01StageInfo li{margin:3px 0}.p01PanelFormula{margin-top:9px;padding-top:8px;border-top:1px solid rgba(118,255,231,.10);color:#8fffe6;font:800 9px "Courier New",monospace}
+.p01Launch{margin-top:11px;border:1px solid rgba(112,255,229,.30);border-radius:999px;background:linear-gradient(100deg,rgba(21,100,99,.62),rgba(89,52,141,.62));color:#f5fffd;padding:11px 16px;min-height:42px;font:900 9px "Courier New",monospace;letter-spacing:.10em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 25px rgba(75,255,219,.11),inset 1px 1px 0 rgba(255,255,255,.08)}.p01Launch b{color:#7affdd;margin-left:7px}
+.p01StageCue{position:absolute;right:22px;bottom:22px;z-index:11;color:#799294;font:800 7px Arial;letter-spacing:.12em;text-transform:uppercase}.p01StageCue i{display:inline-block;width:26px;height:1px;margin-right:8px;vertical-align:middle;background:linear-gradient(90deg,#5affd8,transparent);animation:p01Cue 1.35s ease-in-out infinite}@keyframes p01Cue{50%{width:45px}}
+.p01PreflightFoot{max-width:1220px;margin:0 auto;padding:28px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;color:#789092;font:700 9px "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}.p01PreflightFoot strong{color:#6effdc;text-shadow:0 0 14px rgba(63,255,216,.32)}
 
-/* neo treatment for the Virtual Lab starting menu while preserving the live animated background */
-.labPortal:before{background:radial-gradient(circle at 18% 18%,rgba(255,255,255,.12),transparent 24%),radial-gradient(circle at 78% 72%,rgba(245,210,102,.12),transparent 28%),linear-gradient(180deg,rgba(2,8,16,.20),rgba(3,9,17,.68))}
-.labPortalHero{width:min(880px,90vw);padding:38px 28px;border:1px solid rgba(255,255,255,.10);border-radius:34px;background:rgba(8,18,28,.26);box-shadow:18px 18px 44px rgba(0,0,0,.30),-10px -10px 35px rgba(129,255,232,.045),inset 1px 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(14px)}
-.labPortalStart{box-shadow:10px 10px 24px rgba(0,0,0,.30),-6px -6px 18px rgba(117,255,226,.06),inset 1px 1px 0 rgba(255,255,255,.11)}
-@media(max-width:900px){.p01SequenceRail{grid-template-columns:repeat(4,1fr)}.p01SeqItem:nth-child(n+5){display:none}.p01StageCard{width:min(390px,44vw)}}
+/* neon glass treatment for the Virtual Lab starting menu */
+.labPortal:before{background:radial-gradient(circle at 18% 18%,rgba(247,77,251,.12),transparent 24%),radial-gradient(circle at 78% 72%,rgba(65,255,213,.12),transparent 28%),linear-gradient(180deg,rgba(2,8,16,.20),rgba(3,9,17,.68))}
+.labPortalHero{width:min(880px,90vw);padding:38px 28px;border:1px solid rgba(130,255,233,.12);border-radius:34px;background:rgba(8,18,28,.28);box-shadow:18px 18px 44px rgba(0,0,0,.32),0 0 45px rgba(101,255,226,.06),inset 1px 1px 0 rgba(255,255,255,.07);backdrop-filter:blur(14px)}
+.labPortalStart{box-shadow:0 14px 32px rgba(0,0,0,.30),0 0 28px rgba(101,255,226,.10),inset 1px 1px 0 rgba(255,255,255,.11)}
+@media(max-width:900px){.p01SequenceRail{grid-template-columns:repeat(4,1fr)}.p01SeqItem:nth-child(n+5){display:none}.p01StageInfo{width:min(390px,44vw)}}
 @media(max-width:700px){
- .p01PreflightTop{padding:12px 11px 9px}.p01SequenceRail{padding:8px 10px 11px;grid-template-columns:repeat(3,1fr)}.p01SeqItem{min-height:52px;padding:7px;font-size:6px;border-radius:11px;box-shadow:4px 4px 9px rgba(164,176,190,.50),-4px -4px 9px rgba(255,255,255,.90)}.p01SeqItem b{font-size:8px}.p01SeqItem:nth-child(n+4){display:none}
- .p01Study{height:360vh}.p01StudySticky{top:66px;height:calc(100vh - 66px);min-height:560px}.p01StudyRule{left:11px;right:11px;top:10px;font-size:6px}.p01MorphScene{top:44%;width:96vw;height:58vh;min-height:360px}
- .p01NeoNode{padding:8px;box-shadow:8px 8px 17px rgba(160,173,188,.50),-8px -8px 17px rgba(255,255,255,.92)}.p01NodeLabel{font-size:9px}.p01NodeMini{font-size:6px}
- .p01StageCard,.p01StageCard:nth-of-type(2),.p01StageCard:nth-of-type(3){left:11px;right:11px;bottom:34px;width:auto;padding:13px 14px;border-radius:17px}.p01StageCard h2{font-size:20px;margin:5px 0}.p01StageCard p{font-size:10px;line-height:1.45}.p01StageCard ul{font-size:8px;line-height:1.35;margin-top:5px}.p01PanelFormula{font-size:7px;margin-top:6px;padding-top:6px}.p01Launch{min-height:38px;padding:9px 12px;font-size:7px;margin-top:8px}.p01Progress{left:11px;right:11px;bottom:10px}.p01ProgressLabel{right:11px;bottom:16px;font-size:5.5px}.p01PreflightFoot{padding:19px 11px 0;font-size:7px}
+ .p01PreflightTop{padding:11px 10px}.p01SequenceRail{top:43px;padding:8px 10px 10px;grid-template-columns:repeat(3,1fr)}.p01SeqItem{min-height:50px;padding:7px;font-size:6px;border-radius:11px}.p01SeqItem b{font-size:8px}.p01SeqItem:nth-child(n+4){display:none}
+ .p01AutoStage{min-height:calc(100vh - 96px);padding:72px 8px 90px;scroll-margin-top:94px}.p01StageHead{left:11px;right:11px;top:13px;font-size:6px}.p01MorphScene{width:98vw;height:58vh;min-height:350px}
+ .p01NeoNode{padding:8px}.p01NodeLabel{font-size:9px}.p01NodeMini{font-size:6px}
+ .p01StageInfo,.p01AutoStage:nth-child(even) .p01StageInfo{left:11px;right:11px;bottom:28px;width:auto;padding:12px 13px;border-radius:17px}.p01StageInfo h2{font-size:19px;margin:4px 0}.p01StageInfo p{font-size:9.5px;line-height:1.42}.p01StageInfo ul{font-size:8px;line-height:1.34;margin-top:5px}.p01PanelFormula{font-size:7px;margin-top:6px;padding-top:6px}.p01Launch{min-height:36px;padding:8px 11px;font-size:7px;margin-top:7px}.p01StageCue{right:11px;bottom:12px;font-size:5.5px}.p01PreflightFoot{padding:18px 11px 0;font-size:7px}
  .labPortalHero{width:92vw;padding:28px 15px;border-radius:25px}
 }
-@media(prefers-reduced-motion:reduce){.p01Study{height:auto}.p01StudySticky{position:relative;height:760px}.p01StageCard{transition:none}}
+@media(prefers-reduced-motion:reduce){.p01AutoStage:before{animation:none}.p01StageCue i{animation:none}}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
@@ -1709,63 +1715,77 @@ function p01PreflightCopy(){var u=U();if(state.lang==="en")return{top:"Pre-lab s
 function renderP01Preflight(){
  var u=U(),copy=p01PreflightCopy();
  var steps=u.psteps.map(function(x,i){return (i<3?'<button type="button" class="p01SeqItem pre" data-preflight-jump="'+i+'">':'<button type="button" class="p01SeqItem '+(i===3?'':'locked')+'" data-pstep="'+i+'">')+'<b>'+String(i+1).padStart(2,"0")+'</b>'+x+'</button>'}).join("");
- function panel(x,i){return '<article class="p01StageCard" data-preflight-panel="'+i+'"><div class="p01PanelNo"><span>'+x.k+'</span><span>'+String(i+1).padStart(2,"0")+' / 03</span></div><h2>'+x.t+'</h2><p>'+x.p+'</p>'+(x.list?'<ul>'+x.list.map(function(v){return '<li>'+v+'</li>'}).join("")+'</ul>':'')+'<div class="p01PanelFormula">'+x.f+'</div>'+(i===2?'<button type="button" class="p01Launch" data-start-p01>'+copy.start+' <b>→</b></button>':'')+'</article>'}
- var panels=copy.steps.map(panel).join("");
- var flask='<div class="p01NodeFlask" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="glass" d="M38 10h24v8l-8 12v13l22 34c4 7-1 13-9 13H33c-8 0-13-6-9-13l22-34V30l-8-12z"/><path class="liquid" d="M32 66h36l8 12c3 5 0 8-7 8H31c-7 0-10-3-7-8z"/></svg></div>';
- var nodes='<div class="p01NeoNode" data-p01-node="a"><div class="p01NodeLabel">'+u.psteps[0]+'<span class="p01NodeMini">01</span></div></div>'+
- '<div class="p01NeoNode focus" data-p01-node="b">'+flask+'<div class="p01NodeLabel">'+u.psteps[1]+'<span class="p01NodeMini">P01</span></div><div class="p01CenterBadge">CATHODE RAY SETUP</div></div>'+
- '<div class="p01NeoNode" data-p01-node="c"><div class="p01NodeLabel">'+u.psteps[2]+'<span class="p01NodeMini">03</span></div></div>'+
- '<div class="p01NeoNode" data-p01-node="d"><div class="p01NodeLabel">'+u.psteps[3]+'<span class="p01NodeMini">04</span></div></div>';
- return shell("lab",'<main class="p01PreflightPage"><div class="p01PreflightTop"><a class="p01PreflightBack" href="#unit1">← '+copy.back+'</a><div class="p01PreflightTag">VIRTUAL LAB • P01 • '+copy.top+'</div></div><div class="p01SequenceRail">'+steps+'</div><section class="p01Study" id="p01Study"><div class="p01StudySticky"><div class="p01StudyRule"><span>P01 / '+copy.sub+'</span><strong data-p01-stage>STEP 01 / 03</strong></div><div class="p01MorphScene" id="p01MorphScene"><svg class="p01ConnectorLayer" aria-hidden="true"><line data-p01-line="a"></line><line data-p01-line="c"></line><line data-p01-line="d"></line></svg>'+nodes+'</div>'+panels+'<div class="p01ProgressLabel">SCROLL • '+copy.top+'</div><div class="p01Progress"><i data-p01-progress></i></div></div></section><div class="p01PreflightFoot"><span>'+copy.ready+'</span><strong>STEP 04 • '+u.psteps[3]+'</strong></div></main>')
+ var flask='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="glass" d="M38 10h24v8l-8 12v13l22 34c4 7-1 13-9 13H33c-8 0-13-6-9-13l22-34V30l-8-12z"/><path class="liquid" d="M32 66h36l8 12c3 5 0 8-7 8H31c-7 0-10-3-7-8z"/></svg></div>';
+ var tools='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M24 76h52M32 76V56h36v20M41 56V22h18v34M37 22h26M45 33h10M28 48h15M57 48h15"/><circle class="dot" cx="35" cy="48" r="4"/><circle class="dot" cx="65" cy="48" r="4"/></svg></div>';
+ var guide='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M30 18h40v64H30zM39 33h23M39 47h23M39 61h17"/><path class="line" d="m40 71 5 5 13-15"/><circle class="dot" cx="30" cy="18" r="3"/><circle class="dot" cx="70" cy="82" r="3"/></svg></div>';
+ function stage(i,title,centerLabel,outer,icon,detail,badge){
+  var nodes='<div class="p01NeoNode" data-node="a"><div class="p01NodeLabel">'+outer[0]+'<span class="p01NodeMini">A</span></div></div>'+
+  '<div class="p01NeoNode focus" data-node="b">'+icon+'<div class="p01NodeLabel">'+centerLabel+'<span class="p01NodeMini">P01</span></div><div class="p01CenterBadge">'+badge+'</div></div>'+
+  '<div class="p01NeoNode" data-node="c"><div class="p01NodeLabel">'+outer[1]+'<span class="p01NodeMini">B</span></div></div>'+
+  '<div class="p01NeoNode" data-node="d"><div class="p01NodeLabel">'+outer[2]+'<span class="p01NodeMini">C</span></div></div>';
+  var info='<article class="p01StageInfo"><div class="p01PanelNo"><span>'+detail.k+'</span><span>'+String(i+1).padStart(2,"0")+' / 03</span></div><h2>'+detail.t+'</h2><p>'+detail.p+'</p>'+(detail.list?'<ul>'+detail.list.map(function(v){return '<li>'+v+'</li>'}).join("")+'</ul>':'')+'<div class="p01PanelFormula">'+detail.f+'</div>'+(i===2?'<button type="button" class="p01Launch" data-start-p01>'+copy.start+' <b>→</b></button>':'')+'</article>';
+  return '<section class="p01AutoStage" id="p01Stage'+i+'" data-auto-stage="'+i+'"><div class="p01StageHead"><b>STEP '+String(i+1).padStart(2,"0")+' • '+title+'</b><span>'+(i===0?'AUTO PLAY':'SCROLL → AUTO PLAY')+'</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient'+i+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient'+i+')"></line><line data-line="c" style="stroke:url(#p01LineGradient'+i+')"></line><line data-line="d" style="stroke:url(#p01LineGradient'+i+')"></line></svg>'+nodes+'</div>'+info+'<div class="p01StageCue"><i></i>'+(i<2?'scroll for next stage':'ready for experiment')+'</div></section>'
+ }
+ var lang=state.lang;
+ var outer1=lang==="si"?["සෘජු ගමන","ශක්ති හුවමාරුව","ක්ෂේත්‍ර අපගමනය"]:lang==="ta"?["நேர்கோட்டு இயக்கம்","Energy transfer","Field deflection"]:["Straight travel","Energy transfer","Field deflection"];
+ var outer2=lang==="si"?["Crookes tube","Cross / Paddle wheel","High-voltage supply"]:lang==="ta"?["Crookes tube","Cross / Paddle wheel","High-voltage supply"]:["Crookes tube","Cross / Paddle wheel","High-voltage supply"];
+ var outer3=lang==="si"?["Setup පරීක්ෂා කරන්න","Power on කර නිරීක්ෂණය","සසඳා සටහන් කරන්න"]:lang==="ta"?["Setup சரிபார்க்கவும்","Power on செய்து கவனிக்கவும்","ஒப்பிட்டு பதிவு செய்"]:["Check setup","Power on & observe","Compare & record"];
+ var center1=lang==="si"?"කැතෝඩ කිරණ":lang==="ta"?"Cathode Rays":"Cathode Rays";
+ var center2=lang==="si"?"උපකරණ":lang==="ta"?"உபகரணங்கள்":"Tools";
+ var center3=lang==="si"?"මාර්ගෝපදේශය":lang==="ta"?"வழிகாட்டி":"Guide";
+ var html=stage(0,u.psteps[0],center1,outer1,flask,copy.steps[0],"CATHODE RAY CONCEPT")+
+ stage(1,u.psteps[1],center2,outer2,tools,copy.steps[1],"APPARATUS MAP")+
+ stage(2,u.psteps[2],center3,outer3,guide,copy.steps[2],"SAFE PRACTICAL FLOW");
+ return shell("lab",'<main class="p01PreflightPage"><div class="p01PreflightTop"><a class="p01PreflightBack" href="#unit1">← '+copy.back+'</a><div class="p01PreflightTag">VIRTUAL LAB • P01 • '+copy.top+'</div></div><div class="p01SequenceRail">'+steps+'</div><div class="p01Study" id="p01Study">'+html+'</div><div class="p01PreflightFoot"><span>'+copy.ready+'</span><strong>STEP 04 • '+u.psteps[3]+'</strong></div></main>')
 }
 function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
- var section=document.getElementById("p01Study"),scene=document.getElementById("p01MorphScene");if(!section||!scene)return;
- var nodes={a:scene.querySelector('[data-p01-node="a"]'),b:scene.querySelector('[data-p01-node="b"]'),c:scene.querySelector('[data-p01-node="c"]'),d:scene.querySelector('[data-p01-node="d"]')};
- var lines={a:scene.querySelector('[data-p01-line="a"]'),c:scene.querySelector('[data-p01-line="c"]'),d:scene.querySelector('[data-p01-line="d"]')};
- var panels=Array.from(section.querySelectorAll("[data-preflight-panel]")),bar=section.querySelector("[data-p01-progress]"),stageText=section.querySelector("[data-p01-stage]");
- var flask=nodes.b&&nodes.b.querySelector(".p01NodeFlask"),centerBadge=nodes.b&&nodes.b.querySelector(".p01CenterBadge"),labels={a:nodes.a&&nodes.a.querySelector(".p01NodeLabel"),b:nodes.b&&nodes.b.querySelector(".p01NodeLabel"),c:nodes.c&&nodes.c.querySelector(".p01NodeLabel"),d:nodes.d&&nodes.d.querySelector(".p01NodeLabel")};
- var dead=false,ticking=false,reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- function clamp(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))}
+ var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
+ var dead=false,observers=[],timers=[];
+ function clamp(v,a,b){return Math.max(a===undefined?0:a,Math.min(b===undefined?1:b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
  function box(cx,cy,w,h,r){return{x:cx-w/2,y:cy-h/2,w:w,h:h,r:r}}
- function layouts(){
+ function layout(scene){
   var w=scene.clientWidth,h=scene.clientHeight,m=w<700;
   if(m){
-   var cw=Math.min(145,w*.39),ch=Math.min(125,h*.25),gap=Math.max(10,w*.045),left=w/2-cw/2-gap/2,right=w/2+cw/2+gap/2;
-   return{
-    start:{a:box(left,h*.27,cw,ch,18),b:box(right,h*.27,cw,ch,18),c:box(left,h*.60,cw,ch,18),d:box(right,h*.60,cw,ch,18)},
-    end:{b:box(w*.50,h*.42,Math.min(190,w*.52),Math.min(190,w*.52),999),a:box(w*.16,h*.17,62,62,18),c:box(w*.84,h*.36,62,62,18),d:box(w*.18,h*.72,62,62,18)}
-   }
+   var cw=Math.min(140,w*.38),ch=Math.min(112,h*.23),gap=Math.max(12,w*.05),left=w/2-cw/2-gap/2,right=w/2+cw/2+gap/2;
+   return{start:{a:box(left,h*.26,cw,ch,17),b:box(right,h*.26,cw,ch,17),c:box(left,h*.60,cw,ch,17),d:box(right,h*.60,cw,ch,17)},end:{b:box(w*.50,h*.42,Math.min(184,w*.50),Math.min(184,w*.50),999),a:box(w*.16,h*.16,60,60,18),c:box(w*.84,h*.36,60,60,18),d:box(w*.18,h*.72,60,60,18)}}
   }
-  var sw=Math.min(190,w*.18),sh=Math.min(175,h*.29);
-  return{
-   start:{a:box(w*.30,h*.31,sw,sh,26),b:box(w*.50,h*.31,sw,sh,26),c:box(w*.30,h*.64,sw,sh,26),d:box(w*.50,h*.64,sw,sh,26)},
-   end:{b:box(w*.53,h*.43,Math.min(300,w*.29),Math.min(300,w*.29),999),a:box(w*.25,h*.16,88,88,24),c:box(w*.82,h*.43,88,88,24),d:box(w*.26,h*.76,88,88,24)}
-  }
+  var sw=Math.min(190,w*.18),sh=Math.min(165,h*.28);
+  return{start:{a:box(w*.30,h*.30,sw,sh,25),b:box(w*.50,h*.30,sw,sh,25),c:box(w*.30,h*.65,sw,sh,25),d:box(w*.50,h*.65,sw,sh,25)},end:{b:box(w*.53,h*.43,Math.min(300,w*.29),Math.min(300,w*.29),999),a:box(w*.24,h*.16,86,86,24),c:box(w*.82,h*.42,86,86,24),d:box(w*.25,h*.77,86,86,24)}}
  }
  function interp(a,b,t){return{x:mix(a.x,b.x,t),y:mix(a.y,b.y,t),w:mix(a.w,b.w,t),h:mix(a.h,b.h,t),r:mix(a.r,b.r,t)}}
  function draw(el,b,op){if(!el)return;el.style.left=b.x+"px";el.style.top=b.y+"px";el.style.width=b.w+"px";el.style.height=b.h+"px";el.style.borderRadius=b.r+"px";el.style.opacity=op}
  function center(b){return{x:b.x+b.w/2,y:b.y+b.h/2}}
- function line(el,p1,p2,reveal){if(!el)return;el.setAttribute("x1",p1.x);el.setAttribute("y1",p1.y);el.setAttribute("x2",p2.x);el.setAttribute("y2",p2.y);var len=Math.hypot(p2.x-p1.x,p2.y-p1.y);el.style.strokeDasharray=len;el.style.strokeDashoffset=len*(1-reveal);el.style.opacity=reveal}
- function update(){
-  ticking=false;if(dead)return;
-  var r=section.getBoundingClientRect(),vh=window.innerHeight||700,travel=Math.max(1,r.height-vh),p=reduced?1:clamp(-r.top/travel);
-  var intro=ease(p/.18),morph=ease((p-.16)/.40),connect=ease((p-.49)/.23),L=layouts(),b={a:interp(L.start.a,L.end.a,morph),b:interp(L.start.b,L.end.b,morph),c:interp(L.start.c,L.end.c,morph),d:interp(L.start.d,L.end.d,morph)};
-  draw(nodes.a,b.a,intro);draw(nodes.b,b.b,intro);draw(nodes.c,b.c,intro);draw(nodes.d,b.d,intro);
-  var cb=center(b.b);line(lines.a,cb,center(b.a),connect);line(lines.c,cb,center(b.c),connect);line(lines.d,cb,center(b.d),connect);
-  if(flask){flask.style.opacity=String(.18+.82*morph);flask.style.transform="translate(-50%,-50%) scale("+(0.78+.22*morph)+")"}
-  if(centerBadge)centerBadge.style.opacity=String(clamp((morph-.35)/.65));
-  ["a","c","d"].forEach(function(k){if(labels[k]){labels[k].style.opacity=String(1-morph*.40);labels[k].style.transform="scale("+(1-morph*.12)+")"}});
-  if(labels.b)labels.b.style.opacity=String(1-morph*.86);
-  var stage=Math.min(2,Math.floor(clamp(p*.999,0,.999)*3));panels.forEach(function(el,i){el.classList.toggle("active",i===stage)});
-  if(stageText)stageText.textContent="STEP "+String(stage+1).padStart(2,"0")+" / 03";if(bar)bar.style.width=(p*100).toFixed(1)+"%";
+ function drawLine(el,p1,p2,reveal){if(!el)return;el.setAttribute("x1",p1.x);el.setAttribute("y1",p1.y);el.setAttribute("x2",p2.x);el.setAttribute("y2",p2.y);var len=Math.hypot(p2.x-p1.x,p2.y-p1.y);el.style.strokeDasharray=len;el.style.strokeDashoffset=len*(1-reveal);el.style.opacity=reveal}
+ function animateStage(stage){
+  if(dead||stage.dataset.played==="1")return;stage.dataset.played="1";
+  var scene=stage.querySelector("[data-morph-scene]"),nodes={a:scene.querySelector('[data-node="a"]'),b:scene.querySelector('[data-node="b"]'),c:scene.querySelector('[data-node="c"]'),d:scene.querySelector('[data-node="d"]')},lines={a:scene.querySelector('[data-line="a"]'),c:scene.querySelector('[data-line="c"]'),d:scene.querySelector('[data-line="d"]')},icon=nodes.b.querySelector(".p01NodeIcon"),badge=nodes.b.querySelector(".p01CenterBadge"),labels={a:nodes.a.querySelector(".p01NodeLabel"),b:nodes.b.querySelector(".p01NodeLabel"),c:nodes.c.querySelector(".p01NodeLabel"),d:nodes.d.querySelector(".p01NodeLabel")};
+  var start=performance.now(),duration=1650;
+  function frame(now){
+   if(dead||!stage.isConnected)return;
+   var p=clamp((now-start)/duration),intro=ease(clamp(p/.28)),morph=ease(clamp((p-.20)/.50)),connect=ease(clamp((p-.57)/.30)),L=layout(scene),B={a:interp(L.start.a,L.end.a,morph),b:interp(L.start.b,L.end.b,morph),c:interp(L.start.c,L.end.c,morph),d:interp(L.start.d,L.end.d,morph)};
+   draw(nodes.a,B.a,intro);draw(nodes.b,B.b,intro);draw(nodes.c,B.c,intro);draw(nodes.d,B.d,intro);
+   var cb=center(B.b);drawLine(lines.a,cb,center(B.a),connect);drawLine(lines.c,cb,center(B.c),connect);drawLine(lines.d,cb,center(B.d),connect);
+   icon.style.opacity=String(.15+.85*morph);icon.style.transform="translate(-50%,-50%) scale("+(0.78+.22*morph)+")";badge.style.opacity=String(clamp((morph-.34)/.66));
+   ["a","c","d"].forEach(function(k){labels[k].style.opacity=String(1-morph*.36);labels[k].style.transform="scale("+(1-morph*.10)+")"});labels.b.style.opacity=String(1-morph*.88);
+   if(p<1)requestAnimationFrame(frame);else stage.classList.add("stage-complete");
+  }
+  requestAnimationFrame(frame);
  }
- function requestUpdate(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
- window.addEventListener("scroll",requestUpdate,{passive:true});window.addEventListener("resize",requestUpdate,{passive:true});update();
- var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;setTimeout(function(){var tr=Math.max(1,section.offsetHeight-(window.innerHeight||700)),top=section.getBoundingClientRect().top+window.scrollY+tr*(Math.max(0,Math.min(2,target))/3+.035);window.scrollTo({top:top,behavior:"smooth"})},70)}
- window._p01PreflightCleanup=function(){dead=true;window.removeEventListener("scroll",requestUpdate);window.removeEventListener("resize",requestUpdate)}
+ function resetForResize(){stages.forEach(function(stage){if(stage.dataset.played==="1"){stage.dataset.played="";stage.classList.remove("stage-complete");animateStage(stage)}})}
+ var resizeTimer=0;function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(resetForResize,150)}window.addEventListener("resize",onResize,{passive:true});
+ // Step 01 starts automatically without any scroll.
+ timers.push(setTimeout(function(){animateStage(stages[0])},180));
+ if("IntersectionObserver" in window){
+  stages.slice(1).forEach(function(stage){var ob=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>.42){animateStage(stage)}})},{threshold:[.42,.65]});ob.observe(stage);observers.push(ob)})
+ }else{
+  function onScroll(){stages.slice(1).forEach(function(stage){var r=stage.getBoundingClientRect(),vh=window.innerHeight||700;if(r.top<vh*.62&&r.bottom>vh*.28)animateStage(stage)})}
+  window.addEventListener("scroll",onScroll,{passive:true});window._p01FallbackScroll=onScroll;onScroll()
+ }
+ var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;timers.push(setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80))}
+ window._p01PreflightCleanup=function(){dead=true;timers.forEach(clearTimeout);observers.forEach(function(o){o.disconnect()});window.removeEventListener("resize",onResize);if(window._p01FallbackScroll){window.removeEventListener("scroll",window._p01FallbackScroll);window._p01FallbackScroll=null}}
 }
 function renderP01(){if(state.pstep<3)return renderP01Preflight();var u=U(),content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep](),steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
@@ -1773,7 +1793,7 @@ function render(){if(window._labPortalCleanup){try{window._labPortalCleanup()}ca
 function bind(){
 
 var openP01=document.querySelector("[data-open-p01]");if(openP01)openP01.onclick=function(){state.pstep=0;state.p01PreflightTarget=0};
-document.querySelectorAll("[data-preflight-jump]").forEach(function(b){b.onclick=function(){var section=document.getElementById("p01Study");if(!section)return;var n=+b.dataset.preflightJump,tr=Math.max(1,section.offsetHeight-(window.innerHeight||700)),top=section.getBoundingClientRect().top+window.scrollY+tr*(n/3+.04);window.scrollTo({top:top,behavior:"smooth"})}});
+document.querySelectorAll("[data-preflight-jump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("p01Stage"+(+b.dataset.preflightJump));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})}});
 var startP01=document.querySelector("[data-start-p01]");if(startP01)startP01.onclick=function(){state.pstep=3;render();window.scrollTo({top:0,behavior:"smooth"})};
 var labStart=document.querySelector("[data-lab-start]");if(labStart)labStart.onclick=function(){var p=document.getElementById("labPortal");if(p)p.classList.add("launching");labStart.disabled=true;setTimeout(function(){location.hash="#lab-main"},680)};
 var skipAssembly=document.querySelector("[data-skip-assembly]");if(skipAssembly)skipAssembly.onclick=function(){var el=document.getElementById("labCatalogue");if(el)el.scrollIntoView({behavior:"smooth",block:"start"})};
