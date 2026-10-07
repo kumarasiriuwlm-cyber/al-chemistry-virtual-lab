@@ -813,6 +813,48 @@ linear-gradient(180deg,#03070f,#07131f 54%,#03070f);animation:p01Nebula 9s ease-
 .p01StageInfo h2{margin:7px 0 7px;color:#f3fffc;font-size:clamp(21px,2.2vw,31px);line-height:1.06;text-shadow:0 0 22px rgba(93,255,225,.12)}.p01StageInfo p{margin:0;color:#a9c3c4;font-size:12px;line-height:1.60}.p01StageInfo ul{margin:7px 0 0;padding-left:18px;color:#a9c3c4;font-size:10px;line-height:1.42}.p01StageInfo li{margin:3px 0}.p01PanelFormula{margin-top:9px;padding-top:8px;border-top:1px solid rgba(118,255,231,.10);color:#8fffe6;font:800 9px "Courier New",monospace}
 .p01Launch{margin-top:11px;border:1px solid rgba(112,255,229,.30);border-radius:999px;background:linear-gradient(100deg,rgba(21,100,99,.62),rgba(89,52,141,.62));color:#f5fffd;padding:11px 16px;min-height:42px;font:900 9px "Courier New",monospace;letter-spacing:.10em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 25px rgba(75,255,219,.11),inset 1px 1px 0 rgba(255,255,255,.08)}.p01Launch b{color:#7affdd;margin-left:7px}
 .p01StageCue{position:absolute;right:22px;bottom:22px;z-index:11;color:#799294;font:800 7px Arial;letter-spacing:.12em;text-transform:uppercase}.p01StageCue i{display:inline-block;width:26px;height:1px;margin-right:8px;vertical-align:middle;background:linear-gradient(90deg,#5affd8,transparent);animation:p01Cue 1.35s ease-in-out infinite}@keyframes p01Cue{50%{width:45px}}
+/* Step 02 — neon 3D apparatus orbit */
+.p01ToolsOrbit{position:relative;z-index:4;width:min(1120px,94vw);height:min(650px,70vh);min-height:500px;perspective:1100px}
+.p01ToolsCore{position:absolute;left:50%;top:46%;width:210px;height:210px;transform:translate(-50%,-50%) scale(.35);border-radius:50%;display:grid;place-items:center;text-align:center;z-index:5;background:
+ radial-gradient(circle at 34% 28%,rgba(101,255,225,.25),transparent 30%),
+ radial-gradient(circle at 70% 74%,rgba(250,78,223,.19),transparent 36%),
+ linear-gradient(145deg,rgba(7,35,48,.97),rgba(14,13,42,.96));border:1px solid rgba(110,255,226,.38);
+ box-shadow:0 0 38px rgba(73,255,218,.22),0 0 90px rgba(127,89,255,.12),inset 0 0 40px rgba(81,255,219,.05);opacity:0}
+.p01ToolsCore:before,.p01ToolsCore:after{content:"";position:absolute;border-radius:50%;inset:-15px;border:1px solid rgba(101,255,225,.13);animation:p01CoreRing 8s linear infinite}
+.p01ToolsCore:after{inset:-31px;border-color:rgba(242,86,225,.10);animation-direction:reverse;animation-duration:12s}
+@keyframes p01CoreRing{to{transform:rotate(360deg)}}
+.p01ToolsCore strong{display:block;color:#effffb;font:950 28px/1 Arial;letter-spacing:-.04em;text-shadow:0 0 18px rgba(98,255,224,.38)}
+.p01ToolsCore span{display:block;margin-top:8px;color:#70ffdc;font:900 8px Arial;letter-spacing:.17em;text-transform:uppercase}
+.p01ToolLinks{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.p01ToolLinks line{stroke-width:1.7;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 6px rgba(82,255,220,.55))}
+.p01ToolPod{position:absolute;z-index:6;width:132px;height:132px;transform:translate(-50%,-50%) scale(.25);opacity:0;border:1px solid rgba(111,255,226,.18);border-radius:26px;background:linear-gradient(145deg,rgba(8,28,42,.90),rgba(8,15,31,.90));box-shadow:0 18px 40px rgba(0,0,0,.42),0 0 28px rgba(62,255,215,.07),inset 1px 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(14px);cursor:pointer;transition:transform .34s cubic-bezier(.18,.86,.22,1),box-shadow .34s ease,border-color .34s ease,opacity .3s ease;outline:none}
+.p01ToolPod:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(83,255,215,.62),rgba(110,105,255,.18),rgba(255,81,219,.48));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.48;pointer-events:none}
+.p01ToolPod:hover,.p01ToolPod:focus-visible,.p01ToolPod.selected{z-index:15;transform:translate(-50%,-50%) scale(1.34)!important;border-color:rgba(111,255,226,.50);box-shadow:0 28px 64px rgba(0,0,0,.50),0 0 42px rgba(79,255,218,.21),0 0 58px rgba(245,78,220,.12),inset 1px 1px 0 rgba(255,255,255,.075)}
+.p01ToolPod.selected{border-color:rgba(255,101,222,.52)}
+.p01Tool3D{position:absolute;left:50%;top:45%;width:72px;height:72px;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:p01ToolSpin 5.6s linear infinite;filter:drop-shadow(0 0 13px rgba(103,255,226,.30))}
+.p01ToolPod:nth-of-type(2) .p01Tool3D{animation-duration:6.8s;animation-direction:reverse}.p01ToolPod:nth-of-type(3) .p01Tool3D{animation-duration:5.1s}.p01ToolPod:nth-of-type(4) .p01Tool3D{animation-duration:7.2s;animation-direction:reverse}.p01ToolPod:nth-of-type(5) .p01Tool3D{animation-duration:5.9s}.p01ToolPod:nth-of-type(6) .p01Tool3D{animation-duration:6.3s;animation-direction:reverse}
+.p01ToolPod:hover .p01Tool3D,.p01ToolPod:focus-visible .p01Tool3D,.p01ToolPod.selected .p01Tool3D{animation-play-state:paused}
+@keyframes p01ToolSpin{0%{transform:translate(-50%,-50%) rotateY(0deg) rotateX(7deg)}50%{transform:translate(-50%,-50%) rotateY(180deg) rotateX(-7deg)}100%{transform:translate(-50%,-50%) rotateY(360deg) rotateX(7deg)}}
+.p01Tool3D svg{display:block;width:100%;height:100%;overflow:visible}.p01Tool3D .stroke{fill:none;stroke:#73ffe2;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.p01Tool3D .fill{fill:rgba(88,255,219,.14);stroke:#73ffe2;stroke-width:2.4}.p01Tool3D .hot{fill:rgba(255,91,220,.28);stroke:#ff72dd;stroke-width:2.2}.p01Tool3D .metal{fill:rgba(154,132,255,.20);stroke:#b0a4ff;stroke-width:2.2}
+.p01ToolName{position:absolute;left:8px;right:8px;bottom:10px;color:#dffbf6;font:900 9px/1.2 Arial;text-align:center;letter-spacing:.03em;text-shadow:0 0 10px rgba(84,255,218,.22)}
+.p01ToolNo{position:absolute;left:9px;top:8px;color:#64ffd9;font:900 7px Arial;letter-spacing:.10em}
+.p01ToolDescription{position:absolute;left:50%;top:calc(100% + 10px);width:210px;transform:translateX(-50%) translateY(7px);padding:10px 11px;border:1px solid rgba(113,255,228,.16);border-radius:14px;background:rgba(4,17,28,.95);box-shadow:0 16px 38px rgba(0,0,0,.48),0 0 20px rgba(82,255,217,.08);color:#a9c9c7;font-size:9px;line-height:1.45;text-align:left;opacity:0;visibility:hidden;pointer-events:none;transition:.22s ease;backdrop-filter:blur(12px)}
+.p01ToolDescription b{display:block;color:#83ffe3;margin-bottom:3px;font-size:9px}
+.p01ToolPod:hover .p01ToolDescription,.p01ToolPod:focus-visible .p01ToolDescription,.p01ToolPod.selected .p01ToolDescription{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.p01ToolsOrbit.ready .p01ToolsCore{animation:p01CoreArrive .85s cubic-bezier(.18,.86,.22,1) forwards}
+@keyframes p01CoreArrive{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.p01ToolsOrbit.ready .p01ToolPod{animation:p01PodArrive .72s cubic-bezier(.18,.86,.22,1) forwards}
+.p01ToolsOrbit.ready .p01ToolPod:nth-of-type(1){animation-delay:.28s}.p01ToolsOrbit.ready .p01ToolPod:nth-of-type(2){animation-delay:.38s}.p01ToolsOrbit.ready .p01ToolPod:nth-of-type(3){animation-delay:.48s}.p01ToolsOrbit.ready .p01ToolPod:nth-of-type(4){animation-delay:.58s}.p01ToolsOrbit.ready .p01ToolPod:nth-of-type(5){animation-delay:.68s}.p01ToolsOrbit.ready .p01ToolPod:nth-of-type(6){animation-delay:.78s}
+@keyframes p01PodArrive{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.p01ToolsOrbit.ready .p01ToolLinks line{animation:p01LinkIn .55s ease forwards;animation-delay:.72s}
+@keyframes p01LinkIn{to{opacity:.75}}
+@media(max-width:700px){
+ .p01ToolsOrbit{width:98vw;height:59vh;min-height:390px}.p01ToolsCore{width:142px;height:142px;top:43%}.p01ToolsCore strong{font-size:21px}.p01ToolsCore:after{inset:-22px}.p01ToolsCore:before{inset:-10px}
+ .p01ToolPod{width:88px;height:88px;border-radius:19px}.p01Tool3D{width:48px;height:48px;top:43%}.p01ToolName{font-size:6.6px;bottom:7px}.p01ToolNo{font-size:5.7px;left:6px;top:6px}.p01ToolDescription{width:170px;font-size:8px;z-index:30}
+ .p01ToolPod:hover,.p01ToolPod:focus-visible,.p01ToolPod.selected{transform:translate(-50%,-50%) scale(1.24)!important}
+}
+@media(prefers-reduced-motion:reduce){.p01Tool3D,.p01ToolsCore:before,.p01ToolsCore:after{animation:none!important}.p01ToolsOrbit.ready .p01ToolsCore{opacity:1;transform:translate(-50%,-50%) scale(1)}.p01ToolsOrbit.ready .p01ToolPod{opacity:1;transform:translate(-50%,-50%) scale(1)}.p01ToolsOrbit.ready .p01ToolLinks line{opacity:.75}}
+
 .p01PreflightFoot{max-width:1220px;margin:0 auto;padding:28px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;color:#789092;font:700 9px "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}.p01PreflightFoot strong{color:#6effdc;text-shadow:0 0 14px rgba(63,255,216,.32)}
 
 /* neon glass treatment for the Virtual Lab starting menu */
@@ -1719,11 +1761,49 @@ function renderP01Preflight(){
  var tools='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M24 76h52M32 76V56h36v20M41 56V22h18v34M37 22h26M45 33h10M28 48h15M57 48h15"/><circle class="dot" cx="35" cy="48" r="4"/><circle class="dot" cx="65" cy="48" r="4"/></svg></div>';
  var guide='<div class="p01NodeIcon" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="line" d="M30 18h40v64H30zM39 33h23M39 47h23M39 61h17"/><path class="line" d="m40 71 5 5 13-15"/><circle class="dot" cx="30" cy="18" r="3"/><circle class="dot" cx="70" cy="82" r="3"/></svg></div>';
  function stage(i,title,centerLabel,outer,icon,detail,badge){
+  var info='<article class="p01StageInfo"><div class="p01PanelNo"><span>'+detail.k+'</span><span>'+String(i+1).padStart(2,"0")+' / 03</span></div><h2>'+detail.t+'</h2><p>'+detail.p+'</p>'+(detail.list?'<ul>'+detail.list.map(function(v){return '<li>'+v+'</li>'}).join("")+'</ul>':'')+'<div class="p01PanelFormula">'+detail.f+'</div>'+(i===2?'<button type="button" class="p01Launch" data-start-p01>'+copy.start+' <b>→</b></button>':'')+'</article>';
+  if(i===1){
+   var lang=state.lang;
+   var toolData=lang==="si"?[
+    ["Crookes tube","අඩු පීඩන වායුවක් සහිත discharge tube එක. Cathode ray beam එක නිරීක්ෂණය කිරීමට මූලික කුටියයි."],
+    ["Cathode (−)","ඍණ විද්‍යුත් ධ්‍රැවය. ඉහළ විභව අන්තරයක් යෙදූ විට electron beam එක ආරම්භ වන්නේ මෙහි සිටයි."],
+    ["Anode (+)","ධන විද්‍යුත් ධ්‍රැවය. සිදුර හරහා cathode rays ඉදිරියට ගමන් කිරීමට beam එක සකස් කරයි."],
+    ["Fluorescent screen","Cathode rays වැදුණු විට දීප්තියක් ඇති කර beam එකේ පිහිටීම සහ සෙවණැල්ල දැකීමට උපකාරී වේ."],
+    ["Cross / Paddle wheel","Metal cross එකෙන් සෘජු ගමන හා shadow පෙන්වයි. Paddle wheel එකෙන් beam එක ශක්තිය රැගෙන යන බව පෙන්වයි."],
+    ["High-voltage supply","Cathode සහ anode අතර විශාල potential difference එක සපයයි. සැබෑ උපකරණ භාවිතයේදී අධීක්ෂණය අවශ්‍යයි."]
+   ]:lang==="ta"?[
+    ["Crookes tube","குறைந்த அழுத்த வாயு கொண்ட discharge tube. Cathode ray beam ஐ கவனிக்க முக்கிய chamber."],
+    ["Cathode (−)","எதிர்மின் electrode. உயர் potential difference வழங்கும் போது electron beam இங்கிருந்து உருவாகிறது."],
+    ["Anode (+)","நேர்மின் electrode. துளை வழியாக cathode rays முன்னோக்கி செல்ல beam ஐ அமைக்கிறது."],
+    ["Fluorescent screen","Cathode rays பட்டால் ஒளிர்ந்து beam இடம் மற்றும் shadow ஐ காண உதவுகிறது."],
+    ["Cross / Paddle wheel","Metal cross நேர்கோட்டு பயணம்/shadow காட்டும்; paddle wheel energy transfer ஐ காட்டும்."],
+    ["High-voltage supply","Cathode மற்றும் anode இடையே பெரிய potential difference வழங்குகிறது. ஆசிரியர் மேற்பார்வை அவசியம்."]
+   ]:[
+    ["Crookes tube","A low-pressure discharge tube that contains the cathode-ray experiment and makes the beam observable."],
+    ["Cathode (−)","The negative electrode from which the electron beam originates when a high potential difference is applied."],
+    ["Anode (+)","The positive electrode; its aperture helps form and direct the cathode-ray beam."],
+    ["Fluorescent screen","Glows when struck by cathode rays, making the beam position and shadows visible."],
+    ["Cross / Paddle wheel","The cross demonstrates straight-line travel; the wheel demonstrates transfer of energy by the beam."],
+    ["High-voltage supply","Provides the large potential difference between cathode and anode. Real apparatus requires supervision."]
+   ];
+   var icons=[
+    '<svg viewBox="0 0 100 100"><rect class="fill" x="10" y="34" width="80" height="32" rx="16"/><path class="stroke" d="M20 50h19M61 50h19"/><circle class="hot" cx="43" cy="50" r="5"/><circle class="metal" cx="57" cy="50" r="5"/></svg>',
+    '<svg viewBox="0 0 100 100"><path class="stroke" d="M50 18v64M27 28h46M27 72h46"/><rect class="metal" x="33" y="39" width="34" height="22" rx="5"/><path class="stroke" d="M43 50h14"/></svg>',
+    '<svg viewBox="0 0 100 100"><circle class="metal" cx="50" cy="50" r="25"/><circle class="fill" cx="50" cy="50" r="11"/><path class="stroke" d="M50 13v15M50 72v15M13 50h15M72 50h15"/></svg>',
+    '<svg viewBox="0 0 100 100"><rect class="fill" x="22" y="19" width="56" height="62" rx="7"/><path class="hot" d="M30 66c9-26 18-6 25-28 5 13 11 7 15 20"/><path class="stroke" d="M31 29h38"/></svg>',
+    '<svg viewBox="0 0 100 100"><path class="stroke" d="M50 22v56M30 39h40"/><circle class="metal" cx="50" cy="50" r="30"/><path class="stroke" d="M50 20v60M20 50h60M29 29l42 42M71 29 29 71"/></svg>',
+    '<svg viewBox="0 0 100 100"><rect class="fill" x="18" y="24" width="64" height="54" rx="9"/><circle class="hot" cx="37" cy="51" r="8"/><circle class="metal" cx="63" cy="51" r="8"/><path class="stroke" d="M34 51h6M60 51h6M63 48v6M28 68h44"/></svg>'
+   ];
+   var pos=[[50,8],[82,27],[82,65],[50,84],[18,65],[18,27]];
+   var pods=toolData.map(function(t,j){return '<button type="button" class="p01ToolPod" data-tool-pod="'+j+'" style="left:'+pos[j][0]+'%;top:'+pos[j][1]+'%" aria-label="'+escapeHtml(t[0])+'"><span class="p01ToolNo">0'+(j+1)+'</span><span class="p01Tool3D">'+icons[j]+'</span><span class="p01ToolName">'+t[0]+'</span><span class="p01ToolDescription"><b>'+t[0]+'</b>'+t[1]+'</span></button>'}).join("");
+   var links=pos.map(function(p,j){return '<line data-tool-line="'+j+'" x1="50%" y1="43%" x2="'+p[0]+'%" y2="'+p[1]+'%" style="stroke:'+(j%3===0?'#62ffd9':j%3===1?'#8f7cff':'#ff6bdc')+'"></line>'}).join("");
+   var toolOrbit='<div class="p01ToolsOrbit" data-tools-orbit><svg class="p01ToolLinks" aria-hidden="true">'+links+'</svg><div class="p01ToolsCore"><div><strong>'+centerLabel+'</strong><span>02 • APPARATUS</span></div></div>'+pods+'</div>';
+   return '<section class="p01AutoStage" id="p01Stage'+i+'" data-auto-stage="'+i+'"><div class="p01StageHead"><b>STEP 02 • '+title+'</b><span>SCROLL → AUTO PLAY • HOVER / TAP TO EXPLORE</span></div>'+toolOrbit+info+'<div class="p01StageCue"><i></i>hover or tap a tool</div></section>'
+  }
   var nodes='<div class="p01NeoNode" data-node="a"><div class="p01NodeLabel">'+outer[0]+'<span class="p01NodeMini">A</span></div></div>'+
   '<div class="p01NeoNode focus" data-node="b">'+icon+'<div class="p01NodeLabel">'+centerLabel+'<span class="p01NodeMini">P01</span></div><div class="p01CenterBadge">'+badge+'</div></div>'+
   '<div class="p01NeoNode" data-node="c"><div class="p01NodeLabel">'+outer[1]+'<span class="p01NodeMini">B</span></div></div>'+
   '<div class="p01NeoNode" data-node="d"><div class="p01NodeLabel">'+outer[2]+'<span class="p01NodeMini">C</span></div></div>';
-  var info='<article class="p01StageInfo"><div class="p01PanelNo"><span>'+detail.k+'</span><span>'+String(i+1).padStart(2,"0")+' / 03</span></div><h2>'+detail.t+'</h2><p>'+detail.p+'</p>'+(detail.list?'<ul>'+detail.list.map(function(v){return '<li>'+v+'</li>'}).join("")+'</ul>':'')+'<div class="p01PanelFormula">'+detail.f+'</div>'+(i===2?'<button type="button" class="p01Launch" data-start-p01>'+copy.start+' <b>→</b></button>':'')+'</article>';
   return '<section class="p01AutoStage" id="p01Stage'+i+'" data-auto-stage="'+i+'"><div class="p01StageHead"><b>STEP '+String(i+1).padStart(2,"0")+' • '+title+'</b><span>'+(i===0?'AUTO PLAY':'SCROLL → AUTO PLAY')+'</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient'+i+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient'+i+')"></line><line data-line="c" style="stroke:url(#p01LineGradient'+i+')"></line><line data-line="d" style="stroke:url(#p01LineGradient'+i+')"></line></svg>'+nodes+'</div>'+info+'<div class="p01StageCue"><i></i>'+(i<2?'scroll for next stage':'ready for experiment')+'</div></section>'
  }
  var lang=state.lang;
@@ -1742,6 +1822,16 @@ function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
  var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
  var dead=false,observers=[],timers=[];
+ document.querySelectorAll("[data-tool-pod]").forEach(function(pod){
+  pod.addEventListener("click",function(e){
+   e.stopPropagation();
+   var was=pod.classList.contains("selected");
+   document.querySelectorAll("[data-tool-pod]").forEach(function(x){x.classList.remove("selected")});
+   if(!was)pod.classList.add("selected")
+  });
+  pod.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pod.click()}})
+ });
+ document.addEventListener("click",function closeTools(e){if(!e.target.closest||!e.target.closest("[data-tool-pod]"))document.querySelectorAll("[data-tool-pod].selected").forEach(function(x){x.classList.remove("selected")})},{once:true});
  function clamp(v,a,b){return Math.max(a===undefined?0:a,Math.min(b===undefined?1:b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
@@ -1761,6 +1851,12 @@ function initP01Preflight(){
  function drawLine(el,p1,p2,reveal){if(!el)return;el.setAttribute("x1",p1.x);el.setAttribute("y1",p1.y);el.setAttribute("x2",p2.x);el.setAttribute("y2",p2.y);var len=Math.hypot(p2.x-p1.x,p2.y-p1.y);el.style.strokeDasharray=len;el.style.strokeDashoffset=len*(1-reveal);el.style.opacity=reveal}
  function animateStage(stage){
   if(dead||stage.dataset.played==="1")return;stage.dataset.played="1";
+  var toolsOrbit=stage.querySelector("[data-tools-orbit]");
+  if(toolsOrbit){
+   toolsOrbit.classList.add("ready");
+   timers.push(setTimeout(function(){if(!dead&&stage.isConnected)stage.classList.add("stage-complete")},1150));
+   return
+  }
   var scene=stage.querySelector("[data-morph-scene]"),nodes={a:scene.querySelector('[data-node="a"]'),b:scene.querySelector('[data-node="b"]'),c:scene.querySelector('[data-node="c"]'),d:scene.querySelector('[data-node="d"]')},lines={a:scene.querySelector('[data-line="a"]'),c:scene.querySelector('[data-line="c"]'),d:scene.querySelector('[data-line="d"]')},icon=nodes.b.querySelector(".p01NodeIcon"),badge=nodes.b.querySelector(".p01CenterBadge"),labels={a:nodes.a.querySelector(".p01NodeLabel"),b:nodes.b.querySelector(".p01NodeLabel"),c:nodes.c.querySelector(".p01NodeLabel"),d:nodes.d.querySelector(".p01NodeLabel")};
   var start=performance.now(),duration=1650;
   function frame(now){
@@ -1774,7 +1870,7 @@ function initP01Preflight(){
   }
   requestAnimationFrame(frame);
  }
- function resetForResize(){stages.forEach(function(stage){if(stage.dataset.played==="1"){stage.dataset.played="";stage.classList.remove("stage-complete");animateStage(stage)}})}
+ function resetForResize(){stages.forEach(function(stage){if(stage.dataset.played==="1"){stage.dataset.played="";stage.classList.remove("stage-complete");var o=stage.querySelector("[data-tools-orbit]");if(o)o.classList.remove("ready");animateStage(stage)}})}
  var resizeTimer=0;function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(resetForResize,150)}window.addEventListener("resize",onResize,{passive:true});
  // Step 01 starts automatically without any scroll.
  timers.push(setTimeout(function(){animateStage(stages[0])},180));
