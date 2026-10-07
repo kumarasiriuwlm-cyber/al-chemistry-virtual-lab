@@ -587,6 +587,65 @@ html{font-size:17px}body{padding-bottom:72px}.topin{min-height:66px;padding:7px 
  .journeyMini3D,.journeyVisualPane img{height:245px!important}
  .journeyStaticArt{min-height:225px;padding:20px}
 }
+
+/* 2026-10-07: immersive Virtual Lab gateway */
+.labPortal{position:fixed;inset:0;z-index:500;overflow:hidden;background:#03070f;color:#fff;isolation:isolate;font-family:inherit}
+.labPortal:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:
+ radial-gradient(circle at 50% 44%,rgba(19,122,116,.10),transparent 34%),
+ radial-gradient(circle at 20% 18%,rgba(83,71,255,.13),transparent 29%),
+ radial-gradient(circle at 80% 76%,rgba(0,225,190,.10),transparent 32%),
+ linear-gradient(180deg,rgba(1,5,12,.08),rgba(1,5,12,.55))}
+.labPortal:after{content:"";position:absolute;inset:-20%;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 34%,rgba(0,0,0,.28) 68%,rgba(0,0,0,.80) 100%)}
+.labPortalScene{position:absolute;inset:0;z-index:1;overflow:hidden;cursor:crosshair;touch-action:none}
+.labPortalScene canvas{display:block;width:100%!important;height:100%!important;filter:saturate(1.16) contrast(1.04)}
+.labPortalNoise{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:.10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");mix-blend-mode:screen}
+.labPortalTop{position:absolute;left:0;right:0;top:0;z-index:8;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;pointer-events:none}
+.labPortalBack,.labPortalStatus{pointer-events:auto}
+.labPortalBack{display:inline-flex;align-items:center;gap:8px;color:rgba(238,255,252,.72);text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.05em;padding:9px 12px;border:1px solid rgba(166,255,237,.13);border-radius:999px;background:rgba(4,18,29,.28);backdrop-filter:blur(12px);transition:.25s ease}
+.labPortalBack:hover{color:#fff;border-color:rgba(151,255,230,.38);transform:translateX(-2px)}
+.labPortalStatus{display:flex;align-items:center;gap:8px;color:rgba(222,248,245,.62);font:800 10px/1.2 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.labPortalStatus i{width:7px;height:7px;border-radius:50%;background:#58ffd4;box-shadow:0 0 14px #58ffd4;animation:labStatusPulse 1.7s ease-in-out infinite}
+@keyframes labStatusPulse{50%{opacity:.35;transform:scale(.7)}}
+.labPortalHero{position:absolute;left:50%;top:50%;z-index:7;width:min(900px,92vw);transform:translate(-50%,-50%);text-align:center;padding:34px 20px;pointer-events:none;animation:labHeroEnter 1s cubic-bezier(.16,.85,.24,1) both}
+@keyframes labHeroEnter{from{opacity:0;transform:translate(-50%,-46%) scale(.96);filter:blur(10px)}to{opacity:1;transform:translate(-50%,-50%) scale(1);filter:none}}
+.labPortalKicker{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;padding:8px 12px;border:1px solid rgba(140,255,232,.17);border-radius:999px;background:rgba(5,27,35,.26);backdrop-filter:blur(16px);color:#9afbe7;font:900 10px/1 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;box-shadow:inset 0 0 24px rgba(63,255,215,.035)}
+.labPortalKicker:before{content:"";width:7px;height:7px;border-radius:50%;background:#6effdd;box-shadow:0 0 16px #45ffd5}
+.labPortalTitle{position:relative;margin:0;font-family:Arial,Helvetica,sans-serif;font-size:clamp(58px,11vw,150px);line-height:.82;font-weight:950;letter-spacing:-.065em;text-transform:uppercase;color:#f5fffd;text-shadow:0 0 18px rgba(122,255,231,.18),0 0 65px rgba(18,241,199,.10)}
+.labPortalTitle span{display:block;background:linear-gradient(112deg,#ffffff 14%,#a7fff0 45%,#a4c9ff 66%,#ffffff 88%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(83,255,220,.13))}
+.labPortalTitle:after{content:"VIRTUAL LAB";position:absolute;inset:0;z-index:-1;color:transparent;-webkit-text-stroke:1px rgba(106,255,226,.10);transform:translateY(7px) scale(1.015);filter:blur(2px)}
+.labPortalSub{max-width:650px;margin:24px auto 0;color:rgba(227,244,245,.74);font-size:clamp(14px,1.7vw,18px);line-height:1.75;font-weight:600;text-shadow:0 1px 18px rgba(0,0,0,.7)}
+.labPortalStartWrap{pointer-events:auto;display:flex;justify-content:center;margin-top:29px}
+.labPortalStart{position:relative;isolation:isolate;min-width:190px;border:1px solid rgba(146,255,234,.32);border-radius:999px;padding:15px 24px;background:rgba(6,34,42,.55);color:#effffb;font:900 13px/1 Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.02) inset,0 12px 42px rgba(0,0,0,.33),0 0 30px rgba(51,255,213,.06);backdrop-filter:blur(16px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.labPortalStart:before{content:"";position:absolute;inset:-2px;z-index:-2;border-radius:inherit;background:conic-gradient(from 180deg,transparent 0 22%,#66ffdd 31%,transparent 39% 63%,#829cff 72%,transparent 80%);animation:labStartRing 3.2s linear infinite}
+.labPortalStart:after{content:"";position:absolute;inset:1px;z-index:-1;border-radius:inherit;background:linear-gradient(135deg,rgba(9,41,48,.96),rgba(5,20,31,.94))}
+@keyframes labStartRing{to{transform:rotate(360deg)}}
+.labPortalStart:hover{transform:translateY(-3px) scale(1.025);border-color:rgba(173,255,240,.70);box-shadow:0 18px 55px rgba(0,0,0,.38),0 0 42px rgba(68,255,216,.13)}
+.labPortalStart:active{transform:translateY(0) scale(.985)}
+.labPortalStart b{font-size:15px;margin-left:9px;color:#74ffdc}
+.labPortalHint{position:absolute;left:50%;bottom:24px;z-index:8;transform:translateX(-50%);display:flex;align-items:center;gap:9px;color:rgba(217,242,239,.50);font:800 9px/1.3 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;pointer-events:none}
+.labPortalHint .mouse{width:16px;height:24px;border:1px solid rgba(183,255,240,.34);border-radius:9px;position:relative}
+.labPortalHint .mouse:after{content:"";position:absolute;left:50%;top:5px;width:2px;height:5px;margin-left:-1px;border-radius:2px;background:#74ffe0;box-shadow:0 0 7px #74ffe0;animation:labMouseDot 1.5s ease-in-out infinite}
+@keyframes labMouseDot{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(6px);opacity:.15}}
+.labPortal.launching .labPortalHero{animation:labPortalLaunch .68s cubic-bezier(.65,0,.35,1) forwards}
+.labPortal.launching .labPortalScene{animation:labSceneLaunch .72s ease forwards}
+.labPortal.launching:before{animation:labFlash .68s ease forwards}
+@keyframes labPortalLaunch{to{opacity:0;transform:translate(-50%,-50%) scale(1.22);filter:blur(16px)}}
+@keyframes labSceneLaunch{to{transform:scale(1.13);filter:brightness(1.38) saturate(1.35)}}
+@keyframes labFlash{60%{background:rgba(86,255,222,.07)}100%{background:rgba(255,255,255,.12)}}
+.labPortalFallback{position:absolute;inset:0;background:
+ radial-gradient(circle at 20% 20%,rgba(84,76,255,.22),transparent 28%),
+ radial-gradient(circle at 75% 65%,rgba(0,239,194,.18),transparent 32%),
+ linear-gradient(135deg,#030812,#071422 55%,#02060d)}
+@media(max-width:700px){
+ .labPortalTop{padding:14px 13px}.labPortalBack{font-size:10px;padding:8px 10px}.labPortalStatus{font-size:8px}
+ .labPortalHero{width:94vw;padding:20px 12px}.labPortalKicker{font-size:8px;letter-spacing:.13em;margin-bottom:16px}
+ .labPortalTitle{font-size:clamp(52px,19vw,92px);line-height:.88;letter-spacing:-.055em}
+ .labPortalSub{max-width:92%;margin-top:19px;font-size:14px;line-height:1.62}.labPortalStartWrap{margin-top:24px}
+ .labPortalStart{min-width:174px;padding:14px 19px;font-size:12px}.labPortalHint{bottom:16px;font-size:7px;letter-spacing:.08em}
+}
+@media(prefers-reduced-motion:reduce){
+ .labPortalHero,.labPortalStatus i,.labPortalStart:before,.labPortalHint .mouse:after,.labPortal.launching .labPortalHero,.labPortal.launching .labPortalScene,.labPortal.launching:before{animation:none!important}
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 </head>
@@ -1066,6 +1125,124 @@ var progress='<section class="learningProgress"><div class="learningProgressTop"
 var modal='<div class="noteImageModal" id="noteImageModal" aria-hidden="true"><div class="noteImageModalInner"><button type="button" class="noteImageClose" id="noteImageClose" aria-label="Close">×</button><img id="noteImageLarge" alt=""></div></div>';
 return shell("lessons",'<main class="page summarySimple">'+devLauncher()+devPanel()+'<section class="hero"><div class="kicker">UNIT 01</div><h1>'+u.unitTitle+'</h1><p>'+u.unitSub+'</p></section>'+progress+'<div class="summaryGuide"><strong>Scroll Journey — ඉගෙනගන්න → Checkpoint සමත් වන්න → ඊළඟ කොටස Unlock කරන්න</strong><p>එක් එක් කොටස අවසානයේ ප්‍රශ්න 5ක checkpoint එකක් ඇත. 4/5 හෝ වැඩි ලකුණු ලබාගත් විට ඊළඟ කොටස ස්වයංක්‍රීයව විවෘත වේ. Progress මෙම device එකේ සුරැකේ.</p></div><div class="simpleJump">'+jumps+'</div>'+detail+'<div class="card" style="margin-top:18px"><strong>මූලාශ්‍ර පදනම</strong><p class="meta">NIE 12 ශ්‍රේණිය රසායන විද්‍යා සම්පත් පොත — Unit 01 (පිටු 1–42) • G.C.E. A/L past-paper/marking-scheme review • Sinhala supplementary lessons</p></div>'+modal+'</main>')}
 function practicalTitle(i){return state.lang==="si"?practicalSI[i]:state.lang==="ta"?practicalTA[i]:practicalEN[i]}
+function renderLabIntro(){
+ var copy=state.lang==="si"
+  ?{sub:"අත්හදා බලන්න. නිරීක්ෂණය කරන්න. සංකල්පය 3D පරිසරයකින් තේරුම් ගන්න.",start:"LAB එක ආරම්භ කරන්න",back:"මුල් පිටුව",hint:"Cursor එක ගෙනයන්න • background එක click කර neon වර්ණ මාරු කරන්න"}
+  :state.lang==="ta"
+  ?{sub:"ஆய்வு செய்யுங்கள். கவனியுங்கள். Chemistry concepts ஐ interactive 3D சூழலில் புரிந்துகொள்ளுங்கள்.",start:"LAB ஐ தொடங்கு",back:"முகப்பு",hint:"Cursor ஐ நகர்த்தவும் • background ஐ click செய்து neon நிறங்களை மாற்றவும்"}
+  :{sub:"Experiment, observe and understand chemistry through an interactive 3D environment.",start:"Start Lab",back:"Home",hint:"Move the cursor • click the background to randomize neon colors"};
+ return '<main class="labPortal" id="labPortal"><div class="labPortalScene" id="labPortalScene" aria-hidden="true"></div><div class="labPortalNoise"></div><div class="labPortalTop"><a class="labPortalBack" href="#home">← '+copy.back+'</a><div class="labPortalStatus"><i></i> THREE.JS • INTERACTIVE 3D</div></div><section class="labPortalHero"><div class="labPortalKicker">SRI LANKA G.C.E. A/L CHEMISTRY</div><h1 class="labPortalTitle"><span>VIRTUAL LAB</span></h1><p class="labPortalSub">'+copy.sub+'</p><div class="labPortalStartWrap"><button type="button" class="labPortalStart" data-lab-start>'+copy.start+' <b>→</b></button></div></section><div class="labPortalHint"><span class="mouse"></span>'+copy.hint+'</div></main>';
+}
+function initLabPortal(){
+ var host=document.getElementById("labPortalScene"),portal=document.getElementById("labPortal");if(!host||!portal)return;
+ if(window._labPortalCleanup){try{window._labPortalCleanup()}catch(e){}window._labPortalCleanup=null}
+ if(typeof THREE==="undefined"){host.innerHTML='<div class="labPortalFallback"></div>';return}
+ var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ var mobile=window.matchMedia&&window.matchMedia("(max-width: 700px)").matches;
+ var scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(52,1,.1,50);
+ camera.position.set(0,0,6.6);
+ var renderer;
+ try{renderer=new THREE.WebGLRenderer({antialias:!mobile,alpha:true,powerPreference:"high-performance",premultipliedAlpha:false})}
+ catch(err){host.innerHTML='<div class="labPortalFallback"></div>';return}
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?1.35:1.75));
+ renderer.setClearColor(0x020711,1);
+ if("outputColorSpace" in renderer&&THREE.SRGBColorSpace)renderer.outputColorSpace=THREE.SRGBColorSpace;
+ host.appendChild(renderer.domElement);
+
+ var palettes=[
+  [0x55ffd9,0x70a7ff,0xa86cff,0x45e8ff,0x83ffd0,0xff6fcf,0x78fff1,0x7896ff],
+  [0x4effc7,0xff5ca8,0x62a8ff,0xffc857,0x7a67ff,0x48e9ff,0xff7d63,0x7dffbb],
+  [0x8c7bff,0x4dffe1,0xff66d8,0x4fa8ff,0x75ff8f,0xf4ff63,0x55e3ff,0xff8bdf],
+  [0x42f5c5,0x00cfff,0x4c7dff,0xc05cff,0xff5ca0,0xffb84d,0x65ffd5,0x5c9cff]
+ ],paletteIndex=0;
+ var tubeCount=mobile?5:8,trailCount=mobile?22:30,segCount=tubeCount*(trailCount-1);
+ var cyl=new THREE.CylinderGeometry(1,1,1,6,1,true);
+ var coreMat=new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.92,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false});
+ var glowMat=new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.075,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false});
+ var core=new THREE.InstancedMesh(cyl,coreMat,segCount),glow=new THREE.InstancedMesh(cyl,glowMat,segCount);
+ core.instanceMatrix.setUsage(THREE.DynamicDrawUsage);glow.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+ core.frustumCulled=false;glow.frustumCulled=false;scene.add(glow);scene.add(core);
+
+ var trails=[],tmp=new THREE.Object3D(),delta=new THREE.Vector3(),mid=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
+ for(var ti=0;ti<tubeCount;ti++){
+  var pts=[];
+  for(var pj=0;pj<trailCount;pj++)pts.push(new THREE.Vector3((Math.random()-.5)*5.5,(Math.random()-.5)*3.2,-1.2+ti*.24-pj*.015));
+  trails.push({points:pts,phase:Math.random()*Math.PI*2,depth:-1.35+ti*.30});
+ }
+ function applyPalette(){
+  var p=palettes[paletteIndex%palettes.length],idx=0;
+  for(var t=0;t<tubeCount;t++){
+   var col=new THREE.Color(p[t%p.length]);
+   for(var j=0;j<trailCount-1;j++,idx++){core.setColorAt(idx,col);glow.setColorAt(idx,col)}
+  }
+  if(core.instanceColor)core.instanceColor.needsUpdate=true;if(glow.instanceColor)glow.instanceColor.needsUpdate=true;
+ }
+ applyPalette();
+
+ var starCount=mobile?420:850,starPos=new Float32Array(starCount*3);
+ for(var sp=0;sp<starCount;sp++){starPos[sp*3]=(Math.random()-.5)*16;starPos[sp*3+1]=(Math.random()-.5)*10;starPos[sp*3+2]=-2-Math.random()*8}
+ var starsGeo=new THREE.BufferGeometry();starsGeo.setAttribute("position",new THREE.BufferAttribute(starPos,3));
+ var starsMat=new THREE.PointsMaterial({color:0x7bded2,size:mobile?.018:.022,transparent:true,opacity:.38,depthWrite:false,blending:THREE.AdditiveBlending});
+ var stars=new THREE.Points(starsGeo,starsMat);scene.add(stars);
+
+ var hazeGeo=new THREE.PlaneGeometry(18,11),hazeMat=new THREE.MeshBasicMaterial({color:0x073b46,transparent:true,opacity:.08,blending:THREE.AdditiveBlending,depthWrite:false});
+ var haze=new THREE.Mesh(hazeGeo,hazeMat);haze.position.z=-5.5;scene.add(haze);
+
+ var pointer={x:0,y:0,tx:0,ty:0},rect=null,raf=0,dead=false,lastFrame=0,start=performance.now();
+ function resize(){
+  if(dead||!host.isConnected)return;
+  var w=Math.max(1,host.clientWidth),h=Math.max(1,host.clientHeight);rect=host.getBoundingClientRect();
+  renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()
+ }
+ function pointerMove(e){
+  if(!rect)rect=host.getBoundingClientRect();
+  var x=(e.clientX-rect.left)/Math.max(1,rect.width),y=(e.clientY-rect.top)/Math.max(1,rect.height);
+  pointer.tx=(x-.5)*2;pointer.ty=(.5-y)*2
+ }
+ function pointerLeave(){pointer.tx=0;pointer.ty=0}
+ function randomize(e){
+  if(e.target&&e.target.closest&&e.target.closest("button,a,.labPortalHero"))return;
+  var next=paletteIndex;while(next===paletteIndex)next=Math.floor(Math.random()*palettes.length);
+  paletteIndex=next;applyPalette();
+  portal.classList.remove("colorPulse");void portal.offsetWidth;portal.classList.add("colorPulse")
+ }
+ function setSegment(mesh,idx,a,b,radius){
+  delta.subVectors(b,a);var len=delta.length();if(len<.0001)len=.0001;
+  mid.copy(a).add(b).multiplyScalar(.5);tmp.position.copy(mid);tmp.quaternion.setFromUnitVectors(up,delta.normalize());tmp.scale.set(radius,len,radius);tmp.updateMatrix();mesh.setMatrixAt(idx,tmp.matrix)
+ }
+ function frame(now){
+  if(dead||!host.isConnected)return;
+  raf=requestAnimationFrame(frame);
+  var minDt=1000/(mobile?38:55);if(now-lastFrame<minDt)return;lastFrame=now;
+  var time=(now-start)*.001;pointer.x+=(pointer.tx-pointer.x)*.075;pointer.y+=(pointer.ty-pointer.y)*.075;
+  var aspect=Math.max(.72,Math.min(2.2,camera.aspect)),idx=0;
+  for(var t=0;t<tubeCount;t++){
+   var tr=trails[t],wave=t*.72+tr.phase,targetX=pointer.x*aspect*2.55+Math.sin(time*.62+wave)*(.38+t*.015),targetY=pointer.y*2.25+Math.cos(time*.75+wave*1.3)*(.30+t*.010),targetZ=tr.depth+Math.sin(time*.55+wave)*.18;
+   tr.points[0].x+=(targetX-tr.points[0].x)*(.10+t*.002);tr.points[0].y+=(targetY-tr.points[0].y)*(.10+t*.002);tr.points[0].z+=(targetZ-tr.points[0].z)*.085;
+   for(var j=1;j<trailCount;j++){
+    var prev=tr.points[j-1],p=tr.points[j],follow=.115-(j/trailCount)*.035;
+    p.x+=(prev.x-p.x)*follow;p.y+=(prev.y-p.y)*follow;p.z+=(prev.z-.022-p.z)*follow;
+    p.x+=Math.sin(time*1.1+j*.22+wave)*.0009;p.y+=Math.cos(time*.9+j*.19+wave)*.0008;
+   }
+   for(var s=0;s<trailCount-1;s++,idx++){setSegment(glow,idx,tr.points[s],tr.points[s+1],.072);setSegment(core,idx,tr.points[s],tr.points[s+1],.020)}
+  }
+  core.instanceMatrix.needsUpdate=true;glow.instanceMatrix.needsUpdate=true;
+  stars.rotation.z=time*.004;stars.rotation.y=Math.sin(time*.12)*.025;
+  camera.position.x=pointer.x*.11;camera.position.y=pointer.y*.08;camera.lookAt(0,0,-1.5);
+  if(!reduced)hazeMat.opacity=.075+.018*Math.sin(time*.7);
+  renderer.render(scene,camera)
+ }
+ host.addEventListener("pointermove",pointerMove,{passive:true});host.addEventListener("pointerleave",pointerLeave,{passive:true});host.addEventListener("click",randomize);
+ window.addEventListener("resize",resize,{passive:true});resize();
+ if(reduced){pointer.tx=.14;pointer.ty=.05}
+ raf=requestAnimationFrame(frame);
+ window._labPortalCleanup=function(){
+  if(dead)return;dead=true;cancelAnimationFrame(raf);
+  host.removeEventListener("pointermove",pointerMove);host.removeEventListener("pointerleave",pointerLeave);host.removeEventListener("click",randomize);window.removeEventListener("resize",resize);
+  cyl.dispose();coreMat.dispose();glowMat.dispose();starsGeo.dispose();starsMat.dispose();hazeGeo.dispose();hazeMat.dispose();renderer.dispose();
+  if(renderer.domElement&&renderer.domElement.parentNode)renderer.domElement.parentNode.removeChild(renderer.domElement)
+ };
+}
 function renderLab(){var u=U();var hash=location.hash;var m=hash.match(/unit=(\d+)/);if(m)state.labUnit=+m[1];var cards="";for(var i=0;i<45;i++){var p=i+1,un=units[i],title=practicalTitle(i),show=(state.labUnit==="all"||state.labUnit===un)&&(!state.labSearch||("p"+String(p).padStart(2,"0")+" "+title.toLowerCase()).indexOf(state.labSearch.toLowerCase())>=0);cards+='<article class="labcard" data-unit="'+un+'" '+(show?'':'hidden')+'><div class="labtop"><span class="pbadge">P'+String(p).padStart(2,"0")+'</span><span class="ubadge">Unit '+String(un).padStart(2,"0")+'</span></div><h3>'+title+'</h3><div class="labfoot">'+(p===1?'<a class="btn primary" href="#p01">'+u.open+'</a><span class="threeDBadge">◈ 3D</span>':'<span class="meta">'+u.soon+'</span>')+'</div></article>'}var chips='<button class="chip '+(state.labUnit==="all"?'active':'')+'" data-filter="all">'+u.all+'</button>';for(var j=1;j<=14;j++)chips+='<button class="chip '+(state.labUnit===j?'active':'')+'" data-filter="'+j+'">Unit '+String(j).padStart(2,"0")+'</button>';return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB</div><h1>'+u.labCard+'</h1><p>'+u.labDesc+'</p></section><section class="labtools"><div class="filters">'+chips+'</div><input class="search" id="labSearch" value="'+escapeHtml(state.labSearch)+'" placeholder="'+u.search+'"></section><div class="labgrid">'+cards+'</div></main>')}
 function renderExam(){var u=U();var typeBtns=['mcq','structured','essay'].map(function(t){return '<button class="btn '+(state.examType===t?'primary':'outline')+'" data-exam="'+t+'">'+u[t]+'</button>'}).join("");var panel=state.examType==="mcq"?renderMCQ():state.examType==="structured"?renderStructured():renderEssay();return shell("exam",'<main class="page"><section class="hero"><div class="kicker">UNIT 01</div><h1>'+u.examTitle+'</h1><p>'+u.examSub+'</p></section><div class="examTypes">'+typeBtns+'</div>'+panel+'</main>')}
 function renderMCQ(){var u=U(),q=mcq[state.lang][state.mcqIndex],pct=(state.mcqIndex+1)/mcq[state.lang].length*100;var opts=q[1].map(function(x,i){var cls="mcqOption";if(state.mcqAnswered){if(i===q[2])cls+=" correct";else if(i===state.mcqSelected)cls+=" wrong"}return '<button class="'+cls+'" data-opt="'+i+'" '+(state.mcqAnswered?'disabled':'')+'><strong>'+String.fromCharCode(65+i)+'.</strong> '+x+'</button>'}).join("");var fb=state.mcqAnswered?'<div class="feedback">'+(state.mcqSelected===q[2]?'✓ ':'✕ ')+q[3]+'<div class="actions"><a class="btn secondary" href="#unit1">'+u.review+'</a></div></div>':'';return '<section class="examPanel"><div class="meta">'+(state.mcqIndex+1)+' / '+mcq[state.lang].length+'</div><div class="progressbar"><i style="width:'+pct+'%"></i></div><h2>'+q[0]+'</h2>'+opts+fb+'<div class="questionNav"><button class="btn outline" data-mcqnav="-1" '+(state.mcqIndex===0?'disabled':'')+'>'+u.previous+'</button><span class="meta">'+u.score+': '+state.mcqScore+'</span><button class="btn primary" data-mcqnav="1">'+u.next+'</button></div></section>'}
@@ -1080,8 +1257,10 @@ function pConclusion(){var u=U();var arr=state.lang==="en"?["Cathode rays travel
 function pQuestions(){var u=U(),q=mcq[state.lang].slice(0,3);return '<section class="psection active"><div class="pcard"><h2>'+u.psteps[6]+'</h2>'+q.map(function(x,qi){return '<div class="card" style="margin:10px 0"><strong>'+x[0]+'</strong>'+x[1].map(function(a,ai){return '<label style="display:block;padding:6px"><input type="radio" name="pq'+qi+'" value="'+ai+'"> '+String.fromCharCode(65+ai)+'. '+a+'</label>'}).join("")+'</div>'}).join("")+'<button class="btn primary" id="pcheck">'+u.check+'</button><div class="observation" id="presult" style="display:none"></div></div></section>'}
 function renderP01(){var u=U();var content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep]();var steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function render(){var r=route(),html=r==="home"?renderHome():r==="lessons"?renderLessons():r==="unit1"?renderUnit1():r==="lab"?renderLab():r==="exam"?renderExam():r==="p01"?renderP01():renderHome();document.getElementById("app").innerHTML=html;bind();if(r==="unit1"){requestAnimationFrame(setupJourneyVisuals);var nm=location.hash.match(/note=(\\d+)/);if(nm){var el=document.getElementById("note"+nm[1]);if(el){el.open=true;requestAnimationFrame(function(){el.scrollIntoView({behavior:"smooth",block:"start"})})}}}if(r==="p01"&&state.pstep===3)requestAnimationFrame(initThreeLab)}
+function render(){if(window._labPortalCleanup){try{window._labPortalCleanup()}catch(e){}window._labPortalCleanup=null}var r=route(),html=r==="home"?renderHome():r==="lessons"?renderLessons():r==="unit1"?renderUnit1():r==="lab"?renderLabIntro():r==="lab-main"?renderLab():r==="exam"?renderExam():r==="p01"?renderP01():renderHome();document.getElementById("app").innerHTML=html;bind();if(r==="lab")requestAnimationFrame(initLabPortal);if(r==="unit1"){requestAnimationFrame(setupJourneyVisuals);var nm=location.hash.match(/note=(\\d+)/);if(nm){var el=document.getElementById("note"+nm[1]);if(el){el.open=true;requestAnimationFrame(function(){el.scrollIntoView({behavior:"smooth",block:"start"})})}}}if(r==="p01"&&state.pstep===3)requestAnimationFrame(initThreeLab)}
 function bind(){
+
+var labStart=document.querySelector("[data-lab-start]");if(labStart)labStart.onclick=function(){var p=document.getElementById("labPortal");if(p)p.classList.add("launching");labStart.disabled=true;setTimeout(function(){location.hash="#lab-main"},680)};
 
 document.querySelectorAll("[data-simplejump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("note"+b.dataset.simplejump);if(el){el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"})}}});
 document.querySelectorAll("[data-qopt]").forEach(function(b){b.onclick=function(){
@@ -1142,7 +1321,7 @@ var modal=document.getElementById("noteImageModal"),large=document.getElementByI
 document.querySelectorAll(".zoomable").forEach(function(img){img.onclick=function(){if(!modal||!large)return;large.src=img.src;large.alt=img.alt||"";modal.classList.add("show");modal.setAttribute("aria-hidden","false")}});
 if(close)close.onclick=function(){modal.classList.remove("show");modal.setAttribute("aria-hidden","true");large.src=""};
 if(modal)modal.onclick=function(e){if(e.target===modal){modal.classList.remove("show");modal.setAttribute("aria-hidden","true");large.src=""}};
-document.querySelectorAll("[data-lang]").forEach(function(b){b.onclick=function(){state.lang=b.dataset.lang;localStorage.setItem("chem-lang",state.lang);document.documentElement.lang=state.lang;render()}});document.querySelectorAll("[data-filter]").forEach(function(b){b.onclick=function(){state.labUnit=b.dataset.filter==="all"?"all":+b.dataset.filter;location.hash="#lab";render()}});var s=document.getElementById("labSearch");if(s)s.oninput=function(){state.labSearch=s.value;render()};document.querySelectorAll("[data-exam]").forEach(function(b){b.onclick=function(){state.examType=b.dataset.exam;render()}});document.querySelectorAll("[data-opt]").forEach(function(b){b.onclick=function(){if(state.mcqAnswered)return;state.mcqSelected=+b.dataset.opt;state.mcqAnswered=true;if(state.mcqSelected===mcq[state.lang][state.mcqIndex][2])state.mcqScore++;render()}});document.querySelectorAll("[data-mcqnav]").forEach(function(b){b.onclick=function(){var d=+b.dataset.mcqnav;if(d>0&&state.mcqIndex===mcq[state.lang].length-1){state.mcqIndex=0;state.mcqScore=0}else state.mcqIndex=Math.max(0,Math.min(mcq[state.lang].length-1,state.mcqIndex+d));state.mcqAnswered=false;state.mcqSelected=null;render()}});document.querySelectorAll("[data-pstep]").forEach(function(b){b.onclick=function(){state.pstep=+b.dataset.pstep;render()}});document.querySelectorAll("[data-pnav]").forEach(function(b){b.onclick=function(){state.pstep=Math.max(0,Math.min(6,state.pstep+(+b.dataset.pnav)));render()}});document.querySelectorAll("[data-pmode]").forEach(function(b){b.onclick=function(){state.pmode=+b.dataset.pmode;state.power=false;state.cross=state.pmode===0;state.field=0;render()}});var pb=document.getElementById("powerBtn");if(pb)pb.onclick=function(){state.power=!state.power;render()};var cb=document.getElementById("crossBtn");if(cb)cb.onclick=function(){if(!state.power)state.cross=!state.cross;else toast(state.lang==="en"?"Switch the power off first.":state.lang==="ta"?"முதலில் power off செய்யவும்.":"පළමුව power off කරන්න.");render()};document.querySelectorAll("[data-field]").forEach(function(b){b.onclick=function(){state.field=+b.dataset.field;render()}});var rv=document.getElementById("reset3D");if(rv)rv.onclick=function(){if(window.chem3DResetView)window.chem3DResetView()};var fs=document.getElementById("full3D");if(fs)fs.onclick=function(){var h=document.getElementById("scene3d");if(h&&h.requestFullscreen)h.requestFullscreen()};var fsp=document.getElementById("fsPowerBtn");if(fsp)fsp.onclick=function(e){e.stopPropagation();state.power=!state.power;rebuildThreeScene()};var fsc=document.getElementById("fsCrossBtn");if(fsc)fsc.onclick=function(e){e.stopPropagation();if(!state.power){state.cross=!state.cross;rebuildThreeScene()}};document.querySelectorAll("[data-fsfield]").forEach(function(b){b.onclick=function(e){e.stopPropagation();state.field=+b.dataset.fsfield;rebuildThreeScene()}});var fsr=document.getElementById("fsResetBtn");if(fsr)fsr.onclick=function(e){e.stopPropagation();if(window.chem3DResetView)window.chem3DResetView()};var fse=document.getElementById("fsExitBtn");if(fse)fse.onclick=function(e){e.stopPropagation();if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen()};var pn=document.getElementById("pnotes");if(pn)pn.oninput=function(){localStorage.setItem("p01-note",pn.value)};var pc=document.getElementById("pcheck");if(pc)pc.onclick=function(){var q=mcq[state.lang].slice(0,3),score=0;q.forEach(function(x,i){var a=document.querySelector('input[name="pq'+i+'"]:checked');if(a&&+a.value===x[2])score++});var res=document.getElementById("presult");res.style.display="block";res.textContent=U().score+": "+score+" / 3"}}
+document.querySelectorAll("[data-lang]").forEach(function(b){b.onclick=function(){state.lang=b.dataset.lang;localStorage.setItem("chem-lang",state.lang);document.documentElement.lang=state.lang;render()}});document.querySelectorAll("[data-filter]").forEach(function(b){b.onclick=function(){state.labUnit=b.dataset.filter==="all"?"all":+b.dataset.filter;location.hash="#lab-main";render()}});var s=document.getElementById("labSearch");if(s)s.oninput=function(){state.labSearch=s.value;render()};document.querySelectorAll("[data-exam]").forEach(function(b){b.onclick=function(){state.examType=b.dataset.exam;render()}});document.querySelectorAll("[data-opt]").forEach(function(b){b.onclick=function(){if(state.mcqAnswered)return;state.mcqSelected=+b.dataset.opt;state.mcqAnswered=true;if(state.mcqSelected===mcq[state.lang][state.mcqIndex][2])state.mcqScore++;render()}});document.querySelectorAll("[data-mcqnav]").forEach(function(b){b.onclick=function(){var d=+b.dataset.mcqnav;if(d>0&&state.mcqIndex===mcq[state.lang].length-1){state.mcqIndex=0;state.mcqScore=0}else state.mcqIndex=Math.max(0,Math.min(mcq[state.lang].length-1,state.mcqIndex+d));state.mcqAnswered=false;state.mcqSelected=null;render()}});document.querySelectorAll("[data-pstep]").forEach(function(b){b.onclick=function(){state.pstep=+b.dataset.pstep;render()}});document.querySelectorAll("[data-pnav]").forEach(function(b){b.onclick=function(){state.pstep=Math.max(0,Math.min(6,state.pstep+(+b.dataset.pnav)));render()}});document.querySelectorAll("[data-pmode]").forEach(function(b){b.onclick=function(){state.pmode=+b.dataset.pmode;state.power=false;state.cross=state.pmode===0;state.field=0;render()}});var pb=document.getElementById("powerBtn");if(pb)pb.onclick=function(){state.power=!state.power;render()};var cb=document.getElementById("crossBtn");if(cb)cb.onclick=function(){if(!state.power)state.cross=!state.cross;else toast(state.lang==="en"?"Switch the power off first.":state.lang==="ta"?"முதலில் power off செய்யவும்.":"පළමුව power off කරන්න.");render()};document.querySelectorAll("[data-field]").forEach(function(b){b.onclick=function(){state.field=+b.dataset.field;render()}});var rv=document.getElementById("reset3D");if(rv)rv.onclick=function(){if(window.chem3DResetView)window.chem3DResetView()};var fs=document.getElementById("full3D");if(fs)fs.onclick=function(){var h=document.getElementById("scene3d");if(h&&h.requestFullscreen)h.requestFullscreen()};var fsp=document.getElementById("fsPowerBtn");if(fsp)fsp.onclick=function(e){e.stopPropagation();state.power=!state.power;rebuildThreeScene()};var fsc=document.getElementById("fsCrossBtn");if(fsc)fsc.onclick=function(e){e.stopPropagation();if(!state.power){state.cross=!state.cross;rebuildThreeScene()}};document.querySelectorAll("[data-fsfield]").forEach(function(b){b.onclick=function(e){e.stopPropagation();state.field=+b.dataset.fsfield;rebuildThreeScene()}});var fsr=document.getElementById("fsResetBtn");if(fsr)fsr.onclick=function(e){e.stopPropagation();if(window.chem3DResetView)window.chem3DResetView()};var fse=document.getElementById("fsExitBtn");if(fse)fse.onclick=function(e){e.stopPropagation();if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen()};var pn=document.getElementById("pnotes");if(pn)pn.oninput=function(){localStorage.setItem("p01-note",pn.value)};var pc=document.getElementById("pcheck");if(pc)pc.onclick=function(){var q=mcq[state.lang].slice(0,3),score=0;q.forEach(function(x,i){var a=document.querySelector('input[name="pq'+i+'"]:checked');if(a&&+a.value===x[2])score++});var res=document.getElementById("presult");res.style.display="block";res.textContent=U().score+": "+score+" / 3"}}
 function labObservationText(){var u=U();return !state.power?u.obsOff:state.pmode===0?(state.cross?u.obsShadow:u.obsGlow):state.pmode===1?u.obsWheel:state.field===0?u.obsStraight:u.obsDeflect}
 function syncLabChrome(){var st=document.getElementById("simPowerStatus"),tx=document.getElementById("simPowerText"),fsp=document.getElementById("fsPowerBtn"),pb=document.getElementById("powerBtn"),obs=document.getElementById("liveObservation"),fsc=document.getElementById("fsCrossBtn");if(st)st.className="simStatus "+(state.power?"on":"off");if(tx)tx.textContent=state.power?"POWER ON":"POWER OFF";if(fsp)fsp.textContent=state.power?U().powerOff:U().powerOn;if(pb)pb.textContent=state.power?U().powerOff:U().powerOn;if(obs)obs.textContent=labObservationText();if(fsc){fsc.textContent=state.cross?U().removeCross:U().insertCross;fsc.disabled=state.power}}
 function rebuildThreeScene(){var host=document.getElementById("scene3d");if(!host)return;host.querySelectorAll("canvas").forEach(function(x){x.remove()});syncLabChrome();requestAnimationFrame(initThreeLab)}
