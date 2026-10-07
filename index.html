@@ -1886,7 +1886,7 @@ function renderP01Preflight(){
 function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
  var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
- var dead=false,lastY=window.scrollY||0,direction=1,scrollHandler=null,entryTick=0,docClick=null;
+ var dead=false,scrollHandler=null,entryTick=0,docClick=null,activeStage=-1;
  function clamp(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
@@ -1955,32 +1955,35 @@ function initP01Preflight(){
  docClick=function(e){if(!e.target.closest||(!e.target.closest("[data-tool-pod]")&&!e.target.closest("[data-guide-pod]")&&!e.target.closest("[data-concept-node]"))){document.querySelectorAll("[data-tool-pod],[data-guide-pod],[data-concept-node]").forEach(function(x){x.classList.remove("selected")});document.querySelectorAll("[data-orbit-core]").forEach(function(x){x.classList.remove("detail-on")})}};
  document.addEventListener("click",docClick);
 
- stages.forEach(function(stage){stage._p01Progress=0;stage._p01Focused=false;renderProgress(stage,0)});
+ stages.forEach(function(stage){stage._p01Progress=0;renderProgress(stage,0)});
+ function activateStage(index){
+  if(dead||index<0||index>=stages.length||activeStage===index)return;
+  activeStage=index;
+  stages.forEach(function(stage,i){
+   if(stage._p01Raf){cancelAnimationFrame(stage._p01Raf);stage._p01Raf=0}
+   document.querySelectorAll("[data-tool-pod],[data-guide-pod],[data-concept-node]").forEach(function(x){x.classList.remove("selected")});
+   var core=stage.querySelector("[data-orbit-core]");if(core)core.classList.remove("detail-on");
+   if(i!==index)renderProgress(stage,0)
+  });
+  renderProgress(stages[index],0);
+  playStage(stages[index],1,1550)
+ }
  function checkStageEntries(){
   entryTick=0;if(dead)return;
-  var vh=window.innerHeight||700;
+  var vh=window.innerHeight||700,chosen=-1,best=1e9;
   stages.forEach(function(stage,i){
-   var r=stage.getBoundingClientRect();
-   var focused=r.top<vh*.46&&r.bottom>vh*.54;
-   if(focused&&!stage._p01Focused){
-    stage._p01Focused=true;
-    if(i===0&&stage._p01Progress===0&&direction>=0)playStage(stage,1,1550);
-    else if(direction>=0)playStage(stage,1,1550);
-    else playStage(stage,0,1150);
-   }else if(!focused&&stage._p01Focused){
-    stage._p01Focused=false;
+   var r=stage.getBoundingClientRect(),visible=Math.max(0,Math.min(r.bottom,vh)-Math.max(r.top,0));
+   if(visible>Math.min(r.height,vh)*.34){
+    var d=Math.abs((r.top+r.bottom)/2-vh/2);
+    if(d<best){best=d;chosen=i}
    }
-  })
+  });
+  if(chosen>=0)activateStage(chosen)
  }
- scrollHandler=function(){
-  var y=window.scrollY||0;
-  if(Math.abs(y-lastY)>2)direction=y>lastY?1:-1;
-  lastY=y;
-  if(!entryTick)entryTick=requestAnimationFrame(checkStageEntries)
- };
+ scrollHandler=function(){if(!entryTick)entryTick=requestAnimationFrame(checkStageEntries)};
  window.addEventListener("scroll",scrollHandler,{passive:true});
- // Step 01 completes automatically on first arrival without requiring a scroll.
- setTimeout(function(){if(!dead){stages[0]._p01Focused=true;playStage(stages[0],1,1550)}},180);
+ // Step 01 plays automatically on first arrival.
+ setTimeout(function(){if(!dead)activateStage(0)},180);
  checkStageEntries();
 
  var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80)}
