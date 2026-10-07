@@ -1812,12 +1812,12 @@ function renderP01Preflight(){
  var stage1='<section class="p01AutoStage" id="p01Stage0" data-auto-stage="0" data-stage-type="morph"><div class="p01StageHead"><b>STEP 01 • '+u.psteps[0]+'</b><span>AUTO PLAY • HOVER / TAP FOR DETAILS</span></div><div class="p01MorphScene" data-morph-scene><svg class="p01ConnectorLayer" aria-hidden="true"><defs><linearGradient id="p01LineGradient0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58ffd4"/><stop offset="52%" stop-color="#7d72ff"/><stop offset="100%" stop-color="#ff62d4"/></linearGradient></defs><line data-line="a" style="stroke:url(#p01LineGradient0)"></line><line data-line="c" style="stroke:url(#p01LineGradient0)"></line><line data-line="d" style="stroke:url(#p01LineGradient0)"></line></svg>'+conceptNodes+'</div><div class="p01StageCue"><i></i>scroll for tools</div></section>';
 
  var toolData=lang==="si"?[
-  ["Crookes tube","අඩු පීඩන වායුවක් සහිත discharge tube එක. Cathode ray beam එක නිරීක්ෂණය කිරීමට මූලික කුටියයි."],
-  ["Cathode (−)","ඍණ විද්‍යුත් ධ්‍රැවය. ඉහළ විභව අන්තරයක් යෙදූ විට electron beam එක ආරම්භ වන්නේ මෙහි සිටයි."],
-  ["Anode (+)","ධන විද්‍යුත් ධ්‍රැවය. සිදුර හරහා cathode rays ඉදිරියට ගමන් කිරීමට beam එක සකස් කරයි."],
-  ["Fluorescent screen","Cathode rays වැදුණු විට දීප්තියක් ඇති කර beam එකේ පිහිටීම සහ සෙවණැල්ල දැකීමට උපකාරී වේ."],
-  ["Cross / Paddle wheel","Metal cross එකෙන් සෘජු ගමන සහ shadow පෙන්වයි. Paddle wheel එකෙන් beam එක ශක්තිය රැගෙන යන බව පෙන්වයි."],
-  ["High-voltage supply","Cathode සහ anode අතර විශාල potential difference එක සපයයි. සැබෑ උපකරණ භාවිතයේදී ගුරු අධීක්ෂණය අවශ්‍යයි."]
+  ["ක්‍රූක්ස් නළය","අඩු පීඩන වායුවක් සහිත විසර්ජන නළයයි. කැතෝඩ කිරණ කදම්බය නිරීක්ෂණය කිරීමට භාවිත කරන ප්‍රධාන කුටිය මෙයයි."],
+  ["කැතෝඩය (−)","ඍණ විද්‍යුත් ධ්‍රැවයයි. ඉහළ විභව අන්තරයක් යෙදූ විට ඉලෙක්ට්‍රෝන කදම්බය මෙහි සිට ආරම්භ වේ."],
+  ["ඇනෝඩය (+)","ධන විද්‍යුත් ධ්‍රැවයයි. එහි සිදුර හරහා කැතෝඩ කිරණ ඉදිරියට ගමන් කිරීමට කදම්බය සකස් වේ."],
+  ["ප්‍රතිදීප්ත තිරය","කැතෝඩ කිරණ වැදුණු විට දීප්තියක් ඇති කර කදම්බයේ පිහිටීම සහ සෙවණැල්ල දැකීමට උපකාරී වේ."],
+  ["ලෝහ කුරුසය / පැඩල් රෝදය","ලෝහ කුරුසයෙන් සෘජු ගමන හා සෙවණැල්ල පෙන්වයි. පැඩල් රෝදයෙන් කදම්බය ශක්තිය රැගෙන යන බව පෙන්වයි."],
+  ["අධි වෝල්ටීයතා විදුලි සැපයුම","කැතෝඩය සහ ඇනෝඩය අතර විශාල විභව අන්තරයක් සපයයි. සැබෑ උපකරණ භාවිතයේදී ගුරු අධීක්ෂණය අවශ්‍යයි."]
  ]:lang==="ta"?[
   ["Crookes tube","குறைந்த அழுத்த வாயு கொண்ட discharge tube. Cathode ray beam ஐ கவனிக்க முக்கிய chamber."],
   ["Cathode (−)","எதிர்மின் electrode. உயர் potential difference வழங்கும் போது electron beam இங்கிருந்து உருவாகிறது."],
@@ -1844,8 +1844,8 @@ function renderP01Preflight(){
  var toolPos=[[50,8],[82,27],[82,65],[50,84],[18,65],[18,27]];
  var toolPods=toolData.map(function(t,j){return '<button type="button" class="p01ToolPod" data-tool-pod="'+j+'" data-detail-title="'+escapeHtml(t[0])+'" data-detail-text="'+escapeHtml(t[1])+'" style="left:'+toolPos[j][0]+'%;top:'+toolPos[j][1]+'%" aria-label="'+escapeHtml(t[0])+'"><span class="p01ToolNo">0'+(j+1)+'</span><span class="p01Tool3D">'+toolIcons[j]+'</span><span class="p01ToolName">'+t[0]+'</span></button>'}).join("");
  var toolLinks=toolPos.map(function(p,j){return '<line data-orbit-line="'+j+'" x1="50%" y1="46%" x2="'+p[0]+'%" y2="'+p[1]+'%" style="stroke:'+(j%3===0?'#62ffd9':j%3===1?'#8f7cff':'#ff6bdc')+'"></line>'}).join("");
- var toolsDefault=lang==="si"?["උපකරණ","උපකරණයක් මත cursor එක තබන්න හෝ tap කරන්න"]:lang==="ta"?["உபகரணங்கள்","ஒரு tool மீது cursor வைக்கவும் அல்லது tap செய்யவும்"]:["TOOLS","Hover or tap a tool"];
- var stage2='<section class="p01AutoStage" id="p01Stage1" data-auto-stage="1" data-stage-type="tools"><div class="p01StageHead"><b>STEP 02 • '+u.psteps[1]+'</b><span>SCROLL ↕ REVERSIBLE • HOVER / TAP</span></div><div class="p01ToolsOrbit" data-tools-orbit><svg class="p01ToolLinks" aria-hidden="true">'+toolLinks+'</svg><div class="p01ToolsCore" data-orbit-core><div class="p01CoreDefault"><strong>'+toolsDefault[0]+'</strong><span>'+toolsDefault[1]+'</span></div><div class="p01CoreDetail"><em>APPARATUS</em><strong data-core-title></strong><p data-core-text></p></div></div>'+toolPods+'</div><div class="p01StageCue"><i></i>scroll for guide</div></section>';
+ var toolsDefault=lang==="si"?["උපකරණ","උපකරණයක් මත කර්සරය තබන්න හෝ තට්ටු කරන්න"]:lang==="ta"?["உபகரணங்கள்","ஒரு tool மீது cursor வைக்கவும் அல்லது tap செய்யவும்"]:["TOOLS","Hover or tap a tool"];
+ var stage2='<section class="p01AutoStage" id="p01Stage1" data-auto-stage="1" data-stage-type="tools"><div class="p01StageHead"><b>STEP 02 • '+u.psteps[1]+'</b><span>'+(lang==="si"?"ඉහළට / පහළට • ස්වයංක්‍රීය සජීවීකරණය • කර්සරය / තට්ටු කරන්න":"SCROLL ↕ AUTO PLAY • HOVER / TAP")+'</span></div><div class="p01ToolsOrbit" data-tools-orbit><svg class="p01ToolLinks" aria-hidden="true">'+toolLinks+'</svg><div class="p01ToolsCore" data-orbit-core><div class="p01CoreDefault"><strong>'+toolsDefault[0]+'</strong><span>'+toolsDefault[1]+'</span></div><div class="p01CoreDetail"><em>APPARATUS</em><strong data-core-title></strong><p data-core-text></p></div></div>'+toolPods+'</div><div class="p01StageCue"><i></i>scroll for guide</div></section>';
 
  var guideData=lang==="si"?[
   ["සැකසුම පරීක්ෂා කරන්න","Power off තත්ත්වයේ tube, electrodes, screen සහ accessories නිවැරදිව සම්බන්ධ වී තිබේද පරීක්ෂා කරන්න."],
@@ -1872,12 +1872,12 @@ function renderP01Preflight(){
   ["Reverse the magnetic field","Reverse the field and observe the corresponding reversal of beam deflection."],
   ["Record and conclude","Record all observations and conclude about straight-line travel, energy transfer and negative charge."]
  ];
- var guideShort=lang==="si"?["සැකසුම","Power","Cross","Wheel","E-field","B-field","සටහන්"]:lang==="ta"?["Setup","Power","Cross","Wheel","E-field","B-field","Record"]:["Setup","Power","Cross","Wheel","E-field","B-field","Record"];
+ var guideShort=lang==="si"?["සැකසුම","විදුලිය","කුරුසය","රෝදය","වි. ක්ෂේත්‍රය","චු. ක්ෂේත්‍රය","සටහන්"]:lang==="ta"?["Setup","Power","Cross","Wheel","E-field","B-field","Record"]:["Setup","Power","Cross","Wheel","E-field","B-field","Record"];
  var guidePos=[[50,7],[77,18],[88,45],[76,74],[50,86],[24,74],[12,45]];
  var guidePods=guideData.map(function(t,j){return '<button type="button" class="p01GuidePod" data-guide-pod="'+j+'" data-detail-title="'+escapeHtml(t[0])+'" data-detail-text="'+escapeHtml(t[1])+'" style="left:'+guidePos[j][0]+'%;top:'+guidePos[j][1]+'%" aria-label="'+escapeHtml(t[0])+'"><span class="p01GuideNo">'+String(j+1).padStart(2,"0")+'</span><span class="p01GuideName">'+guideShort[j]+'</span></button>'}).join("");
  var guideLinks=guidePos.map(function(p,j){return '<line data-orbit-line="'+j+'" x1="50%" y1="45%" x2="'+p[0]+'%" y2="'+p[1]+'%" style="stroke:'+(j%3===0?'#62ffd9':j%3===1?'#8f7cff':'#ff6bdc')+'"></line>'}).join("");
- var guideDefault=lang==="si"?["මාර්ගෝපදේශය","Step එකක් මත cursor එක තබන්න හෝ tap කරන්න"]:lang==="ta"?["வழிகாட்டி","ஒரு step மீது cursor வைக்கவும் அல்லது tap செய்யவும்"]:["GUIDE","Hover or tap a step"];
- var stage3='<section class="p01AutoStage" id="p01Stage2" data-auto-stage="2" data-stage-type="guide"><div class="p01StageHead"><b>STEP 03 • '+u.psteps[2]+'</b><span>SCROLL ↕ REVERSIBLE • HOVER / TAP</span></div><div class="p01GuideOrbit" data-guide-orbit><svg class="p01GuideLinks" aria-hidden="true">'+guideLinks+'</svg><div class="p01GuideCore" data-orbit-core><div class="p01CoreDefault"><strong>'+guideDefault[0]+'</strong><span>'+guideDefault[1]+'</span></div><div class="p01CoreDetail"><em>PROCEDURE</em><strong data-core-title></strong><p data-core-text></p></div></div>'+guidePods+'</div><div class="p01StageCue"><i></i>scroll to continue</div></section>';
+ var guideDefault=lang==="si"?["මාර්ගෝපදේශය","පියවරක් මත කර්සරය තබන්න හෝ තට්ටු කරන්න"]:lang==="ta"?["வழிகாட்டி","ஒரு step மீது cursor வைக்கவும் அல்லது tap செய்யவும்"]:["GUIDE","Hover or tap a step"];
+ var stage3='<section class="p01AutoStage" id="p01Stage2" data-auto-stage="2" data-stage-type="guide"><div class="p01StageHead"><b>STEP 03 • '+u.psteps[2]+'</b><span>'+(lang==="si"?"ඉහළට / පහළට • ස්වයංක්‍රීය සජීවීකරණය • කර්සරය / තට්ටු කරන්න":"SCROLL ↕ AUTO PLAY • HOVER / TAP")+'</span></div><div class="p01GuideOrbit" data-guide-orbit><svg class="p01GuideLinks" aria-hidden="true">'+guideLinks+'</svg><div class="p01GuideCore" data-orbit-core><div class="p01CoreDefault"><strong>'+guideDefault[0]+'</strong><span>'+guideDefault[1]+'</span></div><div class="p01CoreDetail"><em>PROCEDURE</em><strong data-core-title></strong><p data-core-text></p></div></div>'+guidePods+'</div><div class="p01StageCue"><i></i>scroll to continue</div></section>';
  var readyTitle=lang==="si"?"ඔබ දැන් ප්‍රායෝගිකයට සූදානම්":lang==="ta"?"இப்போது நீங்கள் practical க்கு தயாராக உள்ளீர்கள்":"You are now prepared for the practical";
  var readyText=lang==="si"?"හැඳින්වීම, උපකරණ සහ ක්‍රියා පටිපාටිය සම්පූර්ණයි. දැන් සජීවී P01 පරීක්ෂණයට යන්න.":lang==="ta"?"Introduction, apparatus மற்றும் procedure முடிந்தது. இப்போது live P01 practical ஐ தொடங்குங்கள்.":"You have completed the introduction, apparatus and procedure. Continue to the live P01 experiment.";
  var ready='<section class="p01ReadyGate"><div class="p01ReadyInner"><small>P01 • PRE-LAB COMPLETE</small><h2>'+readyTitle+'</h2><p>'+readyText+'</p><button type="button" class="p01ReadyButton" data-start-p01>'+readyTitle+' &nbsp; →</button></div></section>';
@@ -1886,7 +1886,7 @@ function renderP01Preflight(){
 function initP01Preflight(){
  if(window._p01PreflightCleanup){try{window._p01PreflightCleanup()}catch(e){}window._p01PreflightCleanup=null}
  var stages=Array.from(document.querySelectorAll("[data-auto-stage]"));if(!stages.length)return;
- var dead=false,lastY=window.scrollY||0,direction=1,observer=null,scrollHandler=null,docClick=null,animFrames=[];
+ var dead=false,lastY=window.scrollY||0,direction=1,scrollHandler=null,entryTick=0,docClick=null;
  function clamp(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
@@ -1955,32 +1955,36 @@ function initP01Preflight(){
  docClick=function(e){if(!e.target.closest||(!e.target.closest("[data-tool-pod]")&&!e.target.closest("[data-guide-pod]")&&!e.target.closest("[data-concept-node]"))){document.querySelectorAll("[data-tool-pod],[data-guide-pod],[data-concept-node]").forEach(function(x){x.classList.remove("selected")});document.querySelectorAll("[data-orbit-core]").forEach(function(x){x.classList.remove("detail-on")})}};
  document.addEventListener("click",docClick);
 
- stages.forEach(function(stage){stage._p01Progress=0;renderProgress(stage,0)});
- scrollHandler=function(){var y=window.scrollY||0;if(Math.abs(y-lastY)>2)direction=y>lastY?1:-1;lastY=y};
- window.addEventListener("scroll",scrollHandler,{passive:true});
-
- if("IntersectionObserver" in window){
-  observer=new IntersectionObserver(function(entries){
-   entries.forEach(function(entry){
-    var stage=entry.target,ratio=entry.intersectionRatio,rect=entry.boundingClientRect;
-    if(ratio>=.52){
-     if(direction>=0)playStage(stage,1,1550);
-     else playStage(stage,0,1050)
-    }else if(direction<0&&ratio<.52&&ratio>.16&&rect.top>0){
-     playStage(stage,0,900)
-    }
-   })
-  },{threshold:[.16,.52,.72]});
-  stages.forEach(function(stage){observer.observe(stage)})
- }else{
-  var fallback=function(){var vh=window.innerHeight||700;stages.forEach(function(stage){var r=stage.getBoundingClientRect(),ratio=Math.max(0,Math.min(r.bottom,vh)-Math.max(r.top,0))/Math.max(1,Math.min(r.height,vh));if(ratio>=.52)playStage(stage,direction>=0?1:0,direction>=0?1550:1050)})};
-  window.addEventListener("scroll",fallback,{passive:true});window._p01StageFallback=fallback
+ stages.forEach(function(stage){stage._p01Progress=0;stage._p01Focused=false;renderProgress(stage,0)});
+ function checkStageEntries(){
+  entryTick=0;if(dead)return;
+  var vh=window.innerHeight||700;
+  stages.forEach(function(stage,i){
+   var r=stage.getBoundingClientRect();
+   var focused=r.top<vh*.46&&r.bottom>vh*.54;
+   if(focused&&!stage._p01Focused){
+    stage._p01Focused=true;
+    if(i===0&&stage._p01Progress===0&&direction>=0)playStage(stage,1,1550);
+    else if(direction>=0)playStage(stage,1,1550);
+    else playStage(stage,0,1150);
+   }else if(!focused&&stage._p01Focused){
+    stage._p01Focused=false;
+   }
+  })
  }
- // Step 01 always completes automatically on first arrival.
- setTimeout(function(){if(!dead)playStage(stages[0],1,1550)},180);
+ scrollHandler=function(){
+  var y=window.scrollY||0;
+  if(Math.abs(y-lastY)>2)direction=y>lastY?1:-1;
+  lastY=y;
+  if(!entryTick)entryTick=requestAnimationFrame(checkStageEntries)
+ };
+ window.addEventListener("scroll",scrollHandler,{passive:true});
+ // Step 01 completes automatically on first arrival without requiring a scroll.
+ setTimeout(function(){if(!dead){stages[0]._p01Focused=true;playStage(stages[0],1,1550)}},180);
+ checkStageEntries();
 
  var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80)}
- window._p01PreflightCleanup=function(){dead=true;stages.forEach(function(stage){if(stage._p01Raf)cancelAnimationFrame(stage._p01Raf)});if(observer)observer.disconnect();window.removeEventListener("scroll",scrollHandler);if(window._p01StageFallback){window.removeEventListener("scroll",window._p01StageFallback);window._p01StageFallback=null}if(docClick)document.removeEventListener("click",docClick)}
+ window._p01PreflightCleanup=function(){dead=true;stages.forEach(function(stage){if(stage._p01Raf)cancelAnimationFrame(stage._p01Raf)});if(entryTick)cancelAnimationFrame(entryTick);window.removeEventListener("scroll",scrollHandler);if(docClick)document.removeEventListener("click",docClick)}
 }
 function renderP01(){if(state.pstep<3)return renderP01Preflight();var u=U(),content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep](),steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
