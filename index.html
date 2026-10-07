@@ -1831,7 +1831,8 @@ function initP01Preflight(){
   });
   pod.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pod.click()}})
  });
- document.addEventListener("click",function closeTools(e){if(!e.target.closest||!e.target.closest("[data-tool-pod]"))document.querySelectorAll("[data-tool-pod].selected").forEach(function(x){x.classList.remove("selected")})},{once:true});
+ function closeToolSelection(e){if(!e.target.closest||!e.target.closest("[data-tool-pod]"))document.querySelectorAll("[data-tool-pod].selected").forEach(function(x){x.classList.remove("selected")})}
+ document.addEventListener("click",closeToolSelection);
  function clamp(v,a,b){return Math.max(a===undefined?0:a,Math.min(b===undefined?1:b,v))}
  function ease(t){t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function mix(a,b,t){return a+(b-a)*t}
@@ -1881,7 +1882,7 @@ function initP01Preflight(){
   window.addEventListener("scroll",onScroll,{passive:true});window._p01FallbackScroll=onScroll;onScroll()
  }
  var target=state.p01PreflightTarget;if(target!==undefined&&target!==null){state.p01PreflightTarget=null;timers.push(setTimeout(function(){var el=document.getElementById("p01Stage"+Math.max(0,Math.min(2,target)));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},80))}
- window._p01PreflightCleanup=function(){dead=true;timers.forEach(clearTimeout);observers.forEach(function(o){o.disconnect()});window.removeEventListener("resize",onResize);if(window._p01FallbackScroll){window.removeEventListener("scroll",window._p01FallbackScroll);window._p01FallbackScroll=null}}
+ window._p01PreflightCleanup=function(){dead=true;timers.forEach(clearTimeout);observers.forEach(function(o){o.disconnect()});window.removeEventListener("resize",onResize);document.removeEventListener("click",closeToolSelection);if(window._p01FallbackScroll){window.removeEventListener("scroll",window._p01FallbackScroll);window._p01FallbackScroll=null}}
 }
 function renderP01(){if(state.pstep<3)return renderP01Preflight();var u=U(),content=[pIntro,pApp,pProcedure,pExperiment,pObservations,pConclusion,pQuestions][state.pstep](),steps=u.psteps.map(function(x,i){return '<button class="chip '+(state.pstep===i?'active':'')+'" data-pstep="'+i+'">'+String(i+1).padStart(2,"0")+' · '+x+'</button>'}).join("");return shell("lab",'<main class="page"><section class="hero"><div class="kicker">VIRTUAL LAB • P01</div><h1>'+u.p01Title+'</h1><p>'+u.p01Sub+'</p><div class="actions"><a class="btn secondary" href="#unit1">'+u.backUnit+'</a></div></section><nav class="pstepnav">'+steps+'</nav>'+content+'<div class="questionNav"><button class="btn outline" data-pnav="-1" '+(state.pstep===0?'disabled':'')+'>'+u.previous+'</button><button class="btn primary" data-pnav="1" '+(state.pstep===6?'disabled':'')+'>'+u.next+'</button></div></main>')}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
