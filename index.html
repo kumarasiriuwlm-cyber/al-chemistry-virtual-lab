@@ -2709,7 +2709,7 @@ function bind(){
 var openP01=document.querySelector("[data-open-p01]");if(openP01)openP01.onclick=function(){state.pstep=0;state.p01PreflightTarget=0};
 document.querySelectorAll("[data-preflight-jump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("p01Stage"+(+b.dataset.preflightJump));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})}});
 var startP01=document.querySelector("[data-start-p01]");if(startP01)startP01.onclick=function(){state.pstep=3;render();window.scrollTo({top:0,behavior:"smooth"})};
-var labStart=document.querySelector("[data-lab-start]");if(labStart)labStart.onclick=function(){var p=document.getElementById("labPortal");if(p)p.classList.add("launching");labStart.disabled=true;setTimeout(function(){window.location.href="./flask-prototype/index.html"},680)};
+var labStart=document.querySelector("[data-lab-start]");if(labStart)labStart.onclick=function(){var p=document.getElementById("labPortal");if(p)p.classList.add("launching");labStart.disabled=true;setTimeout(function(){window.location.href="./flask-prototype/index.html?v=flask-off-fix-20261008"},680)};
 var skipAssembly=document.querySelector("[data-skip-assembly]");if(skipAssembly)skipAssembly.onclick=function(){var el=document.getElementById("labCatalogue");if(el)el.scrollIntoView({behavior:"smooth",block:"start"})};
 
 document.querySelectorAll("[data-simplejump]").forEach(function(b){b.onclick=function(){var el=document.getElementById("note"+b.dataset.simplejump);if(el){el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"})}}});
