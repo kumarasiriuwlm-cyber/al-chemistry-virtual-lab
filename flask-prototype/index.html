@@ -72,7 +72,7 @@ for(let g=0;g<5;g++){
  practicals.slice(start,end).forEach((p,j)=>{
    const b=document.createElement('button');b.type='button';b.className='practicalName';b.dataset.index=start+j;
    b.innerHTML='<b>P'+String(p[0]).padStart(2,'0')+'</b><span>'+p[1]+'</span><small>Unit '+String(p[2]).padStart(2,'0')+'</small>';
-   b.addEventListener('click',()=>{if(p[0]===1){window.location.href='../#p01'}else showToast('P'+String(p[0]).padStart(2,'0')+' • '+p[1]+' • සූදානම් කරමින් පවතී')});
+   b.addEventListener('click',()=>{if(p[0]===1){window.location.href='../lab-room.html'}else showToast('P'+String(p[0]).padStart(2,'0')+' • '+p[1]+' • සූදානම් කරමින් පවතී')});
    list.appendChild(b);
  });
  stagesHost.appendChild(sec);
