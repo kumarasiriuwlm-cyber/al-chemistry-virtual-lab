@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020711">
+<title>P01 • 3D Chemistry Laboratory</title>
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
+</script>
+<style>
+:root{--bg:#020711;--cyan:#63ffe0;--pink:#ff68d7;--violet:#8c75ff;--text:#eafffb;--muted:#86a8a5}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI","Noto Sans Sinhala",sans-serif}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 72% 26%,rgba(99,255,224,.08),transparent 32%),radial-gradient(circle at 16% 76%,rgba(255,104,215,.07),transparent 36%),#020711}
+#viewer{position:fixed;inset:0;z-index:1;width:100%;height:100%;border:0;background:#020711}
+.neonGrid{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(99,255,224,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(99,255,224,.045) 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.25),black 50%,transparent 94%)}
+.vignette{position:fixed;inset:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 150px rgba(1,4,11,.88),inset 0 -90px 120px rgba(1,6,14,.7)}
+.top{position:fixed;z-index:20;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;pointer-events:none}.top>*{pointer-events:auto}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid rgba(99,255,224,.2);border-radius:999px;background:rgba(2,13,22,.78);backdrop-filter:blur(16px);color:#d7fff7;text-decoration:none;font-size:9px;font-weight:850;letter-spacing:.05em}
+.labTitle{text-align:right;text-shadow:0 1px 14px #020711}.labTitle small{display:block;color:#66ffe0;font:900 8px "Courier New",monospace;letter-spacing:.16em}.labTitle strong{display:block;margin-top:3px;font-size:14px}.labTitle span{display:block;margin-top:3px;color:#85a5a2;font-size:8px}
+.station{position:fixed;z-index:10;left:72%;top:48%;width:min(420px,42vw);aspect-ratio:1.42;transform:translate(-50%,-50%) scale(var(--station-scale,1));transform-origin:center;pointer-events:none;transition:opacity .3s ease,filter .3s ease}
+.station.explore{opacity:.18;filter:saturate(.6)}
+.stationFrame{position:absolute;inset:0;border:1px solid rgba(99,255,224,.42);border-radius:20px;background:linear-gradient(145deg,rgba(2,10,18,.36),rgba(7,22,31,.18));box-shadow:0 0 0 1px rgba(255,104,215,.08),0 0 40px rgba(99,255,224,.08),inset 0 0 60px rgba(73,255,221,.035);overflow:hidden}
+.stationFrame:before,.stationFrame:after{content:"";position:absolute;pointer-events:none}.stationFrame:before{left:16px;right:16px;top:14px;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);box-shadow:0 0 12px rgba(99,255,224,.8)}.stationFrame:after{width:8px;height:8px;border-radius:50%;right:17px;top:22px;background:#35ffb5;box-shadow:0 0 14px #35ffb5}
+#expCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.stationLabel{position:absolute;left:18px;bottom:13px;z-index:2;padding:6px 9px;border-radius:9px;background:rgba(2,9,16,.68);border:1px solid rgba(99,255,224,.12)}.stationLabel b{display:block;font-size:9px;color:#d8fff8}.stationLabel span{display:block;margin-top:2px;color:#729b96;font-size:7px}
+.hud{position:fixed;z-index:25;right:16px;bottom:16px;width:min(340px,calc(100vw - 32px));padding:12px;border:1px solid rgba(99,255,224,.18);border-radius:18px;background:linear-gradient(145deg,rgba(3,13,22,.9),rgba(6,24,35,.78));backdrop-filter:blur(18px);box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.hudHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}.hudHead b{font-size:11px}.hudHead small{display:block;margin-top:2px;color:#789a97;font-size:7px}.status{display:flex;align-items:center;gap:5px;color:#78f5dc;font-size:7px;font-weight:850}.status i{width:7px;height:7px;border-radius:50%;background:#2affb7;box-shadow:0 0 12px #2affb7}
+.row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+button{appearance:none;border:1px solid rgba(111,255,226,.16);background:rgba(10,31,42,.76);color:#dffefa;border-radius:10px;padding:8px 9px;min-height:37px;font:800 8px/1.15 Inter,system-ui;cursor:pointer;transition:.18s}button:hover{border-color:rgba(99,255,224,.42);background:rgba(14,43,55,.94)}button.active{border-color:#63ffe0;background:rgba(49,168,147,.18);box-shadow:0 0 20px rgba(99,255,224,.08)}
+button.power{flex:1 1 132px}.power.on{border-color:#5dffc9;color:#afffe1;background:rgba(22,134,104,.24)}.power.off{border-color:rgba(255,106,124,.36);color:#ffc0ca;background:rgba(123,35,48,.22)}.grow{flex:1 1 118px}
+.field{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06)}.field span{color:#89aaa7;font-size:8px}.field button{min-width:40px}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}.nav button{min-height:42px}.nav .focus{border-color:rgba(255,104,215,.34);background:rgba(124,41,113,.22);color:#ffd8f5}
+.moveHint{position:fixed;z-index:18;left:16px;bottom:16px;padding:9px 12px;border:1px solid rgba(99,255,224,.12);border-radius:999px;background:rgba(2,12,20,.72);backdrop-filter:blur(12px);color:#789895;font-size:7px;font-weight:800}.moveHint b{color:#c4fff4}
+.credit{position:fixed;z-index:18;left:16px;bottom:55px;color:#567774;font-size:6px;line-height:1.4}.credit a{color:#6da49e;text-decoration:none}
+.loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#020711;transition:opacity .55s ease,visibility .55s ease}.loader.done{opacity:0;visibility:hidden}.loadBox{text-align:center}.ring{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;border:2px solid rgba(99,255,224,.12);border-top-color:var(--cyan);border-right-color:var(--pink);animation:spin 1s linear infinite;box-shadow:0 0 28px rgba(99,255,224,.12)}@keyframes spin{to{transform:rotate(360deg)}}.loadBox strong{display:block;font-size:9px;letter-spacing:.14em}.loadBox span{display:block;margin-top:6px;color:#789996;font-size:7px}
+.toast{position:fixed;z-index:40;left:50%;top:75px;transform:translate(-50%,-8px);padding:9px 13px;border:1px solid rgba(99,255,224,.18);border-radius:999px;background:rgba(2,14,24,.92);color:#d4fff7;font-size:8px;opacity:0;visibility:hidden;transition:.2s;pointer-events:none}.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.fallback{position:fixed;z-index:4;inset:0;display:none;place-items:center;text-align:center;padding:28px;background:radial-gradient(circle,#0b2732,#020711 70%)}.fallback.show{display:grid}.fallback strong{font-size:20px}.fallback p{max-width:540px;color:#89aaa7;line-height:1.6;font-size:11px}
+@media(max-width:760px){.top{left:9px;right:9px;top:9px}.back{padding:7px 9px;font-size:7px}.labTitle strong{font-size:11px}.labTitle span{display:none}.station{width:78vw;left:54%;top:35%}.hud{right:9px;bottom:9px;width:calc(100vw - 18px);padding:9px;border-radius:15px}.hudHead small{display:none}button{padding:7px 8px;min-height:35px;font-size:7px}.moveHint{left:9px;bottom:190px;font-size:6px;max-width:72vw;white-space:normal}.credit{left:9px;bottom:168px;max-width:250px}.stationLabel{display:none}}
+@media(prefers-reduced-motion:reduce){.ring{animation:none}.station,button{transition:none}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader"><div class="loadBox"><div class="ring"></div><strong>3D LAB සූදානම් කරමින්</strong><span>ඔබ ලබාදුන් laboratory model එක පූරණය කරමින්…</span></div></div>
+<iframe id="viewer" src="" title="3D chemistry laboratory" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+<div class="neonGrid"></div><div class="vignette"></div>
+<div class="fallback" id="fallback"><div><strong>3D lab model එක පූරණය කළ නොහැකි විය</strong><p>Internet connection එක පරීක්ෂා කර page එක refresh කරන්න. P01 practical controls තවමත් භාවිත කළ හැක.</p></div></div>
+
+<div class="top">
+ <a class="back" href="./flask-prototype/index.html">← ප්‍රායෝගික ලැයිස්තුව</a>
+ <div class="labTitle"><small>P01 • INTERACTIVE LAB</small><strong>කැතෝඩ කිරණවල ගුණ</strong><span>මවුසයෙන් ලැබ් එක වටා හරවන්න • wheel මඟින් zoom කරන්න</span></div>
+</div>
+
+<div class="station" id="station" aria-label="P01 wall-mounted 3D practical station">
+ <div class="stationFrame"><canvas id="expCanvas"></canvas><div class="stationLabel"><b>P01 • කැතෝඩ කිරණ</b><span>3D WALL PRACTICAL STATION</span></div></div>
+</div>
+
+<div class="hud">
+ <div class="hudHead"><div><b>P01 පරීක්ෂණ පාලක</b><small>ලැබ් පරිසරය තුළ Crookes-tube practical එක ක්‍රියාත්මක කරන්න</small></div><span class="status"><i></i><span id="powerState">විදුලිය අක්‍රියයි</span></span></div>
+ <div class="row"><button class="power off" id="powerBtn" type="button">විදුලිය සක්‍රිය කරන්න</button><button class="grow" id="crossBtn" type="button">කුරුසය ඇතුළත් කරන්න</button></div>
+ <div class="row" id="modeRow"><button class="active" data-mode="0" type="button">සෙවණැල්ල</button><button data-mode="1" type="button">පැඩල් රෝදය</button><button data-mode="2" type="button">විද්‍යුත් ක්ෂේත්‍රය</button><button data-mode="3" type="button">චුම්බක ක්ෂේත්‍රය</button></div>
+ <div class="field"><span id="fieldText">ක්ෂේත්‍රය: 0</span><button id="fieldMinus" type="button">−</button><button id="fieldPlus" type="button">+</button></div>
+ <div class="nav"><button class="focus" id="focusBtn" type="button">පරීක්ෂණයට ළඟා වන්න</button><button id="exploreBtn" type="button">ලැබ් එක ගවේෂණය කරන්න</button></div>
+</div>
+<div class="moveHint"><b>Drag</b> ලැබ් එක හරවන්න • <b>Wheel / pinch</b> zoom • practical එක wall station එකේ</div>
+<div class="credit">3D laboratory model: <a href="https://sketchfab.com/3d-models/hemical-laboratory-afe17ff6e7a346f88cad508a42b5a8ee" target="_blank" rel="noopener">viklia / Sketchfab</a> • CC BY 4.0</div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import * as THREE from 'three';
+
+const MODEL_UID='afe17ff6e7a346f88cad508a42b5a8ee';
+const iframe=document.getElementById('viewer');
+const station=document.getElementById('station');
+const loader=document.getElementById('loader');
+const fallback=document.getElementById('fallback');
+let api=null,defaultCamera=null,baseDistance=null,exploreMode=false;
+const stationWorld=[0.155,0.075,0.02];
+
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('show'),1700)}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function dist(a,b){return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])}
+
+function tintLab(){
+ if(!api)return;
+ api.setBackground({color:[0.004,0.014,0.028]});
+ api.getMaterialList(function(err,mats){
+  if(err||!mats)return;
+  const albedo=[[.055,.13,.16],[.09,.08,.16],[.14,.07,.13],[.12,.13,.14],[.05,.16,.14]];
+  const glow=[[.03,.22,.19],[.14,.06,.22],[.23,.04,.17],[.16,.13,.03],[.03,.16,.24]];
+  mats.forEach(function(m,i){
+   try{
+    const c=albedo[i%albedo.length],g=glow[i%glow.length];
+    if(m.channels&&m.channels.AlbedoPBR){m.channels.AlbedoPBR.enable=true;m.channels.AlbedoPBR.color=c}
+    if(m.channels&&m.channels.DiffuseColor){m.channels.DiffuseColor.color=c}
+    if(m.channels&&m.channels.EmitColor){m.channels.EmitColor.enable=true;m.channels.EmitColor.color=g;m.channels.EmitColor.factor=.08}
+    if(m.channels&&m.channels.RoughnessPBR)m.channels.RoughnessPBR.factor=.68;
+    api.setMaterial(m);
+   }catch(e){}
+  });
+ });
+}
+
+function updateStationAnchor(){
+ if(!api||exploreMode)return;
+ api.getWorldToScreenCoordinates(stationWorld,function(coord){
+  if(!coord||!coord.canvasCoord)return;
+  let x=coord.canvasCoord[0],y=coord.canvasCoord[1];
+  x=clamp(x,window.innerWidth*.48,window.innerWidth*.82);
+  y=clamp(y,window.innerHeight*.28,window.innerHeight*.62);
+  station.style.left=x+'px';station.style.top=y+'px';
+ });
+ api.getCameraLookAt(function(err,c){
+  if(err||!c)return;
+  const d=dist(c.position,stationWorld);if(!baseDistance)baseDistance=d;
+  const sc=clamp((baseDistance/d)*.94,.66,1.18);
+  station.style.setProperty('--station-scale',sc.toFixed(3));
+ });
+}
+
+if(window.Sketchfab){
+ const client=new window.Sketchfab('1.12.1',iframe);
+ client.init(MODEL_UID,{
+  autostart:1,autospin:0,ui_controls:0,ui_infos:0,ui_stop:0,ui_help:0,ui_settings:0,ui_watermark:1,ui_watermark_link:1,ui_annotations:0,ui_vr:0,ui_ar:0,ui_fullscreen:0,ui_inspector:0,
+  success:function(viewerApi){
+   api=viewerApi;api.start();
+   api.addEventListener('viewerready',function(){
+    tintLab();
+    api.getCameraLookAt(function(err,c){if(!err&&c){defaultCamera=c;baseDistance=dist(c.position,stationWorld)}});
+    api.setUserInteraction(true);
+    loader.classList.add('done');
+    updateStationAnchor();
+    setInterval(updateStationAnchor,140);
+   });
+  },
+  error:function(){loader.classList.add('done');fallback.classList.add('show')}
+ });
+}else{loader.classList.add('done');fallback.classList.add('show')}
+
+// Transparent Three.js P01 practical station.
+const canvas=document.getElementById('expCanvas');
+const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+r.setPixelRatio(Math.min(devicePixelRatio||1,1.5));r.outputColorSpace=THREE.SRGBColorSpace;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.15;r.setClearColor(0,0);
+const scn=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,60);cam.position.set(0,2.7,9.2);cam.lookAt(0,0,0);
+scn.add(new THREE.HemisphereLight(0xcafff3,0x061018,1.65));const kl=new THREE.PointLight(0x54ffd8,18,14);kl.position.set(-3,4,4);scn.add(kl);const pl=new THREE.PointLight(0xff5ed7,13,12);pl.position.set(3,-1,3);scn.add(pl);
+let exp={power:false,mode:0,cross:false,field:0},root=null,beamCurve=null,particles=[],wheel=null,screenMat=null,clock=new THREE.Clock();
+
+function dispose(o){o.traverse(x=>{if(x.geometry)x.geometry.dispose();if(x.material){if(Array.isArray(x.material))x.material.forEach(m=>m.dispose());else x.material.dispose()}})}
+function buildExperiment(){
+ if(root){scn.remove(root);dispose(root)}particles=[];wheel=null;beamCurve=null;root=new THREE.Group();root.rotation.x=-.08;root.rotation.y=-.28;scn.add(root);
+ const benchMat=new THREE.MeshStandardMaterial({color:0x112b34,metalness:.28,roughness:.58});
+ const bench=new THREE.Mesh(new THREE.BoxGeometry(7.5,.16,2.45),benchMat);bench.position.y=-1.47;root.add(bench);
+ const glass=new THREE.MeshPhysicalMaterial({color:0x91e9f4,transparent:true,opacity:.2,roughness:.06,metalness:0,side:THREE.DoubleSide,depthWrite:false,transmission:.18});
+ const tube=new THREE.Mesh(new THREE.CylinderGeometry(1.03,1.03,6.35,48,1,true),glass);tube.rotation.z=Math.PI/2;tube.position.y=-.05;root.add(tube);
+ const ringMat=new THREE.MeshStandardMaterial({color:0xb6c8cb,metalness:.84,roughness:.22});[-3.18,3.18].forEach(x=>{const rr=new THREE.Mesh(new THREE.TorusGeometry(1.03,.055,10,48),ringMat);rr.rotation.y=Math.PI/2;rr.position.set(x,-.05,0);root.add(rr)});
+ const metal=new THREE.MeshStandardMaterial({color:0xd6be79,metalness:.72,roughness:.28});const cath=new THREE.Mesh(new THREE.CylinderGeometry(.55,.55,.14,30),metal);cath.rotation.z=Math.PI/2;cath.position.set(-2.62,-.05,0);root.add(cath);const anode=new THREE.Mesh(new THREE.TorusGeometry(.32,.10,12,40),metal);anode.rotation.y=Math.PI/2;anode.position.set(-1.72,-.05,0);root.add(anode);
+ screenMat=new THREE.MeshStandardMaterial({color:0x8fd7b9,emissive:exp.power?0x2cbf7a:0x071a13,emissiveIntensity:exp.power?2.7:.2,side:THREE.DoubleSide});const screen=new THREE.Mesh(new THREE.PlaneGeometry(1.72,1.72),screenMat);screen.rotation.y=-Math.PI/2;screen.position.set(2.72,-.05,0);root.add(screen);const sg=new THREE.PointLight(0x68ffc1,exp.power?9:0,4);sg.position.set(2.28,-.05,0);root.add(sg);
+ if(exp.power&&exp.mode===0&&exp.cross){const sh=new THREE.MeshBasicMaterial({color:0x06110f,transparent:true,opacity:.95,side:THREE.DoubleSide,depthTest:false});const v=new THREE.Mesh(new THREE.PlaneGeometry(.18,1.08),sh);v.rotation.y=-Math.PI/2;v.position.set(2.69,-.05,0);v.renderOrder=20;root.add(v);const h=new THREE.Mesh(new THREE.PlaneGeometry(.76,.18),sh);h.rotation.y=-Math.PI/2;h.position.set(2.69,-.05,0);h.renderOrder=20;root.add(h)}
+ const yEnd=((exp.mode===2||exp.mode===3)&&exp.field)?exp.field*.7:0,beamEnd=(exp.mode===0&&exp.cross)?.57:2.68;
+ const pts=(exp.mode===0&&exp.cross)?[new THREE.Vector3(-1.65,-.05,0),new THREE.Vector3(-.6,-.05,0),new THREE.Vector3(.55,-.05,0)]:[new THREE.Vector3(-1.65,-.05,0),new THREE.Vector3(-.5,-.05,0),new THREE.Vector3(1.15,-.05+yEnd*.35,0),new THREE.Vector3(beamEnd,-.05+yEnd,0)];
+ beamCurve=new THREE.CatmullRomCurve3(pts);const bm=new THREE.MeshStandardMaterial({color:0x91ffd5,emissive:0x32f5a2,emissiveIntensity:4});
+ if(exp.power){root.add(new THREE.Mesh(new THREE.TubeGeometry(beamCurve,64,.028,8,false),bm));for(let i=0;i<26;i++){const p=new THREE.Mesh(new THREE.SphereGeometry(.045,8,8),bm);root.add(p);particles.push(p)}}
+ const cross=new THREE.Group(),cm=new THREE.MeshStandardMaterial({color:0xe0c77f,metalness:.55,roughness:.28});cross.add(new THREE.Mesh(new THREE.BoxGeometry(.1,1.2,.16),cm),new THREE.Mesh(new THREE.BoxGeometry(.1,.17,.94),cm));cross.position.set(.72,-.05,0);cross.visible=exp.mode===0&&exp.cross;root.add(cross);
+ wheel=new THREE.Group();const wm=new THREE.MeshStandardMaterial({color:0xffbd62,metalness:.52,roughness:.28,emissive:0x3d2100,emissiveIntensity:.55});const rim=new THREE.Mesh(new THREE.TorusGeometry(.55,.045,10,48),wm);rim.rotation.y=Math.PI/2;wheel.add(rim);const hub=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.28,20),wm);hub.rotation.z=Math.PI/2;wheel.add(hub);for(let j=0;j<8;j++){const a=j*Math.PI/4,sp=new THREE.Mesh(new THREE.BoxGeometry(.07,.48,.07),wm);sp.position.set(0,Math.cos(a)*.26,Math.sin(a)*.26);sp.rotation.x=a;wheel.add(sp);const pa=new THREE.Mesh(new THREE.BoxGeometry(.13,.20,.28),wm);pa.position.set(0,Math.cos(a)*.55,Math.sin(a)*.55);pa.rotation.x=a;wheel.add(pa)}wheel.position.set(.72,-.05,0);wheel.visible=exp.mode===1;root.add(wheel);
+ const pm=new THREE.MeshStandardMaterial({color:0x6d9cc0,metalness:.5,roughness:.32});const tp=new THREE.Mesh(new THREE.BoxGeometry(1.75,.1,1.18),pm),bp=tp.clone();tp.position.set(.82,.72,0);bp.position.set(.82,-.82,0);tp.visible=bp.visible=exp.mode===2;root.add(tp,bp);
+ const mn=new THREE.Mesh(new THREE.BoxGeometry(1.25,.55,.5),new THREE.MeshStandardMaterial({color:0xe06465,emissive:0x4a1010,emissiveIntensity:.3})),ms=new THREE.Mesh(new THREE.BoxGeometry(1.25,.55,.5),new THREE.MeshStandardMaterial({color:0x5b81dc,emissive:0x101a4a,emissiveIntensity:.3}));mn.position.set(.8,-.05,.98);ms.position.set(.8,-.05,-.98);mn.visible=ms.visible=exp.mode===3;root.add(mn,ms);
+ syncUi();
+}
+function syncUi(){const pb=document.getElementById('powerBtn'),ps=document.getElementById('powerState'),cb=document.getElementById('crossBtn'),ft=document.getElementById('fieldText');pb.textContent=exp.power?'විදුලිය අක්‍රිය කරන්න':'විදුලිය සක්‍රිය කරන්න';pb.className='power '+(exp.power?'on':'off');ps.textContent=exp.power?'විදුලිය සක්‍රියයි':'විදුලිය අක්‍රියයි';cb.textContent=exp.cross?'කුරුසය ඉවත් කරන්න':'කුරුසය ඇතුළත් කරන්න';cb.disabled=exp.power;ft.textContent='ක්ෂේත්‍රය: '+(exp.field>0?'+':'')+exp.field;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',+b.dataset.mode===exp.mode))}
+document.getElementById('powerBtn').addEventListener('click',()=>{exp.power=!exp.power;buildExperiment();toast(exp.power?'කැතෝඩ කිරණ කදම්බය සක්‍රියයි':'විදුලිය අක්‍රිය කළා')});
+document.getElementById('crossBtn').addEventListener('click',()=>{if(exp.power)return;exp.cross=!exp.cross;buildExperiment()});
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{exp.mode=+b.dataset.mode;buildExperiment()}));
+document.getElementById('fieldMinus').addEventListener('click',()=>{exp.field=Math.max(-2,exp.field-1);buildExperiment()});document.getElementById('fieldPlus').addEventListener('click',()=>{exp.field=Math.min(2,exp.field+1);buildExperiment()});
+document.getElementById('focusBtn').addEventListener('click',()=>{exploreMode=false;station.classList.remove('explore');if(!api)return;if(defaultCamera){const p=defaultCamera.position,t=stationWorld,d=[p[0]-t[0],p[1]-t[1],p[2]-t[2]],np=[t[0]+d[0]*.48,t[1]+d[1]*.48,t[2]+d[2]*.48];api.setCameraLookAt(np,t,1.1)}toast('P01 wall station වෙත ළඟා වෙමින්')});
+document.getElementById('exploreBtn').addEventListener('click',()=>{exploreMode=true;station.classList.add('explore');if(api&&defaultCamera)api.setCameraLookAt(defaultCamera.position,defaultCamera.target,1.05);toast('ලැබ් එක මවුසයෙන් ගවේෂණය කරන්න')});
+function resizeExp(){const w=station.clientWidth,h=station.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}window.addEventListener('resize',resizeExp,{passive:true});resizeExp();buildExperiment();
+function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();if(root){root.rotation.y=-.28+Math.sin(t*.35)*.035}if(exp.power&&beamCurve){particles.forEach((p,i)=>p.position.copy(beamCurve.getPointAt((t*.23+i/particles.length)%1)));if(wheel&&wheel.visible)wheel.rotation.x=-t*4.15;if(screenMat)screenMat.emissiveIntensity=2.5+.25*Math.sin(t*3)}r.render(scn,cam)}animate();
+</script>
+</body>
+</html>
