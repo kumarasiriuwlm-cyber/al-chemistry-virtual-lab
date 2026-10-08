@@ -845,6 +845,48 @@
    "ta": "chlorobenzene < benzene < toluene < phenol."
   },
   "pdf": "https://cdn.alevelapi.com/Prod/documents/2010/chemistry/2010-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2024-essay-8(b)(ii)",
+  "year": 2024,
+  "type": "essay",
+  "q": "8(b)(ii)",
+  "page": 12,
+  "unit": 10,
+  "section": 4,
+  "summary": {
+   "si": "සීමිත සරල කාබනික ආරම්භක සංයෝග යොදා පෙන්වා ඇති හයිඩ්‍රොක්සි-ඇසෝබෙන්සීන් වර්ණකය සංශ්ලේෂණය කිරීමට ප්‍රතික්‍රියා අනුපිළිවෙළක් යෝජනා කරන්න.",
+   "en": "Propose a synthesis of the depicted hydroxyazobenzene azo dye using no more than two simple organic starting compounds.",
+   "ta": "இரண்டு எளிய கரிம தொடக்கச் சேர்மங்களைத் தாண்டாமல் கொடுக்கப்பட்ட ஹைட்ராக்சி-அசோபென்சீன் நிறமியை தயாரிக்கும் படிநிலைகளை வகுக்கவும்."
+  },
+  "correct": null,
+  "guide": {
+   "si": "ඇනිලීන් සෑදීම, NaNO₂/HCl මගින් ඩයසෝනියම් ලවණය ලබාගැනීම, සහ ක්ෂාරීය ෆීනෝල් සමඟ ඇසෝ සම්බන්ධනය පැහැදිලි කරන්න.",
+   "en": "Form aniline, diazotize using NaNO2/HCl at low temperature, then use azo coupling with phenol under alkaline conditions.",
+   "ta": "அனிலீனை டையசோனியம் உப்பாக மாற்றி, கார நிலை பீனால் உடன் அசோ இணைப்பு செய்து நிறமி பெறுக."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2024/chemistry/2024-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2024-essay-8(c)(iv)",
+  "year": 2024,
+  "type": "essay",
+  "q": "8(c)(iv)",
+  "page": 12,
+  "unit": 10,
+  "section": 0,
+  "summary": {
+   "si": "ඇනිලීන්, බ්‍රෝමීන් සමඟ ප්‍රතික්‍රියා කරන විට ලැබෙන කාබනික ඵලයේ ව්‍යුහය දක්වන්න.",
+   "en": "Draw the organic product formed when aniline reacts with bromine.",
+   "ta": "அனிலீன் புரோமினுடன் வினைபுரியும் போது உருவாகும் கரிம வினைவிளைவின் அமைப்பை வரைக."
+  },
+  "correct": null,
+  "guide": {
+   "si": "–NH₂ කාණ්ඩය බෙන්සීන් වළල්ල සක්‍රිය කර ortho හා para ස්ථාන යොමුකරයි. බ්‍රෝමීන් ජලය සමඟ 2,4,6-ට්‍රයිබ්‍රෝමෝඇනිලීන් ලැබේ.",
+   "en": "The strongly activating amino substituent directs ortho/para; bromine water commonly yields 2,4,6-tribromoaniline.",
+   "ta": "–NH₂ வளையத்தைச் செயலாக்கி ortho/para இடங்களை வழிநடத்தும்; புரோமின் நீரால் 2,4,6-டிரைபுரோமோஅனிலீன் உருவாகும்."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2024/chemistry/2024-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
  }
 ];
  const labels={
