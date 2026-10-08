@@ -1,0 +1,103 @@
+/* Units 07–10. A light, animated journey matching original Units 04–06. */
+.unit7Theme{--ux:#8057c5;--uxb:#b362cf;--uxc:#39a6b6}
+.unit8Theme{--ux:#127c96;--uxb:#23acb3;--uxc:#e6a65a}
+.unit9Theme{--ux:#188980;--uxb:#4dba96;--uxc:#a6c94f}
+.unit10Theme{--ux:#af4b82;--uxb:#db6e9a;--uxc:#b488e6}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme)>.hero{background:linear-gradient(120deg,color-mix(in srgb,var(--ux) 10%,#fff),#fff 55%,color-mix(in srgb,var(--uxb) 11%,#fff));border-color:color-mix(in srgb,var(--ux) 28%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme)>.hero .kicker,:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme)>.hero h1{color:color-mix(in srgb,var(--ux) 85%,#21243b)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme)>.hero p{color:#536278}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .learningProgress{border-color:color-mix(in srgb,var(--ux) 27%,#fff);background:linear-gradient(130deg,#fff,color-mix(in srgb,var(--uxb) 6%,#fff))}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .learningBar i{background:linear-gradient(90deg,var(--ux),var(--uxb),var(--uxc))}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .learningPct{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .simpleJump button:not(.disabled){border-color:color-mix(in srgb,var(--ux) 26%,#fff);color:var(--ux);background:#fff}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .simpleJump button.done{border-color:var(--uxb);background:color-mix(in srgb,var(--uxb) 12%,white)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyChapter{border-color:color-mix(in srgb,var(--ux) 20%,#fff);box-shadow:0 19px 58px rgba(25,35,60,.06)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyChapter.inViewChapter{border-color:var(--uxb);box-shadow:0 24px 70px color-mix(in srgb,var(--ux) 12%,transparent)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyChapterHead{background:linear-gradient(118deg,color-mix(in srgb,var(--ux) 75%,#16233b),var(--ux) 60%,color-mix(in srgb,var(--uxb) 66%,#29305a))}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyChapterNo{background:linear-gradient(140deg,var(--ux),var(--uxc))}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyChapterDivider{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyCurveBase{stroke:#e3e9ed}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyCurveGhost{stroke:color-mix(in srgb,var(--ux) 38%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyRunnerHtml{border-color:var(--ux);box-shadow:0 0 0 7px color-mix(in srgb,var(--ux) 11%,transparent),0 0 25px color-mix(in srgb,var(--ux) 38%,transparent)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyRunnerHtml:after{border-color:color-mix(in srgb,var(--uxc) 42%,transparent)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyCenterDot{border-color:var(--ux)!important;box-shadow:0 0 0 6px color-mix(in srgb,var(--ux) 8%,transparent)!important}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyStep.activeStep .journeyTitle h3{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyCard{background:linear-gradient(140deg,#fff,color-mix(in srgb,var(--uxb) 5%,#fff));border-color:color-mix(in srgb,var(--ux) 22%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyCopy{color:#395264}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .formulaChip{background:color-mix(in srgb,var(--ux) 8%,#fff);color:color-mix(in srgb,var(--ux) 85%,#26304a);border-color:color-mix(in srgb,var(--ux) 25%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .examMini{border-color:color-mix(in srgb,var(--ux) 24%,#fff);background:#fff}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .examMini summary{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .masteryGate{border-color:color-mix(in srgb,var(--ux) 30%,#fff);background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--uxb) 6%,#fff))}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .masteryGateHead{background:linear-gradient(110deg,color-mix(in srgb,var(--ux) 78%,#16233b),var(--ux))}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .gateCard3D{background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--uxb) 8%,#fff));border-color:color-mix(in srgb,var(--ux) 32%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .gateOpt.selected{background:color-mix(in srgb,var(--ux) 11%,white);border-color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .gateScoreRing{background:conic-gradient(var(--ux) var(--score),#e7ebf2 0)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .unitDeepStudy{background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--uxb) 4%,#fff));border-color:color-mix(in srgb,var(--ux) 24%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .unitDeepHead b{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .unitDeepCard.focus{background:color-mix(in srgb,var(--ux) 8%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .unitVideoSection{border-color:color-mix(in srgb,var(--ux) 25%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .journeyEnd{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .summaryGuide{border-color:color-mix(in srgb,var(--ux) 25%,#fff);background:color-mix(in srgb,var(--ux) 5%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .summaryGuide strong{color:var(--ux)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .properConceptVisual{border-color:color-mix(in srgb,var(--ux) 26%,#fff)}
+:is(.unit7Theme,.unit8Theme,.unit9Theme,.unit10Theme) .properConceptVisual img{object-fit:contain}
+.orgVisual{width:100%;min-height:260px;border:1px solid color-mix(in srgb,var(--uxc) 50%,#435681);border-radius:17px;background:radial-gradient(circle at 12% 0%,color-mix(in srgb,var(--ux) 25%,transparent),transparent 50%),radial-gradient(circle at 85% 90%,color-mix(in srgb,var(--uxb) 20%,transparent),transparent 55%),linear-gradient(160deg,#101c33,#172541);color:#effcff;position:relative;isolation:isolate;overflow:hidden;padding:13px 14px 12px}
+.orgVisual:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.3;background-image:linear-gradient(90deg,#ffffff12 1px,transparent 1px),linear-gradient(#ffffff12 1px,transparent 1px);background-size:22px 22px}
+.orgVisualTop{position:relative;z-index:2;text-align:center;font-size:11px;font-weight:800;letter-spacing:.09em;color:#bceaff}
+.orgScene{height:132px;display:flex;align-items:center;justify-content:center;position:relative}
+.orgMovingElectron{position:absolute;z-index:3;width:10px;height:10px;border-radius:50%;background:#70eaff;box-shadow:0 0 9px #74f9ff,0 0 26px #38d8ff;animation:orgElectronFly 3.5s ease-in-out infinite;top:48%;left:18%;pointer-events:none}
+.orgMovingElectron.electronTwo{background:#fc94ea;box-shadow:0 0 13px #e97ae9;animation-delay:-1.7s;animation-direction:reverse}
+.orgBondModel{display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;animation:orgBob 4s ease-in-out infinite}
+.orgAtom{width:67px;height:67px;border:2px solid #b5edff;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:22px;color:white;background:radial-gradient(circle at 34% 23%,#79c4f6,#4c56bc 60%,#19284f);box-shadow:0 9px 27px #0007,0 0 23px #55b5e65c}
+.orgAtomRight{background:radial-gradient(circle at 25% 30%,#f9b5df,var(--ux) 60%,#3f225e);border-color:#ffc9ec}
+.orgBondLines{display:flex;flex-direction:column;gap:8px;margin:0 -3px;z-index:2}
+.orgBondLines i{display:block;width:57px;height:5px;background:linear-gradient(90deg,#70e3fd,#b3a7fb);border-radius:6px;box-shadow:0 0 15px #65e8f9}
+.orgBenzene{width:110px;height:110px;display:grid;place-items:center;position:relative;animation:orgBob 4.2s ease-in-out infinite}
+.orgBenzene b{font-size:102px;color:#a9dfff;line-height:1;text-shadow:0 0 18px #59c8fa;transform:rotate(30deg)}
+.orgBenzene i{position:absolute;width:75px;height:75px;border:2px dotted #f9b7e9;border-radius:50%;animation:orgRingSpin 9s linear infinite}
+.orgBenzene em{position:absolute;bottom:-2px;right:-27px;font-size:13px;color:#fff9b1}
+.orgChiral{height:120px;width:150px;position:relative;display:grid;place-items:center;animation:orgChiralRock 5s ease-in-out infinite;transform-style:preserve-3d}
+.orgChiral b{display:grid;place-items:center;width:55px;height:55px;background:radial-gradient(circle,#9871e7,#56348c);border:1px solid #dac3ff;border-radius:50%;font-size:19px;box-shadow:0 0 25px #9871e7}
+.orgChiral span{position:absolute;font:900 15px system-ui;color:#9bf5f8}
+.orgChiral span:nth-child(1){top:0;left:60px}
+.orgChiral span:nth-child(2){top:47px;left:3px}
+.orgChiral span:nth-child(4){top:47px;right:0}
+.orgChiral span:nth-child(5){bottom:0;left:65px}
+.orgTestTubes{display:flex;gap:26px;align-items:center;justify-content:center;height:125px}
+.orgTestTubes .tube{position:relative;width:35px;height:91px;border:3px solid #a9e4ff;border-top:0;border-radius:3px 3px 18px 18px;transform:rotate(-7deg);box-shadow:0 0 16px #82e7ff4c}
+.orgTestTubes .tube:nth-child(2){transform:rotate(8deg);height:105px}
+.orgTestTubes .tube i{position:absolute;bottom:5px;left:3px;right:3px;height:32%;border-radius:0 0 11px 11px;background:linear-gradient(#8dcdff,#6579e8);opacity:.8;animation:orgLiquid 3.5s ease-in-out infinite}
+.orgTestTubes .tube:nth-child(2) i{background:linear-gradient(#b6de3d,#43ae8c);animation-delay:-1.3s}
+.orgTestTubes .tube:nth-child(3) i{background:linear-gradient(#ff9e78,#e15d65);animation-delay:-2.6s}
+.orgReaction{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:0 auto 7px;background:#07182eb0;border:1px solid #b2d9f950;border-radius:12px;padding:9px 8px;text-align:center;font:700 12px/1.6 system-ui;max-width:100%;overflow-wrap:anywhere;color:#d8f9ff}
+.orgReactionArrow{color:#84edf2;font-size:18px;animation:orgArrowPulse 2.3s infinite}
+.orgVisualFoot{position:relative;z-index:2;font:700 12px/1.35 system-ui;color:#e4d9ff;text-align:center}
+.orgSafety{margin:22px 0;padding:14px 18px;border:1px solid #eac9ab;background:#fff9ed;border-radius:14px;color:#77502d;font-size:13px;line-height:1.8}
+.orgExamSection,.orgWritten{margin:24px 0;background:#fff;border:1px solid #d6dce7;border-radius:18px;padding:22px;box-shadow:0 12px 34px #101d2c09}
+.orgExamSection h3,.orgWritten h3{margin:0 0 9px;color:var(--ux);font-size:21px}
+.orgExamSection p,.orgWritten p{color:#58677c;line-height:1.8}
+.orgExamTools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.orgExamTools select{border:1px solid #ccd8e6;border-radius:12px;background:#fff;padding:11px 15px;color:#334761;max-width:100%;font:inherit}
+.orgExamTools>span{font-weight:800;color:var(--ux)}
+.orgExamTools button[disabled]{opacity:.45;cursor:not-allowed}
+.orgExamQuestion{padding:15px 16px;border-radius:14px;background:#f9fafc;border:1px solid #e1e7ef;margin:12px 0;scroll-margin-top:94px}
+.orgExamQuestion>strong{font-size:14px;color:#273954}
+.orgExamChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.orgExamChoices button{font:inherit;font-size:13px;background:#fff;color:#39516d;border:1px solid #cad7e9;border-radius:10px;padding:11px;text-align:left;min-height:43px;cursor:pointer}
+.orgExamChoices button:hover{border-color:var(--uxb)}
+.orgExamChoices button.selected{background:color-mix(in srgb,var(--uxb) 13%,#fff);border-color:var(--ux)}
+.orgExamChoices button.correct{background:#e0f7ea;border-color:#3ba878;color:#126641}
+.orgExamChoices button.wrong{background:#fff0f1;border-color:#e97d88;color:#a82d39}
+.orgExamExplanation{margin-top:10px;color:#256d55;font-size:13px}
+.orgWritten h4{margin:16px 0 8px;color:#526175}
+.orgWritten details{border-bottom:1px solid #e2e6eb;padding:12px 0}
+.orgWritten summary{cursor:pointer;font-weight:700;color:#3e526b}
+.orgWritten details p{padding-left:8px}
+@keyframes orgElectronFly{0%{transform:translate(0,10px) scale(.65);opacity:.1}30%{opacity:1}65%{transform:translate(105px,-23px) scale(1.05);opacity:1}100%{transform:translate(195px,9px) scale(.55);opacity:0}}
+@keyframes orgBob{0%,100%{transform:translateY(3px) rotateY(-12deg)}50%{transform:translateY(-4px) rotateY(12deg)}}
+@keyframes orgRingSpin{to{transform:rotate(360deg)}}
+@keyframes orgChiralRock{0%,100%{transform:rotateY(-20deg) rotateX(12deg)}50%{transform:rotateY(23deg) rotateX(-8deg)}}
+@keyframes orgLiquid{0%,100%{height:28%}50%{height:44%}}
+@keyframes orgArrowPulse{0%,100%{opacity:.7;transform:translateX(-3px)}50%{opacity:1;transform:translateX(4px)}}
+@media(max-width:690px){.orgVisual{padding:12px;min-height:230px}.orgScene{height:115px}.orgReaction{font-size:11px}.orgExamSection,.orgWritten{padding:15px}.orgExamChoices{grid-template-columns:1fr}.orgExamTools select{width:100%}}
+@media(prefers-reduced-motion:reduce){.orgVisual *{animation:none!important}}
