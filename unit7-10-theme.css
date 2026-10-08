@@ -1,0 +1,382 @@
+/* Units 07–10 inherit the fully animated Unit 06 journey, with per-unit identities. */
+
+/* Unit 7 */
+/* Unit 06 — coherent with the original Unit 04/05 light scroll-journey system.
+   Different identity: amethyst, deep indigo and turquoise (not a new dark-site layout). */
+.unit7Theme{--ux:#147e91;--uxb:#249fb1;--uxc:#249fb1}
+.unit7Theme>.hero{background:linear-gradient(135deg,#f1eafd,#fbfaff 58%,#e7fafa);border-color:#d9c5f0}
+.unit7Theme>.hero .kicker,.unit7Theme>.hero h1{color:#654093}
+.unit7Theme>.hero p{color:#5e647e}
+.unit7Theme .learningProgress{border-color:#dbcef2;background:linear-gradient(130deg,#fff,#f8f3ff 55%,#f1ffff)}
+.unit7Theme .learningBar i{background:linear-gradient(90deg,#8550c5,#557bd4,#2ab5bb)}
+.unit7Theme .learningPct{color:#7546b2}
+.unit7Theme .simpleJump button:not(.disabled){border-color:#dfd0f2;color:#7343a8;background:#fcfaff}
+.unit7Theme .simpleJump button.done{background:#eee7ff;border-color:#bdb1ef}
+.unit7Theme .journeyChapter{border-color:#dcd5ed;box-shadow:0 18px 58px rgba(54,31,115,.075)}
+.unit7Theme .journeyChapter.inViewChapter{border-color:#bca3ec;box-shadow:0 24px 70px rgba(74,41,160,.13)}
+.unit7Theme .journeyChapterHead{background:linear-gradient(115deg,#30204d,#6241a3 64%,#3778a7)}
+.unit7Theme .journeyChapterNo{background:linear-gradient(145deg,#8d57d5,#39aabb)}
+.unit7Theme .journeyChapterDivider{color:#7146a5}
+.unit7Theme .journeyCurveBase{stroke:#e5dff0}
+.unit7Theme .journeyCurveGhost{stroke:#b8a6d4}
+.unit7Theme .journeyRunnerHtml{border-color:#147e91;box-shadow:0 0 0 7px rgba(119,80,185,.12),0 0 24px rgba(75,102,203,.3)}
+.unit7Theme .journeyRunnerHtml:after{border-color:rgba(42,181,187,.38)}
+.unit7Theme .journeyCenterDot{border-color:#147e91!important;box-shadow:0 0 0 6px rgba(119,80,185,.1)!important}
+.unit7Theme .journeyStep.activeStep .journeyTitle h3{color:#7241ae}
+.unit7Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#a17ce0,#57beca)}
+.unit7Theme .journeyTitle h3{color:#382c60}
+.unit7Theme .journeyCard{border-color:#dcd6f2;background:linear-gradient(145deg,#fff,#faf8ff)}
+.unit7Theme .journeyCopy{color:#35506b}
+.unit7Theme .formulaChip{border-color:#dccff1;background:#f9f5ff;color:#623d9c}
+.unit7Theme .examMini{border-color:#dcd0f0;background:#fcfaff}
+.unit7Theme .examMini summary{color:#6344a0}
+.unit7Theme .checkpointJourney:before{background:linear-gradient(180deg,#e3dcf1 0%,#8154bf 40%,#40b9bd 100%)}
+.unit7Theme .checkpointPulse{background:#8854cb;box-shadow:0 0 0 6px rgba(136,84,203,.1),0 0 22px rgba(100,74,185,.25)}
+.unit7Theme .checkpointNode{border-color:#8e5fc7}
+.unit7Theme .masteryGate{border-color:#d3c1ea;background:linear-gradient(145deg,#fff,#f8f4ff)}
+.unit7Theme .masteryGateHead{background:linear-gradient(120deg,#47306d,#6c4fb4)}
+.unit7Theme .gateCard3D{border-color:#d2bee9;background:radial-gradient(circle at 70% 5%,#d5f7ff,transparent 60%),linear-gradient(155deg,#fff,#faf6ff)}
+.unit7Theme .gateOpt:hover,.unit7Theme .gateOpt.selected{border-color:#9477cd;background:#f5efff}
+.unit7Theme .gateScoreRing{background:conic-gradient(#8061c9 var(--score),#e7dbf4 0)}
+.unit7Theme .gateBadge{border-color:#d2b3fb;color:#f7eaff}
+.unit7Theme .unitVideoSection{border-color:#ded0ec}
+.unit7Theme .unitVideoCard{border-color:#dcd2ec}
+.unit7Theme .unitDeepStudy{border-color:#d9c8f0;background:linear-gradient(135deg,#fff,#faf8ff)}
+.unit7Theme .unitDeepHead b{color:#67419f}
+.unit7Theme .unitDeepCard{border-color:#e4dcf4}
+.unit7Theme .unitDeepCard.focus{background:linear-gradient(150deg,#f7f0ff,#effafd)}
+.unit7Theme .journeyEnd{color:#6a4cac}
+.unit7Theme .journeyContinueLabel{color:#705aa1}
+.unit7Theme .properConceptVisual{border-color:#d7cbed}
+.unit7Theme .properConceptCaption{background:#fcfaff}
+.unit7Theme .summaryGuide{border-color:#d7c9ed;background:#fcf9ff}
+.unit7Theme .summaryGuide strong{color:#60459a}
+.unit7Theme .summaryGuide p{color:#5c6681}
+.unit7Theme .unit6Safety{margin:20px 0;padding:13px 18px;border:1px solid #edceaf;border-radius:14px;background:#fffaf2;color:#845b34;font-size:13px}
+.unit7Theme .unit6Extras{margin:22px 0;border:1px solid #ded1ef;border-radius:18px;background:#fff;padding:20px 24px}
+.unit7Theme .unit6Extras h3{color:#644397;margin:5px 0 15px}
+.unit7Theme .unit6Extras details{padding:12px 4px;border-bottom:1px solid #e8e1f4}
+.unit7Theme .unit6Extras details:last-child{border-bottom:0}
+.unit7Theme .unit6Extras summary{cursor:pointer;font-weight:720;color:#4c5073}
+.unit7Theme .unit6Extras p{color:#5b6675;line-height:1.85;font-size:14px}
+.unit7Theme .u7Art{position:relative;min-height:250px;overflow:hidden;border:1px solid #b7a8eb;border-radius:18px;padding:17px 14px 18px;background:radial-gradient(circle at 15% 10%,rgba(141,97,228,.22),transparent 37%),radial-gradient(circle at 90% 85%,rgba(69,208,214,.21),transparent 42%),linear-gradient(145deg,#130f33,#202d51);color:#e8e5ff;isolation:isolate}
+.unit7Theme .u7Art:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(169,149,255,.055) 1px,transparent 1px),linear-gradient(rgba(169,149,255,.055) 1px,transparent 1px);background-size:24px 24px}
+.unit7Theme .u7ArtTitle{font:800 10px/1.4 system-ui;letter-spacing:.14em;text-transform:uppercase;color:#99ebf3;position:relative;z-index:2;text-align:center}
+.unit7Theme .u7AtomArea{position:relative;height:138px;display:flex;align-items:center;justify-content:center}
+.unit7Theme .u7Nucleus{display:grid;place-items:center;border-radius:22px;width:79px;height:79px;z-index:3;background:linear-gradient(140deg,#9155e1,#486acc);color:#fff;box-shadow:0 0 0 8px rgba(120,90,225,.09),0 0 40px #9a64ea99;font:900 27px system-ui;letter-spacing:-.045em;animation:u7NucleusPulse 3s ease-in-out infinite}
+.unit7Theme .u7Orbit{position:absolute;width:158px;height:88px;border:1.6px solid rgba(110,230,248,.65);border-radius:50%;transform:rotate(28deg);animation:u7OrbitA 6s linear infinite}
+.unit7Theme .u7Orbit:after{content:"";position:absolute;top:-6px;left:50%;width:10px;height:10px;background:#69f3ed;border-radius:50%;box-shadow:0 0 16px #58dcee;transform:translateX(-50%)}
+.unit7Theme .u7Orbit.orbitTwo{width:170px;height:93px;transform:rotate(-34deg);border-color:#bb91fa;animation:u7OrbitB 8s linear infinite reverse}
+.unit7Theme .u7Orbit.orbitTwo:after{background:#fa91e8;box-shadow:0 0 15px #ed93ed}
+.unit7Theme .u7ArtEq{font-size:12px;line-height:1.65;text-align:center;min-height:26px;border:1px solid rgba(146,207,248,.25);border-radius:10px;background:rgba(8,17,43,.5);padding:9px 8px;color:#c5fcff;position:relative;z-index:2;font-weight:700;overflow-wrap:anywhere}
+.unit7Theme .u7AtomicLine{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin:1px auto 7px;position:relative}
+.unit7Theme .u7AtomicLine span{display:inline-grid;place-items:center;min-width:27px;padding:5px 6px;border-radius:7px;border:1px solid #8d79bf77;font-size:11px;font-weight:800;color:#d2caff;animation:u7ElementFloat 2.8s ease-in-out infinite}
+.unit7Theme .u7AtomicLine span:nth-child(2n){animation-delay:-1.3s}
+.unit7Theme .u7AtomicLine span:nth-child(3n){animation-delay:-2s}
+.unit7Theme .u7AtomCaption{display:block;margin:3px 0 10px;text-align:center;color:#a0bdfc;font:700 10px system-ui;letter-spacing:.1em}
+.unit7Theme .properConceptVisual .properImageLink img{object-fit:contain;background:linear-gradient(130deg,#f2f1fb,#fff)}
+@keyframes u7NucleusPulse{0%,100%{box-shadow:0 0 0 8px rgba(120,90,225,.1),0 0 23px #9a64ea88;transform:scale(1)}50%{box-shadow:0 0 0 13px rgba(120,90,225,.05),0 0 48px #9a64eaaa;transform:scale(1.07)}}
+@keyframes u7OrbitA{from{transform:rotate(28deg)}to{transform:rotate(388deg)}}
+@keyframes u7OrbitB{from{transform:rotate(-34deg)}to{transform:rotate(326deg)}}
+@keyframes u7ElementFloat{0%,100%{transform:translateY(0);border-color:#8d79bf77}50%{transform:translateY(-4px);border-color:#81dcf3b8}}
+@media(max-width:680px){.unit7Theme .u7Art{min-height:207px;padding:12px}.unit7Theme .u7AtomArea{height:112px}.unit7Theme .u7Nucleus{width:66px;height:66px;font-size:22px}.unit7Theme .u7Orbit{width:128px;height:75px}.unit7Theme .u7Orbit.orbitTwo{width:146px;height:80px}.unit7Theme .u7ArtEq{font-size:11px}.unit7Theme .unit6Extras{padding:15px}}
+@media(prefers-reduced-motion:reduce){.unit7Theme .u7Nucleus,.unit7Theme .u7Orbit,.unit7Theme .u7AtomicLine span{animation:none!important}}
+
+
+/* Unit 8 */
+/* Unit 06 — coherent with the original Unit 04/05 light scroll-journey system.
+   Different identity: amethyst, deep indigo and turquoise (not a new dark-site layout). */
+.unit8Theme{--ux:#b65335;--uxb:#d87b3e;--uxc:#d87b3e}
+.unit8Theme>.hero{background:linear-gradient(135deg,#f1eafd,#fbfaff 58%,#e7fafa);border-color:#d9c5f0}
+.unit8Theme>.hero .kicker,.unit8Theme>.hero h1{color:#654093}
+.unit8Theme>.hero p{color:#5e647e}
+.unit8Theme .learningProgress{border-color:#dbcef2;background:linear-gradient(130deg,#fff,#f8f3ff 55%,#f1ffff)}
+.unit8Theme .learningBar i{background:linear-gradient(90deg,#8550c5,#557bd4,#2ab5bb)}
+.unit8Theme .learningPct{color:#7546b2}
+.unit8Theme .simpleJump button:not(.disabled){border-color:#dfd0f2;color:#7343a8;background:#fcfaff}
+.unit8Theme .simpleJump button.done{background:#eee7ff;border-color:#bdb1ef}
+.unit8Theme .journeyChapter{border-color:#dcd5ed;box-shadow:0 18px 58px rgba(54,31,115,.075)}
+.unit8Theme .journeyChapter.inViewChapter{border-color:#bca3ec;box-shadow:0 24px 70px rgba(74,41,160,.13)}
+.unit8Theme .journeyChapterHead{background:linear-gradient(115deg,#30204d,#6241a3 64%,#3778a7)}
+.unit8Theme .journeyChapterNo{background:linear-gradient(145deg,#8d57d5,#39aabb)}
+.unit8Theme .journeyChapterDivider{color:#7146a5}
+.unit8Theme .journeyCurveBase{stroke:#e5dff0}
+.unit8Theme .journeyCurveGhost{stroke:#b8a6d4}
+.unit8Theme .journeyRunnerHtml{border-color:#b65335;box-shadow:0 0 0 7px rgba(119,80,185,.12),0 0 24px rgba(75,102,203,.3)}
+.unit8Theme .journeyRunnerHtml:after{border-color:rgba(42,181,187,.38)}
+.unit8Theme .journeyCenterDot{border-color:#b65335!important;box-shadow:0 0 0 6px rgba(119,80,185,.1)!important}
+.unit8Theme .journeyStep.activeStep .journeyTitle h3{color:#7241ae}
+.unit8Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#a17ce0,#57beca)}
+.unit8Theme .journeyTitle h3{color:#382c60}
+.unit8Theme .journeyCard{border-color:#dcd6f2;background:linear-gradient(145deg,#fff,#faf8ff)}
+.unit8Theme .journeyCopy{color:#35506b}
+.unit8Theme .formulaChip{border-color:#dccff1;background:#f9f5ff;color:#623d9c}
+.unit8Theme .examMini{border-color:#dcd0f0;background:#fcfaff}
+.unit8Theme .examMini summary{color:#6344a0}
+.unit8Theme .checkpointJourney:before{background:linear-gradient(180deg,#e3dcf1 0%,#8154bf 40%,#40b9bd 100%)}
+.unit8Theme .checkpointPulse{background:#8854cb;box-shadow:0 0 0 6px rgba(136,84,203,.1),0 0 22px rgba(100,74,185,.25)}
+.unit8Theme .checkpointNode{border-color:#8e5fc7}
+.unit8Theme .masteryGate{border-color:#d3c1ea;background:linear-gradient(145deg,#fff,#f8f4ff)}
+.unit8Theme .masteryGateHead{background:linear-gradient(120deg,#47306d,#6c4fb4)}
+.unit8Theme .gateCard3D{border-color:#d2bee9;background:radial-gradient(circle at 70% 5%,#d5f7ff,transparent 60%),linear-gradient(155deg,#fff,#faf6ff)}
+.unit8Theme .gateOpt:hover,.unit8Theme .gateOpt.selected{border-color:#9477cd;background:#f5efff}
+.unit8Theme .gateScoreRing{background:conic-gradient(#8061c9 var(--score),#e7dbf4 0)}
+.unit8Theme .gateBadge{border-color:#d2b3fb;color:#f7eaff}
+.unit8Theme .unitVideoSection{border-color:#ded0ec}
+.unit8Theme .unitVideoCard{border-color:#dcd2ec}
+.unit8Theme .unitDeepStudy{border-color:#d9c8f0;background:linear-gradient(135deg,#fff,#faf8ff)}
+.unit8Theme .unitDeepHead b{color:#67419f}
+.unit8Theme .unitDeepCard{border-color:#e4dcf4}
+.unit8Theme .unitDeepCard.focus{background:linear-gradient(150deg,#f7f0ff,#effafd)}
+.unit8Theme .journeyEnd{color:#6a4cac}
+.unit8Theme .journeyContinueLabel{color:#705aa1}
+.unit8Theme .properConceptVisual{border-color:#d7cbed}
+.unit8Theme .properConceptCaption{background:#fcfaff}
+.unit8Theme .summaryGuide{border-color:#d7c9ed;background:#fcf9ff}
+.unit8Theme .summaryGuide strong{color:#60459a}
+.unit8Theme .summaryGuide p{color:#5c6681}
+.unit8Theme .unit6Safety{margin:20px 0;padding:13px 18px;border:1px solid #edceaf;border-radius:14px;background:#fffaf2;color:#845b34;font-size:13px}
+.unit8Theme .unit6Extras{margin:22px 0;border:1px solid #ded1ef;border-radius:18px;background:#fff;padding:20px 24px}
+.unit8Theme .unit6Extras h3{color:#644397;margin:5px 0 15px}
+.unit8Theme .unit6Extras details{padding:12px 4px;border-bottom:1px solid #e8e1f4}
+.unit8Theme .unit6Extras details:last-child{border-bottom:0}
+.unit8Theme .unit6Extras summary{cursor:pointer;font-weight:720;color:#4c5073}
+.unit8Theme .unit6Extras p{color:#5b6675;line-height:1.85;font-size:14px}
+.unit8Theme .u8Art{position:relative;min-height:250px;overflow:hidden;border:1px solid #b7a8eb;border-radius:18px;padding:17px 14px 18px;background:radial-gradient(circle at 15% 10%,rgba(141,97,228,.22),transparent 37%),radial-gradient(circle at 90% 85%,rgba(69,208,214,.21),transparent 42%),linear-gradient(145deg,#130f33,#202d51);color:#e8e5ff;isolation:isolate}
+.unit8Theme .u8Art:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(169,149,255,.055) 1px,transparent 1px),linear-gradient(rgba(169,149,255,.055) 1px,transparent 1px);background-size:24px 24px}
+.unit8Theme .u8ArtTitle{font:800 10px/1.4 system-ui;letter-spacing:.14em;text-transform:uppercase;color:#99ebf3;position:relative;z-index:2;text-align:center}
+.unit8Theme .u8AtomArea{position:relative;height:138px;display:flex;align-items:center;justify-content:center}
+.unit8Theme .u8Nucleus{display:grid;place-items:center;border-radius:22px;width:79px;height:79px;z-index:3;background:linear-gradient(140deg,#9155e1,#486acc);color:#fff;box-shadow:0 0 0 8px rgba(120,90,225,.09),0 0 40px #9a64ea99;font:900 27px system-ui;letter-spacing:-.045em;animation:u8NucleusPulse 3s ease-in-out infinite}
+.unit8Theme .u8Orbit{position:absolute;width:158px;height:88px;border:1.6px solid rgba(110,230,248,.65);border-radius:50%;transform:rotate(28deg);animation:u8OrbitA 6s linear infinite}
+.unit8Theme .u8Orbit:after{content:"";position:absolute;top:-6px;left:50%;width:10px;height:10px;background:#69f3ed;border-radius:50%;box-shadow:0 0 16px #58dcee;transform:translateX(-50%)}
+.unit8Theme .u8Orbit.orbitTwo{width:170px;height:93px;transform:rotate(-34deg);border-color:#bb91fa;animation:u8OrbitB 8s linear infinite reverse}
+.unit8Theme .u8Orbit.orbitTwo:after{background:#fa91e8;box-shadow:0 0 15px #ed93ed}
+.unit8Theme .u8ArtEq{font-size:12px;line-height:1.65;text-align:center;min-height:26px;border:1px solid rgba(146,207,248,.25);border-radius:10px;background:rgba(8,17,43,.5);padding:9px 8px;color:#c5fcff;position:relative;z-index:2;font-weight:700;overflow-wrap:anywhere}
+.unit8Theme .u8AtomicLine{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin:1px auto 7px;position:relative}
+.unit8Theme .u8AtomicLine span{display:inline-grid;place-items:center;min-width:27px;padding:5px 6px;border-radius:7px;border:1px solid #8d79bf77;font-size:11px;font-weight:800;color:#d2caff;animation:u8ElementFloat 2.8s ease-in-out infinite}
+.unit8Theme .u8AtomicLine span:nth-child(2n){animation-delay:-1.3s}
+.unit8Theme .u8AtomicLine span:nth-child(3n){animation-delay:-2s}
+.unit8Theme .u8AtomCaption{display:block;margin:3px 0 10px;text-align:center;color:#a0bdfc;font:700 10px system-ui;letter-spacing:.1em}
+.unit8Theme .properConceptVisual .properImageLink img{object-fit:contain;background:linear-gradient(130deg,#f2f1fb,#fff)}
+@keyframes u8NucleusPulse{0%,100%{box-shadow:0 0 0 8px rgba(120,90,225,.1),0 0 23px #9a64ea88;transform:scale(1)}50%{box-shadow:0 0 0 13px rgba(120,90,225,.05),0 0 48px #9a64eaaa;transform:scale(1.07)}}
+@keyframes u8OrbitA{from{transform:rotate(28deg)}to{transform:rotate(388deg)}}
+@keyframes u8OrbitB{from{transform:rotate(-34deg)}to{transform:rotate(326deg)}}
+@keyframes u8ElementFloat{0%,100%{transform:translateY(0);border-color:#8d79bf77}50%{transform:translateY(-4px);border-color:#81dcf3b8}}
+@media(max-width:680px){.unit8Theme .u8Art{min-height:207px;padding:12px}.unit8Theme .u8AtomArea{height:112px}.unit8Theme .u8Nucleus{width:66px;height:66px;font-size:22px}.unit8Theme .u8Orbit{width:128px;height:75px}.unit8Theme .u8Orbit.orbitTwo{width:146px;height:80px}.unit8Theme .u8ArtEq{font-size:11px}.unit8Theme .unit6Extras{padding:15px}}
+@media(prefers-reduced-motion:reduce){.unit8Theme .u8Nucleus,.unit8Theme .u8Orbit,.unit8Theme .u8AtomicLine span{animation:none!important}}
+
+
+/* Unit 9 */
+/* Unit 06 — coherent with the original Unit 04/05 light scroll-journey system.
+   Different identity: amethyst, deep indigo and turquoise (not a new dark-site layout). */
+.unit9Theme{--ux:#276f66;--uxb:#34a98a;--uxc:#34a98a}
+.unit9Theme>.hero{background:linear-gradient(135deg,#f1eafd,#fbfaff 58%,#e7fafa);border-color:#d9c5f0}
+.unit9Theme>.hero .kicker,.unit9Theme>.hero h1{color:#654093}
+.unit9Theme>.hero p{color:#5e647e}
+.unit9Theme .learningProgress{border-color:#dbcef2;background:linear-gradient(130deg,#fff,#f8f3ff 55%,#f1ffff)}
+.unit9Theme .learningBar i{background:linear-gradient(90deg,#8550c5,#557bd4,#2ab5bb)}
+.unit9Theme .learningPct{color:#7546b2}
+.unit9Theme .simpleJump button:not(.disabled){border-color:#dfd0f2;color:#7343a8;background:#fcfaff}
+.unit9Theme .simpleJump button.done{background:#eee7ff;border-color:#bdb1ef}
+.unit9Theme .journeyChapter{border-color:#dcd5ed;box-shadow:0 18px 58px rgba(54,31,115,.075)}
+.unit9Theme .journeyChapter.inViewChapter{border-color:#bca3ec;box-shadow:0 24px 70px rgba(74,41,160,.13)}
+.unit9Theme .journeyChapterHead{background:linear-gradient(115deg,#30204d,#6241a3 64%,#3778a7)}
+.unit9Theme .journeyChapterNo{background:linear-gradient(145deg,#8d57d5,#39aabb)}
+.unit9Theme .journeyChapterDivider{color:#7146a5}
+.unit9Theme .journeyCurveBase{stroke:#e5dff0}
+.unit9Theme .journeyCurveGhost{stroke:#b8a6d4}
+.unit9Theme .journeyRunnerHtml{border-color:#276f66;box-shadow:0 0 0 7px rgba(119,80,185,.12),0 0 24px rgba(75,102,203,.3)}
+.unit9Theme .journeyRunnerHtml:after{border-color:rgba(42,181,187,.38)}
+.unit9Theme .journeyCenterDot{border-color:#276f66!important;box-shadow:0 0 0 6px rgba(119,80,185,.1)!important}
+.unit9Theme .journeyStep.activeStep .journeyTitle h3{color:#7241ae}
+.unit9Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#a17ce0,#57beca)}
+.unit9Theme .journeyTitle h3{color:#382c60}
+.unit9Theme .journeyCard{border-color:#dcd6f2;background:linear-gradient(145deg,#fff,#faf8ff)}
+.unit9Theme .journeyCopy{color:#35506b}
+.unit9Theme .formulaChip{border-color:#dccff1;background:#f9f5ff;color:#623d9c}
+.unit9Theme .examMini{border-color:#dcd0f0;background:#fcfaff}
+.unit9Theme .examMini summary{color:#6344a0}
+.unit9Theme .checkpointJourney:before{background:linear-gradient(180deg,#e3dcf1 0%,#8154bf 40%,#40b9bd 100%)}
+.unit9Theme .checkpointPulse{background:#8854cb;box-shadow:0 0 0 6px rgba(136,84,203,.1),0 0 22px rgba(100,74,185,.25)}
+.unit9Theme .checkpointNode{border-color:#8e5fc7}
+.unit9Theme .masteryGate{border-color:#d3c1ea;background:linear-gradient(145deg,#fff,#f8f4ff)}
+.unit9Theme .masteryGateHead{background:linear-gradient(120deg,#47306d,#6c4fb4)}
+.unit9Theme .gateCard3D{border-color:#d2bee9;background:radial-gradient(circle at 70% 5%,#d5f7ff,transparent 60%),linear-gradient(155deg,#fff,#faf6ff)}
+.unit9Theme .gateOpt:hover,.unit9Theme .gateOpt.selected{border-color:#9477cd;background:#f5efff}
+.unit9Theme .gateScoreRing{background:conic-gradient(#8061c9 var(--score),#e7dbf4 0)}
+.unit9Theme .gateBadge{border-color:#d2b3fb;color:#f7eaff}
+.unit9Theme .unitVideoSection{border-color:#ded0ec}
+.unit9Theme .unitVideoCard{border-color:#dcd2ec}
+.unit9Theme .unitDeepStudy{border-color:#d9c8f0;background:linear-gradient(135deg,#fff,#faf8ff)}
+.unit9Theme .unitDeepHead b{color:#67419f}
+.unit9Theme .unitDeepCard{border-color:#e4dcf4}
+.unit9Theme .unitDeepCard.focus{background:linear-gradient(150deg,#f7f0ff,#effafd)}
+.unit9Theme .journeyEnd{color:#6a4cac}
+.unit9Theme .journeyContinueLabel{color:#705aa1}
+.unit9Theme .properConceptVisual{border-color:#d7cbed}
+.unit9Theme .properConceptCaption{background:#fcfaff}
+.unit9Theme .summaryGuide{border-color:#d7c9ed;background:#fcf9ff}
+.unit9Theme .summaryGuide strong{color:#60459a}
+.unit9Theme .summaryGuide p{color:#5c6681}
+.unit9Theme .unit6Safety{margin:20px 0;padding:13px 18px;border:1px solid #edceaf;border-radius:14px;background:#fffaf2;color:#845b34;font-size:13px}
+.unit9Theme .unit6Extras{margin:22px 0;border:1px solid #ded1ef;border-radius:18px;background:#fff;padding:20px 24px}
+.unit9Theme .unit6Extras h3{color:#644397;margin:5px 0 15px}
+.unit9Theme .unit6Extras details{padding:12px 4px;border-bottom:1px solid #e8e1f4}
+.unit9Theme .unit6Extras details:last-child{border-bottom:0}
+.unit9Theme .unit6Extras summary{cursor:pointer;font-weight:720;color:#4c5073}
+.unit9Theme .unit6Extras p{color:#5b6675;line-height:1.85;font-size:14px}
+.unit9Theme .u9Art{position:relative;min-height:250px;overflow:hidden;border:1px solid #b7a8eb;border-radius:18px;padding:17px 14px 18px;background:radial-gradient(circle at 15% 10%,rgba(141,97,228,.22),transparent 37%),radial-gradient(circle at 90% 85%,rgba(69,208,214,.21),transparent 42%),linear-gradient(145deg,#130f33,#202d51);color:#e8e5ff;isolation:isolate}
+.unit9Theme .u9Art:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(169,149,255,.055) 1px,transparent 1px),linear-gradient(rgba(169,149,255,.055) 1px,transparent 1px);background-size:24px 24px}
+.unit9Theme .u9ArtTitle{font:800 10px/1.4 system-ui;letter-spacing:.14em;text-transform:uppercase;color:#99ebf3;position:relative;z-index:2;text-align:center}
+.unit9Theme .u9AtomArea{position:relative;height:138px;display:flex;align-items:center;justify-content:center}
+.unit9Theme .u9Nucleus{display:grid;place-items:center;border-radius:22px;width:79px;height:79px;z-index:3;background:linear-gradient(140deg,#9155e1,#486acc);color:#fff;box-shadow:0 0 0 8px rgba(120,90,225,.09),0 0 40px #9a64ea99;font:900 27px system-ui;letter-spacing:-.045em;animation:u9NucleusPulse 3s ease-in-out infinite}
+.unit9Theme .u9Orbit{position:absolute;width:158px;height:88px;border:1.6px solid rgba(110,230,248,.65);border-radius:50%;transform:rotate(28deg);animation:u9OrbitA 6s linear infinite}
+.unit9Theme .u9Orbit:after{content:"";position:absolute;top:-6px;left:50%;width:10px;height:10px;background:#69f3ed;border-radius:50%;box-shadow:0 0 16px #58dcee;transform:translateX(-50%)}
+.unit9Theme .u9Orbit.orbitTwo{width:170px;height:93px;transform:rotate(-34deg);border-color:#bb91fa;animation:u9OrbitB 8s linear infinite reverse}
+.unit9Theme .u9Orbit.orbitTwo:after{background:#fa91e8;box-shadow:0 0 15px #ed93ed}
+.unit9Theme .u9ArtEq{font-size:12px;line-height:1.65;text-align:center;min-height:26px;border:1px solid rgba(146,207,248,.25);border-radius:10px;background:rgba(8,17,43,.5);padding:9px 8px;color:#c5fcff;position:relative;z-index:2;font-weight:700;overflow-wrap:anywhere}
+.unit9Theme .u9AtomicLine{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin:1px auto 7px;position:relative}
+.unit9Theme .u9AtomicLine span{display:inline-grid;place-items:center;min-width:27px;padding:5px 6px;border-radius:7px;border:1px solid #8d79bf77;font-size:11px;font-weight:800;color:#d2caff;animation:u9ElementFloat 2.8s ease-in-out infinite}
+.unit9Theme .u9AtomicLine span:nth-child(2n){animation-delay:-1.3s}
+.unit9Theme .u9AtomicLine span:nth-child(3n){animation-delay:-2s}
+.unit9Theme .u9AtomCaption{display:block;margin:3px 0 10px;text-align:center;color:#a0bdfc;font:700 10px system-ui;letter-spacing:.1em}
+.unit9Theme .properConceptVisual .properImageLink img{object-fit:contain;background:linear-gradient(130deg,#f2f1fb,#fff)}
+@keyframes u9NucleusPulse{0%,100%{box-shadow:0 0 0 8px rgba(120,90,225,.1),0 0 23px #9a64ea88;transform:scale(1)}50%{box-shadow:0 0 0 13px rgba(120,90,225,.05),0 0 48px #9a64eaaa;transform:scale(1.07)}}
+@keyframes u9OrbitA{from{transform:rotate(28deg)}to{transform:rotate(388deg)}}
+@keyframes u9OrbitB{from{transform:rotate(-34deg)}to{transform:rotate(326deg)}}
+@keyframes u9ElementFloat{0%,100%{transform:translateY(0);border-color:#8d79bf77}50%{transform:translateY(-4px);border-color:#81dcf3b8}}
+@media(max-width:680px){.unit9Theme .u9Art{min-height:207px;padding:12px}.unit9Theme .u9AtomArea{height:112px}.unit9Theme .u9Nucleus{width:66px;height:66px;font-size:22px}.unit9Theme .u9Orbit{width:128px;height:75px}.unit9Theme .u9Orbit.orbitTwo{width:146px;height:80px}.unit9Theme .u9ArtEq{font-size:11px}.unit9Theme .unit6Extras{padding:15px}}
+@media(prefers-reduced-motion:reduce){.unit9Theme .u9Nucleus,.unit9Theme .u9Orbit,.unit9Theme .u9AtomicLine span{animation:none!important}}
+
+
+/* Unit 10 */
+/* Unit 06 — coherent with the original Unit 04/05 light scroll-journey system.
+   Different identity: amethyst, deep indigo and turquoise (not a new dark-site layout). */
+.unit10Theme{--ux:#7952ab;--uxb:#a260b1;--uxc:#a260b1}
+.unit10Theme>.hero{background:linear-gradient(135deg,#f1eafd,#fbfaff 58%,#e7fafa);border-color:#d9c5f0}
+.unit10Theme>.hero .kicker,.unit10Theme>.hero h1{color:#654093}
+.unit10Theme>.hero p{color:#5e647e}
+.unit10Theme .learningProgress{border-color:#dbcef2;background:linear-gradient(130deg,#fff,#f8f3ff 55%,#f1ffff)}
+.unit10Theme .learningBar i{background:linear-gradient(90deg,#8550c5,#557bd4,#2ab5bb)}
+.unit10Theme .learningPct{color:#7546b2}
+.unit10Theme .simpleJump button:not(.disabled){border-color:#dfd0f2;color:#7343a8;background:#fcfaff}
+.unit10Theme .simpleJump button.done{background:#eee7ff;border-color:#bdb1ef}
+.unit10Theme .journeyChapter{border-color:#dcd5ed;box-shadow:0 18px 58px rgba(54,31,115,.075)}
+.unit10Theme .journeyChapter.inViewChapter{border-color:#bca3ec;box-shadow:0 24px 70px rgba(74,41,160,.13)}
+.unit10Theme .journeyChapterHead{background:linear-gradient(115deg,#30204d,#6241a3 64%,#3778a7)}
+.unit10Theme .journeyChapterNo{background:linear-gradient(145deg,#8d57d5,#39aabb)}
+.unit10Theme .journeyChapterDivider{color:#7146a5}
+.unit10Theme .journeyCurveBase{stroke:#e5dff0}
+.unit10Theme .journeyCurveGhost{stroke:#b8a6d4}
+.unit10Theme .journeyRunnerHtml{border-color:#7952ab;box-shadow:0 0 0 7px rgba(119,80,185,.12),0 0 24px rgba(75,102,203,.3)}
+.unit10Theme .journeyRunnerHtml:after{border-color:rgba(42,181,187,.38)}
+.unit10Theme .journeyCenterDot{border-color:#7952ab!important;box-shadow:0 0 0 6px rgba(119,80,185,.1)!important}
+.unit10Theme .journeyStep.activeStep .journeyTitle h3{color:#7241ae}
+.unit10Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#a17ce0,#57beca)}
+.unit10Theme .journeyTitle h3{color:#382c60}
+.unit10Theme .journeyCard{border-color:#dcd6f2;background:linear-gradient(145deg,#fff,#faf8ff)}
+.unit10Theme .journeyCopy{color:#35506b}
+.unit10Theme .formulaChip{border-color:#dccff1;background:#f9f5ff;color:#623d9c}
+.unit10Theme .examMini{border-color:#dcd0f0;background:#fcfaff}
+.unit10Theme .examMini summary{color:#6344a0}
+.unit10Theme .checkpointJourney:before{background:linear-gradient(180deg,#e3dcf1 0%,#8154bf 40%,#40b9bd 100%)}
+.unit10Theme .checkpointPulse{background:#8854cb;box-shadow:0 0 0 6px rgba(136,84,203,.1),0 0 22px rgba(100,74,185,.25)}
+.unit10Theme .checkpointNode{border-color:#8e5fc7}
+.unit10Theme .masteryGate{border-color:#d3c1ea;background:linear-gradient(145deg,#fff,#f8f4ff)}
+.unit10Theme .masteryGateHead{background:linear-gradient(120deg,#47306d,#6c4fb4)}
+.unit10Theme .gateCard3D{border-color:#d2bee9;background:radial-gradient(circle at 70% 5%,#d5f7ff,transparent 60%),linear-gradient(155deg,#fff,#faf6ff)}
+.unit10Theme .gateOpt:hover,.unit10Theme .gateOpt.selected{border-color:#9477cd;background:#f5efff}
+.unit10Theme .gateScoreRing{background:conic-gradient(#8061c9 var(--score),#e7dbf4 0)}
+.unit10Theme .gateBadge{border-color:#d2b3fb;color:#f7eaff}
+.unit10Theme .unitVideoSection{border-color:#ded0ec}
+.unit10Theme .unitVideoCard{border-color:#dcd2ec}
+.unit10Theme .unitDeepStudy{border-color:#d9c8f0;background:linear-gradient(135deg,#fff,#faf8ff)}
+.unit10Theme .unitDeepHead b{color:#67419f}
+.unit10Theme .unitDeepCard{border-color:#e4dcf4}
+.unit10Theme .unitDeepCard.focus{background:linear-gradient(150deg,#f7f0ff,#effafd)}
+.unit10Theme .journeyEnd{color:#6a4cac}
+.unit10Theme .journeyContinueLabel{color:#705aa1}
+.unit10Theme .properConceptVisual{border-color:#d7cbed}
+.unit10Theme .properConceptCaption{background:#fcfaff}
+.unit10Theme .summaryGuide{border-color:#d7c9ed;background:#fcf9ff}
+.unit10Theme .summaryGuide strong{color:#60459a}
+.unit10Theme .summaryGuide p{color:#5c6681}
+.unit10Theme .unit6Safety{margin:20px 0;padding:13px 18px;border:1px solid #edceaf;border-radius:14px;background:#fffaf2;color:#845b34;font-size:13px}
+.unit10Theme .unit6Extras{margin:22px 0;border:1px solid #ded1ef;border-radius:18px;background:#fff;padding:20px 24px}
+.unit10Theme .unit6Extras h3{color:#644397;margin:5px 0 15px}
+.unit10Theme .unit6Extras details{padding:12px 4px;border-bottom:1px solid #e8e1f4}
+.unit10Theme .unit6Extras details:last-child{border-bottom:0}
+.unit10Theme .unit6Extras summary{cursor:pointer;font-weight:720;color:#4c5073}
+.unit10Theme .unit6Extras p{color:#5b6675;line-height:1.85;font-size:14px}
+.unit10Theme .u10Art{position:relative;min-height:250px;overflow:hidden;border:1px solid #b7a8eb;border-radius:18px;padding:17px 14px 18px;background:radial-gradient(circle at 15% 10%,rgba(141,97,228,.22),transparent 37%),radial-gradient(circle at 90% 85%,rgba(69,208,214,.21),transparent 42%),linear-gradient(145deg,#130f33,#202d51);color:#e8e5ff;isolation:isolate}
+.unit10Theme .u10Art:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(169,149,255,.055) 1px,transparent 1px),linear-gradient(rgba(169,149,255,.055) 1px,transparent 1px);background-size:24px 24px}
+.unit10Theme .u10ArtTitle{font:800 10px/1.4 system-ui;letter-spacing:.14em;text-transform:uppercase;color:#99ebf3;position:relative;z-index:2;text-align:center}
+.unit10Theme .u10AtomArea{position:relative;height:138px;display:flex;align-items:center;justify-content:center}
+.unit10Theme .u10Nucleus{display:grid;place-items:center;border-radius:22px;width:79px;height:79px;z-index:3;background:linear-gradient(140deg,#9155e1,#486acc);color:#fff;box-shadow:0 0 0 8px rgba(120,90,225,.09),0 0 40px #9a64ea99;font:900 27px system-ui;letter-spacing:-.045em;animation:u10NucleusPulse 3s ease-in-out infinite}
+.unit10Theme .u10Orbit{position:absolute;width:158px;height:88px;border:1.6px solid rgba(110,230,248,.65);border-radius:50%;transform:rotate(28deg);animation:u10OrbitA 6s linear infinite}
+.unit10Theme .u10Orbit:after{content:"";position:absolute;top:-6px;left:50%;width:10px;height:10px;background:#69f3ed;border-radius:50%;box-shadow:0 0 16px #58dcee;transform:translateX(-50%)}
+.unit10Theme .u10Orbit.orbitTwo{width:170px;height:93px;transform:rotate(-34deg);border-color:#bb91fa;animation:u10OrbitB 8s linear infinite reverse}
+.unit10Theme .u10Orbit.orbitTwo:after{background:#fa91e8;box-shadow:0 0 15px #ed93ed}
+.unit10Theme .u10ArtEq{font-size:12px;line-height:1.65;text-align:center;min-height:26px;border:1px solid rgba(146,207,248,.25);border-radius:10px;background:rgba(8,17,43,.5);padding:9px 8px;color:#c5fcff;position:relative;z-index:2;font-weight:700;overflow-wrap:anywhere}
+.unit10Theme .u10AtomicLine{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin:1px auto 7px;position:relative}
+.unit10Theme .u10AtomicLine span{display:inline-grid;place-items:center;min-width:27px;padding:5px 6px;border-radius:7px;border:1px solid #8d79bf77;font-size:11px;font-weight:800;color:#d2caff;animation:u10ElementFloat 2.8s ease-in-out infinite}
+.unit10Theme .u10AtomicLine span:nth-child(2n){animation-delay:-1.3s}
+.unit10Theme .u10AtomicLine span:nth-child(3n){animation-delay:-2s}
+.unit10Theme .u10AtomCaption{display:block;margin:3px 0 10px;text-align:center;color:#a0bdfc;font:700 10px system-ui;letter-spacing:.1em}
+.unit10Theme .properConceptVisual .properImageLink img{object-fit:contain;background:linear-gradient(130deg,#f2f1fb,#fff)}
+@keyframes u10NucleusPulse{0%,100%{box-shadow:0 0 0 8px rgba(120,90,225,.1),0 0 23px #9a64ea88;transform:scale(1)}50%{box-shadow:0 0 0 13px rgba(120,90,225,.05),0 0 48px #9a64eaaa;transform:scale(1.07)}}
+@keyframes u10OrbitA{from{transform:rotate(28deg)}to{transform:rotate(388deg)}}
+@keyframes u10OrbitB{from{transform:rotate(-34deg)}to{transform:rotate(326deg)}}
+@keyframes u10ElementFloat{0%,100%{transform:translateY(0);border-color:#8d79bf77}50%{transform:translateY(-4px);border-color:#81dcf3b8}}
+@media(max-width:680px){.unit10Theme .u10Art{min-height:207px;padding:12px}.unit10Theme .u10AtomArea{height:112px}.unit10Theme .u10Nucleus{width:66px;height:66px;font-size:22px}.unit10Theme .u10Orbit{width:128px;height:75px}.unit10Theme .u10Orbit.orbitTwo{width:146px;height:80px}.unit10Theme .u10ArtEq{font-size:11px}.unit10Theme .unit6Extras{padding:15px}}
+@media(prefers-reduced-motion:reduce){.unit10Theme .u10Nucleus,.unit10Theme .u10Orbit,.unit10Theme .u10AtomicLine span{animation:none!important}}
+
+
+/* Color distinctions while retaining the original light Pathum journey design */
+.unit7Theme{--ux:#147e91;--uxb:#249fb1;--uxc:#a7e7f5}
+.unit7Theme>.hero{background:linear-gradient(130deg,#fff,#a7e7f535,#fff 80%)}
+.unit7Theme .learningBar i{background:linear-gradient(90deg,#147e91,#249fb1,#a7e7f5)}
+.unit7Theme .journeyChapterHead{background:linear-gradient(120deg,#222e49,#147e91,#249fb1)}
+.unit7Theme .journeyChapterNo{background:linear-gradient(135deg,#147e91,#249fb1)}
+.unit7Theme .journeyRunnerHtml{border-color:#147e91}
+.unit7Theme .journeyCenterDot{border-color:#147e91!important}
+.unit7Theme .journeyStep.activeStep .journeyTitle h3{color:#147e91}
+.unit7Theme .learningPct{color:#147e91}
+.unit7Theme .simpleJump button:not(.disabled){color:#147e91}
+.unit7Theme .u7Nucleus{background:linear-gradient(135deg,#147e91,#249fb1)}
+
+.unit8Theme{--ux:#b65335;--uxb:#d87b3e;--uxc:#ffe2a2}
+.unit8Theme>.hero{background:linear-gradient(130deg,#fff,#ffe2a235,#fff 80%)}
+.unit8Theme .learningBar i{background:linear-gradient(90deg,#b65335,#d87b3e,#ffe2a2)}
+.unit8Theme .journeyChapterHead{background:linear-gradient(120deg,#222e49,#b65335,#d87b3e)}
+.unit8Theme .journeyChapterNo{background:linear-gradient(135deg,#b65335,#d87b3e)}
+.unit8Theme .journeyRunnerHtml{border-color:#b65335}
+.unit8Theme .journeyCenterDot{border-color:#b65335!important}
+.unit8Theme .journeyStep.activeStep .journeyTitle h3{color:#b65335}
+.unit8Theme .learningPct{color:#b65335}
+.unit8Theme .simpleJump button:not(.disabled){color:#b65335}
+.unit8Theme .u8Nucleus{background:linear-gradient(135deg,#b65335,#d87b3e)}
+
+.unit9Theme{--ux:#276f66;--uxb:#34a98a;--uxc:#b7eadc}
+.unit9Theme>.hero{background:linear-gradient(130deg,#fff,#b7eadc35,#fff 80%)}
+.unit9Theme .learningBar i{background:linear-gradient(90deg,#276f66,#34a98a,#b7eadc)}
+.unit9Theme .journeyChapterHead{background:linear-gradient(120deg,#222e49,#276f66,#34a98a)}
+.unit9Theme .journeyChapterNo{background:linear-gradient(135deg,#276f66,#34a98a)}
+.unit9Theme .journeyRunnerHtml{border-color:#276f66}
+.unit9Theme .journeyCenterDot{border-color:#276f66!important}
+.unit9Theme .journeyStep.activeStep .journeyTitle h3{color:#276f66}
+.unit9Theme .learningPct{color:#276f66}
+.unit9Theme .simpleJump button:not(.disabled){color:#276f66}
+.unit9Theme .u9Nucleus{background:linear-gradient(135deg,#276f66,#34a98a)}
+
+.unit10Theme{--ux:#7952ab;--uxb:#a260b1;--uxc:#e7b6e7}
+.unit10Theme>.hero{background:linear-gradient(130deg,#fff,#e7b6e735,#fff 80%)}
+.unit10Theme .learningBar i{background:linear-gradient(90deg,#7952ab,#a260b1,#e7b6e7)}
+.unit10Theme .journeyChapterHead{background:linear-gradient(120deg,#222e49,#7952ab,#a260b1)}
+.unit10Theme .journeyChapterNo{background:linear-gradient(135deg,#7952ab,#a260b1)}
+.unit10Theme .journeyRunnerHtml{border-color:#7952ab}
+.unit10Theme .journeyCenterDot{border-color:#7952ab!important}
+.unit10Theme .journeyStep.activeStep .journeyTitle h3{color:#7952ab}
+.unit10Theme .learningPct{color:#7952ab}
+.unit10Theme .simpleJump button:not(.disabled){color:#7952ab}
+.unit10Theme .u10Nucleus{background:linear-gradient(135deg,#7952ab,#a260b1)}
