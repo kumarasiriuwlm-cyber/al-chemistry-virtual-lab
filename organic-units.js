@@ -17,8 +17,8 @@ const themes={7:["#8057c5","#b362cf","#39a6b6"],8:["#127c96","#23acb3","#e6a65a"
 const symbol={7:["C","OH","C","C","C","cis","C*"],8:["CH₄","Cl•","C=C","OH","C≡C","⌬","NO₂","o/p","Nu⁻"],9:["OH","H₂O","[O]","PhOH","C=O","Ag","COOH","COCl","COOR","CONH₂"],10:["NH₂","Nu","N:","N₂⁺","N=N"]};
 const lessonVideo={
 7:{2:["94UlRbsIs-M","කාබනික සංයෝග IUPAC නාමකරණය","DP Education - A/L සිංහල මාධ්‍යය"],3:["ZtOFcV8lt-E","IUPAC නාමකරණය: කාර්ය කාණ්ඩ ප්‍රමුඛතාව","DP Education - A/L සිංහල මාධ්‍යය"],5:["H6rrspr5nNA","කාබනික සමාවයවිකතාව","DP Education - A/L සිංහල මාධ්‍යය"]},
-8:{0:["TVaKT1EV3is","ඇල්කේන, ඇල්කීන සහ ඇල්කයින ව්‍යුහය","DP Education - A/L සිංහල මාධ්‍යය"]},
-9:{0:["sDlQhNFkDDg","ඇල්කොහොල්: ගුණ සහ ප්‍රතික්‍රියා","DP Education - A/L සිංහල මාධ්‍යය"],1:["SKXget9QJg8","ඇල්කොහොල් කාබනික පරිවර්තන","DP Education - A/L සිංහල මාධ්‍යය"]},
+8:{0:["TVaKT1EV3is","ඇල්කේන, ඇල්කීන සහ ඇල්කයින ව්‍යුහය","DP Education - A/L සිංහල මාධ්‍යය"],2:["Ms6qKZpjEJ0","ඇල්කීන ආකලන ප්‍රතික්‍රියා හා මාකොනිකොෆ් නීතිය","DP Education - A/L සිංහල මාධ්‍යය"],4:["PctI2lX4KbQ","ඇල්කයිනවල බ්‍රෝමීන්, HBr සහ ජල ආකලන","DP Education - A/L සිංහල මාධ්‍යය"],6:["XvM9f6aDjG4","බෙන්සීන්හි ඉලෙක්ට්‍රෝෆිලික ආදේශන හා නයිට්‍රොකරණය","DP Education - A/L සිංහල මාධ්‍යය"]},
+9:{0:["sDlQhNFkDDg","ඇල්කොහොල්: ගුණ සහ ප්‍රතික්‍රියා","DP Education - A/L සිංහල මාධ්‍යය"],1:["SKXget9QJg8","ඇල්කොහොල් කාබනික පරිවර්තන","DP Education - A/L සිංහල මාධ්‍යය"],4:["UZIOPjbcRZw","ඇල්ඩිහයිඩ හා කීටෝන: බ්‍රෙඩී ප්‍රතිකාරකය","DP Education - A/L සිංහල මාධ්‍යය"]},
 10:{0:["1DFjVl2F4rQ","නයිට්‍රජන් අන්තර්ගත කාබනික සංයෝග","Chemistry by Nilani Dias"]}
 };
 const realImages={
