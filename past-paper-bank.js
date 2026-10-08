@@ -120,15 +120,15 @@
   "unit": 6,
   "section": 1,
   "summary": {
-   "si": "II කාණ්ඩයේ කාබනේටවල තාප වියෝජනය සඳහා වැඩි ශක්තියක් අවශ්‍ය වන කාබනේටය තෝරන්න.",
-   "en": "Identify the Group 2 carbonate with greatest resistance to thermal decomposition.",
-   "ta": "தொகுதி 2 கார்பனேட்டுகளில் வெப்பச் சிதைவிற்கு அதிக ஆற்றல் தேவைப்படுவது எது?"
+   "si": "II කාණ්ඩයේ MCO₃ → MO + CO₂ තාප වියෝජනයට අඩුම වියෝජන උෂ්ණත්වය ඇති කාබනේටය හඳුනාගන්න.",
+   "en": "Identify which Group 2 carbonate decomposes at the lowest temperature.",
+   "ta": "தொகுதி 2 கார்பனேட்டுகளில் மிகக் குறைந்த வெப்பநிலையில் சிதைவது எது?"
   },
-  "correct": 5,
+  "correct": 1,
   "guide": {
-   "si": "BaCO₃ පහළ කාණ්ඩයේ වැඩිම තාප ස්ථායීතාව දක්වයි.",
-   "en": "BaCO3 is most thermally stable in the given group.",
-   "ta": "BaCO3 is most thermally stable in the given group."
+   "si": "BeCO₃ යනු ලැයිස්තුවේ අඩුම තාප ස්ථායීතාව ඇති කාබනේටයයි.",
+   "en": "BeCO3 has the lowest thermal stability among the listed carbonates.",
+   "ta": "BeCO₃ மிகக் குறைந்த வெப்ப நிலைத்தன்மை கொண்ட கார்பனேட்."
   },
   "pdf": "https://cdn.alevelapi.com/Prod/documents/2023/chemistry/2023-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
  },
