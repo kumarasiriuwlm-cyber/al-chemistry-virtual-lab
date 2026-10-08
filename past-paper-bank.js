@@ -1,7 +1,7 @@
 /* Pathum Chemistry: curated references verified visually against source PDFs.
  * Questions on this site are original-language summaries, NOT reprints.
  * Read exact original questions in the linked Department of Examinations PDFs.
- * Indexed years: 2021–2024 (selected questions); not a complete historical bank.
+ * Indexed years: 2010, 2015–2024 (selected questions); not a complete historical bank.
  */
 (function(){
  "use strict";
@@ -551,6 +551,300 @@
    "ta": "Show formation of NO2+, sigma complex and restoration of aromaticity."
   },
   "pdf": "https://cdn.alevelapi.com/Prod/documents/2023/chemistry/2023-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2020-mcq-5",
+  "year": 2020,
+  "type": "mcq",
+  "q": "5",
+  "page": 1,
+  "unit": 7,
+  "section": 3,
+  "summary": {
+   "si": "ඇල්කීන, කීටෝන, ඇල්කොහොල් සහ බ්‍රෝමෝ ආදේශක ඇති සංයෝගයක IUPAC නාමය හඳුනාගන්න.",
+   "en": "Name the compound with an alkene, ketone, alcohol and bromo substituent.",
+   "ta": "அல்கீன், கீட்டோன், ஆல்கஹால், புரோமோ குழுக்கள் உள்ள சேர்மத்துக்குப் பெயரிடுக."
+  },
+  "correct": 3,
+  "guide": {
+   "si": "1-bromo-5-hydroxy-4-methylpent-1-en-3-one යනු නිවැරදි නාමයයි.",
+   "en": "The ketone is the suffix: 1-bromo-5-hydroxy-4-methylpent-1-en-3-one.",
+   "ta": "The ketone is the suffix: 1-bromo-5-hydroxy-4-methylpent-1-en-3-one."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2020/chemistry/2020-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2020-structured-1(b)(i)",
+  "year": 2020,
+  "type": "structured",
+  "q": "1(b)(i)",
+  "page": 2,
+  "unit": 2,
+  "section": 0,
+  "summary": {
+   "si": "N₂O₃²⁻ අයනය සඳහා විධිමත් ලුවිස් තිත් ව්‍යුහයක් ඉදිරිපත් කරන්න.",
+   "en": "Construct a suitable Lewis dot structure for the N2O3²− ion.",
+   "ta": "N₂O₃²⁻ அயனிக்கான லூயிஸ் புள்ளி வடிவத்தை வரைக."
+  },
+  "correct": null,
+  "guide": {
+   "si": "නිවැරදි මුළු ඉලෙක්ට්‍රෝන ගණන සහ formal charge එකතුව −2 පරීක්ෂා කරන්න.",
+   "en": "Check valence-electron total and −2 overall formal charge.",
+   "ta": "Check valence-electron total and −2 overall formal charge."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2020/chemistry/2020-AL-CHEMISTRY-PART-II-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF-1.pdf"
+ },
+ {
+  "id": "2019-mcq-2",
+  "year": 2019,
+  "type": "mcq",
+  "q": "2",
+  "page": 1,
+  "unit": 1,
+  "section": 4,
+  "summary": {
+   "si": "ප්‍රධාන ක්වොන්ටම් අංකය n=3 වන කවචයේ උපරිම කාක්ෂික ගණන සොයන්න.",
+   "en": "Calculate the total number of orbitals in the n=3 shell.",
+   "ta": "n=3 ஓட்டில் உள்ள மொத்த ஆர்பிட்டல்களின் எண்ணிக்கையைக் கணக்கிடுக."
+  },
+  "correct": 5,
+  "guide": {
+   "si": "n²=9 කාක්ෂික; පිළිතුර (5).",
+   "en": "There are 9 orbitals, so answer (5).",
+   "ta": "There are 9 orbitals, so answer (5)."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2019/chemistry/2019-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2019-mcq-8",
+  "year": 2019,
+  "type": "mcq",
+  "q": "8",
+  "page": 2,
+  "unit": 3,
+  "section": 7,
+  "summary": {
+   "si": "TiCl₄ හා Mg ප්‍රතික්‍රියාවේ සීමාකාරකය හඳුනා Ti ලැබෙන ස්කන්ධය සොයන්න.",
+   "en": "Identify the limiting reactant and titanium yield from TiCl4 reacting with Mg.",
+   "ta": "TiCl₄ மற்றும் Mg வினையின் வரையறுக்கும் வினைபொருளையும் Ti நிறையையும் காண்க."
+  },
+  "correct": 2,
+  "guide": {
+   "si": "Mg සීමාකාරකය වේ; Ti 96 g ලැබේ.",
+   "en": "Mg is limiting; the Ti yield is 96 g.",
+   "ta": "Mg is limiting; the Ti yield is 96 g."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2019/chemistry/2019-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2019-structured-1(b)(i)",
+  "year": 2019,
+  "type": "structured",
+  "q": "1(b)(i)",
+  "page": 2,
+  "unit": 2,
+  "section": 0,
+  "summary": {
+   "si": "SO₃F₂ අණුව සඳහා ලුවිස් ඉලෙක්ට්‍රෝන තිත් ව්‍යුහය සකස් කරන්න.",
+   "en": "Construct a Lewis electron-dot structure for SO3F2.",
+   "ta": "SO₃F₂ மூலக்கூற்றின் லூயிஸ் புள்ளி கட்டமைப்பை வரைக."
+  },
+  "correct": null,
+  "guide": {
+   "si": "සම්පූර්ණ සංයුජතා ඉලෙක්ට්‍රෝන හා මධ්‍ය පරමාණුව අවට සම්බන්ධතාව පරීක්ෂා කරන්න.",
+   "en": "Balance valence electrons and formal charges around the central atom.",
+   "ta": "Balance valence electrons and formal charges around the central atom."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2019/chemistry/2019-AL-CHEMISTRY-PART-II-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF-1.pdf"
+ },
+ {
+  "id": "2018-mcq-1",
+  "year": 2018,
+  "type": "mcq",
+  "q": "1",
+  "page": 1,
+  "unit": 1,
+  "section": 5,
+  "summary": {
+   "si": "Co³⁺ අයනයේ යුගල නොවූ ඉලෙක්ට්‍රෝන ගණන සොයන්න.",
+   "en": "Determine the number of unpaired electrons in Co3+.",
+   "ta": "Co³⁺ அயனில் இணைக்கப்படாத எலக்ட்ரான்களின் எண்ணிக்கையைக் காண்க."
+  },
+  "correct": 4,
+  "guide": {
+   "si": "Co³⁺ හි 3d⁶ සඳහා Hund නියමය භාවිතයෙන් යුගල නොවූ ඉලෙක්ට්‍රෝන 4කි.",
+   "en": "Free-ion 3d6 has four unpaired electrons by Hund's rule.",
+   "ta": "Free-ion 3d6 has four unpaired electrons by Hund's rule."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2018/chemistry/2018-AL-CHEMISTRY-PART-I-PAPER-AlevelApi.-com-PDF.pdf"
+ },
+ {
+  "id": "2018-mcq-6",
+  "year": 2018,
+  "type": "mcq",
+  "q": "6",
+  "page": 1,
+  "unit": 3,
+  "section": 4,
+  "summary": {
+   "si": "ඝනත්වය 1.03 g cm⁻³ වූ 3% (m/m) NaI ද්‍රාවණයේ මවුලිකතාව සොයන්න.",
+   "en": "Find molarity of a 3% w/w NaI solution with density 1.03 g cm−3.",
+   "ta": "அடர்த்தி 1.03 g cm⁻³ உடைய 3% NaI கரைசலின் மோலாரிட்டியைக் காண்க."
+  },
+  "correct": 1,
+  "guide": {
+   "si": "ලීටරයක NaI 30.9 g / 150 g mol⁻¹ ≈ 0.21 mol dm⁻³.",
+   "en": "One litre contains 30.9 g NaI; concentration ≈ 0.21 mol dm−3.",
+   "ta": "One litre contains 30.9 g NaI; concentration ≈ 0.21 mol dm−3."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2018/chemistry/2018-AL-CHEMISTRY-PART-I-PAPER-AlevelApi.-com-PDF.pdf"
+ },
+ {
+  "id": "2018-structured-1(a)(v)",
+  "year": 2018,
+  "type": "structured",
+  "q": "1(a)(v)",
+  "page": 2,
+  "unit": 1,
+  "section": 4,
+  "summary": {
+   "si": "(n,l,mₗ)=(3,2,1) ක්වොන්ටම් අංක ඇති ඉලෙක්ට්‍රෝන උපරිම ගණන සොයන්න.",
+   "en": "Determine the maximum electron count for quantum numbers (n,l,ml)=(3,2,1).",
+   "ta": "(n,l,ml)=(3,2,1) உடைய எலக்ட்ரான்களின் அதிகபட்ச எண்ணிக்கையைக் காண்க."
+  },
+  "correct": null,
+  "guide": {
+   "si": "mₛ = ±½ නිසා එම කාක්ෂිකයට උපරිම ඉලෙක්ට්‍රෝන 2කි.",
+   "en": "With two possible spins, that orbital holds at most two electrons.",
+   "ta": "With two possible spins, that orbital holds at most two electrons."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2018/chemistry/2018-AL-CHEMISTRY-PART-II-AlevelApi.-com-PDF.pdf"
+ },
+ {
+  "id": "2017-mcq-4",
+  "year": 2017,
+  "type": "mcq",
+  "q": "4",
+  "page": 1,
+  "unit": 3,
+  "section": 0,
+  "summary": {
+   "si": "නයිට්‍රජන්හි ඔක්සිකරණ අංකය −1 වන සංයෝගය තෝරන්න.",
+   "en": "Choose the species in which nitrogen has oxidation state −1.",
+   "ta": "நைட்ரஜனின் ஆக்சிஜனேற்ற எண் −1 ஆக உள்ள சேர்மத்தைத் தேர்ந்தெடுக்கவும்."
+  },
+  "correct": 5,
+  "guide": {
+   "si": "NH₂OH හි N ඔක්සිකරණ අංකය −1 ය.",
+   "en": "Nitrogen has oxidation state −1 in NH2OH.",
+   "ta": "Nitrogen has oxidation state −1 in NH2OH."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2017/chemistry/2017-AL-CHEMISTRY-PART-I-AlevelApi.-com-PDF.pdf"
+ },
+ {
+  "id": "2017-structured-1(a)(i)(II)",
+  "year": 2017,
+  "type": "structured",
+  "q": "1(a)(i)(II)",
+  "page": 2,
+  "unit": 2,
+  "section": 0,
+  "summary": {
+   "si": "SOF₂ අණුවේ S හි formal charge එක ලුවිස් ව්‍යුහය භාවිතයෙන් තීරණය කරන්න.",
+   "en": "Evaluate the formal charge on sulfur in SOF2 using Lewis structure.",
+   "ta": "SOF₂ இல் கந்தகத்தின் formal charge ஐக் கணக்கிடுக."
+  },
+  "correct": null,
+  "guide": {
+   "si": "Formal charge = valence − lone-pair electrons − ½(bonding electrons).",
+   "en": "Use formal charge = valence − nonbonding − half bonding electrons.",
+   "ta": "Use formal charge = valence − nonbonding − half bonding electrons."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2017/chemistry/2017-AL-CHEMISTRY-PART-II-AlevelApi.-com-PDF.pdf"
+ },
+ {
+  "id": "2016-mcq-1",
+  "year": 2016,
+  "type": "mcq",
+  "q": "1",
+  "page": 1,
+  "unit": 1,
+  "section": 2,
+  "summary": {
+   "si": "තරංග දිග 4.42×10⁻⁷ m වූ හයිඩ්‍රජන් විමෝචන ෆෝටෝනයේ ශක්තිය kJ වලින් ගණනය කරන්න.",
+   "en": "Find photon energy in kJ for hydrogen radiation of wavelength 4.42×10−7 m.",
+   "ta": "4.42×10⁻⁷ m ஹைட்ரஜன் கதிர்வீச்சின் ஃபோட்டான் ஆற்றலை kJ இல் கணக்கிடுக."
+  },
+  "correct": 4,
+  "guide": {
+   "si": "hc/λ ≈ 4.5×10⁻²² kJ; පිළිතුර (4).",
+   "en": "E=hc/λ ≈ 4.5×10−22 kJ.",
+   "ta": "E=hc/λ ≈ 4.5×10−22 kJ."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2016/chemistry/2016-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2015-mcq-6",
+  "year": 2015,
+  "type": "mcq",
+  "q": "6",
+  "page": 1,
+  "unit": 3,
+  "section": 7,
+  "summary": {
+   "si": "MgCO₃ හා CaCO₃ 5:1 මවුල අනුපාතයක මිශ්‍රණයක් තාප වියෝජනය කර CO₂ 134.4 dm³ ලබාදේ නම් මිශ්‍රණයේ ස්කන්ධය සොයන්න.",
+   "en": "Determine mass of a 5:1 MgCO3/CaCO3 mixture releasing 134.4 dm3 CO2 at stated conditions.",
+   "ta": "MgCO₃/CaCO₃ 5:1 கலவை சிதைவில் 134.4 dm³ CO₂ தருமாயின் கலவை நிறையை காண்க."
+  },
+  "correct": 2,
+  "guide": {
+   "si": "CO₂ 6 mol; MgCO₃ 5 mol + CaCO₃ 1 mol = 520 g.",
+   "en": "Six moles CO2 correspond to 5 mol MgCO3 + 1 mol CaCO3, mass 520 g.",
+   "ta": "Six moles CO2 correspond to 5 mol MgCO3 + 1 mol CaCO3, mass 520 g."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2015/chemistry/2015-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2010-mcq-2",
+  "year": 2010,
+  "type": "mcq",
+  "q": "2",
+  "page": 1,
+  "unit": 7,
+  "section": 3,
+  "summary": {
+   "si": "බහු-ආදේශිත අසංතෘප්ත කාබොක්සිලික් අම්ලයට නිවැරදි IUPAC නාමය තෝරන්න (පැරණි විෂය නිර්දේශයේ ප්‍රශ්නයක්).",
+   "en": "Name the substituted unsaturated carboxylic acid (older syllabus paper).",
+   "ta": "பழைய பாடத்திட்ட வினாவில் உள்ள மாற்றமுள்ள கார்பாக்சிலிக் அமிலத்திற்கு பெயரிடுக."
+  },
+  "correct": 4,
+  "guide": {
+   "si": "2,3-dimethylhex-4-enoic acid; පිළිතුර (4).",
+   "en": "Correct systematic name: 2,3-dimethylhex-4-enoic acid.",
+   "ta": "Correct systematic name: 2,3-dimethylhex-4-enoic acid."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2010/chemistry/2010-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
+ },
+ {
+  "id": "2010-mcq-6",
+  "year": 2010,
+  "type": "mcq",
+  "q": "6",
+  "page": 1,
+  "unit": 8,
+  "section": 7,
+  "summary": {
+   "si": "බෙන්සීන්, ක්ලෝරෝබෙන්සීන්, ෆීනෝල් හා ටොලුවීන්හි විද්‍යුත්කාමී ආදේශන ක්‍රියාශීලීතාව සංසන්දනය කරන්න (පැරණි නිර්දේශය).",
+   "en": "Compare electrophilic substitution reactivity of benzene, chlorobenzene, phenol and toluene (older syllabus).",
+   "ta": "பென்சீன், குளோரோபென்சீன், பீனால், டோலுயீன் வினைத்திறனை ஒப்பிடுக."
+  },
+  "correct": 4,
+  "guide": {
+   "si": "ක්ලෝරෝබෙන්සීන් < බෙන්සීන් < ටොලුවීන් < ෆීනෝල්.",
+   "en": "chlorobenzene < benzene < toluene < phenol.",
+   "ta": "chlorobenzene < benzene < toluene < phenol."
+  },
+  "pdf": "https://cdn.alevelapi.com/Prod/documents/2010/chemistry/2010-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
  }
 ];
  const labels={
@@ -580,7 +874,7 @@
   const type=p.get('type')||'all',year=p.get('year')||'all',funit=p.get('unit')||'all';
   if(all){if(type!=='all')list=list.filter(q=>q.type===type);if(year!=='all')list=list.filter(q=>String(q.year)===year);if(funit!=='all')list=list.filter(q=>String(q.unit)===funit);}
   list.sort((a,b)=>b.year-a.year||(a.type==='mcq'?-1:b.type==='mcq'?1:0)||parseInt(a.q)-parseInt(b.q));
-  const yearOptions=['all',2024,2023,2022,2021].map(v=>'<option value="'+v+'" '+(String(v)===year?'selected':'')+'>'+(v==='all'?l.all:v)+'</option>').join('');
+  const yearOptions=['all'].concat([...new Set(entries.map(e=>e.year))].sort((x,y)=>y-x)).map(v=>'<option value="'+v+'" '+(String(v)===year?'selected':'')+'>'+(v==='all'?l.all:v)+'</option>').join('');
   const unitOptions=['all',1,2,3,4,5,6,7,8,9,10].map(v=>'<option value="'+v+'" '+(String(v)===funit?'selected':'')+'>'+(v==='all'?l.all:l.unit+' '+v)+'</option>').join('');
   const filters=all?'<div class="pastFilters"><label>'+l.type+'<select data-real-filter="type">'+['all','mcq','structured','essay'].map(v=>'<option value="'+v+'" '+(v===type?'selected':'')+'>'+l[v]+'</option>').join('')+'</select></label><label>'+l.year+'<select data-real-filter="year">'+yearOptions+'</select></label><label>'+l.unit+'<select data-real-filter="unit">'+unitOptions+'</select></label></div>':'';
   const back=!all&&unit?'<a class="pathumBack" href="#unit'+unit+'?review='+section+'">'+l.back+'</a>':'';
