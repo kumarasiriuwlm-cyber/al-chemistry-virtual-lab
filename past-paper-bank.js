@@ -906,7 +906,7 @@
   const question='<div class="pastTask">'+escape(e.summary[lang]||e.summary.en)+'</div>';
   const quiz=e.type==="mcq"?'<div class="pastChoiceTitle">'+l.choice+'</div><div class="pastOptions">'+[1,2,3,4,5].map(n=>'<button type="button" class="pastSelect" data-real-choice="'+n+'" data-real-answer="'+e.correct+'" aria-label="Answer '+n+'">'+n+'</button>').join('')+'</div><div class="pastOutcome" role="status" aria-live="polite"></div>':
   '<textarea class="pastWrite" rows="4" placeholder="'+l.answer+'"></textarea><details class="pastHint"><summary>'+l.show+'</summary><p>'+escape(e.guide[lang]||e.guide.en)+'</p></details>';
-  return '<article class="pastRecord" data-real-entry="'+escape(e.id)+'"><div class="pastMeta">'+context+'</div>'+question+'<p class="pastNote">'+l.preview+'</p><a class="pastPdf" target="_blank" rel="noopener noreferrer" href="'+escape(src)+'">📄 '+l.open+'</a>'+quiz+(e.type==="mcq"?'<details class="pastHint"><summary>'+l.show+'</summary><p>'+escape(e.guide[lang]||e.guide.en)+'</p></details>':'')+'</article>';
+  return '<article class="pastRecord" data-real-entry="'+escape(e.id)+'"><div class="pastMeta">'+context+'</div>'+question+'<p class="pastNote">'+l.preview+'</p><div class="pastSourceActions"><a class="pastPdf" target="_blank" rel="noopener noreferrer" href="'+escape(src)+'">📄 '+l.open+'</a><button type="button" class="pastInlineToggle" aria-expanded="false" data-real-view-pdf="'+escape(src)+'">'+(lang==="si"?"📖 මුල් ප්‍රශ්නය මෙතැන පෙන්වන්න":lang==="ta"?"📖 அசல் வினாவை இங்கே பார்க்க":"📖 Show original paper here")+'</button></div><div class="pastFrameHolder" hidden></div>'+quiz+(e.type==="mcq"?'<details class="pastHint"><summary>'+l.show+'</summary><p>'+escape(e.guide[lang]||e.guide.en)+'</p></details>':'')+'</article>';
  }).join('');
  }
  function render(args){
@@ -929,6 +929,13 @@
    const correct=Number(b.dataset.realAnswer),picked=Number(b.dataset.realChoice);
    card.querySelectorAll('[data-real-choice]').forEach(x=>{x.disabled=true;if(Number(x.dataset.realChoice)===correct)x.classList.add('right');else if(x===b)x.classList.add('wrong')});
    const o=card.querySelector('.pastOutcome');if(o){o.classList.add('visible');o.textContent=picked===correct?'✓ '+l.correct:'✕ '+l.incorrect+': '+correct;}
+  }});
+  document.querySelectorAll('[data-real-view-pdf]').forEach(btn=>{btn.onclick=function(){
+   const card=btn.closest('.pastRecord'),holder=card&&card.querySelector('.pastFrameHolder');if(!holder)return;
+   if(holder.hidden){
+     if(!holder.firstChild){const iframe=document.createElement('iframe');iframe.title=lang==="si"?"මුල් විභාග ප්‍රශ්න පත්‍රය":"Original exam paper";iframe.loading="lazy";iframe.referrerPolicy="no-referrer";iframe.src=btn.dataset.realViewPdf;holder.appendChild(iframe)}
+     holder.hidden=false;btn.setAttribute('aria-expanded','true');btn.textContent=lang==="si"?"▲ මුල් පත්‍රය සඟවන්න":lang==="ta"?"▲ மறைக்க":"▲ Hide original paper";
+   }else{holder.hidden=true;btn.setAttribute('aria-expanded','false');btn.textContent=lang==="si"?"📖 මුල් ප්‍රශ්නය මෙතැන පෙන්වන්න":lang==="ta"?"📖 அசல் வினாவை இங்கே பார்க்க":"📖 Show original paper here";}
   }});
   document.querySelectorAll('[data-real-filter]').forEach(sel=>{sel.onchange=function(){
    const p=new URLSearchParams((location.hash.split('?')[1]||'').replace(/&amp;/g,'&'));p.set('papers','1');p.set(sel.dataset.realFilter,sel.value);location.hash='exam?'+p.toString();
