@@ -46,13 +46,13 @@ body:after{content:"";position:fixed;inset:0;z-index:-6;pointer-events:none;back
 @media(prefers-reduced-motion:reduce){body:before,.scrollCue i,.loaderRing{animation:none}.stageList,.connector,.connectorDot,.practicalName{transition:none}}
 </style>
 </head>
-<body>
+<body class="flask-off">
 <div class="progress"><i id="progressBar"></i></div>
 <div class="loader" id="loader"><div class="loaderBox"><div class="loaderRing"></div><strong>3D FLASK LOADING</strong><span>ප්‍රායෝගික දර්ශනය සකස් කරමින්…</span></div></div>
 <a class="back" href="../#lab">← ආපසු</a>
 <div class="stageCounter" id="stageCounter">01 / 05</div><button type="button" class="flaskToggle" id="flaskToggle" aria-pressed="false">FLASK OFF</button>
 <span id="statusText"></span>
-<div id="threeRoot" aria-label="Interactive 3D Erlenmeyer flask"></div><div class="vignette"></div>
+<div id="threeRoot" style="opacity:0;pointer-events:none" aria-label="Interactive 3D Erlenmeyer flask"></div><div class="vignette"></div>
 <main>
 <section class="hero"><div class="heroInner"><small>A/L රසායන විද්‍යාව</small><h1>PRACTICALS</h1><p>ප්‍රායෝගික 45 ක් කොටස් පහකට සංවිධානය කර ඇත. එකම දිගු scroll journey එකක් තුළ 3D flask එක විවිධ දර්ශනවලට මාරු වෙමින් එක් එක් practical කණ්ඩායම පැහැදිලිව හඳුන්වා දෙයි. අවශ්‍ය practical එක තෝරා එයට පිවිසෙන්න.</p><div class="scrollCue"><i></i>ප්‍රායෝගික ලැයිස්තුව බලන්න</div></div></section>
 <div id="stages"></div>
@@ -82,6 +82,8 @@ const flaskToggle=document.getElementById('flaskToggle');let flaskVisible=false;
 function setFlaskVisible(on){
  flaskVisible=!!on;
  document.body.classList.toggle('flask-off',!flaskVisible);
+ document.getElementById('threeRoot')?.style.setProperty('opacity',flaskVisible?'1':'0');
+ document.getElementById('threeRoot')?.style.setProperty('pointer-events',flaskVisible?'auto':'none');
  if(flaskToggle){flaskToggle.setAttribute('aria-pressed',String(flaskVisible));flaskToggle.textContent=flaskVisible?'FLASK ON':'FLASK OFF'}
 }
 if(flaskToggle)flaskToggle.addEventListener('click',()=>setFlaskVisible(!flaskVisible));
