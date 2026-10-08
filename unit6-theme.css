@@ -1,0 +1,80 @@
+/* Unit 06 — coherent with the original Unit 04/05 light scroll-journey system.
+   Different identity: amethyst, deep indigo and turquoise (not a new dark-site layout). */
+.unit6Theme{--ux:#7750b9;--uxb:#4275c9;--uxc:#2ab5b5}
+.unit6Theme>.hero{background:linear-gradient(135deg,#f1eafd,#fbfaff 58%,#e7fafa);border-color:#d9c5f0}
+.unit6Theme>.hero .kicker,.unit6Theme>.hero h1{color:#654093}
+.unit6Theme>.hero p{color:#5e647e}
+.unit6Theme .learningProgress{border-color:#dbcef2;background:linear-gradient(130deg,#fff,#f8f3ff 55%,#f1ffff)}
+.unit6Theme .learningBar i{background:linear-gradient(90deg,#8550c5,#557bd4,#2ab5bb)}
+.unit6Theme .learningPct{color:#7546b2}
+.unit6Theme .simpleJump button:not(.disabled){border-color:#dfd0f2;color:#7343a8;background:#fcfaff}
+.unit6Theme .simpleJump button.done{background:#eee7ff;border-color:#bdb1ef}
+.unit6Theme .journeyChapter{border-color:#dcd5ed;box-shadow:0 18px 58px rgba(54,31,115,.075)}
+.unit6Theme .journeyChapter.inViewChapter{border-color:#bca3ec;box-shadow:0 24px 70px rgba(74,41,160,.13)}
+.unit6Theme .journeyChapterHead{background:linear-gradient(115deg,#30204d,#6241a3 64%,#3778a7)}
+.unit6Theme .journeyChapterNo{background:linear-gradient(145deg,#8d57d5,#39aabb)}
+.unit6Theme .journeyChapterDivider{color:#7146a5}
+.unit6Theme .journeyCurveBase{stroke:#e5dff0}
+.unit6Theme .journeyCurveGhost{stroke:#b8a6d4}
+.unit6Theme .journeyRunnerHtml{border-color:#7750b9;box-shadow:0 0 0 7px rgba(119,80,185,.12),0 0 24px rgba(75,102,203,.3)}
+.unit6Theme .journeyRunnerHtml:after{border-color:rgba(42,181,187,.38)}
+.unit6Theme .journeyCenterDot{border-color:#7750b9!important;box-shadow:0 0 0 6px rgba(119,80,185,.1)!important}
+.unit6Theme .journeyStep.activeStep .journeyTitle h3{color:#7241ae}
+.unit6Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#a17ce0,#57beca)}
+.unit6Theme .journeyTitle h3{color:#382c60}
+.unit6Theme .journeyCard{border-color:#dcd6f2;background:linear-gradient(145deg,#fff,#faf8ff)}
+.unit6Theme .journeyCopy{color:#35506b}
+.unit6Theme .formulaChip{border-color:#dccff1;background:#f9f5ff;color:#623d9c}
+.unit6Theme .examMini{border-color:#dcd0f0;background:#fcfaff}
+.unit6Theme .examMini summary{color:#6344a0}
+.unit6Theme .checkpointJourney:before{background:linear-gradient(180deg,#e3dcf1 0%,#8154bf 40%,#40b9bd 100%)}
+.unit6Theme .checkpointPulse{background:#8854cb;box-shadow:0 0 0 6px rgba(136,84,203,.1),0 0 22px rgba(100,74,185,.25)}
+.unit6Theme .checkpointNode{border-color:#8e5fc7}
+.unit6Theme .masteryGate{border-color:#d3c1ea;background:linear-gradient(145deg,#fff,#f8f4ff)}
+.unit6Theme .masteryGateHead{background:linear-gradient(120deg,#47306d,#6c4fb4)}
+.unit6Theme .gateCard3D{border-color:#d2bee9;background:radial-gradient(circle at 70% 5%,#d5f7ff,transparent 60%),linear-gradient(155deg,#fff,#faf6ff)}
+.unit6Theme .gateOpt:hover,.unit6Theme .gateOpt.selected{border-color:#9477cd;background:#f5efff}
+.unit6Theme .gateScoreRing{background:conic-gradient(#8061c9 var(--score),#e7dbf4 0)}
+.unit6Theme .gateBadge{border-color:#d2b3fb;color:#f7eaff}
+.unit6Theme .unitVideoSection{border-color:#ded0ec}
+.unit6Theme .unitVideoCard{border-color:#dcd2ec}
+.unit6Theme .unitDeepStudy{border-color:#d9c8f0;background:linear-gradient(135deg,#fff,#faf8ff)}
+.unit6Theme .unitDeepHead b{color:#67419f}
+.unit6Theme .unitDeepCard{border-color:#e4dcf4}
+.unit6Theme .unitDeepCard.focus{background:linear-gradient(150deg,#f7f0ff,#effafd)}
+.unit6Theme .journeyEnd{color:#6a4cac}
+.unit6Theme .journeyContinueLabel{color:#705aa1}
+.unit6Theme .properConceptVisual{border-color:#d7cbed}
+.unit6Theme .properConceptCaption{background:#fcfaff}
+.unit6Theme .summaryGuide{border-color:#d7c9ed;background:#fcf9ff}
+.unit6Theme .summaryGuide strong{color:#60459a}
+.unit6Theme .summaryGuide p{color:#5c6681}
+.unit6Theme .unit6Safety{margin:20px 0;padding:13px 18px;border:1px solid #edceaf;border-radius:14px;background:#fffaf2;color:#845b34;font-size:13px}
+.unit6Theme .unit6Extras{margin:22px 0;border:1px solid #ded1ef;border-radius:18px;background:#fff;padding:20px 24px}
+.unit6Theme .unit6Extras h3{color:#644397;margin:5px 0 15px}
+.unit6Theme .unit6Extras details{padding:12px 4px;border-bottom:1px solid #e8e1f4}
+.unit6Theme .unit6Extras details:last-child{border-bottom:0}
+.unit6Theme .unit6Extras summary{cursor:pointer;font-weight:720;color:#4c5073}
+.unit6Theme .unit6Extras p{color:#5b6675;line-height:1.85;font-size:14px}
+.unit6Theme .u6Art{position:relative;min-height:250px;overflow:hidden;border:1px solid #b7a8eb;border-radius:18px;padding:17px 14px 18px;background:radial-gradient(circle at 15% 10%,rgba(141,97,228,.22),transparent 37%),radial-gradient(circle at 90% 85%,rgba(69,208,214,.21),transparent 42%),linear-gradient(145deg,#130f33,#202d51);color:#e8e5ff;isolation:isolate}
+.unit6Theme .u6Art:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(169,149,255,.055) 1px,transparent 1px),linear-gradient(rgba(169,149,255,.055) 1px,transparent 1px);background-size:24px 24px}
+.unit6Theme .u6ArtTitle{font:800 10px/1.4 system-ui;letter-spacing:.14em;text-transform:uppercase;color:#99ebf3;position:relative;z-index:2;text-align:center}
+.unit6Theme .u6AtomArea{position:relative;height:138px;display:flex;align-items:center;justify-content:center}
+.unit6Theme .u6Nucleus{display:grid;place-items:center;border-radius:22px;width:79px;height:79px;z-index:3;background:linear-gradient(140deg,#9155e1,#486acc);color:#fff;box-shadow:0 0 0 8px rgba(120,90,225,.09),0 0 40px #9a64ea99;font:900 27px system-ui;letter-spacing:-.045em;animation:u6NucleusPulse 3s ease-in-out infinite}
+.unit6Theme .u6Orbit{position:absolute;width:158px;height:88px;border:1.6px solid rgba(110,230,248,.65);border-radius:50%;transform:rotate(28deg);animation:u6OrbitA 6s linear infinite}
+.unit6Theme .u6Orbit:after{content:"";position:absolute;top:-6px;left:50%;width:10px;height:10px;background:#69f3ed;border-radius:50%;box-shadow:0 0 16px #58dcee;transform:translateX(-50%)}
+.unit6Theme .u6Orbit.orbitTwo{width:170px;height:93px;transform:rotate(-34deg);border-color:#bb91fa;animation:u6OrbitB 8s linear infinite reverse}
+.unit6Theme .u6Orbit.orbitTwo:after{background:#fa91e8;box-shadow:0 0 15px #ed93ed}
+.unit6Theme .u6ArtEq{font-size:12px;line-height:1.65;text-align:center;min-height:26px;border:1px solid rgba(146,207,248,.25);border-radius:10px;background:rgba(8,17,43,.5);padding:9px 8px;color:#c5fcff;position:relative;z-index:2;font-weight:700;overflow-wrap:anywhere}
+.unit6Theme .u6AtomicLine{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin:1px auto 7px;position:relative}
+.unit6Theme .u6AtomicLine span{display:inline-grid;place-items:center;min-width:27px;padding:5px 6px;border-radius:7px;border:1px solid #8d79bf77;font-size:11px;font-weight:800;color:#d2caff;animation:u6ElementFloat 2.8s ease-in-out infinite}
+.unit6Theme .u6AtomicLine span:nth-child(2n){animation-delay:-1.3s}
+.unit6Theme .u6AtomicLine span:nth-child(3n){animation-delay:-2s}
+.unit6Theme .u6AtomCaption{display:block;margin:3px 0 10px;text-align:center;color:#a0bdfc;font:700 10px system-ui;letter-spacing:.1em}
+.unit6Theme .properConceptVisual .properImageLink img{object-fit:contain;background:linear-gradient(130deg,#f2f1fb,#fff)}
+@keyframes u6NucleusPulse{0%,100%{box-shadow:0 0 0 8px rgba(120,90,225,.1),0 0 23px #9a64ea88;transform:scale(1)}50%{box-shadow:0 0 0 13px rgba(120,90,225,.05),0 0 48px #9a64eaaa;transform:scale(1.07)}}
+@keyframes u6OrbitA{from{transform:rotate(28deg)}to{transform:rotate(388deg)}}
+@keyframes u6OrbitB{from{transform:rotate(-34deg)}to{transform:rotate(326deg)}}
+@keyframes u6ElementFloat{0%,100%{transform:translateY(0);border-color:#8d79bf77}50%{transform:translateY(-4px);border-color:#81dcf3b8}}
+@media(max-width:680px){.unit6Theme .u6Art{min-height:207px;padding:12px}.unit6Theme .u6AtomArea{height:112px}.unit6Theme .u6Nucleus{width:66px;height:66px;font-size:22px}.unit6Theme .u6Orbit{width:128px;height:75px}.unit6Theme .u6Orbit.orbitTwo{width:146px;height:80px}.unit6Theme .u6ArtEq{font-size:11px}.unit6Theme .unit6Extras{padding:15px}}
+@media(prefers-reduced-motion:reduce){.unit6Theme .u6Nucleus,.unit6Theme .u6Orbit,.unit6Theme .u6AtomicLine span{animation:none!important}}
