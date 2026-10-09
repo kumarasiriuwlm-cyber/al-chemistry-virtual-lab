@@ -1,0 +1,61 @@
+name: Publish 2017 Chemistry question images
+
+on:
+  push:
+    paths:
+      - 'scripts/build_2017_questions.py'
+      - '.github/workflows/build-2017-questions.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chemistry-crops-2017
+  cancel-in-progress: false
+
+jobs:
+  generate-crops:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF renderer and image support
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+      - name: Export 2017 Part I and Part II questions
+        run: python scripts/build_2017_questions.py
+      - name: Validate all images
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          folder=Path("past-papers/2017")
+          qs=json.loads((folder/"questions.json").read_text(encoding="utf-8"))
+          assert len(qs)==60
+          assert sum(x["part"]=="I" for x in qs)==50
+          assert sum(x["part"]=="II" for x in qs)==10
+          assert sum(x["type"]=="structured_essay" for x in qs)==4
+          for x in qs:
+              image=Path(x["image"])
+              assert image.is_file(),str(image)
+              with Image.open(image) as im:
+                  assert im.width>=850 and im.height>=38,(str(image),im.size)
+          print("PASS: 50 MCQ + 4 structured + 6 essay crops")
+          PY
+      - name: Commit generated images for GitHub Pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add past-papers/2017/
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish 60 cropped 2017 Chemistry questions"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "2017 questions already published."
+          fi
