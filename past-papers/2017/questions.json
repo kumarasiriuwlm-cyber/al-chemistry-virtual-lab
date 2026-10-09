@@ -306,6 +306,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q31.webp",
     "pdf_pages": [
+      6,
       6
     ]
   },
@@ -316,6 +317,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q32.webp",
     "pdf_pages": [
+      6,
       6
     ]
   },
@@ -326,6 +328,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q33.webp",
     "pdf_pages": [
+      6,
       6
     ]
   },
@@ -336,6 +339,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q34.webp",
     "pdf_pages": [
+      6,
       6
     ]
   },
@@ -346,6 +350,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q35.webp",
     "pdf_pages": [
+      6,
       6
     ]
   },
@@ -356,6 +361,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q36.webp",
     "pdf_pages": [
+      6,
       6
     ]
   },
@@ -366,6 +372,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q37.webp",
     "pdf_pages": [
+      6,
       7
     ]
   },
@@ -376,6 +383,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q38.webp",
     "pdf_pages": [
+      6,
       7
     ]
   },
@@ -386,6 +394,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q39.webp",
     "pdf_pages": [
+      6,
       7
     ]
   },
@@ -396,6 +405,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q40.webp",
     "pdf_pages": [
+      6,
       7
     ]
   },
@@ -406,6 +416,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q41.webp",
     "pdf_pages": [
+      7,
       7
     ]
   },
@@ -416,6 +427,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q42.webp",
     "pdf_pages": [
+      7,
       7
     ]
   },
@@ -426,6 +438,7 @@
     "type": "mcq",
     "image": "past-papers/2017/I/q43.webp",
     "pdf_pages": [
+      7,
       7
     ]
   },
@@ -513,8 +526,8 @@
     "type": "structured_essay",
     "image": "past-papers/2017/II/q01.webp",
     "pdf_pages": [
-      2,
-      3
+      10,
+      11
     ]
   },
   {
@@ -524,8 +537,8 @@
     "type": "structured_essay",
     "image": "past-papers/2017/II/q02.webp",
     "pdf_pages": [
-      4,
-      5
+      12,
+      13
     ]
   },
   {
@@ -535,9 +548,9 @@
     "type": "structured_essay",
     "image": "past-papers/2017/II/q03.webp",
     "pdf_pages": [
-      5,
-      6,
-      7
+      13,
+      14,
+      15
     ]
   },
   {
@@ -547,8 +560,8 @@
     "type": "structured_essay",
     "image": "past-papers/2017/II/q04.webp",
     "pdf_pages": [
-      7,
-      8
+      15,
+      16
     ]
   },
   {
@@ -558,7 +571,7 @@
     "type": "essay",
     "image": "past-papers/2017/II/q05.webp",
     "pdf_pages": [
-      9
+      17
     ]
   },
   {
@@ -568,7 +581,7 @@
     "type": "essay",
     "image": "past-papers/2017/II/q06.webp",
     "pdf_pages": [
-      10
+      18
     ]
   },
   {
@@ -578,7 +591,7 @@
     "type": "essay",
     "image": "past-papers/2017/II/q07.webp",
     "pdf_pages": [
-      11
+      19
     ]
   },
   {
@@ -588,8 +601,8 @@
     "type": "essay",
     "image": "past-papers/2017/II/q08.webp",
     "pdf_pages": [
-      11,
-      12
+      19,
+      20
     ]
   },
   {
@@ -599,7 +612,7 @@
     "type": "essay",
     "image": "past-papers/2017/II/q09.webp",
     "pdf_pages": [
-      13
+      21
     ]
   },
   {
@@ -609,8 +622,8 @@
     "type": "essay",
     "image": "past-papers/2017/II/q10.webp",
     "pdf_pages": [
-      13,
-      14
+      21,
+      22
     ]
   }
 ]
