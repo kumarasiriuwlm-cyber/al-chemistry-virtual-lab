@@ -37,7 +37,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
   <div class="container">
     <div class="top"><strong>රසායන විද්‍යා අතථ්‍ය විද්‍යාගාරය</strong><a href="./index.html#exam">← විභාග පුහුණුවට</a></div>
     <h1>2019 උසස් පෙළ රසායන විද්‍යා ප්‍රශ්න</h1>
-    <p>2019 විභාගයේ එක් එක් ප්‍රශ්නය මුල් පත්‍රයෙන් වෙනම කපා ඇත. ප්‍රශ්නයක් තේරූ විට නව ටැබයක එය විවෘත වේ.</p>
+    <p>2019 සිංහල ප්‍රශ්න සහ ලකුණු දීමේ පටිපාටියෙන් එක් එක් ප්‍රශ්නය වෙන් කර ඇත. ප්‍රශ්නයක් තෝරා බැලිය හැක.</p>
   </div>
 </header>
 <main class="container">
@@ -46,6 +46,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
     <button type="button" class="tab" data-part="I" role="tab" aria-controls="part-I" aria-selected="true">I පත්‍රය • MCQ (50)</button>
     <button type="button" class="tab" data-part="II" role="tab" aria-controls="part-II" aria-selected="false">II පත්‍රය • රචනා (10)</button>
   </nav>
+  <p id="paperII-warning" class="intro" hidden><strong>වැදගත්:</strong> මෙම PDF ගොනුව ලකුණු දීමේ පටිපාටියයි. II පත්‍රයේ ප්‍රශ්න සමඟ පිළිතුරු හා ලකුණු දීමේ සටහන් ද දැක්වෙයි.</p>
   <section id="part-I" class="grid" aria-label="2019 MCQ"></section>
   <section id="part-II" class="grid" aria-label="2019 ව්‍යුහගත සහ රචනා ප්‍රශ්න" hidden></section>
   <footer>මෙහි ප්‍රශ්න රූප පමණක් අඩංගු වේ. ගුරු මාර්ගෝපදේශය අනුව වර්ගීකරණය පසුව එක් කරනු ලැබේ. <a href="./index.html#exam">සම්පූර්ණ ප්‍රශ්න පත්‍ර සහ විභාග පුහුණුවට ආපසු යන්න</a>.</footer>
@@ -55,7 +56,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
   "use strict";
   function card(part,number){
     var pad=String(number).padStart(2,"0");
-    var path="./past-papers/2019/"+part+"/q"+pad+".webp"+(part==="I"?"?v=2019-mcq-verified-20261009":"");
+    var path="./past-papers/2019/"+part+"/q"+pad+".webp"+"?v=2019-sinhala-uploaded-20261009c";
     var kind=part==="I"?"බහුවරණ":number<=4?"ව්‍යුහගත රචනා":"රචනා";
     return '<a class="question" href="'+path+'" target="_blank" rel="noopener noreferrer" aria-label="2019 '+part+' ප්‍රශ්න අංක '+number+'">'
       +'<div class="preview"><img loading="lazy" decoding="async" src="'+path+'" alt="2019 ප්‍රශ්න අංක '+number+' රූපය"></div>'
@@ -73,6 +74,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
     document.querySelectorAll(".tab").forEach(function(b){b.setAttribute("aria-selected",String(b.dataset.part===part))});
     document.getElementById("part-I").hidden=part!=="I";
     document.getElementById("part-II").hidden=part!=="II";
+    document.getElementById("paperII-warning").hidden=part!=="II";
   }
   document.querySelectorAll(".tab").forEach(function(button){
     button.addEventListener("click",function(){choose(button.dataset.part);history.replaceState(null,"","#"+button.dataset.part)});
