@@ -9,7 +9,7 @@ import fitz
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"past-papers"/"2019"
-SOURCE_URL="https://cdn.govdoc.lk/download/4212"
+SOURCE_URL="https://govdoc.lk/downloadFile/1754"
 UPLOADED_SHA="1f395088269256ca0d6809d34d0473001a121bbd8822a1eeb82304de86db0147"
 # page-number: (question, measured top and bottom boundaries), raster 1042 x 1474.
 LOC={
