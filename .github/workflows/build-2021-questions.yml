@@ -1,0 +1,56 @@
+name: Publish 2021 Chemistry question images
+on:
+  push:
+    paths:
+      - 'scripts/build_2021_questions.py'
+      - '.github/workflows/build-2021-questions.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: chemistry-crops-2021
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+      - name: Crop all questions
+        run: python scripts/build_2021_questions.py
+      - name: Verify every image
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json
+          root=Path('past-papers/2021')
+          rows=json.loads((root/'questions.json').read_text())
+          assert len(rows)==60
+          assert len([r for r in rows if r['part']=='I'])==50
+          assert len([r for r in rows if r['part']=='II'])==10
+          for q in rows:
+              f=Path(q['image'])
+              assert f.exists(),str(f)
+              with Image.open(f) as pic:
+                  assert pic.width>=620 and pic.height>=35,(str(f),pic.size)
+          print('PASS 2021: 60 questions')
+          PY
+      - name: Commit images to GitHub Pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add past-papers/2021/
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish 60 cropped 2021 Chemistry questions"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "Questions already published"
+          fi
