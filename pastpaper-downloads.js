@@ -1,0 +1,31 @@
+(function(){
+"use strict";
+var root="https://cdn.alevelapi.com/Prod/documents/";
+var papers=[
+[2024,"2024-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2024-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0],
+[2023,"2023-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2023-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0],
+[2022,"2022-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2022-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0],
+[2021,"2021-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2021-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF3.pdf",0],
+[2020,"2020-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2020-AL-CHEMISTRY-PART-II-PAPER-OLD-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf",1],
+[2019,"2019-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2019-AL-CHEMISTRY-PART-II-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF-1.pdf",0],
+[2018,"2018-AL-CHEMISTRY-PART-I-PAPER-AlevelApi.-com-PDF.pdf","2018-AL-CHEMISTRY-PART-II-AlevelApi.-com-PDF.pdf",0],
+[2017,"2017-AL-CHEMISTRY-PART-I-AlevelApi.-com-PDF.pdf","2017-AL-CHEMISTRY-PART-II-AlevelApi.-com-PDF.pdf",0],
+[2016,"2016-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2016-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0],
+[2015,"2015-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2015-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0]
+];
+var css=".paperDLIntro{border:1px solid #bfe2d9;background:linear-gradient(120deg,#effaf6,#f6f9fe);border-radius:18px;padding:19px 20px;margin-bottom:16px}.paperDLIntro h2{margin:0 0 6px;font-size:clamp(17px,2.2vw,23px);color:#126e69}.paperDLIntro p,.paperDLFoot{font-size:12px;line-height:1.9;color:#446d70;margin:0}.paperDLGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.paperDLCard{border:1px solid #d6e7e3;background:#fff;border-radius:17px;padding:16px;min-width:0;box-shadow:0 5px 20px rgba(12,58,65,.035)}.paperDLHead{display:flex;align-items:center;gap:12px;margin-bottom:14px}.paperDLYear{font:bold 24px/1.1 system-ui;color:#153f4b}.paperDLTag{font-size:10px;font-weight:850;color:#13716c;border-radius:99px;background:#e9f6f2;padding:4px 9px}.paperDLBtns{display:grid;grid-template-columns:1fr 1fr;gap:9px}.paperDLBtn{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:72px;text-align:center;text-decoration:none;color:#115f59!important;background:#f0faf7;border:1px solid #b7dcd3;border-radius:12px;padding:10px 6px;gap:2px}.paperDLBtn:hover,.paperDLBtn:focus-visible{background:#d9f2e9;border-color:#39a995;outline-offset:3px}.paperDLBtn strong{font-weight:900;font-size:13px}.paperDLBtn small{font-size:10px;color:#557679}.paperDLWarn{font-size:11px;line-height:1.7;background:#fff3e6;border-radius:10px;color:#995d25;padding:10px;margin:12px 0 0}.paperDLFoot{margin:17px 0 25px}@media(max-width:730px){.paperDLGrid{grid-template-columns:1fr}.paperDLIntro{padding:15px}.paperDLCard{padding:14px}}";
+if(!document.getElementById("paper-download-css")){var st=document.createElement("style");st.id="paper-download-css";st.textContent=css;document.head.appendChild(st)}
+function labels(lang){
+ if(lang==="si")return {name:"පසුගිය විභාග ප්‍රශ්න පත්‍ර බාගන්න",intro:"2015–2024 උසස් පෙළ රසායන විද්‍යා ප්‍රශ්න පත්‍ර. වර්ෂය සහ පත්‍රය තෝරා PDF ගොනුව විවෘත කර බාගන්න.",tag:"සිංහල මාධ්‍ය",first:"I පත්‍රය",firstSub:"බහුවරණ • PDF",second:"II පත්‍රය",secondSub:"ව්‍යුහගත / රචනා • PDF",old:"2020 II පත්‍රය පැරණි විෂය නිර්දේශයට අයත් අසම්පූර්ණ පිටපතකි. 2020 නව නිර්දේශයේ II පත්‍රය දැනට මෙහි නොමැත.",foot:"PDF නව ටැබයක විවෘත වුවහොත් එහි බාගැනීමේ (↓) සලකුණ භාවිත කරන්න. මූලාශ්‍රය: AlevelApi.com. මේවා පින්තූර-ප්‍රශ්න ZIP ගොනු නොව, අඩු ප්‍රමාණයේ මුල් PDF ගොනු වේ."};
+ if(lang==="ta")return {name:"கடந்த பரீட்சை வினாத்தாள்களைப் பதிவிறக்கவும்",intro:"2015–2024 ஆம் ஆண்டுகளுக்கான இரசாயனவியல் வினாத்தாள்கள். ஆண்டையும் பகுதியையும் தெரிவுசெய்து PDF பதிவிறக்கவும்.",tag:"சிங்கள மொழி",first:"பகுதி I",firstSub:"பல்தேர்வு • PDF",second:"பகுதி II",secondSub:"கட்டமைப்பு / கட்டுரை • PDF",old:"2020 பகுதி II பழைய பாடத்திட்டத்தின் முழுமையற்ற நகல். புதிய பாடத்திட்ட பகுதி II இங்கு இல்லை.",foot:"PDF புதிய தாவலில் திறக்கலாம். பதிவிறக்க (↓) குறியீட்டைப் பயன்படுத்தவும். மூலம்: AlevelApi.com. இவை அசல் PDF கோப்புகள்; பட ZIP ஆவணங்கள் அல்ல."};
+ return {name:"Download past papers",intro:"G.C.E. A/L Chemistry examinations, 2015–2024. Choose a year and paper to open/download the individual original PDF.",tag:"Sinhala medium",first:"Part I",firstSub:"MCQ • PDF",second:"Part II",secondSub:"Structured / Essay • PDF",old:"The 2020 Part II file is an incomplete OLD-syllabus copy. The NEW-syllabus Part II is not yet available here.",foot:"If your browser opens the PDF in a new tab, use the viewer's download (↓) button. Source: AlevelApi.com. These smaller original PDFs are not the image-question ZIP archives."};
+}
+function render(lang){
+ var t=labels(lang),cards=papers.map(function(row){
+  var y=row[0],pref=root+y+"/chemistry/";
+  return '<article class="paperDLCard"><div class="paperDLHead"><strong class="paperDLYear">'+y+'</strong><span class="paperDLTag">'+t.tag+'</span></div><div class="paperDLBtns"><a class="paperDLBtn" href="'+pref+row[1]+'" target="_blank" rel="noopener noreferrer" aria-label="'+y+' '+t.first+'"><strong>↓ '+t.first+'</strong><small>'+t.firstSub+'</small></a><a class="paperDLBtn" href="'+pref+row[2]+'" target="_blank" rel="noopener noreferrer" aria-label="'+y+' '+t.second+'"><strong>↓ '+t.second+'</strong><small>'+t.secondSub+'</small></a></div>'+(row[3]?'<p class="paperDLWarn">⚠ '+t.old+'</p>':'')+'</article>';
+ }).join("");
+ return '<section class="paperDownloads"><div class="paperDLIntro"><h2>📥 '+t.name+'</h2><p>'+t.intro+'</p></div><div class="paperDLGrid">'+cards+'</div><p class="paperDLFoot">'+t.foot+'</p></section>';
+}
+window.ChemistryPaperDownloads={render:render,count:papers.length*2};
+})();
