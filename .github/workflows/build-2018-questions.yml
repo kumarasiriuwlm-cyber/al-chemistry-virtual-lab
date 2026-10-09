@@ -1,0 +1,61 @@
+name: Publish 2018 Chemistry question images
+
+on:
+  push:
+    paths:
+      - 'scripts/build_2018_questions.py'
+      - '.github/workflows/build-2018-questions.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chemistry-crops-2018
+  cancel-in-progress: false
+
+jobs:
+  generate-crops:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF image support
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+      - name: Crop all 2018 questions
+        run: python scripts/build_2018_questions.py
+      - name: Verify count and images
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          folder=Path('past-papers/2018')
+          rows=json.loads((folder/'questions.json').read_text(encoding='utf-8'))
+          assert len(rows)==60, len(rows)
+          assert sum(x['part']=='I' for x in rows)==50
+          assert sum(x['part']=='II' for x in rows)==10
+          assert sum(x['type']=='structured_essay' for x in rows)==4
+          for row in rows:
+              path=Path(row['image'])
+              assert path.is_file(), str(path)
+              with Image.open(path) as pic:
+                  assert pic.width>750 and pic.height>30, (str(path),pic.size)
+          print('PASS 2018: 50 MCQs, 4 structured essays, 6 essays')
+          PY
+      - name: Publish crops to GitHub Pages repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add past-papers/2018/
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish 60 cropped 2018 Chemistry questions"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "2018 question images already present."
+          fi
