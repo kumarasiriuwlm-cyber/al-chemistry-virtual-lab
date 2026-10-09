@@ -1,96 +1,96 @@
 #!/usr/bin/env python3
-"""Replace 2016 cropped-question images from the user-supplied GovDoc/LOL.lk scan.
-The PDF SHA-256 is pinned to the PDF verified locally on 2026-10-09.
-Existing image paths remain unchanged, preserving all site links.
+"""2016 Part I recut: exact question boundaries, preserve shared instructions.
+
+Source: user's 25-page GovDoc Sinhala PDF, SHA-256 pinned for provenance.
+Only overwrites past-papers/2016/I/q01.webp ... q50.webp.
+Does NOT modify Part II, other years, or site layout.
 """
 from pathlib import Path
-import hashlib, json, os, urllib.request
+import os, hashlib, urllib.request, json
 import fitz
 from PIL import Image
+
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/"past-papers"/"2016"
+OUT=ROOT/"past-papers"/"2016"/"I"
 SOURCE_URL="https://govdoc.lk/downloadFile/2194"
-EXPECTED_SHA256="e8a763ce345828ce002eae6af87b4441270009ac4550dcf2fb5499b25b402e0d"
-MCQ=[
-(1,692),(1,794),(1,876),(1,1102),(1,1248),
-(2,82),(2,168),(2,292),(2,384),(2,534),
-(2,660),(2,818),(2,936),(2,1064),(2,1224),
-(3,78),(3,196),(3,594),(3,794),(3,968),(3,1040),
-(4,62),(4,288),(4,482),(4,630),(4,1018),
-(5,74),(5,224),(5,442),(5,598),(5,1190),
-(6,82),(6,204),(6,356),(6,480),(6,602),
-(6,724),(6,878),(6,1006),(6,1196),
-(7,382),(7,452),(7,570),(7,670),(7,732),
-(7,792),(7,834),(7,890),(7,960),(7,1024)]
-ESSAYS={
-1:[(2,134,1350),(3,70,747)],
-2:[(3,747,1340),(4,75,1348)],
-3:[(5,70,1340),(6,70,1000)],
-4:[(7,70,1340),(8,78,990)],
-5:[(9,422,1350)],
-6:[(10,70,1049)],
-7:[(10,1049,1340),(11,70,918)],
-8:[(11,968,1340),(12,70,1345)],
-9:[(13,70,1350)],
-10:[(14,70,1350)]}
-def get_pdf():
+SOURCE_SHA="e8a763ce345828ce002eae6af87b4441270009ac4550dcf2fb5499b25b402e0d"
+# (printed question number, exact source page, upper and lower pixel limits).
+# Measured from the uploaded clean exam PDF at 1.75x source resolution.
+LOC={
+1:[(1,711,817),(2,817,899),(3,899,1135),(4,1135,1289),(5,1289,1364)],
+2:[(6,110,198),(7,199,323),(8,325,411),(9,413,555),(10,556,689),
+   (11,690,841),(12,840,953),(13,956,1080),(14,1081,1255),(15,1255,1365)],
+3:[(16,115,229),(17,230,622),(18,622,817),(19,817,966),(20,967,1059),(21,1059,1245)],
+4:[(22,115,334),(23,334,530),(24,530,674),(25,674,1041),(26,1041,1363)],
+5:[(27,123,266),(28,266,478),(29,479,629),(30,629,879),(31,1194,1364)],
+6:[(32,122,240),(33,240,389),(34,389,510),(35,511,632),(36,632,764),
+   (37,762,907),(38,907,1030),(39,1029,1225),(40,1225,1365)],
+7:[(41,411,465),(42,465,582),(43,582,689),(44,689,745),(45,745,805),
+   (46,805,839),(47,839,904),(48,904,969),(49,969,1031),(50,1031,1102)]}
+
+def read_pdf():
     local=os.environ.get("CHEMISTRY_2016_CLEAN_PDF")
-    if local:
-        data=Path(local).read_bytes()
+    if local and Path(local).is_file():
+        payload=Path(local).read_bytes()
     else:
-        request=urllib.request.Request(SOURCE_URL,headers={"User-Agent":"Mozilla/5.0","Referer":"https://govdoc.lk/"})
+        request=urllib.request.Request(SOURCE_URL,headers={"User-Agent":"Mozilla/5.0"})
         with urllib.request.urlopen(request,timeout=120) as response:
-            data=response.read()
-    digest=hashlib.sha256(data).hexdigest()
-    if digest!=EXPECTED_SHA256:
-        raise ValueError("Source PDF checksum mismatch; refusing to overwrite 2016 questions. Expected "+EXPECTED_SHA256+" but received "+digest)
-    doc=fitz.open(stream=data,filetype="pdf")
-    if len(doc)!=25: raise ValueError("Wrong 2016 PDF page count: "+str(len(doc)))
-    return doc
-def raster(pages):
-    imgs=[]
-    for page in pages:
-        pix=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),colorspace=fitz.csRGB,alpha=False)
-        imgs.append(Image.frombytes("RGB",(pix.width,pix.height),pix.samples))
-    return imgs
-def crop(im,a,b):
-    lo=max(55,a);hi=min(im.height-80,b)
-    if hi<=lo:raise ValueError("Invalid crop "+str((a,b)))
-    return im.crop((65,lo,961,hi))
-def join(images):
-    if len(images)==1:return images[0]
-    width=max(x.width for x in images)
-    canvas=Image.new("RGB",(width,sum(x.height for x in images)+16*(len(images)-1)),"white")
+            payload=response.read()
+    digest=hashlib.sha256(payload).hexdigest()
+    if digest!=SOURCE_SHA:
+        raise RuntimeError("Source PDF does not match uploaded 2016 PDF: "+digest)
+    pdf=fitz.open(stream=payload,filetype="pdf")
+    if len(pdf)!=25:raise RuntimeError("Expected 25-page original 2016 PDF")
+    return pdf
+
+def render_page(page):
+    pix=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),
+                        colorspace=fitz.csRGB,alpha=False)
+    return Image.frombytes("RGB",(pix.width,pix.height),pix.samples)
+
+def crop(img,y1,y2):
+    assert 0<=y1<y2<=img.height,(y1,y2,img.size)
+    return img.crop((64,y1,912,y2))
+
+def join(parts):
+    if len(parts)==1:return parts[0]
+    w=max(image.width for image in parts)
+    result=Image.new("RGB",(w,sum(image.height for image in parts)+14*(len(parts)-1)),"white")
     y=0
-    for im in images:
-        canvas.paste(im,(0,y));y+=im.height+16
-    return canvas
-def save(im,part,n):
-    dst=OUT/part/f"q{n:02d}.webp"
-    dst.parent.mkdir(parents=True,exist_ok=True)
-    im.save(dst,format="WEBP",quality=93,method=6)
-    return dst.relative_to(ROOT).as_posix()
+    for image in parts:
+        result.paste(image,((w-image.width)//2,y))
+        y+=image.height+14
+    return result
+
 def main():
-    pdf=get_pdf()
-    first=raster(pdf[:8])
-    second=raster(pdf[8:23])
-    assert len(first)==8 and len(second)==15
-    rows=[]
-    for i,(page,y) in enumerate(MCQ):
-        num=i+1
-        end=MCQ[i+1][1]-2 if i+1<len(MCQ) and MCQ[i+1][0]==page else (1350 if num<=40 else 1083)
-        if num==40:end=1340
-        pic=crop(first[page-1],y-3,end)
-        if num>=41:pic=join([crop(first[6],89,326),pic])
-        path=save(pic,"I",num)
-        rows.append({"year":2016,"part":"I","number":num,"type":"mcq","image":path,"pdf_pages":[page],
-                     "source":"GovDoc 2016 combined paper","source_sha256":EXPECTED_SHA256})
-    for num,parts in ESSAYS.items():
-        pic=join([crop(second[p-1],a,b) for p,a,b in parts])
-        path=save(pic,"II",num)
-        rows.append({"year":2016,"part":"II","number":num,"type":"structured_essay" if num<=4 else "essay",
-                     "image":path,"pdf_pages":[8+p for p,_,_ in parts],
-                     "source":"GovDoc 2016 combined paper","source_sha256":EXPECTED_SHA256})
-    (OUT/"questions.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("Rebuilt 2016 from alternative original:",len(rows),"question images")
+    pdf=read_pdf()
+    images={page:render_page(pdf[page-1]) for page in LOC}
+    reference_31= crop(images[5],883,1192)
+    reference_41= crop(images[7],120,412)
+    entries=[]
+    OUT.mkdir(parents=True,exist_ok=True)
+    for page,questions in LOC.items():
+        for num,top,bottom in questions:
+            pieces=[]
+            if 31<=num<=40:pieces.append(reference_31)
+            if 41<=num<=50:pieces.append(reference_41)
+            pieces.append(crop(images[page],top,bottom))
+            out=OUT/("q%02d.webp"%num)
+            join(pieces).save(out,format="WEBP",quality=94,method=6)
+            entries.append((num,page,out))
+    assert sorted(row[0] for row in entries)==list(range(1,51))
+    # Keep the original 60-question database and its Part II entries.
+    metadata=OUT.parent/"questions.json"
+    if metadata.is_file():
+        data=json.loads(metadata.read_text(encoding="utf-8"))
+        assert len(data)==60
+        for item in data:
+            if item.get("part")=="I":
+                q=int(item["number"])
+                item["pdf_pages"]=[next(p for n,p,_ in entries if n==q)]
+                item["source_pdf"]="2016 GovDoc Sinhala scanned exam (SHA-256 verified)"
+                item["crop_status"]="manually_verified_question_interval"
+        metadata.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print("SUCCESS: 50 corrected 2016 Part I images, no changes to Part II.")
+
 if __name__=="__main__":main()
