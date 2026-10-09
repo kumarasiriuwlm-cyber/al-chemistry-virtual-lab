@@ -46,6 +46,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
     <button type="button" class="tab" data-part="I" role="tab" aria-controls="part-I" aria-selected="true">I පත්‍රය • MCQ (50)</button>
     <button type="button" class="tab" data-part="II" role="tab" aria-controls="part-II" aria-selected="false">II පත්‍රය • රචනා (10)</button>
   </nav>
+  <p class="intro"><strong>සටහන:</strong> ඔබ ලබා දුන් 2021 PDF ගොනුවේ ව්‍යුහගත රචනා 1–4 ප්‍රශ්න නොමැති නිසා ඒවා වෙබ් අඩවියේ තිබූ සිංහල ප්‍රශ්න රූප ලෙසම තබා ඇත. අනෙක් ප්‍රශ්න 56 මෙම PDF ගොනුවෙන් වෙන් කර ඇත.</p>
   <section id="part-I" class="grid" aria-label="2021 MCQ"></section>
   <section id="part-II" class="grid" aria-label="2021 ව්‍යුහගත සහ රචනා ප්‍රශ්න" hidden></section>
   <footer>මෙහි ප්‍රශ්න රූප පමණක් අඩංගු වේ. ගුරු මාර්ගෝපදේශය අනුව වර්ගීකරණය පසුව එක් කරනු ලැබේ. <a href="./index.html#exam">සම්පූර්ණ ප්‍රශ්න පත්‍ර සහ විභාග පුහුණුවට ආපසු යන්න</a>.</footer>
@@ -55,7 +56,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
   "use strict";
   function card(part,number){
     var pad=String(number).padStart(2,"0");
-    var path="./past-papers/2021/"+part+"/q"+pad+".webp";
+    var path="./past-papers/2021/"+part+"/q"+pad+".webp"+(part==="I"||number>=5?"?v=2021-sinhala-verified-20261009":"");
     var kind=part==="I"?"බහුවරණ":number<=4?"ව්‍යුහගත රචනා":"රචනා";
     return '<a class="question" href="'+path+'" target="_blank" rel="noopener noreferrer" aria-label="2021 '+part+' ප්‍රශ්න අංක '+number+'">'
       +'<div class="preview"><img loading="lazy" decoding="async" src="'+path+'" alt="2021 ප්‍රශ්න අංක '+number+' රූපය"></div>'
