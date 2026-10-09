@@ -30,6 +30,7 @@ var css=[
 '.chem2015Item small{display:block;color:#698385;font-size:10px;margin-top:3px}',
 '.chem2015Open{color:#078179;display:block;margin-top:9px;font-size:12px;font-weight:850}',
 '.chem2015Note{margin:16px 0 24px}',
+'.chem2015Section [hidden]{display:none!important}',
 '@media(max-width:720px){.chem2015Grid{grid-template-columns:repeat(2,minmax(0,1fr))}}',
 '@media(max-width:490px){.chem2015Grid{gap:9px}.chem2015Item{padding:8px}.chem2015Preview{height:74px}.chem2015Item strong{font-size:13px}.chem2015Nav button{font-size:11px;line-height:1.5}}'
 ].join('');
@@ -56,7 +57,7 @@ p.bind=function(){
 var root=document.querySelector(".chem2015Section");if(!root)return;
 root.querySelectorAll("[data-2015-view]").forEach(function(btn){
 btn.onclick=function(){
-area=btn.dataset["2015View"];
+area=btn.getAttribute("data-2015-view");
 root.querySelectorAll("[data-2015-view]").forEach(function(x){x.setAttribute("aria-selected",x===btn?"true":"false")});
 document.getElementById("chem2015Papers").hidden=area!=="papers";
 document.getElementById("chem2015Questions").hidden=area!=="questions";
@@ -64,7 +65,7 @@ document.getElementById("chem2015Questions").hidden=area!=="questions";
 });
 root.querySelectorAll("[data-2015-part]").forEach(function(btn){
 btn.onclick=function(){
-part=btn.dataset["2015Part"];
+part=btn.getAttribute("data-2015-part");
 root.querySelectorAll("[data-2015-part]").forEach(function(x){x.setAttribute("aria-selected",x===btn?"true":"false")});
 document.getElementById("chem2015PartOne").hidden=part!=="I";
 document.getElementById("chem2015PartTwo").hidden=part!=="II";
