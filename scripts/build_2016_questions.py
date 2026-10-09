@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-"""Build individually cropped 2016 Sinhala A/L Chemistry images from source PDFs."""
+"""Replace 2016 cropped-question images from the user-supplied GovDoc/LOL.lk scan.
+The PDF SHA-256 is pinned to the PDF verified locally on 2026-10-09.
+Existing image paths remain unchanged, preserving all site links.
+"""
 from pathlib import Path
-import json, os, urllib.request
+import hashlib, json, os, urllib.request
 import fitz
 from PIL import Image
-
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"past-papers"/"2016"
-BASE="https://cdn.alevelapi.com/Prod/documents/2016/chemistry/"
-NAMES={
-"I":"2016-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",
-"II":"2016-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"
-}
-# Verified 1042 x 1474 PDF-raster coordinates (page, top-y).
+SOURCE_URL="https://govdoc.lk/downloadFile/2194"
+EXPECTED_SHA256="e8a763ce345828ce002eae6af87b4441270009ac4550dcf2fb5499b25b402e0d"
 MCQ=[
 (1,692),(1,794),(1,876),(1,1102),(1,1248),
 (2,82),(2,168),(2,292),(2,384),(2,534),
@@ -23,10 +21,8 @@ MCQ=[
 (6,82),(6,204),(6,356),(6,480),(6,602),
 (6,724),(6,878),(6,1006),(6,1196),
 (7,382),(7,452),(7,570),(7,670),(7,732),
-(7,792),(7,834),(7,890),(7,960),(7,1024)
-]
-# A single essay question may span two distinct pages.
-PART_II={
+(7,792),(7,834),(7,890),(7,960),(7,1024)]
+ESSAYS={
 1:[(2,134,1350),(3,70,747)],
 2:[(3,747,1340),(4,75,1348)],
 3:[(5,70,1340),(6,70,1000)],
@@ -36,68 +32,65 @@ PART_II={
 7:[(10,1049,1340),(11,70,918)],
 8:[(11,968,1340),(12,70,1345)],
 9:[(13,70,1350)],
-10:[(14,70,1350)]
-}
-def get_pdf(part):
-    name=NAMES[part]
-    local=os.environ.get("CHEMISTRY_2016_PDF_DIR")
-    if local and (Path(local)/name).is_file():
-        return fitz.open(Path(local)/name)
-    req=urllib.request.Request(BASE+name,headers={
-        "User-Agent":"Mozilla/5.0 (educational Chemistry paper archive)",
-        "Referer":"https://www.alevelapi.com/"})
-    with urllib.request.urlopen(req,timeout=100) as response:
-        data=response.read()
-    if not data.startswith(b"%PDF"):
-        raise ValueError("Source not a PDF: "+name)
-    return fitz.open(stream=data,filetype="pdf")
-def raster(part):
-    result=[]
-    for page in get_pdf(part):
-        pix=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),
-                            colorspace=fitz.csRGB,alpha=False)
-        result.append(Image.frombytes("RGB",(pix.width,pix.height),pix.samples))
-    return result
-def clip(im,y1,y2):
-    return im.crop((65,max(55,y1),961,min(im.height-80,y2)))
-def join(parts):
-    if len(parts)==1:return parts[0]
-    w=max(p.width for p in parts)
-    h=sum(p.height for p in parts)+16*(len(parts)-1)
-    result=Image.new("RGB",(w,h),"white")
+10:[(14,70,1350)]}
+def get_pdf():
+    local=os.environ.get("CHEMISTRY_2016_CLEAN_PDF")
+    if local:
+        data=Path(local).read_bytes()
+    else:
+        request=urllib.request.Request(SOURCE_URL,headers={"User-Agent":"Mozilla/5.0","Referer":"https://govdoc.lk/"})
+        with urllib.request.urlopen(request,timeout=120) as response:
+            data=response.read()
+    digest=hashlib.sha256(data).hexdigest()
+    if digest!=EXPECTED_SHA256:
+        raise ValueError("Source PDF checksum mismatch; refusing to overwrite 2016 questions. Expected "+EXPECTED_SHA256+" but received "+digest)
+    doc=fitz.open(stream=data,filetype="pdf")
+    if len(doc)!=25: raise ValueError("Wrong 2016 PDF page count: "+str(len(doc)))
+    return doc
+def raster(pages):
+    imgs=[]
+    for page in pages:
+        pix=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),colorspace=fitz.csRGB,alpha=False)
+        imgs.append(Image.frombytes("RGB",(pix.width,pix.height),pix.samples))
+    return imgs
+def crop(im,a,b):
+    lo=max(55,a);hi=min(im.height-80,b)
+    if hi<=lo:raise ValueError("Invalid crop "+str((a,b)))
+    return im.crop((65,lo,961,hi))
+def join(images):
+    if len(images)==1:return images[0]
+    width=max(x.width for x in images)
+    canvas=Image.new("RGB",(width,sum(x.height for x in images)+16*(len(images)-1)),"white")
     y=0
-    for part in parts:
-        result.paste(part,((w-part.width)//2,y));y+=part.height+16
-    return result
-def save(im,path):
-    path.parent.mkdir(parents=True,exist_ok=True)
-    im.save(path,"WEBP",quality=93,method=6)
+    for im in images:
+        canvas.paste(im,(0,y));y+=im.height+16
+    return canvas
+def save(im,part,n):
+    dst=OUT/part/f"q{n:02d}.webp"
+    dst.parent.mkdir(parents=True,exist_ok=True)
+    im.save(dst,format="WEBP",quality=93,method=6)
+    return dst.relative_to(ROOT).as_posix()
 def main():
-    pictures=raster("I")
-    assert len(pictures)==10 and len(MCQ)==50
+    pdf=get_pdf()
+    first=raster(pdf[:8])
+    second=raster(pdf[8:23])
+    assert len(first)==8 and len(second)==15
     rows=[]
-    for n,(p,y) in enumerate(MCQ,1):
-        if n<50 and MCQ[n][0]==p:end=MCQ[n][1]-2
-        else:end=1350 if n<=40 else 1083
-        if n==40:end=1340
-        cropped=clip(pictures[p-1],y-3,end)
-        if n>=41:
-            # MCQs 41–50 depend on the common true/false interpretation table.
-            cropped=join([clip(pictures[6],89,326),cropped])
-        path=OUT/"I"/("q%02d.webp"%n)
-        save(cropped,path)
-        rows.append({"year":2016,"part":"I","number":n,"type":"mcq",
-                     "image":path.relative_to(ROOT).as_posix(),"pdf_pages":[p]})
-    pictures=raster("II")
-    assert len(pictures)==15
-    for n,sections in PART_II.items():
-        cropped=join([clip(pictures[p-1],top,end) for p,top,end in sections])
-        path=OUT/"II"/("q%02d.webp"%n)
-        save(cropped,path)
-        rows.append({"year":2016,"part":"II","number":n,
-                     "type":"structured_essay" if n<=4 else "essay",
-                     "image":path.relative_to(ROOT).as_posix(),
-                     "pdf_pages":[p for p,_,_ in sections]})
+    for i,(page,y) in enumerate(MCQ):
+        num=i+1
+        end=MCQ[i+1][1]-2 if i+1<len(MCQ) and MCQ[i+1][0]==page else (1350 if num<=40 else 1083)
+        if num==40:end=1340
+        pic=crop(first[page-1],y-3,end)
+        if num>=41:pic=join([crop(first[6],89,326),pic])
+        path=save(pic,"I",num)
+        rows.append({"year":2016,"part":"I","number":num,"type":"mcq","image":path,"pdf_pages":[page],
+                     "source":"GovDoc 2016 combined paper","source_sha256":EXPECTED_SHA256})
+    for num,parts in ESSAYS.items():
+        pic=join([crop(second[p-1],a,b) for p,a,b in parts])
+        path=save(pic,"II",num)
+        rows.append({"year":2016,"part":"II","number":num,"type":"structured_essay" if num<=4 else "essay",
+                     "image":path,"pdf_pages":[8+p for p,_,_ in parts],
+                     "source":"GovDoc 2016 combined paper","source_sha256":EXPECTED_SHA256})
     (OUT/"questions.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("Built 2016: 50 MCQ, 4 structured essay, 6 essay crops")
+    print("Rebuilt 2016 from alternative original:",len(rows),"question images")
 if __name__=="__main__":main()
