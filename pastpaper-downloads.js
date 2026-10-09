@@ -6,7 +6,7 @@ var papers=[
 [2023,"2023-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2023-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0],
 [2022,"2022-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2022-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",0],
 [2021,"2021-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2021-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF3.pdf",0],
-[2020,"2020-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2020-AL-CHEMISTRY-PART-II-PAPER-OLD-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf",1],
+[2020,"2020-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf","https://cdn.alevelapi.com/Prod/documents/2020/online-view/2020-AL-CHEMISTRY-PART-II-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF-1.pdf",0],
 [2019,"2019-AL-CHEMISTRY-PART-I-MCQ-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF.pdf","2019-AL-CHEMISTRY-PART-II-PAPER-NEW-SYLLABUS-SINHALA-MEDIUM-AlevelApi-PDF-1.pdf",0],
 [2018,"2018-AL-CHEMISTRY-PART-I-PAPER-AlevelApi.-com-PDF.pdf","2018-AL-CHEMISTRY-PART-II-AlevelApi.-com-PDF.pdf",0],
 [2017,"2017-AL-CHEMISTRY-PART-I-AlevelApi.-com-PDF.pdf","2017-AL-CHEMISTRY-PART-II-AlevelApi.-com-PDF.pdf",0],
@@ -23,7 +23,7 @@ function labels(lang){
 function render(lang){
  var t=labels(lang),cards=papers.map(function(row){
   var y=row[0],pref=root+y+"/chemistry/";
-  return '<article class="paperDLCard"><div class="paperDLHead"><strong class="paperDLYear">'+y+'</strong><span class="paperDLTag">'+t.tag+'</span></div><div class="paperDLBtns"><a class="paperDLBtn" href="'+pref+row[1]+'" target="_blank" rel="noopener noreferrer" aria-label="'+y+' '+t.first+'"><strong>↓ '+t.first+'</strong><small>'+t.firstSub+'</small></a><a class="paperDLBtn" href="'+pref+row[2]+'" target="_blank" rel="noopener noreferrer" aria-label="'+y+' '+t.second+'"><strong>↓ '+t.second+'</strong><small>'+t.secondSub+'</small></a></div>'+(row[3]?'<p class="paperDLWarn">⚠ '+t.old+'</p>':'')+'</article>';
+  return '<article class="paperDLCard"><div class="paperDLHead"><strong class="paperDLYear">'+y+'</strong><span class="paperDLTag">'+t.tag+'</span></div><div class="paperDLBtns"><a class="paperDLBtn" href="'+pref+row[1]+'" target="_blank" rel="noopener noreferrer" aria-label="'+y+' '+t.first+'"><strong>↓ '+t.first+'</strong><small>'+t.firstSub+'</small></a><a class="paperDLBtn" href="'+(row[2].indexOf("https://")===0?row[2]:pref+row[2])+'" target="_blank" rel="noopener noreferrer" aria-label="'+y+' '+t.second+'"><strong>↓ '+t.second+'</strong><small>'+t.secondSub+'</small></a></div>'+(row[3]?'<p class="paperDLWarn">⚠ '+t.old+'</p>':'')+'</article>';
  }).join("");
  return '<section class="paperDownloads"><div class="paperDLIntro"><h2>📥 '+t.name+'</h2><p>'+t.intro+'</p></div><div class="paperDLGrid">'+cards+'</div><p class="paperDLFoot">'+t.foot+'</p></section>';
 }
