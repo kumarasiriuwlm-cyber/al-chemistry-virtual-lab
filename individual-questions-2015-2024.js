@@ -46,7 +46,7 @@ function cards(type,t){
 var max=type==="I"?50:10,out="";
 for(var i=1;i<=max;i++){
 var n=String(i).padStart(2,"0");
-var url="./past-papers/"+year+"/"+type+"/q"+n+".webp"+(year===2017?"?v=2017-photo-recut-20261009":year===2016&&type==="I"?"?v=2016-mcq-recut-20261009":year===2018&&((type==="I")||(type==="II"&&i>=5))?"?v=2018-verified-boundaries-20261009b":"");
+var url="./past-papers/"+year+"/"+type+"/q"+n+".webp"+(year===2017?"?v=2017-photo-recut-20261009":year===2016&&type==="I"?"?v=2016-mcq-recut-20261009":year===2018&&((type==="I")||(type==="II"&&i>=5))?"?v=2018-verified-boundaries-20261009b":year===2019&&type==="I"?"?v=2019-mcq-verified-20261009":"");
 var kind=type==="I"?"MCQ":i<=4?t.structured:t.essay;
 out+='<a class="chem2015Item" href="'+url+'" target="_blank" rel="noopener noreferrer"><span class="chem2015Preview"><img src="'+url+'" loading="lazy" decoding="async" alt=""></span><strong>'+t.label+' '+n+'</strong><small>'+year+' • '+type+' • '+kind+'</small><span class="chem2015Open">'+t.open+'</span></a>';
 }
