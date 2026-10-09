@@ -1,0 +1,64 @@
+name: Prepare 2016 Chemistry question images
+
+on:
+  push:
+    paths:
+      - 'scripts/build_2016_questions.py'
+      - '.github/workflows/build-2016-questions.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chemistry-crops-2016
+  cancel-in-progress: false
+
+jobs:
+  prepare-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF image processing
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+      - name: Cut 2016 paper into individual images
+        run: python scripts/build_2016_questions.py
+      - name: Verify question files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('past-papers/2016')
+          questions=json.loads((root/'questions.json').read_text(encoding='utf-8'))
+          assert len(questions)==60
+          assert sum(q['part']=='I' for q in questions)==50
+          assert sum(q['part']=='II' for q in questions)==10
+          assert sum(q['type']=='structured_essay' for q in questions)==4
+          for q in questions:
+              path=Path(q['image'])
+              assert path.is_file(),path
+              with Image.open(path) as im:
+                  assert im.width>=700 and im.height>=35,(path,im.size)
+          with Image.open(root/'I/q50.webp') as im:
+              assert im.height<700,'Question 50 includes unrelated pages'
+          print('PASS: all 60 2016 cropped questions are present and readable.')
+          PY
+      - name: Publish images in GitHub Pages source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add past-papers/2016/
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish 60 cropped 2016 Chemistry questions"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "2016 question images already up to date."
+          fi
