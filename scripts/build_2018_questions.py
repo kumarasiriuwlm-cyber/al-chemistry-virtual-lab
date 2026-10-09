@@ -14,21 +14,21 @@ OUT=ROOT/"past-papers"/"2018"
 PDF_SHA="f76573720d1791d4766843ed9e3bde2e500e0dcf5352e78938dabdea5e46fd90"
 SOURCES=["https://govdoc.lk/downloadFile/2142","https://govdoc.lk/download/61cd7bff2660a"]
 I={
-1:[(1,678,742),(2,742,809),(3,810,990),(4,993,1150),(5,1154,1281),(6,1284,1368)],
-2:[(7,91,441),(8,440,633),(9,633,711),(10,708,981),(11,988,1134),(12,1134,1368)],
-3:[(13,91,257),(14,261,449),(15,450,582),(16,585,771),(17,776,897),(18,903,1040),(19,1046,1199),(20,1200,1366)],
-4:[(21,90,470),(22,473,698),(23,699,926),(24,928,1308)],
-5:[(25,92,935),(26,937,1055),(27,1057,1368)],
-6:[(28,88,453),(29,454,670),(30,673,875),(31,1195,1368)],
-7:[(32,88,282),(33,284,436),(34,437,559),(35,560,714),(36,719,869),(37,870,1046),(38,1047,1217),(39,1217,1368)],
-8:[(40,88,237),(41,526,600),(42,602,697),(43,697,771),(44,771,840),(45,840,916),(46,915,990),(47,988,1072),(48,1071,1133),(49,1134,1213),(50,1212,1294)]}
+1:[(1,669,742),(2,741,799),(3,798,977),(4,976,1141),(5,1140,1254),(6,1254,1337)],
+2:[(7,92,419),(8,417,613),(9,612,695),(10,691,953),(11,952,1110),(12,1108,1333)],
+3:[(13,91,263),(14,262,447),(15,445,586),(16,586,756),(17,755,898),(18,897,1039),(19,1039,1182),(20,1181,1336)],
+4:[(21,91,483),(22,481,687),(23,684,916),(24,914,1313)],
+5:[(25,92,915),(26,914,1037),(27,1036,1350)],
+6:[(28,91,445),(29,444,647),(30,646,865),(31,1188,1339)],
+7:[(32,89,273),(33,272,432),(34,430,543),(35,541,710),(36,709,862),(37,861,1034),(38,1032,1191),(39,1189,1336)],
+8:[(40,91,233),(41,526,589),(42,589,685),(43,687,758),(44,759,830),(45,831,901),(46,902,974),(47,975,1054),(48,1055,1115),(49,1116,1190),(50,1191,1250)]}
 II={
-5:[(9,399,1369),(10,105,246)],
-6:[(10,249,1375),(11,102,343)],
-7:[(11,346,1363)],
-8:[(12,98,1210),(13,99,773)],
-9:[(13,777,1235),(14,95,1351)],
-10:[(15,96,1291)]}
+5:[(9,395,1351),(10,103,241)],
+6:[(10,241,1360),(11,98,344)],
+7:[(11,342,1336)],
+8:[(12,99,1209),(13,98,756)],
+9:[(13,755,1225),(14,98,1345)],
+10:[(15,98,1328)]}
 
 def pdf_source():
     local=os.environ.get("CHEMISTRY_2018_GOVDOC_PDF")
@@ -58,7 +58,7 @@ def raster(page):
 
 def crop(img,top,bottom):
     if not 65<=top<bottom<=1376: raise ValueError((top,bottom))
-    return img.crop((159,top,1005,bottom))
+    return img.crop((76,top,956,bottom))
 
 def stitch(parts):
     if len(parts)==1: return parts[0]
@@ -79,8 +79,8 @@ def main():
     pdf=pdf_source()
     if len(pdf)!=20: raise RuntimeError("Expected the exact 20-page scanned PDF")
     pics={page:raster(pdf[page-1]) for page in range(1,16)}
-    instructions31=crop(pics[6],886,1190)
-    instructions41=crop(pics[8],242,525)
+    instructions31=crop(pics[6],871,1185)
+    instructions41=crop(pics[8],242,523)
     changes={}
     for page,group in I.items():
         for num,a,b in group:
@@ -97,7 +97,7 @@ def main():
             changes[("I",num)]=dict(year=2018,part="I",number=num,type="mcq",
                   image=path.relative_to(ROOT).as_posix(),pdf_pages=sources,
                   source_pdf="2018 GovDoc Sinhala scan (SHA256 verified)",
-                  crop_status="measured_complete_question")
+                  crop_status="visually_rechecked_full_question_edges")
     for num,sections in II.items():
         path=OUT/"II"/f"q{num:02d}.webp"
         save(stitch([crop(pics[p],a,b) for p,a,b in sections]),path)
@@ -105,7 +105,7 @@ def main():
                   image=path.relative_to(ROOT).as_posix(),
                   pdf_pages=[p for p,a,b in sections],
                   source_pdf="2018 GovDoc Sinhala scan (SHA256 verified)",
-                  crop_status="joined_all_continuations")
+                  crop_status="visually_rechecked_all_continuations")
     assert sorted(num for part,num in changes if part=="I")==list(range(1,51))
     assert sorted(num for part,num in changes if part=="II")==list(range(5,11))
     metadata=OUT/"questions.json"
