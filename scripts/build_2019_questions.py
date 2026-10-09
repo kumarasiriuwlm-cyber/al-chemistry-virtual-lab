@@ -22,6 +22,17 @@ LOC={
 7:[(36,109,282),(37,282,505),(38,506,745),(39,745,932),(40,932,1261)],
 8:[(41,418,460),(42,461,538),(43,539,583),(44,584,675),(45,675,747),(46,748,894),(47,894,949),(48,949,1000),(49,1000,1049),(50,1049,1110)]
 }
+ESSAYS={
+1:[(10,92,1325),(11,92,1325)],
+2:[(12,92,1325),(13,92,1055)],
+3:[(13,1055,1325),(14,92,1325)],
+4:[(15,92,1325),(16,92,1325)],
+5:[(17,92,1325),(18,92,1325),(19,92,1325),(20,92,1325)],
+6:[(21,92,1325),(22,92,1325),(23,92,1325),(24,92,538)],
+7:[(24,542,1325),(25,92,1325),(26,92,1325),(27,92,1325)],
+8:[(28,92,1325),(29,92,1325),(30,92,1325),(31,92,670)],
+9:[(31,676,1325),(32,92,1325),(33,92,1325),(34,92,1325)],
+10:[(35,92,1325),(36,92,1325),(37,92,1325),(38,92,1325),(39,92,1325)]}
 def source():
     local=os.environ.get("CHEMISTRY_2019_UPLOADED_PDF")
     if local and Path(local).is_file(): raw=Path(local).read_bytes()
@@ -34,8 +45,7 @@ def source():
     if hashlib.sha256(raw).hexdigest()!=UPLOADED_SHA:
         # CDN may re-compress files; confirm 2019 paper question headings instead.
         page0=pdf[0].get_text()
-        if not ("2019" in page0 or "2019" in pdf[8].get_text()):
-            raise ValueError("2019 GovDoc source verification failed")
+        raise ValueError("Downloaded PDF does not match the exact SHA256 of the uploaded 2019 Sinhala paper")
     return pdf
 def render(pg):
     p=pg.get_pixmap(matrix=fitz.Matrix(1.75,1.75),colorspace=fitz.csRGB,alpha=False)
@@ -43,7 +53,7 @@ def render(pg):
     if im.size!=(1042,1474):raise ValueError("Incorrect PDF page dimensions "+str(im.size))
     return im
 def cut(im,a,b,x0=126,x1=937):
-    if not 100<=a<b<=1330:raise ValueError((a,b))
+    if not 75<=a<b<=1330:raise ValueError((a,b))
     return im.crop((x0,a,x1,b))
 def combine(images):
     w=max(im.width for im in images)
@@ -54,34 +64,38 @@ def combine(images):
     return out
 def main():
     doc=source()
-    pic={p:render(doc[p-1]) for p in LOC}
-    common31=cut(pic[6],118,418,124,937)
-    common41=cut(pic[8],146,348,130,912)
-    heading41=cut(pic[8],381,418,130,912)
-    originals=OUT/"questions.json"
-    if not originals.is_file():raise FileNotFoundError("Existing questions.json is needed to preserve Paper II")
-    rows=json.loads(originals.read_text(encoding="utf-8"))
-    if len(rows)!=60:raise ValueError("Expected 60 existing questions")
-    seen=set()
+    pic={p:render(doc[p-1]) for p in set(LOC)|{p for spans in ESSAYS.values() for p,_,_ in spans}}
+    common31=cut(pic[6],118,418,125,940)
+    common41=cut(pic[8],146,348,125,940)
+    heading41=cut(pic[8],381,418,125,940)
+    rows=[]
     for page,questions in LOC.items():
         for n,a,b in questions:
-            pieces=[]
-            if 31<=n<=40:pieces.append(common31)
-            if 41<=n<=50:pieces.extend([common41,heading41])
-            pieces.append(cut(pic[page],a,b))
+            pieces=[cut(pic[page],a,b,125,940)]
+            if 31<=n<=40: pieces.insert(0,common31)
+            if 41<=n<=50: pieces=[common41,heading41]+pieces
             path=OUT/"I"/f"q{n:02d}.webp"
             path.parent.mkdir(parents=True,exist_ok=True)
             combine(pieces).save(path,"WEBP",quality=94,method=6)
-            with Image.open(path) as im:
-                if im.width<800 or im.height<58:raise ValueError("Invalid crop "+str(path))
-            seen.add(n)
-    if seen!=set(range(1,51)):raise ValueError("Missing MCQ crops")
+            rows.append({"year":2019,"part":"I","number":n,"type":"mcq",
+                         "image":path.relative_to(ROOT).as_posix(),"pdf_pages":[page],
+                         "language":"si","source_type":"original_question_page"})
+    for n,spans in ESSAYS.items():
+        pieces=[cut(pic[p],a,b,125,940) for p,a,b in spans]
+        path=OUT/"II"/f"q{n:02d}.webp"
+        path.parent.mkdir(parents=True,exist_ok=True)
+        combine(pieces).save(path,"WEBP",quality=92,method=6)
+        rows.append({"year":2019,"part":"II","number":n,
+                     "type":"structured_essay" if n<=4 else "essay",
+                     "image":path.relative_to(ROOT).as_posix(),
+                     "pdf_pages":[p for p,_,_ in spans],
+                     "language":"si","source_type":"marking_scheme_with_answers",
+                     "contains_answers":True})
+    assert len(rows)==60
     for row in rows:
-        if row["part"]=="I":
-            n=int(row["number"])
-            page=next(p for p,rr in LOC.items() if any(q==n for q,_,_ in rr))
-            row.update(pdf_pages=[page],crop_status="manually_checked_all_five_choices_and_shared_instructions",
-                       source_pdf="2019 official 39-page new syllabus marking scheme, pages 1-8")
-    originals.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("PASS: 50 carefully recut 2019 MCQs, 10 existing Paper II questions preserved")
-if __name__=="__main__":main()
+        with Image.open(ROOT/row["image"]) as img:
+            assert img.width>=800 and img.height>=70,(row["image"],img.size)
+    OUT.mkdir(parents=True,exist_ok=True)
+    (OUT/"questions.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print("PASS: 50 Sinhala MCQ, 4 Sinhala structured essays, 6 Sinhala essays from SHA256-pinned PDF. Part II has printed answers.")
+if __name__=="__main__": main()
