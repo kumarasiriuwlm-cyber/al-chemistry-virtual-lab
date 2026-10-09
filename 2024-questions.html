@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b6f75">
+<title>2024 උසස් පෙළ රසායන විද්‍යාව — වෙන් කළ ප්‍රශ්න</title>
+<style>
+:root{color-scheme:light;font-family:"Noto Sans Sinhala","Iskoola Pota",system-ui,Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#f3f9f8;color:#173f46}
+a{color:inherit}header{background:linear-gradient(122deg,#095f63,#118879);color:white}
+.container{max-width:1130px;margin:auto;padding:24px 17px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.top a{font-weight:750;text-decoration:none;color:#eafff8;border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:9px 14px;font-size:12px}
+h1{font-size:clamp(23px,4vw,35px);margin:22px 0 9px;line-height:1.5}header p{margin:0;opacity:.9;font-size:13px;line-height:1.8}
+.intro{margin:22px 0 16px;padding:17px 19px;background:white;border:1px solid #d3e9e3;border-radius:16px;line-height:1.8;font-size:13px;color:#4e6c70}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.tab{border:1px solid #a6d3c9;background:white;border-radius:999px;color:#116b64;padding:12px 19px;cursor:pointer;font-size:13px;font-weight:800;line-height:1.5}
+.tab[aria-selected="true"]{background:#0a746d;color:#fff;border-color:#0a746d}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.question{display:block;background:white;text-decoration:none;border:1px solid #d4e7e2;border-radius:16px;padding:13px;min-width:0;box-shadow:0 6px 24px rgba(10,76,76,.035);transition:border-color .15s,transform .15s}
+.question:hover,.question:focus-visible{border-color:#4caa98;transform:translateY(-2px);outline-offset:3px}
+.preview{height:125px;overflow:hidden;background:#f8faf9;border:1px solid #e5efec;border-radius:10px;position:relative;margin-bottom:10px}
+.preview:after{content:"";position:absolute;inset:auto 0 0;height:30px;background:linear-gradient(transparent,#f8faf9)}
+.preview img{display:block;width:100%;height:auto}
+.number{font-weight:850;font-size:16px}
+.meta{color:#718786;font-size:11px;margin:5px 0}
+.open{font-size:12px;font-weight:800;color:#08766b;margin-top:12px}
+footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
+[hidden]{display:none!important}
+@media(max-width:730px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.question{padding:10px}.preview{height:95px}}
+@media(max-width:370px){.number{font-size:14px}.tab{padding:10px 12px}.preview{height:79px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="top"><strong>රසායන විද්‍යා අතථ්‍ය විද්‍යාගාරය</strong><a href="./index.html#exam">← විභාග පුහුණුවට</a></div>
+    <h1>2024 උසස් පෙළ රසායන විද්‍යා ප්‍රශ්න</h1>
+    <p>2024 විභාගයේ එක් එක් ප්‍රශ්නය මුල් පත්‍රයෙන් වෙනම කපා ඇත. ප්‍රශ්නයක් තේරූ විට නව ටැබයක එය විවෘත වේ.</p>
+  </div>
+</header>
+<main class="container">
+  <div class="intro"><strong>ප්‍රශ්න 60ක්</strong> — I පත්‍රය: බහුවරණ 50ක් • II පත්‍රය: ව්‍යුහගත රචනා 4ක් සහ රචනා 6ක්. මුල් රූප, රසායනික සූත්‍ර, වගු සහ රූප සටහන් එලෙසම තබා ඇත.</div>
+  <nav class="controls" aria-label="ප්‍රශ්න පත්‍රය තෝරන්න" role="tablist">
+    <button type="button" class="tab" data-part="I" role="tab" aria-controls="part-I" aria-selected="true">I පත්‍රය • MCQ (50)</button>
+    <button type="button" class="tab" data-part="II" role="tab" aria-controls="part-II" aria-selected="false">II පත්‍රය • රචනා (10)</button>
+  </nav>
+  <section id="part-I" class="grid" aria-label="2024 MCQ"></section>
+  <section id="part-II" class="grid" aria-label="2024 ව්‍යුහගත සහ රචනා ප්‍රශ්න" hidden></section>
+  <footer>මෙහි ප්‍රශ්න රූප පමණක් අඩංගු වේ. ගුරු මාර්ගෝපදේශය අනුව වර්ගීකරණය පසුව එක් කරනු ලැබේ. <a href="./index.html#exam">සම්පූර්ණ ප්‍රශ්න පත්‍ර සහ විභාග පුහුණුවට ආපසු යන්න</a>.</footer>
+</main>
+<script>
+(function(){
+  "use strict";
+  function card(part,number){
+    var pad=String(number).padStart(2,"0");
+    var path="./past-papers/2024/"+part+"/q"+pad+".webp";
+    var kind=part==="I"?"බහුවරණ":number<=4?"ව්‍යුහගත රචනා":"රචනා";
+    return '<a class="question" href="'+path+'" target="_blank" rel="noopener noreferrer" aria-label="2024 '+part+' ප්‍රශ්න අංක '+number+'">'
+      +'<div class="preview"><img loading="lazy" decoding="async" src="'+path+'" alt="2024 ප්‍රශ්න අංක '+number+' රූපය"></div>'
+      +'<div class="number">ප්‍රශ්න අංක '+pad+'</div>'
+      +'<div class="meta">2024 • '+part+' පත්‍රය • '+kind+'</div>'
+      +'<div class="open">ප්‍රශ්නය බලන්න ↗</div></a>';
+  }
+  ["I","II"].forEach(function(part){
+    var html="";
+    for(var i=1;i<=(part==="I"?50:10);i++)html+=card(part,i);
+    document.getElementById("part-"+part).innerHTML=html;
+  });
+  function choose(part){
+    if(part!=="I"&&part!=="II")part="I";
+    document.querySelectorAll(".tab").forEach(function(b){b.setAttribute("aria-selected",String(b.dataset.part===part))});
+    document.getElementById("part-I").hidden=part!=="I";
+    document.getElementById("part-II").hidden=part!=="II";
+  }
+  document.querySelectorAll(".tab").forEach(function(button){
+    button.addEventListener("click",function(){choose(button.dataset.part);history.replaceState(null,"","#"+button.dataset.part)});
+  });
+  choose(location.hash==="#II"?"II":"I");
+})();
+</script>
+</body>
+</html>
