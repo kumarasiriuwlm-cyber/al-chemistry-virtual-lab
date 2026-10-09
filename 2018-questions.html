@@ -55,7 +55,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
   "use strict";
   function card(part,number){
     var pad=String(number).padStart(2,"0");
-    var path="./past-papers/2018/"+part+"/q"+pad+".webp";
+    var path="./past-papers/2018/"+part+"/q"+pad+".webp"+((part==="I"||number>=5)?"?v=2018-govdoc-recut-20261009":"");
     var kind=part==="I"?"බහුවරණ":number<=4?"ව්‍යුහගත රචනා":"රචනා";
     return '<a class="question" href="'+path+'" target="_blank" rel="noopener noreferrer" aria-label="2018 '+part+' ප්‍රශ්න අංක '+number+'">'
       +'<div class="preview"><img loading="lazy" decoding="async" src="'+path+'" alt="2018 ප්‍රශ්න අංක '+number+' රූපය"></div>'
