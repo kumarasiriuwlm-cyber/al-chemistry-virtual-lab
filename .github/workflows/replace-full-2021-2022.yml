@@ -1,0 +1,69 @@
+name: Replace full 2021 and 2022 Chemistry Sinhala questions
+on:
+  push:
+    paths:
+      - 'scripts/replace_full_2021_2022.py'
+      - '.github/workflows/replace-full-2021-2022.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: chemistry-complete-2021-2022
+  cancel-in-progress: false
+jobs:
+  rebuild-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image and PDF libraries
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+      - name: Download verified full Sinhala papers and regenerate 120 question crops
+        run: python scripts/replace_full_2021_2022.py
+      - name: Verify 60 images per paper, including all 4 structured essays
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          for year in (2021,2022):
+              root=Path('past-papers')/str(year)
+              rows=json.loads((root/'questions.json').read_text(encoding='utf-8'))
+              assert len(rows)==60,(year,len(rows))
+              assert sum(x['type']=='mcq' for x in rows)==50
+              assert sum(x['type']=='structured_essay' for x in rows)==4
+              assert sum(x['type']=='essay' for x in rows)==6
+              assert all(x['language']=='si' and x['source_type']=='full_original_sinhala_exam' for x in rows)
+              assert all(not x['contains_answers'] for x in rows)
+              for row in rows:
+                  p=Path(row['image'])
+                  assert p.exists(),str(p)
+                  with Image.open(p) as im:
+                      assert im.width>=750 and im.height>=80,(p,im.size)
+                  assert p.stat().st_size>1700,p
+              print('PASS:',year,'all 60 original Sinhala question crops')
+          PY
+      - name: Commit updated 2021 and 2022 question banks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add past-papers/2021/ past-papers/2022/
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish complete 2021 and 2022 Sinhala Chemistry question sets (120 questions)"
+            for attempt in 1 2 3 4 5; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then
+                echo "Both full papers published"
+                exit 0
+              fi
+              sleep 5
+            done
+            echo "Failed to push question images after retries" >&2
+            exit 1
+          else
+            echo "Both paper sets already up-to-date"
+          fi
