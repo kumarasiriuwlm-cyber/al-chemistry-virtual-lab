@@ -1,131 +1,130 @@
 #!/usr/bin/env python3
-"""Generate 60 individual 2015 Sinhala A/L Chemistry question crops from original PDFs."""
+"""Re-cut original 2015 A/L Chemistry from the user's improved aligned Sinhala PDF.
+The public copy is visually identical to the user upload (verified on GitHub).
+Never use the older two-file, misaligned source.
+"""
 from pathlib import Path
-import json, os, urllib.request
+import os, json, hashlib, urllib.request
 import fitz
 from PIL import Image
-
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"past-papers"/"2015"
-LOCAL=os.environ.get("CHEMISTRY_2015_PDF_DIR")
-BASE="https://cdn.alevelapi.com/Prod/documents/2015/chemistry/"
-PDF={
-"I":"2015-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",
-"II":"2015-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",
+SHAS={
+"a6cf3de0c5a2ada77cbacfddb3587be518ff3f0a6113a615ab6875b48b18cfe6",
+"9c5282c249bff1d203fbf57f29fb600e011b34ba45c04953ed232eeb829ed114",
 }
-# Source renders: 1042 x 1474 pixels at 1.75x PDF scale.
-# Entries are (1-based page, top pixel, height pixel).
-MCQ=[
-(1,611,70),(1,684,95),(1,784,130),(1,916,137),(1,1058,55),
-(1,1118,117),(1,1240,135),(2,67,161),(2,233,134),(2,375,246),
-(2,625,188),(2,818,101),(2,924,120),(2,1049,93),(2,1147,122),
-(2,1275,105),(3,105,194),(3,305,243),(3,555,203),(3,762,55),
-(3,822,144),(3,971,157),(3,1133,109),(3,1247,130),(4,95,321),
-(4,427,555),(4,993,158),(4,1156,218),(5,75,410),(5,498,686),
-(5,1195,179),(6,71,168),(6,244,115),(6,364,114),(6,484,115),
-(6,602,137),(6,745,141),(6,891,114),(6,1009,169),(6,1175,136),
-(7,345,55),(7,405,86),(7,496,55),(7,555,50),(7,607,50),
-(7,660,69),(7,733,50),(7,785,68),(7,856,82),(7,944,65),
+URLS=[
+"https://drive.usercontent.google.com/download?id=1Hvj_g50LFuPUr8kiTQY7sGHGShPZBK1E&export=download&confirm=t",
+"https://drive.google.com/uc?export=download&id=1Hvj_g50LFuPUr8kiTQY7sGHGShPZBK1E"
 ]
-# Part II questions with multiple pages have their sections stitched into ONE image.
-# Boundaries intentionally exclude the following question, headers, and formula sheet.
-ESSAY={
-1:[(2,135,1370),(3,70,1350)],
-2:[(4,80,1360),(5,80,913)],
-3:[(5,913,1350),(6,70,1340)],
-4:[(7,90,1360),(8,65,990)],
-5:[(9,400,1102)],
-6:[(9,1102,1360),(10,65,695)],
-7:[(10,695,1350)],
-8:[(11,140,1335)],
-9:[(12,90,980)],
-10:[(13,90,1340)],
+MCQ={
+1:(1,629,704),2:(1,704,804),3:(1,804,945),4:(1,945,1086),5:(1,1086,1145),6:(1,1145,1274),7:(1,1274,1399),
+8:(2,82,252),9:(2,252,389),10:(2,389,640),11:(2,640,842),12:(2,842,952),13:(2,952,1100),14:(2,1100,1184),15:(2,1184,1312),16:(2,1312,1390),
+17:(3,81,318),18:(3,318,583),19:(3,583,773),20:(3,773,849),21:(3,849,997),22:(3,997,1140),23:(3,1140,1268),24:(3,1268,1401),
+25:(4,80,463),26:(4,463,1010),27:(4,1010,1186),28:(4,1186,1394),
+29:(5,80,500),30:(5,500,875),31:(5,1214,1396),
+32:(6,79,259),33:(6,259,391),34:(6,391,515),35:(6,515,643),36:(6,643,772),37:(6,772,920),38:(6,920,1032),39:(6,1032,1226),40:(6,1226,1380),
+41:(7,348,413),42:(7,413,517),43:(7,517,580),44:(7,580,631),45:(7,631,682),46:(7,682,747),47:(7,747,805),48:(7,805,892),49:(7,892,969),50:(7,969,1053)
 }
-def get_doc(part):
-    name=PDF[part]
-    if LOCAL and (Path(LOCAL)/name).is_file():
-        return fitz.open(Path(LOCAL)/name)
-    req=urllib.request.Request(BASE+name,headers={
-        "User-Agent":"Mozilla/5.0 (compatible; educational past-paper index)",
-        "Referer":"https://www.alevelapi.com/"
-    })
-    with urllib.request.urlopen(req,timeout=90) as response:
-        raw=response.read()
-    if not raw.startswith(b"%PDF"):
-        raise RuntimeError("Download is not a PDF: "+name)
-    return fitz.open(stream=raw,filetype="pdf")
+ESSAY={
+1:[(10,139,1343),(11,83,1345)],
+2:[(12,90,1343),(13,96,915)],
+3:[(13,915,1345),(14,85,1344)],
+4:[(15,88,1343),(16,85,1344)],
+5:[(17,422,1125)],
+6:[(17,1125,1353),(18,82,700)],
+7:[(18,700,1350)],
+8:[(19,136,1352)],
+9:[(20,103,913)],
+10:[(21,96,1355)]
+}
+def source():
+    local=os.environ.get("CHEMISTRY_2015_SINGLE_PDF")
+    if local:
+        data=Path(local).read_bytes()
+    else:
+        errors=[]
+        data=None
+        for url in URLS:
+            try:
+                req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"application/pdf,*/*"})
+                with urllib.request.urlopen(req,timeout=90) as response:
+                    sample=response.read()
+                digest=hashlib.sha256(sample).hexdigest()
+                if digest not in SHAS:
+                    errors.append("Unexpected SHA256 "+digest)
+                    continue
+                data=sample
+                break
+            except Exception as exc:
+                errors.append(str(exc))
+        if data is None:
+            raise RuntimeError("The verified clean 2015 PDF source is unavailable: "+repr(errors))
+    digest=hashlib.sha256(data).hexdigest()
+    if digest not in SHAS:
+        raise ValueError("Refusing to process an unverified 2015 PDF: "+digest)
+    doc=fitz.open(stream=data,filetype="pdf")
+    if len(doc)!=23 or int(doc[0].rect.width)!=595 or int(doc[0].rect.height)!=842:
+        raise ValueError("The 2015 PDF must be the exact aligned 23-page scan")
+    print("Source confirmed: aligned Sinhala 2015 PDF; SHA256",digest,flush=True)
+    return doc
 
-def raster(doc):
-    pictures=[]
-    for page in doc:
-        pixels=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),
-                              colorspace=fitz.csRGB,alpha=False)
-        pictures.append(Image.frombytes("RGB",
-                        (pixels.width,pixels.height),pixels.samples))
-    return pictures
-
-def crop(pictures,page,y1,y2):
-    im=pictures[page-1]
-    return im.crop((65,max(60,y1),960,min(im.height-95,y2)))
-
-def save(im,path):
+def render(page):
+    p=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),colorspace=fitz.csRGB,alpha=False)
+    im=Image.frombytes("RGB",(p.width,p.height),p.samples)
+    if im.size!=(1042,1474):
+        raise ValueError("Wrong source geometry: "+str(im.size))
+    return im
+def crop(images,page,top,bottom):
+    if not 70<=top<bottom<=1410:raise ValueError((page,top,bottom))
+    # Wide enough to include the whole question number and both right columns.
+    return images[page].crop((49 if page<=16 else 108,top,
+                              925 if page<=16 else 988,bottom))
+def stitch(parts):
+    if len(parts)==1:return parts[0]
+    width=max(im.width for im in parts)
+    out=Image.new("RGB",(width,sum(im.height for im in parts)+16*(len(parts)-1)+16),"white")
+    y=8
+    for im in parts:
+        out.paste(im,((width-im.width)//2,y))
+        y+=im.height+16
+    return out
+def save(image,path):
     path.parent.mkdir(parents=True,exist_ok=True)
-    im.save(path,format="WEBP",quality=91,method=6)
-
+    image.save(path,"WEBP",quality=94,method=6)
+    if path.stat().st_size<1700:raise ValueError("Suspiciously small crop: "+str(path))
 def main():
-    OUT.mkdir(parents=True,exist_ok=True)
+    doc=source()
+    wanted={v[0] for v in MCQ.values()}|{p for spans in ESSAY.values() for p,_,_ in spans}
+    images={p:render(doc[p-1]) for p in wanted}
+    common31=crop(images,5,885,1213)
+    common41=crop(images,7,86,347)
     rows=[]
-    pics=raster(get_doc("I"))
-    if len(pics)!=8: raise ValueError("Part I pages: "+str(len(pics)))
-    for n,(p,y,height) in enumerate(MCQ,1):
-        img=crop(pics,p,y-2,y+height+2)
-        save(img,OUT/"I"/f"q{n:02d}.webp")
-        rows.append({"year":2015,"part":"I","number":n,"type":"mcq",
-                     "image":f"past-papers/2015/I/q{n:02d}.webp",
-                     "pdf_pages":[p]})
-    pics=raster(get_doc("II"))
-    if len(pics)!=14: raise ValueError("Part II pages: "+str(len(pics)))
-    for n,sections in ESSAY.items():
-        parts=[crop(pics,p,t,b) for p,t,b in sections]
-        width=max(p.width for p in parts)
-        height=sum(p.height for p in parts)+14*(len(parts)-1)
-        image=Image.new("RGB",(width,height),"white")
-        offset=0
-        for part in parts:
-            image.paste(part,(0,offset))
-            offset+=part.height+14
-        save(image,OUT/"II"/f"q{n:02d}.webp")
-        rows.append({"year":2015,"part":"II","number":n,
-                     "type":"structured_essay" if n<=4 else "essay",
-                     "image":f"past-papers/2015/II/q{n:02d}.webp",
-                     "pdf_pages":[s[0] for s in sections]})
-    (OUT/"questions.json").write_text(
-        json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("Exported",len(rows),"individual original-question images")
-
+    for n in range(1,51):
+        page,top,bottom=MCQ[n]
+        bits=[crop(images,page,top,bottom)]
+        if 31<=n<=40:bits.insert(0,common31)
+        if 41<=n<=50:bits.insert(0,common41)
+        path=OUT/"I"/f"q{n:02d}.webp"
+        save(stitch(bits),path)
+        rows.append(dict(year=2015,part="I",number=n,type="mcq",
+                         image=path.relative_to(ROOT).as_posix(),language="si",
+                         pdf_pages=[page],source_type="aligned_2015_sinhala_pdf"))
+    for n in range(1,11):
+        spans=ESSAY[n]
+        path=OUT/"II"/f"q{n:02d}.webp"
+        save(stitch([crop(images,p,a,b) for p,a,b in spans]),path)
+        rows.append(dict(year=2015,part="II",number=n,
+                         type="structured_essay" if n<=4 else "essay",
+                         image=path.relative_to(ROOT).as_posix(),
+                         pdf_pages=[p for p,a,b in spans],
+                         language="si",source_type="aligned_2015_sinhala_pdf"))
+    if len(rows)!=60:raise ValueError("Expected 60 full questions")
+    for row in rows:
+        with Image.open(ROOT/row["image"]) as im:
+            if im.width<850 or im.height<42:
+                raise ValueError("Bad crop dimensions: "+row["image"])
+    (OUT/"questions.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print("PASS: 50 complete Sinhala MCQ + 4 structured + 6 essay images")
 if __name__=="__main__":
-    import hashlib
-    urls=[
-      "https://drive.usercontent.google.com/download?id=1Hvj_g50LFuPUr8kiTQY7sGHGShPZBK1E&export=download&confirm=t",
-      "https://drive.google.com/uc?export=download&id=1Hvj_g50LFuPUr8kiTQY7sGHGShPZBK1E"]
-    expected={0:"fffe38fffffcfffffcfefffcfc7cfc1f00001fc0001ffff001ffb001cc003efc003c78000220001200003fe0003f80003ffe003fffc023f800377f787ff270232000211000000030",
-      6:"f000003ffffc3fc7c4033ff82730007ffffc7ffffc3b6ffc7ffff87ffffc7feffc7ffff07fff8c7dbffc700ffc780ffc7feffc00000000000000000000000000000000000000001c",
-      16:"3fffff7fffff7fffff7f001f3fffde007e8007f800016000004000020000027d0007fe010fc00100480007ffff00fe00027fdf07fe0103fc0007fe0007fc0003f00003f807000000"}
-    for url in urls:
-      try:
-        req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"application/pdf,*/*"})
-        with urllib.request.urlopen(req,timeout=75) as response:data=response.read()
-        print("CANDIDATE",len(data),hashlib.sha256(data).hexdigest(),data[:16],flush=True)
-        if not data.startswith(b"%PDF"):continue
-        d=fitz.open(stream=data,filetype="pdf")
-        print("PAGES",len(d),"GEO",d[0].rect,flush=True)
-        for i,h in expected.items():
-          pix=d[i].get_pixmap(matrix=fitz.Matrix(.7,.7),colorspace=fitz.csGRAY,alpha=False)
-          im=Image.frombytes("L",(pix.width,pix.height),pix.samples)
-          im=im.crop((int(im.width*.05),int(im.height*.03),int(im.width*.95),int(im.height*.97))).resize((24,24))
-          vals=list(im.getdata());avg=sum(vals)/len(vals)
-          val=int("".join("1" if v<avg else "0" for v in vals),2)
-          print("VISUAL_DIFF",i+1,(val^int(h,16)).bit_count(),flush=True)
-      except Exception as e:print("ERROR",str(e),flush=True)
-    raise RuntimeError("Source diagnostic complete; don't modify images before matching PDF")
-
+    main()
