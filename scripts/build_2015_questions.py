@@ -103,4 +103,29 @@ def main():
         json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("Exported",len(rows),"individual original-question images")
 
-if __name__=="__main__": main()
+if __name__=="__main__":
+    import hashlib
+    urls=[
+      "https://drive.usercontent.google.com/download?id=1Hvj_g50LFuPUr8kiTQY7sGHGShPZBK1E&export=download&confirm=t",
+      "https://drive.google.com/uc?export=download&id=1Hvj_g50LFuPUr8kiTQY7sGHGShPZBK1E"]
+    expected={0:"fffe38fffffcfffffcfefffcfc7cfc1f00001fc0001ffff001ffb001cc003efc003c78000220001200003fe0003f80003ffe003fffc023f800377f787ff270232000211000000030",
+      6:"f000003ffffc3fc7c4033ff82730007ffffc7ffffc3b6ffc7ffff87ffffc7feffc7ffff07fff8c7dbffc700ffc780ffc7feffc00000000000000000000000000000000000000001c",
+      16:"3fffff7fffff7fffff7f001f3fffde007e8007f800016000004000020000027d0007fe010fc00100480007ffff00fe00027fdf07fe0103fc0007fe0007fc0003f00003f807000000"}
+    for url in urls:
+      try:
+        req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"application/pdf,*/*"})
+        with urllib.request.urlopen(req,timeout=75) as response:data=response.read()
+        print("CANDIDATE",len(data),hashlib.sha256(data).hexdigest(),data[:16],flush=True)
+        if not data.startswith(b"%PDF"):continue
+        d=fitz.open(stream=data,filetype="pdf")
+        print("PAGES",len(d),"GEO",d[0].rect,flush=True)
+        for i,h in expected.items():
+          pix=d[i].get_pixmap(matrix=fitz.Matrix(.7,.7),colorspace=fitz.csGRAY,alpha=False)
+          im=Image.frombytes("L",(pix.width,pix.height),pix.samples)
+          im=im.crop((int(im.width*.05),int(im.height*.03),int(im.width*.95),int(im.height*.97))).resize((24,24))
+          vals=list(im.getdata());avg=sum(vals)/len(vals)
+          val=int("".join("1" if v<avg else "0" for v in vals),2)
+          print("VISUAL_DIFF",i+1,(val^int(h,16)).bit_count(),flush=True)
+      except Exception as e:print("ERROR",str(e),flush=True)
+    raise RuntimeError("Source diagnostic complete; don't modify images before matching PDF")
+
