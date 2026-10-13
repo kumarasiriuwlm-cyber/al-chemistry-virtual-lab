@@ -1,0 +1,70 @@
+name: Replace 2023 questions with photographed Sinhala scan
+on:
+  push:
+    paths:
+      - 'scripts/replace_2023_photo_scan.py'
+      - '.github/workflows/replace-2023-photo-scan.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: chemistry-2023-photo-recrop
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF and perspective tools
+        run: python -m pip install --disable-pip-version-check pymupdf pillow numpy opencv-python-headless
+      - name: Recut 2023 photographed paper and verify source matches upload
+        run: python scripts/replace_2023_photo_scan.py
+      - name: Verify original MCQ and essays, preserve structured
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path("past-papers/2023")
+          rows=json.loads((root/"questions.json").read_text(encoding="utf-8"))
+          assert len(rows)==60
+          assert sum(q["part"]=="I" for q in rows)==50
+          assert sum(q["part"]=="II" for q in rows)==10
+          assert sum(q["part"]=="II" and q["type"]=="structured_essay" for q in rows)==4
+          assert sum(q["part"]=="II" and q["type"]=="essay" for q in rows)==6
+          for q in rows:
+              path=Path(q["image"])
+              assert path.exists(),str(path)
+              with Image.open(path) as im:
+                  assert im.width>=850 and im.height>40,(path,im.size)
+              assert path.stat().st_size>1800,str(path)
+              if q["part"]=="I" or q["number"]>=5:
+                  assert q["source_type"]=="rectified_user_2023_15_page_scan",path
+          assert next(q for q in rows if q["part"]=="II" and q["number"]==9)["pdf_pages"]==[13,14]
+          assert next(q for q in rows if q["part"]=="II" and q["number"]==10)["pdf_pages"]==[15]
+          print("PASS: All 56 new 2023 images verified; Q1-Q4 retained")
+          PY
+      - name: Commit replacements to website repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add past-papers/2023/I/ past-papers/2023/II/q05.webp past-papers/2023/II/q06.webp past-papers/2023/II/q07.webp past-papers/2023/II/q08.webp past-papers/2023/II/q09.webp past-papers/2023/II/q10.webp past-papers/2023/questions.json
+          if git diff --cached --quiet; then
+            echo "No change to previously published question images"
+            exit 0
+          fi
+          git commit -m "Replace 2023 Chemistry MCQs and essays using deskewed uploaded Sinhala scan"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo "New 2023 question images published"
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
