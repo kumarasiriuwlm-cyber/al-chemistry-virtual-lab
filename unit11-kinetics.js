@@ -246,7 +246,7 @@ var TA_STEPS=[
 ];
 function index(lang){return lang==="si"?0:lang==="ta"?2:1;}
 function esc(v){return String(v===undefined?"":v).replace(/[&<>"']/g,function(x){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]})}
-function units(){return chapters.map(function(c,i){return {name:c.n,ref:c.ref,pages:c.pages,intro:[c.intro,c.en,c.ta],steps:c.steps.map(function(s,j){return {t:[s[0],s[0].match(/[A-Za-z]/)?s[0]:["Concept "+(j+1),"Process "+(j+1),"Application "+(j+1),"Exam focus"][j],s[0]],d:[s[1],EN_STEPS[i][j],TA_STEPS[i][j]],eq:s[2]}}),qs:c.q.map(function(q){return [q[0],"Select the correct answer: "+q[0].replace(/[^\w\d\s=+\-<>.,³²¹⁻⁺/]/g,"").slice(0,55),"சரியான விடையைத் தேர்ந்தெடுக்கவும்",q[1],q[2],q[3]]})}})}
+function units(){return chapters.map(function(c,i){return {name:c.n,ref:c.ref,pages:c.pages,intro:[c.intro,c.en,c.ta],steps:c.steps.map(function(s,j){return {t:[s[0],s[0].match(/[A-Za-z]/)?s[0]:["Concept "+(j+1),"Process "+(j+1),"Application "+(j+1),"Exam focus"][j],s[0]],d:[s[1],EN_STEPS[i][j],TA_STEPS[i][j]],eq:s[2]}}),qs:c.q.map(function(q){return [q[0],"Select the correct answer: "+c.n[1]+" • Question "+(j+1),"சரியான விடையைத் தேர்ந்தெடுக்கவும்",q[1],q[2],q[3]]})}})}
 var U11=units();var gatePools={},gateUi={},examSelections={};
 function done(){try{var x=JSON.parse(localStorage.getItem("chem-unit11-mastered")||"[]");var a=[];for(var i=0;i<chapters.length;i++){if(x.includes(i))a.push(i);else break}return a}catch(e){return []}}
 function notes(){var obj={};["si","en","ta"].forEach(function(lang){var ix=index(lang);obj[lang]=U11.map(function(c){return {t:c.name[ix],b:c.steps.map(function(st){return st.d[ix]}),f:c.steps.map(function(st){return st.eq}).join(" • "),exam:[c.intro[ix]]}})});return obj}
@@ -255,7 +255,7 @@ function ui(lang){var i=index(lang),txt={
 si:{sub:"NIE 13 ශ්‍රේණිය 11 ඒකකය (මුද්‍රිත පිටු 1–74) පදනම් කරගත් සම්පූර්ණ ඉගෙනුම් ගමනකි. වේගය → ඝට්ටන → rate law → උත්ප්‍රේරක → යාන්ත්‍රණ → ශක්ති ප්‍රස්තාර.",guide:"ඉගෙනුම් ගමන — වේග මැනීම → ඝට්ටන → පෙළ/අර්ධ ජීව කාලය → යාන්ත්‍රණ",source:"NIE රසායන විද්‍යාව 13 ශ්‍රේණිය, භෞතික රසායනය II කොටස, 11 ඒකකය: චාලක රසායනය (2019; මුද්‍රිත පිටු 1–74). සටහන් මුල් කෘතිය නැවත ලියූ ඉගෙනුම් සාරාංශයකි."},
 en:{sub:"A full 11-section learning journey following NIE Grade 13 Chemistry Unit 11: rates, collision theory, rate laws, catalysis, mechanisms and energy profiles.",guide:"Journey: measurement → collisions → orders and half-life → mechanisms",source:"NIE Grade 13 Chemistry Resource Book, Physical Chemistry Part II, Unit 11: Chemical Kinetics, 2019 edition, printed pp.1–74."},
 ta:{sub:"NIE தரம் 13, அலகு 11 அடிப்படையில் வேகம், மோதல்கள், வேகவிதிகள், வினையூக்கிகள், இயங்குமுறை, ஆற்றல் வரைபடங்கள்.",guide:"கற்றல் பயணம்: அளவீடு → மோதல் → வரிசை → இயங்குமுறை",source:"NIE தரம் 13 இரசாயனவியல் வளநூல், அலகு 11, அச்சுப் பக்கங்கள் 1–74 (2019)."}
-}[lang]||null;txt=txt||arguments.callee("en");
+}[lang]||null;if(!txt){txt={sub:"NIE Grade 13 chemical kinetics.",guide:"Rates → mechanisms",source:"NIE Chemistry Unit 11."};}
 return {title:"Unit 11 — "+["චාලක රසායනය","Chemical Kinetics","வேதி வினைவேகவியல்"][i],sub:txt.sub,guide:txt.guide,source:txt.source,sections:U11.map(function(c){return c.name[i]})}}
 var pictures={
 "11-0-3":["Alka-Seltzer tablet dissolving - wide.jpg","දියවන effervescent පෙත්තක CO₂ බුබුළු — ප්‍රතික්‍රියා වේගය දෘශ්‍යමාන වන උදාහරණයක්.","Mysterymanblue • Wikimedia Commons"],
