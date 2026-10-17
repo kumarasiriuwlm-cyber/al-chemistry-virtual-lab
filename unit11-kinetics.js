@@ -246,7 +246,7 @@ var TA_STEPS=[
 ];
 function index(lang){return lang==="si"?0:lang==="ta"?2:1;}
 function esc(v){return String(v===undefined?"":v).replace(/[&<>"']/g,function(x){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]})}
-function units(){return chapters.map(function(c,i){return {name:c.n,ref:c.ref,pages:c.pages,intro:[c.intro,c.en,c.ta],steps:c.steps.map(function(s,j){return {t:[s[0],s[0].match(/[A-Za-z]/)?s[0]:["Concept "+(j+1),"Process "+(j+1),"Application "+(j+1),"Exam focus"][j],s[0]],d:[s[1],EN_STEPS[i][j],TA_STEPS[i][j]],eq:s[2]}}),qs:c.q.map(function(q){return [q[0],"Select the correct answer: "+c.n[1]+" • Question "+(j+1),"சரியான விடையைத் தேர்ந்தெடுக்கவும்",q[1],q[2],q[3]]})}})}
+function units(){return chapters.map(function(c,i){return {name:c.n,ref:c.ref,pages:c.pages,intro:[c.intro,c.en,c.ta],steps:c.steps.map(function(s,j){return {t:[s[0],EN_STEPS[i][j].split(/[,.]/)[0].slice(0,54),TA_STEPS[i][j].split(/[,.]/)[0].slice(0,57)],d:[s[1],EN_STEPS[i][j],TA_STEPS[i][j]],eq:s[2]}}),qs:c.q.map(function(q,j){return [q[0],"Select the correct answer: "+c.n[1]+" • Question "+(j+1),"சரியான விடையைத் தேர்ந்தெடுக்கவும்",q[1],q[2],q[3]]})}})}
 var U11=units();var gatePools={},gateUi={},examSelections={};
 function done(){try{var x=JSON.parse(localStorage.getItem("chem-unit11-mastered")||"[]");var a=[];for(var i=0;i<chapters.length;i++){if(x.includes(i))a.push(i);else break}return a}catch(e){return []}}
 function notes(){var obj={};["si","en","ta"].forEach(function(lang){var ix=index(lang);obj[lang]=U11.map(function(c){return {t:c.name[ix],b:c.steps.map(function(st){return st.d[ix]}),f:c.steps.map(function(st){return st.eq}).join(" • "),exam:[c.intro[ix]]}})});return obj}
