@@ -1,0 +1,44 @@
+name: Validate Unit 11 lesson integration
+on:
+  push:
+    paths:
+      - 'unit11-kinetics.js'
+      - 'unit11-theme.css'
+      - 'index.html'
+      - '.github/workflows/test-unit11.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-unit11:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: node --check unit11-kinetics.js
+      - name: Verify data, pictures, visuals, practice and integration
+        run: |
+          node - <<'JS'
+          const fs=require('fs');
+          const api={mediaMap:{},themes:{},units:()=>[],total:()=>0,notes:()=>({}),meta:()=>({}),getDone:()=>[],reset:()=>{},gateUI:()=>({}),gateQuestions:()=>[],ui:()=>({}),background:()=>'',deep:()=>[],sectionMedia:()=>({}),visual:()=>'',assessments:()=>'',bindAssessment:()=>{}};
+          global.window={OrganicUnits:api};
+          global.localStorage={getItem:()=>null,setItem:()=>{}};
+          require('./unit11-kinetics.js');
+          const units=api.units(11),intro=api.ui(11,'si');
+          if(!window.Kinetics11||window.Kinetics11.validate().length)throw Error("Invalid Unit11 section / answer data "+window.Kinetics11?.validate());
+          if(units.length!==11||api.total(11)!==11)throw Error("Must contain eleven full NIE sections");
+          if(units.some(x=>x.steps.length!==4||x.qs.length!==5))throw Error("44 teaching concepts and 55 questions required");
+          if(units.some(x=>x.qs.some(q=>q[3].length!==4||!Number.isInteger(q[4]))))throw Error("Invalid quiz structure");
+          if(!intro.title.includes('චාලක')||!intro.source.includes('NIE'))throw Error("NIE Sinhala title/source missing");
+          if(api.notes(11).si.length!==11||api.notes(11).en.length!==11||api.notes(11).ta.length!==11)throw Error("Trilingual notes missing");
+          if(api.gateQuestions(11,0,'si').length!==5)throw Error("Mastery gate missing");
+          if(!api.visual(11,6,1,'Rate').includes('data-k11-slider'))throw Error("Interactive rate visualization missing");
+          if(!api.assessments(11,'si').includes('data-k11-answer'))throw Error("Unit-wide practice quiz missing");
+          if(!Object.keys(api.mediaMap).some(k=>k.startsWith('11-')))throw Error("Scientific photograph references missing");
+          const html=fs.readFileSync('index.html','utf8');
+          ['unit11-kinetics.js','unit11-theme.css','#unit11','r==="unit11"?renderOrganicUnit(11)','[4,5,6,7,8,9,10,11]','[7,8,9,10,11]'].forEach(token=>{if(!html.includes(token))throw Error('Missing integration: '+token)});
+          console.log('PASS: Unit11 11 chapters, 44 concepts, 55 quizzes, bilingual/Tamil labels, images, interactive diagrams, journey and Dev Mode integration');
+          JS
