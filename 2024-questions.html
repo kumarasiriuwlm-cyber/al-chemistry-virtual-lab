@@ -41,7 +41,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
   </div>
 </header>
 <main class="container">
-  <div class="intro"><strong>ප්‍රශ්න 60ක්</strong> — I පත්‍රය: බහුවරණ 50ක් • II පත්‍රය: ව්‍යුහගත රචනා 4ක් සහ රචනා 6ක්. මුල් රූප, රසායනික සූත්‍ර, වගු සහ රූප සටහන් එලෙසම තබා ඇත.</div>
+  <div class="intro"><strong>ප්‍රශ්න 60ක්</strong> — I පත්‍රය: බහුවරණ 50ක් • II පත්‍රය: ව්‍යුහගත රචනා 4ක් සහ රචනා 6ක්. ඔබ ලබාදුන් 2024 සිංහල PDF පිටු 27න් ප්‍රශ්න සියල්ල නැවත වෙන් කර නිවැරදි කර ඇත.</div>
   <nav class="controls" aria-label="ප්‍රශ්න පත්‍රය තෝරන්න" role="tablist">
     <button type="button" class="tab" data-part="I" role="tab" aria-controls="part-I" aria-selected="true">I පත්‍රය • MCQ (50)</button>
     <button type="button" class="tab" data-part="II" role="tab" aria-controls="part-II" aria-selected="false">II පත්‍රය • රචනා (10)</button>
@@ -55,7 +55,7 @@ footer{font-size:12px;color:#63807f;padding:23px 0 35px;line-height:1.8}
   "use strict";
   function card(part,number){
     var pad=String(number).padStart(2,"0");
-    var path="./past-papers/2024/"+part+"/q"+pad+".webp";
+    var path="./past-papers/2024/"+part+"/q"+pad+".webp?v=2024-user-pdf-exact-20261017";
     var kind=part==="I"?"බහුවරණ":number<=4?"ව්‍යුහගත රචනා":"රචනා";
     return '<a class="question" href="'+path+'" target="_blank" rel="noopener noreferrer" aria-label="2024 '+part+' ප්‍රශ්න අංක '+number+'">'
       +'<div class="preview"><img loading="lazy" decoding="async" src="'+path+'" alt="2024 ප්‍රශ්න අංක '+number+' රූපය"></div>'
