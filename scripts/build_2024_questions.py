@@ -1,83 +1,109 @@
 #!/usr/bin/env python3
-"""Produce original individual 2024 A/L Chemistry questions for the existing website."""
+"""Re-crop the user's exact 27-page Sinhala 2024 Past Papers Wiki scan.
+Verify SHA-256 before publishing. Preserves complete options, tables, diagrams
+and continuation pages; avoids the older AlevelApi paper extraction source.
+"""
 from pathlib import Path
-import os, json, urllib.request
+import os,hashlib,json,urllib.request
 import fitz
 from PIL import Image
-YEAR=2024
+
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/"past-papers"/str(YEAR)
-BASE="https://cdn.alevelapi.com/Prod/documents/"+str(YEAR)+"/chemistry/"
-SOURCE={"I":str(YEAR)+"-AL-CHEMISTRY-PART-I-MCQ-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf",
-        "II":str(YEAR)+"-AL-CHEMISTRY-PART-II-PAPER-SINHALA-MEDIUM-AlevelApi-PDF.pdf"}
-MCQ=[[1,637],[1,702],[1,931],[1,998],[1,1086],[1,1285],[2,93],[2,247],[2,469],[2,964],[2,1110],[2,1245],[3,106],[3,595],[3,837],[3,1077],[3,1200],[4,96],[4,316],[4,623],[4,974],[5,104],[5,301],[5,683],[5,1067],[6,93],[6,318],[6,536],[6,924],[6,1090],[7,461],[7,661],[7,829],[7,1144],[8,103],[8,533],[8,668],[8,799],[8,993],[8,1144],[9,375],[9,473],[9,577],[9,675],[9,754],[9,831],[9,947],[9,1024],[9,1112],[9,1190]]
-PREAMBLES=[[7,89,443],[9,105,335]]
-ESSAYS={"1":[[2,80,1340],[3,78,1340]],"2":[[4,85,1350],[5,75,630]],"3":[[5,650,1340],[6,75,1340],[7,77,355]],"4":[[7,365,1340],[8,75,1340]],"5":[[9,256,1340]],"6":[[10,75,1340]],"7":[[11,75,1340]],"8":[[12,72,1340]],"9":[[13,76,1340],[14,80,685]],"10":[[14,685,1340],[15,75,650]]}
-def raster(part):
-    name=SOURCE[part]
-    local=os.environ.get("CHEMISTRY_"+str(YEAR)+"_PDF_DIR")
-    if local and (Path(local)/name).is_file():
-        doc=fitz.open(Path(local)/name)
+URL="https://pastpapers.wiki/download/37759/2024-a-l-sm-past-papers/101453/2024-al-chemistry-past-paper-sinhala-medium-past-papers-wiki.pdf"
+SHA="0a52bc8abfe417c60e17167d13e3f0f0d0d122362b90fa04b98e67d2f7981586"
+OUT=ROOT/"past-papers"/"2024"
+MCQ={
+1:(1,676,752),2:(1,752,992),3:(1,992,1062),4:(1,1062,1158),5:(1,1158,1305),6:(1,1305,1404),
+7:(2,134,300),8:(2,300,485),9:(2,485,1030),10:(2,1030,1184),11:(2,1184,1340),12:(2,1340,1444),
+13:(3,130,636),14:(3,636,891),15:(3,891,1156),16:(3,1156,1286),17:(3,1286,1428),
+18:(4,130,366),19:(4,366,696),20:(4,696,1001),21:(4,1001,1375),
+22:(5,135,343),23:(5,343,742),24:(5,742,1133),25:(5,1133,1442),
+26:(6,134,343),27:(6,343,537),28:(6,537,991),29:(6,991,1156),30:(6,1156,1407),
+31:(7,481,698),32:(7,698,884),33:(7,884,1201),34:(7,1201,1362),
+35:(8,131,590),36:(8,590,731),37:(8,731,851),38:(8,851,1057),39:(8,1057,1240),40:(8,1240,1432),
+41:(9,411,511),42:(9,511,633),43:(9,633,742),44:(9,742,789),45:(9,789,891),
+46:(9,891,1006),47:(9,1006,1092),48:(9,1092,1181),49:(9,1181,1261),50:(9,1261,1345)}
+PAPER_II={
+1:[(12,190,1405),(13,112,1365)],
+2:[(14,113,1410),(15,110,704)],
+3:[(15,704,1410),(16,111,1405),(17,112,377)],
+4:[(17,377,1405),(18,113,1391)],
+5:[(19,482,1400)],6:[(20,122,1387)],7:[(21,117,1395)],8:[(22,208,1390)],
+9:[(23,119,1390),(24,120,696)],
+10:[(24,696,1391),(25,116,695)]}
+def get_pdf():
+    local=os.environ.get("CHEM_2024_UPLOADED_PDF")
+    if local:
+        data=Path(local).read_bytes()
     else:
-        req=urllib.request.Request(BASE+name,headers={"User-Agent":"Mozilla/5.0","Referer":"https://www.alevelapi.com/"})
-        with urllib.request.urlopen(req,timeout=110) as result:raw=result.read()
-        if not raw.startswith(b"%PDF"):raise ValueError("Invalid PDF: "+name)
-        doc=fitz.open(stream=raw,filetype="pdf")
-    pages={}
-    with doc:
-        for i,page in enumerate(doc,1):
-            pix=page.get_pixmap(matrix=fitz.Matrix(1.75,1.75),colorspace=fitz.csRGB,alpha=False)
-            pages[i]=Image.frombytes("RGB",(pix.width,pix.height),pix.samples)
-    return pages
-def clip(im,top,bottom):
-    return im.crop((75,max(55,top),950,min(im.height-92,bottom)))
+        urls=[URL,"https://pastpapers.wiki/wp-admin/admin-ajax.php?action=wpfd&task=file.download&wpfd_category_id=37759&wpfd_file_id=101453"]
+        problems=[]
+        data=None
+        for url in urls:
+            try:
+                req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"application/pdf,*/*","Referer":"https://pastpapers.wiki/"})
+                with urllib.request.urlopen(req,timeout=150) as resp:maybe=resp.read()
+                d=hashlib.sha256(maybe).hexdigest()
+                if d!=SHA:
+                    problems.append("SHA mismatch: "+d)
+                    continue
+                data=maybe
+                break
+            except Exception as exc:problems.append(str(exc))
+        if data is None:raise RuntimeError("No verified uploaded PDF available: "+"; ".join(problems))
+    actual=hashlib.sha256(data).hexdigest()
+    if actual!=SHA:raise ValueError("Uploaded source mismatch: "+actual)
+    doc=fitz.open(stream=data,filetype="pdf")
+    if len(doc)!=27 or round(doc[0].rect.width)!=595 or round(doc[0].rect.height)!=842:
+        raise ValueError("Expected uploaded 27-page 595x842-point PDF")
+    print("VERIFIED exact uploaded 2024 Sinhala source SHA256",actual,flush=True)
+    return doc
+def render(doc,page):
+    pix=doc[page-1].get_pixmap(matrix=fitz.Matrix(1.8,1.8),colorspace=fitz.csRGB,alpha=False)
+    im=Image.frombytes("RGB",(pix.width,pix.height),pix.samples)
+    if im.size!=(1071,1516):raise ValueError("Source page geometry changed")
+    return im
+def cut(image,top,bottom):
+    if not 75<=top<bottom<=1460:raise ValueError("Invalid question crop")
+    return image.crop((83,top,1018,bottom))
 def combine(parts):
     if len(parts)==1:return parts[0]
-    width=max(i.width for i in parts)
-    result=Image.new("RGB",(width,sum(i.height for i in parts)+17*(len(parts)-1)),"white")
-    y=0
-    for im in parts:
-        result.paste(im,((width-im.width)//2,y));y+=im.height+17
-    return result
-def save(img,part,num):
-    dest=OUT/part/("q%02d.webp"%num)
-    dest.parent.mkdir(parents=True,exist_ok=True)
-    img.save(dest,format="WEBP",quality=92,method=6)
-    return dest.relative_to(ROOT).as_posix()
+    w=max(p.width for p in parts)
+    h=sum(p.height for p in parts)+14*(len(parts)-1)+12
+    out=Image.new("RGB",(w,h),"white");y=6
+    for p in parts:
+        out.paste(p,((w-p.width)//2,y))
+        y+=p.height+14
+    return out
+def save(im,part,n):
+    p=OUT/part/("q%02d.webp"%n)
+    p.parent.mkdir(parents=True,exist_ok=True)
+    im.save(p,"WEBP",quality=94,method=6)
+    if p.stat().st_size<1700 or im.width<800 or im.height<45:
+        raise ValueError("Question image failed size test: "+str(p))
+    return p.relative_to(ROOT).as_posix()
 def main():
-    first=raster("I");second=raster("II")
-    assert len(MCQ)==50 and len(ESSAYS)==10
-    table31=clip(first[PREAMBLES[0][0]],PREAMBLES[0][1],PREAMBLES[0][2])
-    table41=clip(first[PREAMBLES[1][0]],PREAMBLES[1][1],PREAMBLES[1][2])
-    records=[]
-    for i,(page,start) in enumerate(MCQ):
-        num=i+1
-        end=(MCQ[i+1][1]-4 if i<49 and MCQ[i+1][0]==page else 1370)
-        if YEAR==2022 and num==30:end=730
-        if YEAR==2022 and num==40:end=313
-        if YEAR==2022 and num==50:end=1351
-        if YEAR==2023 and num==30:end=1190
-        if YEAR==2023 and num==40:end=253
-        if YEAR==2024 and num==30:end=1360
-        if YEAR==2024 and num==40:end=1350
-        part=clip(first[page],start-3,end)
-        if YEAR==2024 and num==30:
-            part=combine([part,clip(first[7],80,450)])
-        if 31<=num<=40:part=combine([table31,part])
-        if 41<=num<=50:part=combine([table41,part])
-        image=save(part,"I",num)
-        records.append({"year":YEAR,"part":"I","number":num,"type":"mcq","image":image,
-                        "pdf_pages":[page],"source":"Original Sinhala examination paper",
-                        "classification_status":"not_started"})
-    for key,spans in ESSAYS.items():
-        num=int(key)
-        image=combine([clip(second[p],top,bottom) for p,top,bottom in spans])
-        path=save(image,"II",num)
-        records.append({"year":YEAR,"part":"II","number":num,
-                        "type":"structured_essay" if num<=4 else "essay",
-                        "image":path,"pdf_pages":[p for p,_,_ in spans],
-                        "classification_status":"not_started"})
-    OUT.mkdir(parents=True,exist_ok=True)
-    (OUT/"questions.json").write_text(json.dumps(records,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(YEAR,"Exported",len(records),"individual-question images")
+    doc=get_pdf()
+    nums={x[0] for x in MCQ.values()}|{p for spans in PAPER_II.values() for p,_,_ in spans}
+    pages={n:render(doc,n) for n in nums}
+    intro31=cut(pages[7],133,480)
+    intro41=cut(pages[9],134,372)
+    header41=cut(pages[9],373,411)
+    rows=[]
+    for q,(page,top,bottom) in MCQ.items():
+        parts=[cut(pages[page],top,bottom)]
+        if 31<=q<=34:parts.insert(0,intro31)
+        if 41<=q<=50:parts=[intro41,header41]+parts
+        path=save(combine(parts),"I",q)
+        rows.append(dict(year=2024,part="I",number=q,type="mcq",image=path,language="si",pdf_pages=[page],
+                         source_type="user_uploaded_2024_pastpapers_wiki_exact_scan",contains_answers=False))
+    for q,spans in PAPER_II.items():
+        path=save(combine([cut(pages[p],top,bottom) for p,top,bottom in spans]),"II",q)
+        rows.append(dict(year=2024,part="II",number=q,type="structured_essay" if q<=4 else "essay",
+                         image=path,language="si",pdf_pages=[p for p,_,_ in spans],
+                         source_type="user_uploaded_2024_pastpapers_wiki_exact_scan",contains_answers=False))
+    if len(rows)!=60 or len({(x["part"],x["number"]) for x in rows})!=60:
+        raise ValueError("Expected exactly 50 MCQs + 10 essays")
+    (OUT/"questions.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print("PASS: all 60 complete Sinhala 2024 question images from exact uploaded PDF",flush=True)
 if __name__=="__main__":main()
