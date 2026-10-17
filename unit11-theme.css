@@ -1,0 +1,77 @@
+/* Unit 11 • Copper / amber • Applied over existing Pathum journey engine */
+.unit11Theme{--ux:#d46e3c;--uxb:#e1a03b;--uxc:#efc879}
+.unit11Theme>.hero{background:linear-gradient(128deg,#fff3df 0%,#fffaf2 56%,#f1faff 100%);border-color:#edcaa3;position:relative;overflow:hidden}
+.unit11Theme>.hero:after{content:"";position:absolute;right:-65px;top:-95px;width:290px;height:290px;border:2px solid #d68c4d25;border-radius:48%;box-shadow:0 0 0 32px #db9a4c15,0 0 0 66px #ddb6730b;pointer-events:none}
+.unit11Theme>.hero .kicker,.unit11Theme>.hero h1{color:#9f4d22}
+.unit11Theme .learningProgress{background:linear-gradient(118deg,#fff,#fff8ec);border-color:#eacdab}
+.unit11Theme .learningBar i{background:linear-gradient(90deg,#bb5630,#e3a63d,#edc15b)}
+.unit11Theme .learningPct{color:#b95d2d}
+.unit11Theme .simpleJump button:not(.disabled){border-color:#efcfad;color:#a65129;background:#fffaf2}
+.unit11Theme .simpleJump button.done{background:#fff0d5;border-color:#dfab73}
+.unit11Theme .journeyChapter{border-color:#eed4ba;box-shadow:0 18px 58px rgba(110,63,27,.075)}
+.unit11Theme .journeyChapter.inViewChapter{border-color:#dea261;box-shadow:0 26px 68px rgba(172,102,47,.13)}
+.unit11Theme .journeyChapterHead{background:linear-gradient(116deg,#563026,#a85536 64%,#d59943)}
+.unit11Theme .journeyChapterNo{background:linear-gradient(135deg,#e1a23f,#d36336)}
+.unit11Theme .journeyChapterDivider{color:#a85532}
+.unit11Theme .journeyCurveBase{stroke:#edd6bc}
+.unit11Theme .journeyCurveGhost{stroke:#d9b392}
+.unit11Theme .journeyRunnerHtml{border-color:#d56737;box-shadow:0 0 0 7px rgba(212,105,59,.14),0 0 20px rgba(227,173,80,.28)}
+.unit11Theme .journeyCenterDot{border-color:#dc7843!important;box-shadow:0 0 0 6px rgba(214,115,62,.12)!important}
+.unit11Theme .journeyStep.activeStep .journeyTitle h3{color:#b65a30}
+.unit11Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#d56e3a,#e5b651)}
+.unit11Theme .journeyTitle h3{color:#52392e}
+.unit11Theme .journeyCard{border-color:#edd7c0;background:linear-gradient(145deg,#fff,#fffcf7)}
+.unit11Theme .journeyCopy{color:#374b54}
+.unit11Theme .formulaChip{border-color:#f0cfac;background:#fff6e6;color:#964b2b}
+.unit11Theme .examMini{border-color:#ebd1b8;background:#fff9f0}
+.unit11Theme .examMini summary{color:#a85e32}
+.unit11Theme .checkpointJourney:before{background:linear-gradient(180deg,#efdbc4,#d56f3f 40%,#e5bd56)}
+.unit11Theme .checkpointPulse{background:#d36a35;box-shadow:0 0 0 6px rgba(218,127,64,.12),0 0 22px rgba(217,142,57,.24)}
+.unit11Theme .checkpointNode{border-color:#d58749}
+.unit11Theme .masteryGate{border-color:#e5c9a6;background:linear-gradient(135deg,#fff,#fff8ec)}
+.unit11Theme .masteryGateHead{color:#98532d}
+.unit11Theme .gateProgress i{background:linear-gradient(90deg,#c76537,#f1ae55)}
+.unit11Theme .gateCard{border-color:#ebc59f}
+.unit11Theme .gateOpt.selected{border-color:#dd8a43;background:#fff0d7}
+.unit11Theme .unitDeepHead{color:#a75b35}
+.unit11Theme .k11Viz{position:relative;background:linear-gradient(138deg,#241f35 0%,#49314a 55%,#875744 100%);border:1px solid #d9a277;border-radius:18px;overflow:hidden;min-height:256px;padding:16px;color:#fffaea;box-shadow:inset 0 0 45px #0e142652}
+.k11VizTop{font-size:11px;letter-spacing:.02em;font-weight:850;color:#ffdb9b;line-height:1.55}
+.k11VizWindow{min-height:125px;display:grid;place-items:center;padding:6px 3px}
+.k11Viz .k11Plot{width:100%;height:auto;max-width:310px;min-height:142px}
+.k11Plot .axes{fill:none;stroke:#ecdecab9;stroke-width:2}
+.k11Plot .curve{fill:none;stroke:#f3b156;stroke-width:3.6;stroke-linecap:round;filter:drop-shadow(0 0 4px #ebaa5e77);transition:d .2s ease}
+.k11Plot .altCurve{fill:none;stroke:#7fe6d0;stroke-width:2.7;stroke-dasharray:6 5;transition:transform .3s ease}
+.k11Plot text{fill:#e9e1d0;font:11px system-ui,sans-serif}
+.k11Formula{margin:3px 0 9px;font:800 14px/1.8 "Noto Sans Sinhala",system-ui,sans-serif;word-break:break-word;color:#fff0d4;text-align:center}
+.k11Viz>small{display:block;color:#efccab;font-size:10px;line-height:1.65;opacity:.82}
+.k11Molecules{display:flex;gap:15px;align-items:center;justify-content:center;width:100%;min-height:110px}
+.k11Molecules span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#291e2e;font-size:17px;font-weight:900;background:radial-gradient(circle at 28% 26%,#ffefbb,#e2a348 68%,#9a582d);border:2px solid #ffdb9f;box-shadow:0 6px 12px #0c0b1380;animation:k11Orbit 3.2s ease-in-out infinite alternate}
+.k11Molecules span:nth-child(2){background:radial-gradient(circle at 25% 25%,#dcfff4,#51b6b0 72%,#256b74);animation-delay:-.55s}
+.k11Molecules span:nth-child(3){animation-delay:-1.3s}
+.k11Molecules span:nth-child(4){background:radial-gradient(circle at 25% 25%,#dcfff4,#51b6b0 72%,#256b74);animation-delay:-1.95s}
+.k11Particles{position:relative;display:flex;gap:13px;justify-content:space-around;align-items:center;width:100%;height:150px;overflow:hidden}
+.k11Particles>b{position:relative;z-index:1;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#211c2d;background:#ffc66e;box-shadow:0 0 16px #e9b15c88;animation:k11Particle var(--k11-speed,1.8s) ease-in-out infinite alternate}
+.k11Particles>b:nth-child(2n){background:#8de4dd;animation-delay:-.6s;animation-direction:alternate-reverse}
+.k11Particles>b:nth-child(3n){animation-delay:-1.1s}
+.k11Barrier{position:absolute;inset:0 42% 0 auto;border-left:2px dashed #e8ddc261;display:flex;align-items:center;padding-left:8px;font-size:11px;color:#ffedbe}
+.k11SliderLabel{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:7px;font-size:12px;font-weight:700;color:#ffdaa2;margin:9px 0}
+.k11SliderLabel input{display:block;flex-basis:100%;width:100%;accent-color:#f0a947;cursor:pointer}
+.k11Practice{border:1px solid #e9caaa;border-radius:20px;padding:20px;margin-top:25px;background:linear-gradient(145deg,#fffbf4,#fff)}
+.k11Practice h2,.k11Practice h3{color:#a25a30;margin:12px 0}
+.k11Practice>p{font-size:13px;line-height:1.8;color:#6c6056}
+.k11Practice>details,.k11Practice .k11AllQuiz{background:#fff;border:1px solid #efdcc7;border-radius:11px;padding:12px 15px;margin:9px 0}
+.k11Practice summary{cursor:pointer;font-weight:750}
+.k11Practice details>p{font-size:13px;line-height:1.85;color:#536368;padding:7px 12px}
+.k11QuestionDeck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.k11Question{padding:13px;border:1px solid #efdbc4;background:#fffaf2;border-radius:11px}
+.k11Question>b{display:block;font-size:12px;line-height:1.65;margin-bottom:7px}
+.k11Question button{display:block;width:100%;margin:5px 0;padding:8px;border:1px solid #e8d4bd;background:#fff;text-align:left;border-radius:8px;cursor:pointer;font-size:12px;color:#544536}
+.k11Question button.correct{border-color:#3a9670;background:#e9f9ee}
+.k11Question button.wrong{border-color:#b74e48;background:#fff0ef}
+.k11Question p{margin:9px 0 0;font-size:12px;line-height:1.6}
+.k11Source{border-top:1px solid #efd9be;padding-top:12px}
+.k11Source a{color:#ad6335;font-weight:850}
+@keyframes k11Orbit{from{transform:translate(-9px,5px) scale(.91)}to{transform:translate(13px,-7px) scale(1.06)}}
+@keyframes k11Particle{0%{transform:translate(-20px,17px)}55%{transform:translate(12px,-9px)}100%{transform:translate(22px,8px)}}
+@media(max-width:720px){.k11QuestionDeck{grid-template-columns:1fr}.unit11Theme .k11Viz{padding:12px;min-height:235px}.k11Molecules{gap:9px}.k11Molecules span{width:37px;height:37px}}
+@media(prefers-reduced-motion:reduce){.k11Molecules span,.k11Particles>b{animation:none}}
