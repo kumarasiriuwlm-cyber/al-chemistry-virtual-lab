@@ -272,5 +272,5 @@ C(["විභාජන / ව්‍යාප්ති සංගුණකය","Par
 ])
 ];
 window.U12_CHAPTERS=C12;
-window.U12_VALIDATE=function(){let errors=[];if(C12.length!==22)errors.push("Expected 22 chapters");C12.forEach((c,i)=>{if(c.steps.length!==4)errors.push("Steps in "+i);if(c.qs.length!==5)errors.push("Questions in "+i);c.qs.forEach((q,j)=>{if(q.length!==5||q[3].split("|").length!==4||q[2]<0||q[2]>3)errors.push("Question "+i+"."+j)})});return errors};
+window.U12_VALIDATE=function(){let errors=[];if(C12.length!==22)errors.push("Expected 22 chapters");C12.forEach((c,i)=>{if(c.steps.length!==4)errors.push("Steps in "+i);if(c.qs.length!==5)errors.push("Questions in "+i);c.qs.forEach((q,j)=>{if(q.length!==5||q[2].split("|").length!==4||q[3]<0||q[3]>3)errors.push("Question "+i+"."+j)})});return errors};
 })();
