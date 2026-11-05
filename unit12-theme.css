@@ -1,0 +1,75 @@
+/* Unit 12 · Ruby/pink and midnight-blue theme */
+.unit12Theme{--ux:#d94f95;--uxb:#7b72dc;--uxc:#6dbaca}
+.unit12Theme>.hero{position:relative;overflow:hidden;background:linear-gradient(124deg,#fff0f7 0%,#faf5ff 52%,#f0f8ff 100%);border-color:#eec5df}
+.unit12Theme>.hero:after{content:"";pointer-events:none;position:absolute;width:300px;height:300px;right:-70px;top:-100px;border-radius:50%;border:1px solid #d55aa541;box-shadow:0 0 0 26px #b86cc21c,0 0 0 66px #8881e413}
+.unit12Theme>.hero h1,.unit12Theme>.hero .kicker{color:#8d357a}
+.unit12Theme .learningProgress{background:linear-gradient(120deg,#fff,#fff1fb);border-color:#ebbedb}
+.unit12Theme .learningBar i{background:linear-gradient(90deg,#d94f95,#8b75db,#63c9d7)}
+.unit12Theme .learningPct{color:#b84e9a}
+.unit12Theme .simpleJump button:not(.disabled){border-color:#e5c5e6;background:#fff7ff;color:#884b9b}
+.unit12Theme .simpleJump button.done{border-color:#b98cdc;background:#f5e9ff}
+.unit12Theme .journeyChapter{border-color:#e9cfec;box-shadow:0 16px 44px #3d2c7211}
+.unit12Theme .journeyChapter.inViewChapter{border-color:#d389c8;box-shadow:0 28px 68px #773d9c22}
+.unit12Theme .journeyChapterHead{background:linear-gradient(120deg,#241a4b,#73376b 60%,#c54891)}
+.unit12Theme .journeyChapterNo{background:linear-gradient(130deg,#dd4b9b,#937ce0)}
+.unit12Theme .journeyChapterDivider{color:#af4b93}
+.unit12Theme .journeyCurveBase{stroke:#ead9ed}
+.unit12Theme .journeyCurveGhost{stroke:#d5abd5}
+.unit12Theme .journeyRunnerHtml{border-color:#d858a5;box-shadow:0 0 0 7px #d75c9d1a,0 0 20px #db74ac55}
+.unit12Theme .journeyCenterDot{border-color:#c951af!important;box-shadow:0 0 0 6px #cc5eac1c!important}
+.unit12Theme .journeyStep.activeStep .journeyTitle h3{color:#a13d9a}
+.unit12Theme .journeyStep .journeyConnector{background:linear-gradient(90deg,#d45b9d,#7b81e8)}
+.unit12Theme .journeyTitle h3{color:#48375a}
+.unit12Theme .journeyCard{background:linear-gradient(145deg,#fff,#fffaff);border-color:#e6d5ed}
+.unit12Theme .formulaChip{color:#733379;background:#fdf0fb;border-color:#eec7e9}
+.unit12Theme .examMini{background:#fff9ff;border-color:#e9d6ed}
+.unit12Theme .examMini summary{color:#a34a94}
+.unit12Theme .checkpointJourney:before{background:linear-gradient(180deg,#e9cfef,#c04c9b 43%,#73a3ec)}
+.unit12Theme .checkpointPulse{background:#d35fa8;box-shadow:0 0 0 6px #d569bb24,0 0 23px #d57cc663}
+.unit12Theme .masteryGate{border-color:#deb9e3;background:linear-gradient(145deg,#fff,#fcf4ff)}
+.unit12Theme .gateProgress i{background:linear-gradient(90deg,#d757a4,#7896e7)}
+.unit12Theme .gateOpt.selected{border-color:#bf5cac;background:#fcedf8}
+.unit12Theme .unitDeepHead{color:#a44a97}
+.unit12Theme .u12Visual{min-height:235px;border-radius:18px;padding:15px;background:linear-gradient(137deg,#171e4c,#3c2b68 55%,#733f78);border:1px solid #886fb0;color:#eef5ff;box-shadow:inset 0 0 50px #0a102b77}
+.u12Eyebrow{color:#8ee5f0;font:800 10px/1.5 system-ui,sans-serif;letter-spacing:.13em;margin-bottom:5px}
+.u12Visual>strong{font-size:12px;line-height:1.6;color:#f9dbf1;display:block}
+.u12Scene{min-height:137px;display:grid;place-items:center;margin:3px 0;overflow:hidden}
+.u12Scene svg{display:block;width:100%;height:170px;max-width:340px}
+.u12Scene svg text{font:11px system-ui,sans-serif;fill:#e2eaff}
+.u12Eq{font-size:13px;font-weight:800;color:#ffdcf0;text-align:center;margin:7px 0 5px;line-height:1.7;word-break:break-word}
+.u12Visual>small{color:#c7dbef;display:block;font-size:10px;line-height:1.6;opacity:.78}
+.u12Slider{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;font-weight:800;color:#aeeaf6;margin:8px 0}
+.u12Slider input{flex:1 1 125px;min-width:90px;accent-color:#d96aa7;cursor:pointer}
+.u12Slider strong{min-width:45px;text-align:right}
+.u12Molecules{display:flex;align-items:center;gap:9px;justify-content:center;min-height:140px}
+.u12Molecules b{border-radius:50%;width:42px;height:42px;background:radial-gradient(circle at 26% 23%,#ffe4fc,#e274b8 65%,#8e337f);display:grid;place-items:center;color:#2f1749;animation:u12Float 3s ease-in-out infinite alternate}
+.u12Molecules b:nth-of-type(3),.u12Molecules b:nth-of-type(4){background:radial-gradient(circle at 20% 25%,#ceffff,#81e5e9 69%,#3c89bc);animation-delay:-1s}
+.u12Molecules em{color:#b0e9f8;font-size:28px}
+.u12Ph{text-align:center;padding:15px 10px;width:100%}.u12Ph>b{font-size:22px;display:block;margin-bottom:10px}
+.u12Gradient{height:28px;width:100%;border-radius:16px;background:linear-gradient(90deg,#ff493e,#ffa938,#f3ed54,#6acc66,#36bfe2,#464ed8,#833ebf)}
+.u12Ph small{display:block;padding-top:9px;font-size:10px;color:#d1e5f2}
+.u12Glass{border:3px solid #9dddfb;border-top:0;border-radius:0 0 23px 23px;width:170px;height:132px;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.u12Solution{background:#72cdda7d;width:100%;height:85%;position:relative}
+.u12Solution span{position:absolute;top:20%;left:16%;font-size:12px;color:#e7ffff;animation:u12Float 2.6s ease-in-out infinite alternate}
+.u12Solution span:nth-child(2){top:48%;left:35%;animation-delay:-.6s}.u12Solution span:nth-child(3){top:18%;left:67%;animation-delay:-1.4s}.u12Solution span:nth-child(4){top:60%;left:81%;animation-delay:-2s}
+.u12Solution i{position:absolute;bottom:0;height:22px;left:0;right:0;background:repeating-linear-gradient(100deg,#faf2eb,#e5d5c7 12px,#fff 23px);opacity:0;transition:opacity .25s}
+.u12Layers{width:min(245px,100%);height:152px;border:2px solid #ccdeff;border-radius:13px;overflow:hidden}
+.u12Layers div{height:50%;display:grid;place-content:center;text-align:center;font:12px/1.5 system-ui,sans-serif}
+.u12Layers div:first-child{background:#a472b798}.u12Layers div:last-child{background:#51b9d899}
+.u12Layers b{color:#fff1d8}
+.u12Practice{margin:25px 0;padding:18px;background:linear-gradient(140deg,#fff,#fdf8ff);border:1px solid #e7cae8;border-radius:18px}
+.u12Practice h2{color:#88458c;font-size:23px;margin:17px 0 8px}
+.u12Practice>p{font-size:13px;color:#56636d;line-height:1.75}
+.u12QuizChapter,.u12Written{margin:9px 0;padding:12px 15px;border:1px solid #e6d4eb;background:#fff;border-radius:12px}
+.u12QuizChapter summary,.u12Written summary{cursor:pointer;font-weight:800;font-size:13px;line-height:1.7;color:#854b92}
+.u12QuizGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-top:12px}
+.u12QuizGrid article{background:#fff8fd;border:1px solid #eedaf0;border-radius:10px;padding:13px}
+.u12QuizGrid h4{font-size:13px;margin:0 0 9px;line-height:1.65;color:#50305e}
+.u12QuizGrid button{border:1px solid #dfcae6;border-radius:9px;display:block;text-align:left;width:100%;background:#fff;color:#423750;padding:8px;margin:6px 0;font-size:12px;cursor:pointer}
+.u12QuizGrid button.correct{background:#e3f7ee;border-color:#479975;color:#185940}
+.u12QuizGrid button.incorrect{background:#ffedf1;border-color:#b64c69;color:#852948}
+.u12Feedback{font-size:12px;line-height:1.7;padding:9px;color:#38445b}
+.u12Written p{font-size:12px;line-height:1.75}
+@keyframes u12Float{from{transform:translate(-6px,7px)}to{transform:translate(7px,-8px)}}
+@media(max-width:720px){.u12QuizGrid{grid-template-columns:1fr}.unit12Theme .u12Visual{padding:12px}.u12Scene svg{height:150px}}
+@media(prefers-reduced-motion:reduce){.u12Molecules b,.u12Solution span{animation:none}}
