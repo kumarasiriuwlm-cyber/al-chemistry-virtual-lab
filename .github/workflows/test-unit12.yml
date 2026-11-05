@@ -1,0 +1,62 @@
+name: Test Unit 12 Chemical Equilibrium
+on:
+  push:
+    paths:
+      - 'unit12-data.js'
+      - 'unit12-engine.js'
+      - 'unit12-theme.css'
+      - 'index.html'
+      - '.github/workflows/test-unit12.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-unit12:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax
+        run: |
+          node --check unit12-data.js
+          node --check unit12-engine.js
+      - name: Test syllabus, quizzes, formulas, theme and route
+        run: |
+          node - <<'JS'
+          const fs=require('fs');
+          const test=(cond,msg)=>{if(!cond)throw Error(msg)};
+          const base={mediaMap:{},themes:{},units:()=>[],total:()=>0,notes:()=>({}),meta:()=>({}),getDone:()=>[],reset:()=>{},gateUI:()=>({}),gateQuestions:()=>[],ui:()=>({}),background:()=>'',deep:()=>[],sectionMedia:()=>({}),visual:()=>'',assessments:()=>'',bindAssessment:()=>{}};
+          global.window={OrganicUnits:base};
+          global.localStorage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}};
+          require('./unit12-data.js');
+          test(!window.U12_VALIDATE().length,'Invalid source: '+window.U12_VALIDATE());
+          require('./unit12-engine.js');
+          test(!!window.ChemicalEquilibrium12,'Unit 12 engine missing');
+          const errs=window.ChemicalEquilibrium12.validate();
+          test(!errs.length,'Invalid Unit 12 data: '+errs);
+          const chapters=base.units(12);
+          test(chapters.length===22,'Expected 22 chapters');
+          test(chapters.every(x=>x.steps.length===4&&x.qs.length===5),'88 journey concepts / 110 quiz questions');
+          test(base.total(12)===22,'total mismatch');
+          test(base.notes(12).si.length===22,'Sinhala notes');
+          test(base.notes(12).en.length===22,'English notes');
+          test(base.notes(12).ta.length===22,'Tamil notes');
+          test(base.meta(12).si.every(x=>x.length===4),'Journey step labels');
+          test(base.gateQuestions(12,0,'si').length===5,'5 checkpoint questions');
+          test(base.gateQuestions(12,12,'si')[0][1].length===4,'checkpoint answers');
+          test(base.sectionMedia(12,7).images.length>=1,'real photographs');
+          test(base.sectionMedia(12,12).videos.length>=1,'Sinhala youtube lessons');
+          test(base.visual(12,7,0,'pH').includes('data-u12-range'),'interactive pH');
+          test(base.visual(12,15,0,'Ksp').includes('data-u12-solid'),'precipitate diagram');
+          test(base.visual(12,19,0,'Raoult').includes('data-u12-dot'),'Raoult diagram');
+          test(base.assessments(12,'si').includes('data-u12-answer'),'110 MCQ practice');
+          test(base.assessments(12,'si').includes('u12Written'),'structured and essay practice');
+          test(base.themes[12].length===3,'theme colors');
+          const html=fs.readFileSync('index.html','utf8');
+          ['unit12-data.js','unit12-engine.js','unit12-theme.css','r==="unit12"?renderOrganicUnit(12)','[4,5,6,7,8,9,10,11,12]','[7,8,9,10,11,12]','i<=12'].forEach(x=>test(html.includes(x),'Missing integration: '+x));
+          const css=fs.readFileSync('unit12-theme.css','utf8');
+          test(css.includes('.unit12Theme')&&css.includes('.u12Visual'),'theme CSS');
+          console.log('PASS: Unit 12 syllabus chapters 22, lesson steps 88, model MCQs 110, diagrams, photographs, videos, Dev Mode and routing');
+          JS
