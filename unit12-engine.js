@@ -44,22 +44,18 @@ function ui(lang){const key=dict[lang]?lang:"en",t=dict[key];return{title:"Unit 
 function deep(){return source.map(c=>[[c.steps[0][0],c.steps[0][1]],[c.steps[2][0],c.steps[2][1]],["විභාග අවධානය",c.steps[3][1]]])}
 function gate(which,sec,lang){const key=sec+"-"+lang;if(!pools[key]){let k=ix(lang);pools[key]=units[sec].qs.map(q=>[q[k],q[3].map(o=>opt(o,lang)),q[4],sec,q[5]])}return pools[key]}
 const pictures={
-0:["Water boiling.jpg","උතුරන ජලය — ද්‍රව/වාෂ්ප මාරුවේ සැබෑ උදාහරණයක්","Wikimedia Commons"],
+0:["Cobalt chloride equilibrium.JPG","Co(II) chloride සමතුලිතතාවයේ රෝස හා නිල් වර්ණ ප්‍රතිචාරය","Chemicalinterest • Wikimedia Commons • Public domain"],
 7:["Indicatoreuniversale.jpg","pH දර්ශකයක වර්ණ පරාසය","Wikimedia Commons"],
-10:["Acid and Base Titration.jpg","අම්ල–භෂ්ම අනුමාපනයක උපාංග","Wikimedia Commons"],
-11:["Phenolphthalein in Flask.jpg","Phenolphthalein දර්ශකයේ වර්ණය","Wikimedia Commons"],
-13:["Silver chloride (AgCl).jpg","සුදු AgCl අවක්ෂේපය","Wikimedia Commons"],
-15:["Silberhalogenide.jpg","හැලයිඩ අවක්ෂේපවල වර්ණ වෙනස්කම්","Wikimedia Commons"],
-18:["DryIceSublimation.JPG","Dry ice උත්ශ්‍රේණනයේ දෘශ්‍ය උදාහරණය","Wikimedia Commons"],
-20:["Steam distillation.jpg","වාෂ්ප ආසවනයේ විද්‍යාගාර සැකසුම","Wikimedia Commons"],
-21:["Separatory funnel.jpg","වෙන්කිරීමේ පුනීලය","Wikimedia Commons"]
+10:["Acid and Base Titration.jpg","අම්ල–භෂ්ම අනුමාපනයක සත්‍ය විද්‍යාගාර උපාංග","Kengksn • Wikimedia Commons • CC BY-SA 4.0"],
+11:["Phenolphthalein in Flask.jpg","Phenolphthalein අම්ල–භෂ්ම දර්ශකයේ වර්ණ නිරීක්ෂණය","384 • Wikimedia Commons • CC BY-SA"],
+13:["Silver chloride (AgCl).jpg","AgCl හි සුදු අවක්ෂේපය","Luisbrudna • Wikimedia Commons • CC BY-SA 4.0"],
+16:["Water boiling.jpg","ජලය උතුරන විට ද්‍රව සහ වාෂ්ප අවස්ථා","Snehit Jamere • Wikimedia Commons • CC BY-SA 4.0"],
+21:["Separatory funnel.jpg","ද්‍රව–ද්‍රව නිස්සාරණයට භාවිත වන වෙන්කිරීමේ පුනීලය","Rifleman 82 • Wikimedia Commons • Public domain"]
 };
 const videos={
-0:["UX1HvmUupJQ","රසායනික සමතුලිතතාව — සිංහල විස්තරය"],
-6:["EGen1NLZyno","ජලීය අයනික සමතුලිතතාව"],
-12:["NlO9aT47RK4","ස්වාරක්ෂක ද්‍රාවණ"],
-13:["Cjd8BqDglAE","ද්‍රාව්‍යතා ගුණිතය"],
-21:["watVy4f3OYY","විභාජන සංගුණකය"]
+0:["VIgwkPoijoU","රසායනික සමතුලිතතාව — හැඳින්වීම"],
+12:["NlO9aT47RK4","ස්වාරක්ෂක ද්‍රාවණ — සිංහල පාඩම"],
+13:["1ZR7oejsAmk","ද්‍රාව්‍යතා සමතුලිතතාව — සිංහල පාඩම"]
 };
 function sectionMedia(i){let photo=pictures[i],video=videos[i];return{images:photo?[{file:photo[0],alt:photo[1],caption:{si:photo[1],en:units[i].name[1],ta:units[i].name[2]},credit:photo[2]}]:[],videos:video?[{id:video[0],title:{si:video[1],en:"Additional Sinhala chemistry lesson",ta:"சிங்கள மொழி வேதியியல் பாடம்"},channel:"A/L Chemistry Sinhala • YouTube"}]:[]}}
 function chart(kind){
